@@ -1,0 +1,461 @@
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #042f4b;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .layout {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  
+  .left-panel,
+  .right-panel {
+    flex: 0 0 200px;
+    min-width: 150px;
+    max-width: 240px;
+    padding: 1rem;
+    font-size: 0.65rem;
+    background: linear-gradient(to bottom, #cc5500, hwb(33 20% 0%));
+    color: #fff;
+    overflow-y: auto;
+    box-sizing: border-box;
+    /* 🟧 NEW */
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  
+  
+  
+  .left-panel img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  main {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    background-color: #063b5f; /* Slightly lighter than side panels */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    min-width: 0;
+  }  
+
+  .main-navbar {
+    background-color: #001e2b;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    font-family: "Press Start 2P", cursive;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid #ff5400;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+  }
+  
+  .nav-title {
+    font-size: 1rem;
+    color: #ff6a1a;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .nav-links a:hover {
+    color: #ff6a1a;
+    text-shadow: 0 0 4px #ff6a1a;
+  }
+  
+  
+  h1 {
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-family: "Press Start 2P", cursive;
+  }
+  
+  .query-box input {
+    width: 350px;
+    padding: 0.6rem;
+    background-color: #001e2b;
+    border: 1px solid #cbd6e2;
+    color: white;
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+  
+  .query-box button {
+    padding: 0.6rem 1rem;
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Press Start 2P", cursive;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .query-box button:hover {
+    background-color: #cc4400;
+  }
+
+  .query-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .query-section input,
+  .query-section select,
+  .query-section button {
+    flex: 1 1 100%;
+    max-width: 300px;
+  }
+  
+  
+  .mode-box {
+    margin: 1rem 0;
+    font-size: 0.7rem;
+  }
+  
+  
+  
+  /* Adjust character card size and layout */
+  .character-card {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.8rem;
+    width: 100%;
+    max-width: 180px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    transition: all 0.2s ease-in-out;
+    color: #000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* stronger shadow */
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;  
+  }
+  
+  
+  .character-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+  }
+  
+  /* Optional: Hover effect */
+  .character-card:hover {
+    transform: scale(1.03);
+    box-shadow:
+      0 0 10px rgba(255, 255, 255, 0.2),
+      0 0 20px rgba(255, 84, 0, 0.4),
+      0 6px 12px rgba(0, 0, 0, 0.25);
+    border-color: #ff5400;
+  }
+  
+  
+  .right-panel ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .right-panel li {
+    background: white;
+    margin-bottom: 0.4rem;
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    color: #003858;
+  }
+  
+  .new-round {
+    margin: 1rem 0;
+  }
+  
+  .new-round button {
+    background: #ff5400;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .new-round button:hover {
+    background: #cc4400;
+  }
+  
+  .banner {
+    background-color: #ff6a1a;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .banner h1 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: "Press Start 2P", cursive;
+  }
+  
+  @media (max-width: 768px) {
+    .layout {
+      flex-direction: column;
+    }
+  
+    .left-panel, .right-panel {
+      width: 100%;
+      flex: none;
+      max-height: 150px;
+    }
+  
+    main {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .character-card {
+      font-size: 0.6rem;
+    }
+  
+    #queryFeedback,
+    #queryLog {
+      font-size: 0.75rem;
+    }
+  }
+  
+  
+  #promptInstruction {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    background-color: #1c4168;
+    border: 1px dashed gold;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: opacity 0.3s ease;
+
+  }
+  
+  #characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+
+  
+  
+  @media (max-width: 768px) {
+    .layout {
+      flex-direction: column;
+    }
+  
+    .left-panel,
+    .right-panel {
+      width: 100%;
+      max-height: none;
+      order: 0;
+    }
+  
+    main {
+      order: 1;
+      width: 100%;
+    }
+  }
+  
+  .page-content {
+    max-width: 700px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .page-content pre {
+    background-color: #001e2b;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .main-navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .page-content {
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+  
+    .banner h1 {
+      font-size: 1rem;
+    }
+  }
+  
+ 
+/* Accordion layout */
+#filterList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Filter header (clickable area) */
+.filter-header {
+  background-color: #063b5f; /* Match main panel */
+  color: #fff;
+  border: 1px solid #ff6a1a;
+  border-radius: 2px;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.filter-header:hover {
+  background-color: #09426e;
+}
+
+/* Filter content (expandable box) */
+.filter-content {
+  background: rgba(255, 106, 26, 0.15); /* soft orange overlay */
+  color: #09426e;
+  font-size: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ff6a1a;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.heading{
+  font-size: large;
+}
+
+#targetDisplay {
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.query-block {
+  background-color: #001e2b;
+  border-radius: 5px;
+  padding: 0.8rem;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.query-line {
+  margin-bottom: 0.2rem;
+}
+
+.query-note {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #c0c0c0;
+  margin-bottom: 0.6rem;
+  padding-left: 1rem;
+}
+
+.instruction-panel {
+  background: #073c5b;
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 1.2rem;
+  box-sizing: border-box;
+}
+
+.instruction-panel h2 {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ff6a1a;
+}
+
+.instruction-list {
+  padding-left: 1rem;
+  list-style: square;
+}
+
+.instruction-main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #042f4b;
+  color: white;
+  overflow-y: auto;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.character-card div {
+  line-height: 1.4;
+  margin-bottom: 0.2rem;
+}
+ 

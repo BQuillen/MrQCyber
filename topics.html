@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberProgram — Topics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="topics.css">
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR  —  copy unchanged to every page.
+       Set .active on the matching link for each page.
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+    <ul class="navbar__links">
+      <li class="navbar__item">
+        <a href="index.html" class="navbar__link">Home</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="index.html#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="index.html#tools">Tools</a></li>
+          <li class="dropdown__item"><a href="index.html#certifications">Certifications</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="topics.html" class="navbar__link active">Topics</a>
+        <ul class="dropdown">
+          <!-- Keep these hrefs in sync with the topic section ids below -->
+          <li class="dropdown__item"><a href="#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="partners.html" class="navbar__link">Partners</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="partners.html#industry">Industry</a></li>
+          <li class="dropdown__item"><a href="partners.html#academic">Academic</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="get-involved.html" class="navbar__link">Get Involved</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="get-involved.html#contact">Contact Form</a></li>
+          <li class="dropdown__item"><a href="get-involved.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="learn/index.html" class="navbar__link">Learn</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="learn/powershell/index.html">PowerShell</a></li>
+          <li class="dropdown__item"><a href="learn/codesnippetz/index.html">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="learn/kqwho/index.html">KQ Who?</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ── PAGE HERO BANNER -->
+  <div class="page-hero">
+    <div class="page-hero__label">Curriculum</div>
+    <h1 class="page-hero__headline">What Students <em>Learn</em></h1>
+    <p class="page-hero__sub">
+      A hands-on, project-based curriculum covering the core competencies of modern
+      cybersecurity. Each topic area below includes work samples and detailed descriptions
+      of how it's taught in the classroom.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       TOPIC NAVIGATION TABLE  —  3-column anchor grid
+       Each cell links to a topic section further down the page.
+       Add more .topic-nav__cell items (in multiples of 3) to
+       add topic areas. Keep the href matching the section id.
+       ═══════════════════════════════════════════════════════ -->
+  <div class="topic-nav">
+    <div class="topic-nav__inner">
+      <div class="topic-nav__label">Jump to a topic area</div>
+      <div class="topic-nav__grid">
+
+        <a href="#topic-1" class="topic-nav__cell">
+          <span class="topic-nav__num">01</span>
+          Digital Footprint — Protecting online identities
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <a href="#topic-2" class="topic-nav__cell">
+          <span class="topic-nav__num">02</span>
+          CIA Triad — The goals of cybersecurity 
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <a href="#topic-3" class="topic-nav__cell">
+          <span class="topic-nav__num">03</span>
+          Data Analysis — Investigating cyber attacks
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <a href="#topic-4" class="topic-nav__cell">
+          <span class="topic-nav__num">04</span>
+          Threat Management — Mitigating cyber attacks
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <a href="#topic-5" class="topic-nav__cell">
+          <span class="topic-nav__num">05</span>
+          Security and Compliance — Ensuring Secure Policies
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <a href="#topic-6" class="topic-nav__cell">
+          <span class="topic-nav__num">06</span>
+          Coding & Programming — Building the digital world
+          <span class="topic-nav__arrow">↓</span>
+        </a>
+
+        <!-- Add more cells here (keep in groups of 3) -->
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       TOPIC SECTIONS
+       Duplicate the entire .topic-section block for each topic.
+       - Set id to match the href in .topic-nav__cell
+       - Edit the title, intro, and card content
+       - Each topic can have as many .topic-card rows as needed
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- ── TOPIC 1 ─────────────────────────────────────────── -->
+  <div class="topic-section" id="topic-1">
+    <div class="topic-section__header">
+      <div class="topic-num">01</div>
+      <h2 class="topic-section__title">Digital <em>Footprint</em></h2>
+      <p class="topic-section__intro">
+        Replace this with a short introduction to the topic area. Describe what this
+        unit covers at a high level, why it matters in the industry, and what kinds
+        of skills students will develop by the end of it.
+      </p>
+    </div>
+
+    <div class="topic-cards">
+
+      <!-- Card A — image LEFT, description RIGHT -->
+      <div class="topic-card">
+
+        <!-- Left: work sample image — replace src with a real screenshot or lab photo -->
+        <div class="topic-card__img">
+          <img src="images/topic-1-sample-a.jpg" alt="Work sample for topic 1 activity A" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+
+        <!-- Right: description of how this activity is taught -->
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">
+            Replace this with a description of how this specific activity, lab, or
+            lesson is structured in class. What does the student do? What tools do
+            they use? What is the learning objective? How long does it take?
+          </p>
+          <!-- Add skill/tool tags below -->
+          <div class="topic-card__skills">
+            <span class="skill-tag">Tool Name</span>
+            <span class="skill-tag">Skill</span>
+            <span class="skill-tag">Concept</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Card B — duplicate for additional activities within this topic -->
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-1-sample-b.jpg" alt="Work sample for topic 1 activity B" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity B</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">
+            Replace this with a description of how this activity is taught in class.
+            What does the student produce or demonstrate at the end of it?
+          </p>
+          <div class="topic-card__skills">
+            <span class="skill-tag">Tool Name</span>
+            <span class="skill-tag">Skill</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- END TOPIC 1 -->
+
+
+  <!-- ── TOPIC 2 ─────────────────────────────────────────── -->
+  <div class="topic-section" id="topic-2">
+    <div class="topic-section__header">
+      <div class="topic-num">02</div>
+      <h2 class="topic-section__title">CIA <em>Triad</em></h2>
+      <p class="topic-section__intro">
+        Replace this with an intro to topic 2. What does this unit cover? What's
+        the real-world context students will be working in?
+      </p>
+    </div>
+    <div class="topic-cards">
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-2-sample-a.jpg" alt="Work sample for topic 2" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">
+            Describe how this activity is taught in class — tools, objectives,
+            deliverable, and how it connects to the broader topic.
+          </p>
+          <div class="topic-card__skills">
+            <span class="skill-tag">Tool Name</span>
+            <span class="skill-tag">Skill</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END TOPIC 2 -->
+
+
+  <!-- ── TOPIC 3 ─────────────────────────────────────────── -->
+  <div class="topic-section" id="topic-3">
+    <div class="topic-section__header">
+      <div class="topic-num">03</div>
+      <h2 class="topic-section__title">Data <em>Analysis</em></h2>
+      <p class="topic-section__intro">
+        Replace this with an intro to topic 3.
+      </p>
+    </div>
+    <div class="topic-cards">
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-3-sample-a.jpg" alt="Work sample for topic 3" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">
+            Describe how this activity is taught in class.
+          </p>
+          <div class="topic-card__skills">
+            <span class="skill-tag">Tool Name</span>
+            <span class="skill-tag">Skill</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── TOPIC 4 -->
+  <div class="topic-section" id="topic-4">
+    <div class="topic-section__header">
+      <div class="topic-num">04</div>
+      <h2 class="topic-section__title">Threat <em>Management</em></h2>
+      <p class="topic-section__intro">Replace this with an intro to topic 4.</p>
+    </div>
+    <div class="topic-cards">
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-4-sample-a.jpg" alt="Work sample for topic 4" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">Describe how this activity is taught in class.</p>
+          <div class="topic-card__skills"><span class="skill-tag">Tool Name</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── TOPIC 5 -->
+  <div class="topic-section" id="topic-5">
+    <div class="topic-section__header">
+      <div class="topic-num">05</div>
+      <h2 class="topic-section__title">Security <em> & Compliance</em></h2>
+      <p class="topic-section__intro">Replace this with an intro to topic 5.</p>
+    </div>
+    <div class="topic-cards">
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-5-sample-a.jpg" alt="Work sample for topic 5" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">Describe how this activity is taught in class.</p>
+          <div class="topic-card__skills"><span class="skill-tag">Tool Name</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOPIC 6 -->
+  <div class="topic-section" id="topic-6">
+    <div class="topic-section__header">
+      <div class="topic-num">06</div>
+      <h2 class="topic-section__title">Coding <em>& Programming</em></h2>
+      <p class="topic-section__intro">Replace this with an intro to topic 6.</p>
+    </div>
+    <div class="topic-cards">
+      <div class="topic-card">
+        <div class="topic-card__img">
+          <img src="images/topic-6-sample-a.jpg" alt="Work sample for topic 6" />
+          <span class="topic-card__img-label">Work Sample</span>
+        </div>
+        <div class="topic-card__body">
+          <span class="topic-card__tag">Activity A</span>
+          <h3 class="topic-card__heading">Replace With Activity or Lesson Name</h3>
+          <p class="topic-card__desc">Describe how this activity is taught in class.</p>
+          <div class="topic-card__skills"><span class="skill-tag">Tool Name</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER  —  copy to every page
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <strong>CyberProgram</strong> &nbsp;·&nbsp; The HILL / Fayette County Public Schools &nbsp;·&nbsp;
+    <a href="get-involved.html">Get Involved</a> &nbsp;·&nbsp;
+    © <span id="yr"></span> All rights reserved.
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

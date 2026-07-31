@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buttons — CodeSnippetz</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <style>
+    .pulse-btn {
+      background-color:#10b981;color:white;border:none;padding:14px 36px;
+      font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+      animation:pulse-anim 1.5s infinite;
+    }
+    @keyframes pulse-anim {
+      0%   {box-shadow:0 0 0 0 rgba(16,185,129,0.7);}
+      70%  {box-shadow:0 0 0 14px rgba(16,185,129,0);}
+      100% {box-shadow:0 0 0 0 rgba(16,185,129,0);}
+    }
+    .slide-btn {
+      position:relative;overflow:hidden;
+      background:linear-gradient(145deg,#1e293b,#0f172a);
+      color:white;border:1px solid rgba(255,255,255,0.15);
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+    }
+    .slide-btn::before {
+      content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;
+      background:linear-gradient(to right,transparent,rgba(255,255,255,0.25),transparent);
+      transform:skewX(-20deg);transition:0.7s;
+    }
+    .slide-btn:hover::before{left:130%;}
+    .wave-btn {
+      position:relative;overflow:hidden;
+      background:linear-gradient(135deg,#7c3aed,#ec4899);
+      color:white;border:none;padding:14px 36px;font-size:1rem;font-weight:600;
+      border-radius:999px;cursor:pointer;
+    }
+    .wave-btn::after {
+      content:'';position:absolute;top:50%;left:50%;width:300%;height:300%;
+      background:radial-gradient(circle,rgba(255,255,255,0.3) 0%,transparent 60%);
+      transform:translate(-50%,-50%) scale(0);transition:transform 0.6s ease;
+    }
+    .wave-btn:hover::after{transform:translate(-50%,-50%) scale(1);}
+    .glass-btn {
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      background:rgba(255,255,255,0.1);color:white;
+      border:1px solid rgba(255,255,255,0.25);
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:12px;cursor:pointer;
+      transition:background 0.3s,border-color 0.3s;
+    }
+    .glass-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.5);}
+    .glass-preview{background:linear-gradient(135deg,#667eea,#764ba2);}
+    .liquid-btn {
+      position:relative;overflow:hidden;background:#2563eb;color:white;border:none;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+    }
+    .liquid-btn::before {
+      content:'';position:absolute;top:0;left:-120%;width:80%;height:100%;
+      background:rgba(255,255,255,0.2);transform:skewX(35deg);transition:0.6s;
+    }
+    .liquid-btn:hover::before{left:120%;}
+    .press-btn {
+      background:#f59e0b;color:#1a1a1a;border:none;padding:14px 36px;
+      font-size:1rem;font-weight:700;border-radius:10px;cursor:pointer;
+      box-shadow:0 8px 0 #b45309,0 15px 20px rgba(0,0,0,0.4);
+      transition:transform 0.1s,box-shadow 0.1s;
+    }
+    .press-btn:hover{transform:translateY(4px);box-shadow:0 4px 0 #b45309,0 8px 12px rgba(0,0,0,0.3);}
+    .press-btn:active{transform:translateY(8px);box-shadow:0 0 0 #b45309,0 4px 8px rgba(0,0,0,0.2);}
+    .neon-btn {
+      background:transparent;color:#00f7ff;border:2px solid #00f7ff;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+      box-shadow:0 0 10px #00f7ff,inset 0 0 10px rgba(0,247,255,0.05);
+      transition:box-shadow 0.3s;
+    }
+    .neon-btn:hover{box-shadow:0 0 40px #00f7ff,0 0 80px rgba(0,247,255,0.3),inset 0 0 20px rgba(0,247,255,0.1);}
+    .neon-preview{background:#050a12;}
+    .rotate-btn {
+      position:relative;background:#0d1117;color:white;border:none;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;z-index:0;
+    }
+    .rotate-btn::before {
+      content:'';position:absolute;inset:-2px;border-radius:10px;
+      background:conic-gradient(#00f7ff,#7c3aed,#ec4899,#00f7ff);
+      z-index:-1;animation:rotateBorder 2s linear infinite;
+    }
+    .rotate-btn::after {
+      content:'';position:absolute;inset:2px;border-radius:7px;background:#0d1117;z-index:-1;
+    }
+    @keyframes rotateBorder{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    .ripple-btn {
+      position:relative;overflow:hidden;background:#0ea5e9;color:white;border:none;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+      transition:background 0.2s;
+    }
+    .ripple-btn:hover{background:#0284c7;}
+    .ripple-btn .ripple {
+      position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);
+      transform:scale(0);animation:ripple-anim 0.6s linear;pointer-events:none;
+    }
+    @keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
+    .magnetic-btn {
+      position:relative;overflow:hidden;background:transparent;
+      color:#5af0c4;border:2px solid #5af0c4;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;
+      transition:color 0.35s;z-index:0;
+    }
+    .magnetic-btn::before {
+      content:'';position:absolute;inset:0;background:#5af0c4;
+      transform:scaleX(0);transform-origin:left;transition:transform 0.35s;z-index:-1;
+    }
+    .magnetic-btn:hover{color:#0d0f14;}
+    .magnetic-btn:hover::before{transform:scaleX(1);}
+    .grad-border-btn {
+      position:relative;background:#151820;color:#e4e8f0;border:none;
+      padding:14px 36px;font-size:1rem;font-weight:600;border-radius:10px;cursor:pointer;z-index:0;
+      transition:color 0.3s;
+    }
+    .grad-border-btn::before {
+      content:'';position:absolute;inset:-2px;border-radius:12px;
+      background:linear-gradient(135deg,#5af0c4,#7b8cff,#ec4899);z-index:-1;
+    }
+    .grad-border-btn::after {
+      content:'';position:absolute;inset:2px;border-radius:9px;background:#151820;z-index:-1;
+    }
+    .grad-border-btn:hover{color:#5af0c4;}
+    .loader-btn {
+      display:inline-flex;align-items:center;gap:10px;background:#1c2030;color:#e4e8f0;
+      border:1px solid #2a2f42;padding:14px 36px;font-size:1rem;font-weight:600;
+      border-radius:8px;cursor:pointer;transition:border-color 0.2s,background 0.2s;
+    }
+    .loader-btn:hover{border-color:#5af0c4;background:rgba(90,240,196,0.05);}
+    .dots-loader{display:flex;gap:4px;}
+    .dots-loader span {
+      width:6px;height:6px;border-radius:50%;background:#5af0c4;
+      animation:dotBounce 1.2s infinite ease-in-out;
+    }
+    .dots-loader span:nth-child(2){animation-delay:0.2s;}
+    .dots-loader span:nth-child(3){animation-delay:0.4s;}
+    @keyframes dotBounce{
+      0%,80%,100%{transform:scale(0.6);opacity:0.4;}
+      40%{transform:scale(1);opacity:1;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">CodeSnippetz</a>
+  <ul class="nav-links">
+    <li><a href="buttons.html" class="active">Buttons</a></li>
+    <li><a href="navbars.html">Navbars</a></li>
+    <li><a href="cards.html">Cards</a></li>
+    <li><a href="sliders.html">Sliders</a></li>
+    <li><a href="sections.html">Sections</a></li>
+    <li><a href="forms.html">Forms</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / Buttons</p>
+  <h1>Buttons</h1>
+  <p>// 12 pure-CSS button effects · hover each preview · click Copy to grab the code</p>
+</header>
+
+<div class="filter-row">
+  <button class="filter-tag active">All</button>
+  <button class="filter-tag">Animated</button>
+  <button class="filter-tag">Glassmorphism</button>
+  <button class="filter-tag">Neon</button>
+  <button class="filter-tag">Minimal</button>
+  <button class="filter-tag">3D</button>
+</div>
+
+<div class="snippets-container">
+
+  <!-- 01 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">01</span> Pulse Effect <span class="desc">— continuous ripple shadow draws the eye to a CTA</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — always animating</div>
+      <div class="preview-area"><button class="pulse-btn">Click Me</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b01-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b01-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"pulse-btn"</span><span class="t-tag">&gt;</span>Click Me<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b01-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b01-css"><span class="t-sel">.pulse-btn</span> {
+  <span class="t-prop">background-color</span>: <span class="t-num">#10b981</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">font-size</span>: <span class="t-num">1rem</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-num">600</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">pulse 1.5s infinite</span>;
+}
+<span class="t-kw">@keyframes</span> <span class="t-sel">pulse</span> {
+  <span class="t-num">0%</span>   { <span class="t-prop">box-shadow</span>: <span class="t-num">0 0 0 0</span> <span class="t-str">rgba(16,185,129,0.7)</span>; }
+  <span class="t-num">70%</span>  { <span class="t-prop">box-shadow</span>: <span class="t-num">0 0 0 14px</span> <span class="t-str">rgba(16,185,129,0)</span>; }
+  <span class="t-num">100%</span> { <span class="t-prop">box-shadow</span>: <span class="t-num">0 0 0 0</span> <span class="t-str">rgba(16,185,129,0)</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">02</span> Slide Shine <span class="desc">— a light streak sweeps across on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area"><button class="slide-btn">Slide Shine</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b02-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b02-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"slide-btn"</span><span class="t-tag">&gt;</span>Slide Shine<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b02-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b02-css"><span class="t-sel">.slide-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(145deg,#1e293b,#0f172a)</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.15)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.slide-btn::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">left</span>: <span class="t-num">-120%</span>;
+  <span class="t-prop">width</span>: <span class="t-num">60%</span>; <span class="t-prop">height</span>: <span class="t-num">100%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(to right,
+    transparent, rgba(255,255,255,0.25), transparent)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">skewX(-20deg)</span>;
+  <span class="t-prop">transition</span>: <span class="t-num">0.7s</span>;
+}
+<span class="t-sel">.slide-btn:hover::before</span> { <span class="t-prop">left</span>: <span class="t-num">130%</span>; }</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">03</span> Gradient Wave <span class="desc">— radial ripple expands from center on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area"><button class="wave-btn">Gradient Wave</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b03-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b03-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"wave-btn"</span><span class="t-tag">&gt;</span>Gradient Wave<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b03-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b03-css"><span class="t-sel">.wave-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,#7c3aed,#ec4899)</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">999px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.wave-btn::after</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-num">50%</span>; <span class="t-prop">left</span>: <span class="t-num">50%</span>;
+  <span class="t-prop">width</span>: <span class="t-num">300%</span>; <span class="t-prop">height</span>: <span class="t-num">300%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">radial-gradient(circle,
+    rgba(255,255,255,0.3) 0%,transparent 60%)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translate(-50%,-50%) scale(0)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.6s ease</span>;
+}
+<span class="t-sel">.wave-btn:hover::after</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translate(-50%,-50%) scale(1)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">04</span> Glass Morph <span class="desc">— frosted glass effect using backdrop-filter blur</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area glass-preview"><button class="glass-btn">Glass Morph</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b04-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b04-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"glass-btn"</span><span class="t-tag">&gt;</span>Glass Morph<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b04-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b04-css"><span class="t-sel">.glass-btn</span> {
+  <span class="t-prop">backdrop-filter</span>: <span class="t-str">blur(10px)</span>;
+  <span class="t-prop">-webkit-backdrop-filter</span>: <span class="t-str">blur(10px)</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.1)</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.25)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">12px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">background 0.3s, border-color 0.3s</span>;
+}
+<span class="t-sel">.glass-btn:hover</span> {
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.2)</span>;
+  <span class="t-prop">border-color</span>: <span class="t-str">rgba(255,255,255,0.5)</span>;
+}
+<span class="t-com">/* place over a colourful background */</span></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">05</span> Liquid Slide <span class="desc">— angled white sheen flows across on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area"><button class="liquid-btn">Liquid Slide</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b05-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b05-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"liquid-btn"</span><span class="t-tag">&gt;</span>Liquid Slide<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b05-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b05-css"><span class="t-sel">.liquid-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#2563eb</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.liquid-btn::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">left</span>: <span class="t-num">-120%</span>;
+  <span class="t-prop">width</span>: <span class="t-num">80%</span>; <span class="t-prop">height</span>: <span class="t-num">100%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.2)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">skewX(35deg)</span>;
+  <span class="t-prop">transition</span>: <span class="t-num">0.6s</span>;
+}
+<span class="t-sel">.liquid-btn:hover::before</span> { <span class="t-prop">left</span>: <span class="t-num">120%</span>; }</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">06</span> 3D Press <span class="desc">— simulates physical depth with layered box-shadow</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover &amp; click</div>
+      <div class="preview-area"><button class="press-btn">3D Press</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b06-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b06-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"press-btn"</span><span class="t-tag">&gt;</span>3D Press<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b06-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b06-css"><span class="t-sel">.press-btn</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#f59e0b</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#1a1a1a</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">10px</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-num">700</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 8px 0</span> <span class="t-num">#b45309</span>,
+    <span class="t-num">0 15px 20px</span> <span class="t-str">rgba(0,0,0,0.4)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.1s, box-shadow 0.1s</span>;
+}
+<span class="t-sel">.press-btn:hover</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(4px)</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 4px 0</span> <span class="t-num">#b45309</span>,
+    <span class="t-num">0 8px 12px</span> <span class="t-str">rgba(0,0,0,0.3)</span>;
+}
+<span class="t-sel">.press-btn:active</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(8px)</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 0px 0</span> <span class="t-num">#b45309</span>,
+    <span class="t-num">0 4px 8px</span> <span class="t-str">rgba(0,0,0,0.2)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">07</span> Neon Glow <span class="desc">— electric outline that intensifies on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area neon-preview"><button class="neon-btn">Neon Glow</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b07-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b07-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"neon-btn"</span><span class="t-tag">&gt;</span>Neon Glow<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b07-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b07-css"><span class="t-sel">.neon-btn</span> {
+  <span class="t-prop">background</span>: <span class="t-str">transparent</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#00f7ff</span>;
+  <span class="t-prop">border</span>: <span class="t-num">2px</span> <span class="t-str">solid</span> <span class="t-num">#00f7ff</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 0 10px</span> <span class="t-num">#00f7ff</span>,
+    <span class="t-str">inset 0 0 10px rgba(0,247,255,0.05)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">box-shadow 0.3s ease</span>;
+}
+<span class="t-sel">.neon-btn:hover</span> {
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 0 40px</span> <span class="t-num">#00f7ff</span>,
+    <span class="t-num">0 0 80px</span> <span class="t-str">rgba(0,247,255,0.3)</span>,
+    <span class="t-str">inset 0 0 20px rgba(0,247,255,0.1)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">08</span> Rotating Border <span class="desc">— conic-gradient spins around the button continuously</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — always animating</div>
+      <div class="preview-area neon-preview"><button class="rotate-btn">Rotating Border</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b08-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b08-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"rotate-btn"</span><span class="t-tag">&gt;</span>Rotating Border<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b08-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b08-css"><span class="t-sel">.rotate-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#0d1117</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">0</span>;
+}
+<span class="t-sel">.rotate-btn::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">-2px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">10px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">conic-gradient(
+    #00f7ff,#7c3aed,#ec4899,#00f7ff)</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">-1</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">rotateBorder 2s linear infinite</span>;
+}
+<span class="t-sel">.rotate-btn::after</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">2px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">7px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#0d1117</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">-1</span>;
+}
+<span class="t-kw">@keyframes</span> <span class="t-sel">rotateBorder</span> {
+  <span class="t-kw">from</span> { <span class="t-prop">transform</span>: <span class="t-str">rotate(0deg)</span>; }
+  <span class="t-kw">to</span>   { <span class="t-prop">transform</span>: <span class="t-str">rotate(360deg)</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">09</span> Ripple Click <span class="desc">— Material-style ink ripple spawned at click position</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click to trigger</div>
+      <div class="preview-area">
+        <button class="ripple-btn" onclick="addRipple(event,this)">Ripple Click</button>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b09-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b09-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"ripple-btn"</span>
+  <span class="t-attr">onclick</span>=<span class="t-val">"addRipple(event,this)"</span><span class="t-tag">&gt;</span>
+  Ripple Click
+<span class="t-tag">&lt;/button&gt;</span>
+
+<span class="t-com">&lt;!-- JS: --&gt;</span>
+<span class="t-tag">&lt;script&gt;</span>
+<span class="t-kw">function</span> <span class="t-sel">addRipple</span>(e, btn) {
+  <span class="t-kw">const</span> r = btn.getBoundingClientRect();
+  <span class="t-kw">const</span> s = Math.max(r.width, r.height);
+  <span class="t-kw">const</span> x = e.clientX - r.left - s/2;
+  <span class="t-kw">const</span> y = e.clientY - r.top - s/2;
+  <span class="t-kw">const</span> el = document.createElement(<span class="t-str">'span'</span>);
+  el.className = <span class="t-str">'ripple'</span>;
+  el.style.cssText =
+    <span class="t-str">`width:${s}px;height:${s}px;left:${x}px;top:${y}px`</span>;
+  btn.appendChild(el);
+  setTimeout(() =&gt; el.remove(), 700);
+}
+<span class="t-tag">&lt;/script&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b09-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b09-css"><span class="t-sel">.ripple-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#0ea5e9</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.ripple-btn .ripple</span> {
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">50%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.35)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">scale(0)</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">ripple-anim 0.6s linear</span>;
+  <span class="t-prop">pointer-events</span>: <span class="t-str">none</span>;
+}
+<span class="t-kw">@keyframes</span> <span class="t-sel">ripple-anim</span> {
+  <span class="t-kw">to</span> { <span class="t-prop">transform</span>: <span class="t-str">scale(4)</span>; <span class="t-prop">opacity</span>: <span class="t-num">0</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">10</span> Magnetic Outline <span class="desc">— fill slides in from left, colour inverts on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to trigger</div>
+      <div class="preview-area"><button class="magnetic-btn">Magnetic Outline</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b10-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b10-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"magnetic-btn"</span><span class="t-tag">&gt;</span>
+  Magnetic Outline
+<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b10-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b10-css"><span class="t-sel">.magnetic-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-str">transparent</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">border</span>: <span class="t-num">2px</span> <span class="t-str">solid</span> <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">color 0.35s ease</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">0</span>;
+}
+<span class="t-sel">.magnetic-btn::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">0</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">scaleX(0)</span>;
+  <span class="t-prop">transform-origin</span>: <span class="t-str">left</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.35s ease</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">-1</span>;
+}
+<span class="t-sel">.magnetic-btn:hover</span> { <span class="t-prop">color</span>: <span class="t-num">#0d0f14</span>; }
+<span class="t-sel">.magnetic-btn:hover::before</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">scaleX(1)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">11</span> Gradient Border <span class="desc">— multi-colour border via stacked pseudo-elements</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — always visible</div>
+      <div class="preview-area"><button class="grad-border-btn">Gradient Border</button></div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b11-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b11-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"grad-border-btn"</span><span class="t-tag">&gt;</span>
+  Gradient Border
+<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b11-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b11-css"><span class="t-sel">.grad-border-btn</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#151820</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#e4e8f0</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">10px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">0</span>;
+}
+<span class="t-sel">.grad-border-btn::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">-2px</span>; <span class="t-prop">border-radius</span>: <span class="t-num">12px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #5af0c4,#7b8cff,#ec4899)</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">-1</span>;
+}
+<span class="t-sel">.grad-border-btn::after</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">2px</span>; <span class="t-prop">border-radius</span>: <span class="t-num">9px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#151820</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">-1</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">12</span> Dots Loader <span class="desc">— loading state button with bouncing indicator dots</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — always animating</div>
+      <div class="preview-area">
+        <button class="loader-btn">Processing <span class="dots-loader"><span></span><span></span><span></span></span></button>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b12-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b12-html"><span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"loader-btn"</span><span class="t-tag">&gt;</span>
+  Processing
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"dots-loader"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</span>
+  <span class="t-tag">&lt;/span&gt;</span>
+<span class="t-tag">&lt;/button&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'b12-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="b12-css"><span class="t-sel">.loader-btn</span> {
+  <span class="t-prop">display</span>: <span class="t-str">inline-flex</span>;
+  <span class="t-prop">align-items</span>: <span class="t-str">center</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">10px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#e4e8f0</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">14px 36px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.dots-loader</span> { <span class="t-prop">display</span>: <span class="t-str">flex</span>; <span class="t-prop">gap</span>: <span class="t-num">4px</span>; }
+<span class="t-sel">.dots-loader span</span> {
+  <span class="t-prop">width</span>: <span class="t-num">6px</span>; <span class="t-prop">height</span>: <span class="t-num">6px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">50%</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">dotBounce 1.2s infinite ease-in-out</span>;
+}
+<span class="t-sel">.dots-loader span:nth-child(2)</span> { <span class="t-prop">animation-delay</span>: <span class="t-num">0.2s</span>; }
+<span class="t-sel">.dots-loader span:nth-child(3)</span> { <span class="t-prop">animation-delay</span>: <span class="t-num">0.4s</span>; }
+<span class="t-kw">@keyframes</span> <span class="t-sel">dotBounce</span> {
+  <span class="t-num">0%</span>,<span class="t-num">80%</span>,<span class="t-num">100%</span> { <span class="t-prop">transform</span>: <span class="t-str">scale(0.6)</span>; <span class="t-prop">opacity</span>: <span class="t-num">0.4</span>; }
+  <span class="t-num">40%</span> { <span class="t-prop">transform</span>: <span class="t-str">scale(1)</span>; <span class="t-prop">opacity</span>: <span class="t-num">1</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /snippets-container -->
+
+<footer class="site-footer">
+  <div class="footer-logo">CodeSnippetz</div>
+  <p class="footer-tagline">// copy. paste. ship. · pure html &amp; css, zero dependencies</p>
+</footer>
+
+<script src="../js/copy.js"></script>
+<script>
+  function addRipple(e, btn) {
+    const r = btn.getBoundingClientRect();
+    const s = Math.max(r.width, r.height);
+    const x = e.clientX - r.left - s / 2;
+    const y = e.clientY - r.top - s / 2;
+    const el = document.createElement('span');
+    el.className = 'ripple';
+    el.style.cssText = `width:${s}px;height:${s}px;left:${x}px;top:${y}px`;
+    btn.appendChild(el);
+    setTimeout(() => el.remove(), 700);
+  }
+</script>
+</body>
+</html>

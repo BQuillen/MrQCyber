@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberProgram — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══════════════════════════════════════════════════════
+       DESIGN TOKENS  ─  Brand palette from your style guide
+       Change values here to restyle the entire site.
+       ══════════════════════════════════════════════════════ */
+   
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR  —  Copy this block unchanged to every page.
+       Set .active on the link that matches the current page.
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+
+    <!-- Brand / logo — replace text with your program name, or swap for <img> -->
+    <a href="index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+
+    <ul class="navbar__links">
+
+      <li class="navbar__item">
+        <a href="index.html" class="navbar__link active">Home</a>
+        <ul class="dropdown" aria-label="Home submenu">
+          <li class="dropdown__item"><a href="#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="#tools">Tools</a></li>
+          <li class="dropdown__item"><a href="#certifications">Certifications</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="topics.html" class="navbar__link">Topics</a>
+        <ul class="dropdown" aria-label="Topics submenu">
+          <!-- Add one item per topic header from topics.html -->
+          <li class="dropdown__item"><a href="topics.html#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="partners.html" class="navbar__link">Partners</a>
+        <ul class="dropdown" aria-label="Partners submenu">
+          <li class="dropdown__item"><a href="partners.html#industry">Industry Partners</a></li>
+          <li class="dropdown__item"><a href="partners.html#academic">Academic Partners</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="get-involved.html" class="navbar__link">Get Involved</a>
+        <ul class="dropdown" aria-label="Get Involved submenu">
+          <li class="dropdown__item"><a href="get-involved.html#contact">Contact Form</a></li>
+          <li class="dropdown__item"><a href="get-involved.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="learn/index.html" class="navbar__link">Learn</a>
+        <ul class="dropdown" aria-label="Learn submenu">
+          <li class="dropdown__item"><a href="learn/powershell/index.html">PowerShell</a></li>
+          <li class="dropdown__item"><a href="learn/codesnippetz/index.html">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="learn/kqwho/index.html">KQ Who?</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+  <!-- END NAVBAR -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO  —  Instructor photo + headline + quote
+       ═══════════════════════════════════════════════════════ -->
+  <section class="hero" aria-label="Instructor introduction">
+
+    <!-- Left column: instructor photo -->
+    <div class="hero__img-col fade-up">
+      <div class="corner-bracket"></div>
+
+      <!-- Replace src with actual instructor photo file path -->
+      <img
+        src="images/CyberDemo-2.jpg"
+        alt="Program Instructor"
+        class="hero__photo"
+      />
+
+      <!-- Floating name badge — edit name and role below -->
+      <div class="hero__badge">
+        <div class="hero__badge-name">Bryan Quillen</div>
+        <div class="hero__badge-title">Lead Cybersecurity Instructor</div>
+      </div>
+    </div>
+
+    <!-- Right column: headline + quote + buttons -->
+    <div class="hero__text fade-up">
+
+      <!-- Short eyebrow label above headline -->
+      <div class="hero__eyebrow">Cybersecurity Program at The HILL</div>
+
+      <!-- Main headline — edit the words to fit your program -->
+      <h1 class="hero__headline">
+        Building the<br />
+        <span class="c-teal">Next Generation</span><br />
+        of <span class="c-orange">Defenders</span>
+      </h1>
+
+      <!-- Pull quote — replace with instructor quote or program tagline -->
+      <blockquote class="hero__quote">
+        <p>
+          In this program, students will learn how to secure businesses by implementing industry-standard policies and procedures. They will also learn how to analyze and investigate data to identify and mitigate cyber attacks. Finally, they will develop skills needed to communicate risks and practices to a range of diverse audiences.
+        </p>
+      </blockquote>
+
+      <div class="hero__ctas">
+        <a href="topics.html" class="btn btn--primary">Explore Topics</a>
+        <a href="get-involved.html" class="btn btn--ghost">Get Involved</a>
+      </div>
+    </div>
+
+  </section>
+  <!-- END HERO -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       TICKER  —  Decorative scrolling data strip
+       Add / remove ticker items to fit your program's keywords.
+       ═══════════════════════════════════════════════════════ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span class="ticker__item">Threat Detection <span>//</span></span>
+      <span class="ticker__item">Network Security <span>//</span></span>
+      <span class="ticker__item">Ethical Hacking <span>//</span></span>
+      <span class="ticker__item">Incident Response <span>//</span></span>
+      <span class="ticker__item">Cloud Security <span>//</span></span>
+      <span class="ticker__item">SIEM &amp; Logging <span>//</span></span>
+      <span class="ticker__item">CTF Competitions <span>//</span></span>
+      <span class="ticker__item">CompTIA Security+ <span>//</span></span>
+      <span class="ticker__item">Digital Forensics <span>//</span></span>
+      <!-- Duplicate items below for a seamless infinite scroll -->
+      <span class="ticker__item">Threat Detection <span>//</span></span>
+      <span class="ticker__item">Network Security <span>//</span></span>
+      <span class="ticker__item">Ethical Hacking <span>//</span></span>
+      <span class="ticker__item">Incident Response <span>//</span></span>
+      <span class="ticker__item">Cloud Security <span>//</span></span>
+      <span class="ticker__item">SIEM &amp; Logging <span>//</span></span>
+      <span class="ticker__item">CTF Competitions <span>//</span></span>
+      <span class="ticker__item">CompTIA Security+ <span>//</span></span>
+      <span class="ticker__item">Digital Forensics <span>//</span></span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       IMAGE GALLERY
+       Replace each img src with a real photo path.
+       data-caption text appears on hover.
+       The first item spans 2×2 as a feature image.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="gallery">
+    <div class="container">
+
+      <div class="section-label">Program Gallery</div>
+      <h2 class="section-title">Inside the <em>Lab</em></h2>
+      <div class="divider"></div>
+
+      <div class="gallery">
+
+        <!-- Feature image — 2 columns × 2 rows -->
+        <div class="gallery__item" data-caption="Students at work in the cybersecurity lab">
+          <img src="images/Edited_SoC-15.jpg" alt="Cybersecurity lab" />
+        </div>
+
+        <!-- Standard gallery items — add more .gallery__item blocks as needed -->
+        <div class="gallery__item" data-caption="Capture the Flag competition">
+          <img src="images/Untitled design.jpg" alt="CTF event" />
+        </div>
+
+        <div class="gallery__item" data-caption="Network topology lab exercise">
+          <img src="images/DSC_0020.JPG" alt="Networking lab" />
+        </div>
+
+        <div class="gallery__item" data-caption="Industry guest speaker session">
+          <img src="images/Edited-9-26.jpg" alt="Guest speaker" />
+        </div>
+
+        <div class="gallery__item" data-caption="Student project presentations">
+          <img src="images/11.20-9.jpg" alt="Presentations" />
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       INFO BOXES  —  Tools / Certifications / Program Info
+       Color modifier classes: --teal --orange --lime --yellow --aqua
+       Add or remove .info-box blocks as needed.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="tools">
+    <div class="container">
+
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Tools, Certs &amp; <em>Resources</em></h2>
+      <div class="divider"></div>
+
+      <div class="info-grid">
+
+        <!-- Box 1: Tools & Platforms -->
+        <div class="info-box info-box--teal fade-up">
+          <span class="info-box__icon">⚙️</span>
+          <div class="info-box__heading">Tools &amp; Platforms</div>
+          <p class="info-box__body">
+            Students work with industry-standard security tools used by real
+            professionals. Students use Azure Data Explorer through with KC7 Cyber and Linux Virtual machines with Cyber.org
+          </p>
+          <!-- Add one .tag per tool name -->
+          <div class="info-box__tags">
+            <span class="tag tag--teal">ADX</span>
+            <span class="tag tag--teal">Kali Linux</span>
+            <span class="tag tag--teal">Powershell</span>
+            <span class="tag tag--teal">Wireshark</span>
+          </div>
+        </div>
+
+        <!-- Box 2: Certifications -->
+        <div class="info-box info-box--orange fade-up" id="certifications">
+          <span class="info-box__icon">🏆</span>
+          <div class="info-box__heading">Certifications Covered</div>
+          <p class="info-box__body">
+            The program prepares students for industry-recognized certifications.
+            Students will obtain certifications for IC3, ITS Cybersecurity, and SC-900 through Microsoft.
+          </p>
+          <div class="info-box__tags">
+            <span class="tag tag--orange">IC3</span>
+            <span class="tag tag--orange">Network+</span>
+            <span class="tag tag--orange">Cybersecurity</span>
+            <span class="tag tag--orange">SC-900</span>
+          </div>
+        </div>
+
+        <!-- Box 3: Program Overview -->
+        <div class="info-box info-box--aqua fade-up">
+          <span class="info-box__icon">📡</span>
+          <div class="info-box__heading">Program Overview</div>
+          <p class="info-box__body">
+            The Cybersecurity program at The HILL is a 3-year program for any grade level. Students will begin with entry-level skills before working towards internships and dual credit.
+          </p>
+        </div>
+
+        <!-- Box 4: Lab Environment -->
+        <div class="info-box info-box--lime fade-up">
+          <span class="info-box__icon">🖥️</span>
+          <div class="info-box__heading">Lab Environment</div>
+          <p class="info-box__body">
+            We are currently in the process of building our own server stack to host Virtual Machines so that students can run real scenarios using data generated from our partners' experiences.
+          </p>
+        </div>
+
+        <!-- Box 5: Competitions & Events -->
+        <div class="info-box info-box--yellow fade-up">
+          <span class="info-box__icon">🎯</span>
+          <div class="info-box__heading">Competitions &amp; Events</div>
+          <p class="info-box__body">
+            Using the KC7 Cyber platform, students participate in CTF-like challenges to gain real-world experience and
+            recognition. Tabletop exercises are organized by The University of Kentucky and CISA.
+          </p>
+          <div class="info-box__tags">
+            <span class="tag tag--yellow">KC7 Cyber</span>
+            <span class="tag tag--yellow">Table Top Exercises</span>
+            <span class="tag tag--yellow">CTF</span>
+          </div>
+        </div>
+
+        <!-- Box 6: Career Pathways -->
+        <div class="info-box info-box--teal fade-up">
+          <span class="info-box__icon">🚀</span>
+          <div class="info-box__heading">Career Pathways</div>
+          <p class="info-box__body">
+            This program will prepare students for everything from entry level positions such as helpdesk to high stakes positions like security analysts and IT Administrators.
+          </p>
+          <div class="info-box__tags">
+            <span class="tag tag--teal">SOC Analyst</span>
+            <span class="tag tag--teal">Pen Tester</span>
+            <span class="tag tag--teal">Cloud Security</span>
+            <span class="tag tag--teal">DFIR</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER  —  Copy this block to every page.
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <strong>CyberProgram</strong> &nbsp;·&nbsp; The HILL / Fayette County Public Schools &nbsp;·&nbsp;
+    <a href="get-involved.html">Get Involved</a> &nbsp;·&nbsp;
+    © <span id="yr"></span> All rights reserved.
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

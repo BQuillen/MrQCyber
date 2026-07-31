@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cards — CodeSnippetz</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <style>
+    /* 1. Floating Card */
+    .float-card {
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      border-radius: 14px;
+      padding: 1.75rem;
+      width: 220px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .float-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(90,240,196,0.15);
+    }
+    .float-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .float-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: #e4e8f0; }
+    .float-card p { font-size: 0.75rem; color: #6b7390; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+
+    /* 2. Flip Card */
+    .flip-scene { width: 200px; height: 160px; perspective: 800px; cursor: pointer; }
+    .flip-card-inner {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+    .flip-scene:hover .flip-card-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position: absolute; inset: 0;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.25rem;
+    }
+    .flip-front {
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: white;
+    }
+    .flip-front .flip-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .flip-front span { font-size: 0.85rem; font-weight: 600; }
+    .flip-back {
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      color: #e4e8f0;
+      transform: rotateY(180deg);
+    }
+    .flip-back p { font-size: 0.72rem; color: #6b7390; text-align: center; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+
+    /* 3. Glassmorphism Card */
+    .glass-card-wrap {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+      border-radius: 16px; padding: 2rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .glass-card {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      width: 220px;
+      color: white;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .glass-card-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .glass-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .glass-card p { font-size: 0.72rem; opacity: 0.7; font-family: 'JetBrains Mono', monospace; }
+    .glass-card-stat {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.72rem; opacity: 0.8;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex; justify-content: space-between;
+    }
+
+    /* 5. 3D Tilt Card */
+    .tilt-card {
+      width: 220px;
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: box-shadow 0.3s ease;
+      will-change: transform;
+    }
+    .tilt-card:hover {
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(123,140,255,0.2);
+    }
+    .tilt-card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.9rem;
+      transform: translateZ(30px);
+      display: block;
+      transform-style: preserve-3d;
+    }
+    .tilt-card h3 {
+      font-size: 1rem; font-weight: 700; color: #e4e8f0;
+      margin-bottom: 0.35rem;
+      transform: translateZ(20px);
+      transform-style: preserve-3d;
+    }
+    .tilt-card p {
+      font-size: 0.72rem; color: #6b7390;
+      font-family: 'JetBrains Mono', monospace; line-height: 1.6;
+      transform: translateZ(10px);
+      transform-style: preserve-3d;
+    }
+    .tilt-scene {
+      perspective: 900px;
+      display: inline-block;
+    }
+
+    /* 6. Neon Pulse Glow Card */
+    .neon-card {
+      width: 220px;
+      background: #0d1117;
+      border: 1.5px solid rgba(0,247,255,0.25);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .neon-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,247,255,0.06) 0%, rgba(123,140,255,0.06) 50%, rgba(236,72,153,0.06) 100%);
+      background-size: 200% 200%;
+      opacity: 0;
+      transition: opacity 0.3s;
+      animation: neonShift 4s ease infinite;
+    }
+    @keyframes neonShift {
+      0%,100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+    .neon-card:hover {
+      border-color: #00f7ff;
+      box-shadow:
+        0 0 18px rgba(0,247,255,0.35),
+        0 0 40px rgba(0,247,255,0.15),
+        inset 0 0 18px rgba(0,247,255,0.06);
+      animation: neonPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes neonPulse {
+      0%,100% {
+        box-shadow: 0 0 18px rgba(0,247,255,0.35), 0 0 40px rgba(0,247,255,0.15), inset 0 0 18px rgba(0,247,255,0.06);
+      }
+      50% {
+        box-shadow: 0 0 28px rgba(0,247,255,0.55), 0 0 65px rgba(0,247,255,0.25), inset 0 0 28px rgba(0,247,255,0.1);
+      }
+    }
+    .neon-card:hover::before { opacity: 1; }
+    .neon-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .neon-card h3 {
+      font-size: 1rem; font-weight: 700; color: #00f7ff;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 8px rgba(0,247,255,0.4);
+    }
+    .neon-card p { font-size: 0.72rem; color: #6b7390; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+    .neon-card-preview { background: #050a12; }
+
+    /* 7. Spotlight Card */
+    .spotlight-card {
+      width: 220px;
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color 0.2s;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,240,196,0.18) 0%, transparent 70%);
+      transform: translate(var(--sx, -200px), var(--sy, -200px)) translate(-50%, -50%);
+      pointer-events: none;
+      transition: transform 0.08s linear;
+      will-change: transform;
+    }
+    .spotlight-card:hover { border-color: rgba(90,240,196,0.3); }
+    .spotlight-card-icon { font-size: 2rem; margin-bottom: 0.75rem; position: relative; }
+    .spotlight-card h3 { font-size: 1rem; font-weight: 700; color: #e4e8f0; margin-bottom: 0.3rem; position: relative; }
+    .spotlight-card p { font-size: 0.72rem; color: #6b7390; font-family: 'JetBrains Mono', monospace; line-height: 1.6; position: relative; }
+
+    /* 4. Image Overlay Card */
+    .overlay-card {
+      width: 220px; border-radius: 14px; overflow: hidden;
+      position: relative; cursor: pointer;
+    }
+    .overlay-card-img {
+      width: 100%; height: 160px;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      transition: transform 0.4s ease;
+    }
+    .overlay-card:hover .overlay-card-img { transform: scale(1.08); }
+    .overlay-card-body {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(13,15,20,0.95) 60%, transparent);
+      padding: 2rem 1.25rem 1.25rem;
+      transform: translateY(40px);
+      transition: transform 0.35s ease;
+    }
+    .overlay-card:hover .overlay-card-body { transform: translateY(0); }
+    .overlay-card h3 { font-size: 0.95rem; font-weight: 700; color: #e4e8f0; margin-bottom: 0.3rem; }
+    .overlay-card p { font-size: 0.7rem; color: #9aa0b8; font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.3s 0.1s; }
+    .overlay-card:hover p { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">CodeSnippetz</a>
+  <ul class="nav-links">
+    <li><a href="buttons.html">Buttons</a></li>
+    <li><a href="navbars.html">Navbars</a></li>
+    <li><a href="cards.html" class="active">Cards</a></li>
+    <li><a href="sliders.html">Sliders</a></li>
+    <li><a href="sections.html">Sections</a></li>
+    <li><a href="forms.html">Forms</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / Cards</p>
+  <h1>Cards</h1>
+  <p>// 7 card styles · floating, flip, glassmorphism, image overlay, 3D tilt, neon pulse &amp; spotlight</p>
+</header>
+
+<div class="filter-row">
+  <button class="filter-tag active">All</button>
+  <button class="filter-tag">Hover</button>
+  <button class="filter-tag">Glassmorphism</button>
+  <button class="filter-tag">3D</button>
+  <button class="filter-tag">Overlay</button>
+  <button class="filter-tag">Neon</button>
+  <button class="filter-tag">Spotlight</button>
+</div>
+
+<div class="snippets-container">
+
+  <!-- 01 Floating Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">01</span> Floating Card <span class="desc">— lifts on hover with a deep drop shadow</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the card</div>
+      <div class="preview-area">
+        <div class="float-card">
+          <div class="float-card-icon">⚡</div>
+          <h3>Fast Delivery</h3>
+          <p>Optimised pipelines that ship to production in seconds.</p>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c01-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c01-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"float-card"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>⚡<span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;h3&gt;</span>Fast Delivery<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>Ship to production in seconds.<span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c01-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c01-css"><span class="t-sel">.float-card</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">14px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.75rem</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 4px 20px</span>
+    <span class="t-str">rgba(0,0,0,0.3)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.3s,
+    box-shadow 0.3s</span>;
+}
+<span class="t-sel">.float-card:hover</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(-10px)</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 20px 60px</span>
+    <span class="t-str">rgba(0,0,0,0.5)</span>,
+    <span class="t-num">0 0 0 1px</span>
+    <span class="t-str">rgba(90,240,196,0.15)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Flip Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">02</span> Flip Card <span class="desc">— CSS 3D perspective rotates the card to reveal its back on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the card</div>
+      <div class="preview-area">
+        <div class="flip-scene">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-icon">🚀</div>
+              <span>Hover Me</span>
+            </div>
+            <div class="flip-back">
+              <p>The back side — put details, a CTA, or stats here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c02-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c02-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"flip-scene"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"flip-card-inner"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"flip-front"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>🚀<span class="t-tag">&lt;/div&gt;</span>
+      <span class="t-tag">&lt;span&gt;</span>Front Side<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"flip-back"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;p&gt;</span>Back side content here.<span class="t-tag">&lt;/p&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c02-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c02-css"><span class="t-sel">.flip-scene</span> {
+  <span class="t-prop">perspective</span>: <span class="t-num">800px</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.flip-card-inner</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">width</span>: <span class="t-num">100%</span>; <span class="t-prop">height</span>: <span class="t-num">100%</span>;
+  <span class="t-prop">transform-style</span>: <span class="t-str">preserve-3d</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.6s ease</span>;
+}
+<span class="t-sel">.flip-scene:hover .flip-card-inner</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">rotateY(180deg)</span>;
+}
+<span class="t-sel">.flip-front, .flip-back</span> {
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">inset</span>: <span class="t-num">0</span>;
+  <span class="t-prop">backface-visibility</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">12px</span>;
+}
+<span class="t-sel">.flip-back</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">rotateY(180deg)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 Glass Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">03</span> Glassmorphism Card <span class="desc">— frosted glass panel floating above a gradient background</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview</div>
+      <div class="preview-area">
+        <div class="glass-card-wrap">
+          <div class="glass-card">
+            <div class="glass-card-avatar">👤</div>
+            <h3>Alex Johnson</h3>
+            <p>Senior Designer · Remote</p>
+            <div class="glass-card-stat">
+              <span>Projects: 42</span>
+              <span>⭐ 4.9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c03-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c03-html"><span class="t-com">&lt;!-- needs a colourful parent --&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"gradient-bg"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"glass-card"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"avatar"</span><span class="t-tag">&gt;</span>👤<span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Alex Johnson<span class="t-tag">&lt;/h3&gt;</span>
+    <span class="t-tag">&lt;p&gt;</span>Senior Designer<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c03-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c03-css"><span class="t-sel">.glass-card</span> {
+  <span class="t-prop">backdrop-filter</span>: <span class="t-str">blur(16px)</span>;
+  <span class="t-prop">-webkit-backdrop-filter</span>: <span class="t-str">blur(16px)</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.12)</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.22)</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">16px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.75rem 2rem</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 8px 32px</span>
+    <span class="t-str">rgba(0,0,0,0.2)</span>;
+}
+<span class="t-sel">.gradient-bg</span> {
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #667eea, #764ba2, #ec4899)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">16px</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 Image Overlay -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">04</span> Image Overlay Card <span class="desc">— content panel slides up from bottom on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the card</div>
+      <div class="preview-area">
+        <div class="overlay-card">
+          <div class="overlay-card-img">🌄</div>
+          <div class="overlay-card-body">
+            <h3>Mountain Escape</h3>
+            <p>Click to explore this destination</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c04-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c04-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"overlay-card"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"photo.jpg"</span>
+       <span class="t-attr">class</span>=<span class="t-val">"card-img"</span><span class="t-tag">/&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"card-body"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Card Title<span class="t-tag">&lt;/h3&gt;</span>
+    <span class="t-tag">&lt;p&gt;</span>Card description text.<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c04-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c04-css"><span class="t-sel">.overlay-card</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">14px</span>;
+}
+<span class="t-sel">.card-img</span> {
+  <span class="t-prop">width</span>: <span class="t-num">100%</span>; <span class="t-prop">display</span>: <span class="t-str">block</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.4s ease</span>;
+}
+<span class="t-sel">.overlay-card:hover .card-img</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">scale(1.08)</span>;
+}
+<span class="t-sel">.card-body</span> {
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">bottom</span>: <span class="t-num">0</span>; <span class="t-prop">left</span>: <span class="t-num">0</span>; <span class="t-prop">right</span>: <span class="t-num">0</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(
+    to top, rgba(0,0,0,0.9) 60%, transparent)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2rem 1.25rem 1.25rem</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(40px)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.35s ease</span>;
+}
+<span class="t-sel">.overlay-card:hover .card-body</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(0)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 05 3D Tilt Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">05</span> 3D Tilt Card <span class="desc">— card rotates in perspective to follow the mouse cursor</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover &amp; move mouse over the card</div>
+      <div class="preview-area">
+        <div class="tilt-scene">
+          <div class="tilt-card" id="tiltCard">
+            <span class="tilt-card-icon">🎯</span>
+            <h3>Tilt to Reveal</h3>
+            <p>Move your cursor over me to see the 3D depth effect.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c05-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c05-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"tilt-scene"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"tilt-card"</span> <span class="t-attr">id</span>=<span class="t-val">"tiltCard"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>🎯<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Tilt to Reveal<span class="t-tag">&lt;/h3&gt;</span>
+    <span class="t-tag">&lt;p&gt;</span>Move your cursor over me.<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span>
+
+<span class="t-tag">&lt;script&gt;</span>
+<span class="t-kw">const</span> card = document.getElementById(<span class="t-str">'tiltCard'</span>);
+card.addEventListener(<span class="t-str">'mousemove'</span>, e =&gt; {
+  <span class="t-kw">const</span> r = card.getBoundingClientRect();
+  <span class="t-kw">const</span> x = (e.clientX - r.left) / r.width  - 0.5;
+  <span class="t-kw">const</span> y = (e.clientY - r.top)  / r.height - 0.5;
+  card.style.transform =
+    <span class="t-str">`rotateY(${x * 22}deg) rotateX(${-y * 22}deg)`</span>;
+});
+card.addEventListener(<span class="t-str">'mouseleave'</span>, () =&gt; {
+  card.style.transform = <span class="t-str">''</span>;
+});
+<span class="t-tag">&lt;/script&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c05-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c05-css"><span class="t-sel">.tilt-scene</span> {
+  <span class="t-prop">perspective</span>: <span class="t-num">900px</span>;
+  <span class="t-prop">display</span>: <span class="t-str">inline-block</span>;
+}
+<span class="t-sel">.tilt-card</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">16px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2rem 1.5rem</span>;
+  <span class="t-prop">transform-style</span>: <span class="t-str">preserve-3d</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">box-shadow 0.3s,
+    transform 0.1s ease-out</span>;
+  <span class="t-prop">will-change</span>: <span class="t-str">transform</span>;
+}
+<span class="t-com">/* child elements gain Z depth */</span>
+<span class="t-sel">.tilt-card .icon</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateZ(30px)</span>;
+}
+<span class="t-sel">.tilt-card h3</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateZ(20px)</span>;
+}
+<span class="t-sel">.tilt-card p</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateZ(10px)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 Neon Pulse Glow Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">06</span> Neon Pulse Glow <span class="desc">— electric border intensifies and pulses on hover via animated box-shadow</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the card</div>
+      <div class="preview-area neon-card-preview">
+        <div class="neon-card">
+          <div class="neon-card-icon">⚡</div>
+          <h3>Neon Pulse</h3>
+          <p>Hover to trigger the electric glow effect on this card.</p>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c06-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c06-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"neon-card"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>⚡<span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;h3&gt;</span>Neon Pulse<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>Hover to trigger the glow.<span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c06-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c06-css"><span class="t-sel">.neon-card</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#0d1117</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1.5px</span> <span class="t-str">solid rgba(0,247,255,0.25)</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">14px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.75rem 1.5rem</span>;
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">border-color 0.3s, box-shadow 0.3s</span>;
+}
+<span class="t-sel">.neon-card:hover</span> {
+  <span class="t-prop">border-color</span>: <span class="t-num">#00f7ff</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">neonPulse 1.6s ease-in-out infinite</span>;
+}
+<span class="t-sel">.neon-card h3</span> {
+  <span class="t-prop">color</span>: <span class="t-num">#00f7ff</span>;
+  <span class="t-prop">text-shadow</span>: <span class="t-num">0 0 8px</span> <span class="t-str">rgba(0,247,255,0.4)</span>;
+}
+<span class="t-kw">@keyframes</span> <span class="t-sel">neonPulse</span> {
+  <span class="t-num">0%</span>,<span class="t-num">100%</span> {
+    <span class="t-prop">box-shadow</span>:
+      <span class="t-num">0 0 18px</span> <span class="t-str">rgba(0,247,255,0.35)</span>,
+      <span class="t-num">0 0 40px</span> <span class="t-str">rgba(0,247,255,0.15)</span>;
+  }
+  <span class="t-num">50%</span> {
+    <span class="t-prop">box-shadow</span>:
+      <span class="t-num">0 0 28px</span> <span class="t-str">rgba(0,247,255,0.55)</span>,
+      <span class="t-num">0 0 65px</span> <span class="t-str">rgba(0,247,255,0.25)</span>;
+  }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 Spotlight Card -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">07</span> Spotlight Card <span class="desc">— a radial light follows the cursor across the card surface using CSS custom properties</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — move mouse over the card</div>
+      <div class="preview-area">
+        <div class="spotlight-card" id="spotCard">
+          <div class="spotlight-card-icon">🔦</div>
+          <h3>Spotlight Effect</h3>
+          <p>Move your cursor to cast light across the card surface.</p>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c07-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c07-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"spotlight-card"</span> <span class="t-attr">id</span>=<span class="t-val">"card"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>🔦<span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;h3&gt;</span>Spotlight Effect<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>Move your cursor to cast light.<span class="t-tag">&lt;/p&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span>
+
+<span class="t-tag">&lt;script&gt;</span>
+<span class="t-kw">const</span> c = document.getElementById(<span class="t-str">'card'</span>);
+c.addEventListener(<span class="t-str">'mousemove'</span>, e =&gt; {
+  <span class="t-kw">const</span> r = c.getBoundingClientRect();
+  c.style.setProperty(<span class="t-str">'--sx'</span>,
+    (e.clientX - r.left) + <span class="t-str">'px'</span>);
+  c.style.setProperty(<span class="t-str">'--sy'</span>,
+    (e.clientY - r.top) + <span class="t-str">'px'</span>);
+});
+c.addEventListener(<span class="t-str">'mouseleave'</span>, () =&gt; {
+  c.style.setProperty(<span class="t-str">'--sx'</span>, <span class="t-str">'-200px'</span>);
+  c.style.setProperty(<span class="t-str">'--sy'</span>, <span class="t-str">'-200px'</span>);
+});
+<span class="t-tag">&lt;/script&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'c07-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="c07-css"><span class="t-sel">.spotlight-card</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">14px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.75rem 1.5rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">border-color 0.2s</span>;
+}
+<span class="t-sel">.spotlight-card::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">width</span>: <span class="t-num">180px</span>; <span class="t-prop">height</span>: <span class="t-num">180px</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">50%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">radial-gradient(circle,
+    rgba(90,240,196,0.18) 0%,
+    transparent 70%)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translate(
+    var(--sx, -200px),
+    var(--sy, -200px))
+    translate(-50%, -50%)</span>;
+  <span class="t-prop">pointer-events</span>: <span class="t-str">none</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.08s linear</span>;
+}
+<span class="t-sel">.spotlight-card:hover</span> {
+  <span class="t-prop">border-color</span>: <span class="t-str">rgba(90,240,196,0.3)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /snippets-container -->
+
+<footer class="site-footer">
+  <div class="footer-logo">CodeSnippetz</div>
+  <p class="footer-tagline">// copy. paste. ship. · pure html &amp; css, zero dependencies</p>
+</footer>
+
+<script src="../js/copy.js"></script>
+<script>
+  // 3D Tilt Card
+  const tiltCard = document.getElementById('tiltCard');
+  tiltCard.addEventListener('mousemove', e => {
+    const r = tiltCard.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    tiltCard.style.transform = `rotateY(${x * 22}deg) rotateX(${-y * 22}deg) scale(1.03)`;
+  });
+  tiltCard.addEventListener('mouseleave', () => {
+    tiltCard.style.transform = '';
+  });
+
+  // Spotlight Card
+  const spotCard = document.getElementById('spotCard');
+  spotCard.addEventListener('mousemove', e => {
+    const r = spotCard.getBoundingClientRect();
+    spotCard.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+    spotCard.style.setProperty('--sy', (e.clientY - r.top)  + 'px');
+  });
+  spotCard.addEventListener('mouseleave', () => {
+    spotCard.style.setProperty('--sx', '-200px');
+    spotCard.style.setProperty('--sy', '-200px');
+  });
+</script>
+</body>
+</html>

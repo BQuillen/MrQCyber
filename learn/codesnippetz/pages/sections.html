@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sections — CodeSnippetz</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <style>
+    /* ── Demo section reset ── */
+    .demo-section-wrap { width: 100%; border-radius: 10px; overflow: hidden; }
+
+    /* 1. Hero Section */
+    .hero-demo {
+      background: #0d0f14;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-demo::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(90,240,196,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-demo .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #5af0c4;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+    }
+    .hero-demo h1 {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: #e4e8f0;
+    }
+    .hero-demo h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #5af0c4, #7b8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-demo p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #6b7390;
+      max-width: 400px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.8;
+    }
+    .hero-demo .btn-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .hero-demo .btn-primary {
+      background: #5af0c4; color: #0d0f14; border: none;
+      padding: 0.7rem 1.6rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.85rem; cursor: pointer;
+      transition: opacity 0.18s;
+    }
+    .hero-demo .btn-primary:hover { opacity: 0.85; }
+    .hero-demo .btn-ghost {
+      background: transparent; color: #e4e8f0;
+      border: 1px solid #2a2f42;
+      padding: 0.7rem 1.6rem; border-radius: 8px;
+      font-size: 0.85rem; cursor: pointer;
+      transition: border-color 0.18s;
+    }
+    .hero-demo .btn-ghost:hover { border-color: #5af0c4; color: #5af0c4; }
+
+    /* 2. Feature Grid */
+    .feature-demo {
+      background: #151820;
+      padding: 2.5rem 2rem;
+    }
+    .feature-demo .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5af0c4;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .feature-demo h2 {
+      font-size: 1.5rem; font-weight: 800;
+      text-align: center; color: #e4e8f0;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .feature-item {
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-item:hover { border-color: rgba(90,240,196,0.3); transform: translateY(-2px); }
+    .feature-item .fi-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+    .feature-item h3 { font-size: 0.85rem; font-weight: 700; color: #e4e8f0; margin-bottom: 0.3rem; }
+    .feature-item p { font-size: 0.68rem; color: #6b7390; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+
+    /* 3. CTA Banner */
+    .cta-demo {
+      background: linear-gradient(135deg, #1c2030 0%, #0d0f14 100%);
+      border: 1px solid #2a2f42;
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-demo::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(123,140,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-demo-text h2 {
+      font-size: 1.3rem; font-weight: 800;
+      color: #e4e8f0; margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .cta-demo-text p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: #6b7390;
+    }
+    .cta-demo-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .cta-btn-main {
+      background: linear-gradient(135deg, #5af0c4, #7b8cff);
+      color: #0d0f14; border: none;
+      padding: 0.7rem 1.6rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.82rem; cursor: pointer;
+      transition: opacity 0.18s;
+    }
+    .cta-btn-main:hover { opacity: 0.85; }
+    .cta-btn-sec {
+      background: transparent; color: #9aa0b8;
+      border: 1px solid #2a2f42;
+      padding: 0.7rem 1.2rem; border-radius: 8px;
+      font-size: 0.82rem; cursor: pointer;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .cta-btn-sec:hover { color: #e4e8f0; border-color: #5af0c4; }
+
+    /* 4. Stats Counter */
+    .stats-demo {
+      background: #0d0f14;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .stats-demo h2 {
+      font-size: 1.4rem; font-weight: 800;
+      color: #e4e8f0; margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .stats-demo .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #5af0c4;
+      margin-bottom: 0.4rem;
+    }
+    .stats-demo p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: #6b7390;
+      margin-bottom: 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-card {
+      background: #151820;
+      border: 1px solid #2a2f42;
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(90,240,196,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(90,240,196,0.4); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(90,240,196,0.08); }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 800;
+      color: #5af0c4; line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-num span { color: #7b8cff; }
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; color: #6b7390;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* 5. Marquee Ticker */
+    .marquee-demo {
+      background: #0d0f14;
+      padding: 2.5rem 0;
+      overflow: hidden;
+      width: 100%;
+    }
+    .marquee-demo .marquee-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #5af0c4;
+      text-align: center; margin-bottom: 1.25rem;
+    }
+    .marquee-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0.75rem;
+      width: max-content;
+      animation: ticker-scroll 22s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #151820;
+      border: 1px solid #2a2f42;
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: #9aa0b8;
+      white-space: nowrap;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .marquee-item:hover { border-color: #5af0c4; color: #5af0c4; }
+    .marquee-item .mi-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #5af0c4; flex-shrink: 0;
+    }
+    .marquee-item .mi-dot.purple { background: #7b8cff; }
+    .marquee-item .mi-dot.amber  { background: #ffcf6b; }
+
+    /* 6. Bento Grid */
+    .bento-demo {
+      background: #0d0f14;
+      padding: 2.5rem 1.5rem;
+    }
+    .bento-demo h2 {
+      font-size: 1.3rem; font-weight: 800;
+      color: #e4e8f0; margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .bento-demo .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #7b8cff;
+      margin-bottom: 0.4rem;
+    }
+    .bento-demo p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: #6b7390; margin-bottom: 1.5rem;
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 130px;
+      gap: 0.75rem;
+    }
+    .bento-card {
+      background: #151820;
+      border: 1px solid #2a2f42;
+      border-radius: 16px;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      cursor: default;
+      min-width: 0;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,240,196,0.15) 0%, transparent 70%);
+      left: calc(var(--mx, -300px) - 120px);
+      top: calc(var(--my, -300px) - 120px);
+      pointer-events: none;
+      transition: opacity 0.2s;
+      opacity: 0;
+    }
+    .bento-card:hover::before { opacity: 1; }
+    .bento-card:hover { border-color: rgba(90,240,196,0.35); transform: scale(1.01); }
+    .bento-card--large { grid-column: span 2; grid-row: span 2; }
+    .bento-card--wide  { grid-column: span 2; }
+    .bento-card--tall  { grid-row: span 2; }
+    .bento-card .bc-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .bento-card h3 { font-size: 0.9rem; font-weight: 700; color: #e4e8f0; margin-bottom: 0.25rem; }
+    .bento-card p  { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #6b7390; line-height: 1.6; }
+    .bento-card .bc-badge {
+      display: inline-block; margin-top: 0.6rem;
+      background: rgba(90,240,196,0.1); border: 1px solid rgba(90,240,196,0.25);
+      color: #5af0c4; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+    .bento-card .bc-num {
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      color: #7b8cff; line-height: 1; margin-bottom: 0.2rem;
+    }
+    @media (max-width: 600px) {
+      .bento-grid { grid-template-columns: repeat(2,1fr); }
+      .bento-card--large { grid-column: span 2; }
+    }
+
+    /* 7. Vertical Timeline */
+    .timeline-demo {
+      background: #0d0f14;
+      padding: 2.5rem 2rem;
+    }
+    .timeline-demo h2 {
+      font-size: 1.3rem; font-weight: 800;
+      color: #e4e8f0; margin-bottom: 0.3rem;
+      letter-spacing: -0.02em; text-align: center;
+    }
+    .timeline-demo .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #ffcf6b;
+      text-align: center; margin-bottom: 0.4rem;
+    }
+    .timeline {
+      position: relative;
+      max-width: 520px;
+      margin: 1.75rem auto 0;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #5af0c4, #7b8cff, transparent);
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      padding: 0 0 2rem 1.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      animation: tlFadeIn 0.5s forwards;
+    }
+    .tl-item:nth-child(1) { animation-delay: 0.1s; }
+    .tl-item:nth-child(2) { animation-delay: 0.25s; }
+    .tl-item:nth-child(3) { animation-delay: 0.4s; }
+    .tl-item:nth-child(4) { animation-delay: 0.55s; }
+    @keyframes tlFadeIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -0.6rem; top: 0.35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #5af0c4;
+      box-shadow: 0 0 0 3px rgba(90,240,196,0.15);
+      transition: box-shadow 0.2s;
+    }
+    .tl-item:hover::before { box-shadow: 0 0 0 5px rgba(90,240,196,0.25); }
+    .tl-card {
+      background: #151820;
+      border: 1px solid #2a2f42;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .tl-item:hover .tl-card {
+      border-color: rgba(90,240,196,0.3);
+      transform: translateX(4px);
+    }
+    .tl-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; color: #5af0c4;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .tl-card h3 { font-size: 0.88rem; font-weight: 700; color: #e4e8f0; margin-bottom: 0.2rem; }
+    .tl-card p  { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #6b7390; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">CodeSnippetz</a>
+  <ul class="nav-links">
+    <li><a href="buttons.html">Buttons</a></li>
+    <li><a href="navbars.html">Navbars</a></li>
+    <li><a href="cards.html">Cards</a></li>
+    <li><a href="sliders.html">Sliders</a></li>
+    <li><a href="sections.html" class="active">Sections</a></li>
+    <li><a href="forms.html">Forms</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / Sections</p>
+  <h1>Sections</h1>
+  <p>// 7 page section layouts · hero, feature grid, CTA, stats counter, marquee, bento grid &amp; timeline</p>
+</header>
+
+<div class="filter-row">
+  <button class="filter-tag active">All</button>
+  <button class="filter-tag">Hero</button>
+  <button class="filter-tag">Features</button>
+  <button class="filter-tag">CTA</button>
+  <button class="filter-tag">Stats</button>
+  <button class="filter-tag">Marquee</button>
+  <button class="filter-tag">Bento</button>
+  <button class="filter-tag">Timeline</button>
+</div>
+
+<div class="snippets-container">
+
+  <!-- 01 Hero -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">01</span> Hero Section <span class="desc">— radial glow, gradient headline, dual-button CTA row</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="hero-demo">
+            <p class="eyebrow">// introducing v2.0</p>
+            <h1>Build faster with<br><em>beautiful components</em></h1>
+            <p>Drop-in HTML &amp; CSS snippets for every part of your UI. No dependencies, no build step.</p>
+            <div class="btn-row">
+              <button class="btn-primary">Get Started →</button>
+              <button class="btn-ghost">View Docs</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec01-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec01-html"><span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"hero"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;p</span> <span class="t-attr">class</span>=<span class="t-val">"eyebrow"</span><span class="t-tag">&gt;</span>// introducing v2<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;h1&gt;</span>Build faster with
+    <span class="t-tag">&lt;em&gt;</span>beautiful components<span class="t-tag">&lt;/em&gt;</span>
+  <span class="t-tag">&lt;/h1&gt;</span>
+  <span class="t-tag">&lt;p</span> <span class="t-attr">class</span>=<span class="t-val">"sub"</span><span class="t-tag">&gt;</span>
+    Drop-in snippets, no dependencies.
+  <span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"btn-row"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"btn-primary"</span><span class="t-tag">&gt;</span>Get Started<span class="t-tag">&lt;/button&gt;</span>
+    <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"btn-ghost"</span><span class="t-tag">&gt;</span>View Docs<span class="t-tag">&lt;/button&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/section&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec01-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec01-css"><span class="t-sel">.hero</span> {
+  <span class="t-prop">text-align</span>: <span class="t-str">center</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">6rem 2rem</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#0d0f14</span>;
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+}
+<span class="t-sel">.hero::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-num">-150px</span>; <span class="t-prop">left</span>: <span class="t-num">50%</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateX(-50%)</span>;
+  <span class="t-prop">width</span>: <span class="t-num">600px</span>; <span class="t-prop">height</span>: <span class="t-num">600px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">radial-gradient(ellipse,
+    rgba(90,240,196,0.07) 0%,
+    transparent 70%)</span>;
+}
+<span class="t-sel">.hero h1 em</span> {
+  <span class="t-prop">font-style</span>: <span class="t-str">normal</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #5af0c4, #7b8cff)</span>;
+  <span class="t-prop">-webkit-background-clip</span>: <span class="t-str">text</span>;
+  <span class="t-prop">-webkit-text-fill-color</span>: <span class="t-str">transparent</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Feature Grid -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">02</span> Feature Grid <span class="desc">— auto-fill responsive grid of icon + text feature cards</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the cards</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="feature-demo">
+            <p class="section-eyebrow">// what's included</p>
+            <h2>Everything you need</h2>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <div class="fi-icon">⚡</div>
+                <h3>Fast</h3>
+                <p>Zero runtime overhead.</p>
+              </div>
+              <div class="feature-item">
+                <div class="fi-icon">🎨</div>
+                <h3>Styled</h3>
+                <p>Dark-mode first design.</p>
+              </div>
+              <div class="feature-item">
+                <div class="fi-icon">📦</div>
+                <h3>Modular</h3>
+                <p>Copy only what you need.</p>
+              </div>
+              <div class="feature-item">
+                <div class="fi-icon">🔒</div>
+                <h3>Secure</h3>
+                <p>No third-party scripts.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec02-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec02-html"><span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"features"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;h2&gt;</span>Everything you need<span class="t-tag">&lt;/h2&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"feature-grid"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"feature-item"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"icon"</span><span class="t-tag">&gt;</span>⚡<span class="t-tag">&lt;/div&gt;</span>
+      <span class="t-tag">&lt;h3&gt;</span>Fast<span class="t-tag">&lt;/h3&gt;</span>
+      <span class="t-tag">&lt;p&gt;</span>Zero runtime overhead.<span class="t-tag">&lt;/p&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-com">&lt;!-- repeat .feature-item --&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/section&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec02-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec02-css"><span class="t-sel">.feature-grid</span> {
+  <span class="t-prop">display</span>: <span class="t-str">grid</span>;
+  <span class="t-prop">grid-template-columns</span>:
+    <span class="t-str">repeat(auto-fill, minmax(180px, 1fr))</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">1rem</span>;
+}
+<span class="t-sel">.feature-item</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">12px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.25rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">border-color 0.2s,
+    transform 0.2s</span>;
+}
+<span class="t-sel">.feature-item:hover</span> {
+  <span class="t-prop">border-color</span>: <span class="t-str">rgba(90,240,196,0.3)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(-2px)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 CTA Banner -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">03</span> CTA Banner <span class="desc">— full-width call-to-action with gradient accent and dual buttons</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview</div>
+      <div class="preview-area" style="padding:1.25rem;display:block;">
+        <div class="cta-demo">
+          <div class="cta-demo-text">
+            <h2>Ready to ship something great?</h2>
+            <p>// join 12,000+ developers using CodeSnippetz</p>
+          </div>
+          <div class="cta-demo-actions">
+            <button class="cta-btn-main">Start for Free</button>
+            <button class="cta-btn-sec">See Examples</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec03-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec03-html"><span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"cta-banner"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"cta-text"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;h2&gt;</span>Ready to ship something great?<span class="t-tag">&lt;/h2&gt;</span>
+    <span class="t-tag">&lt;p&gt;</span>Join 12,000+ developers.<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"cta-actions"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"btn-main"</span><span class="t-tag">&gt;</span>Start for Free<span class="t-tag">&lt;/button&gt;</span>
+    <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"btn-sec"</span><span class="t-tag">&gt;</span>See Examples<span class="t-tag">&lt;/button&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/section&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec03-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec03-css"><span class="t-sel">.cta-banner</span> {
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #1c2030, #0d0f14)</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">16px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2.5rem</span>;
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">align-items</span>: <span class="t-str">center</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-str">space-between</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">1.5rem</span>;
+  <span class="t-prop">flex-wrap</span>: <span class="t-str">wrap</span>;
+}
+<span class="t-sel">.btn-main</span> {
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #5af0c4, #7b8cff)</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#0d0f14</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0.7rem 1.6rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-num">700</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 04 Stats Counter -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">04</span> Stats Counter <span class="desc">— animated counting numbers triggered by scroll, glowing accent cards</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — numbers animate on load</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="stats-demo">
+            <p class="eyebrow">// by the numbers</p>
+            <h2>Trusted by developers worldwide</h2>
+            <p>Real metrics, counted up on scroll.</p>
+            <div class="stats-grid">
+              <div class="stat-card"><div class="stat-num" data-count="12400">0</div><div class="stat-label">Developers</div></div>
+              <div class="stat-card"><div class="stat-num" data-count="98"><span></span>0<span>%</span></div><div class="stat-label">Satisfaction</div></div>
+              <div class="stat-card"><div class="stat-num" data-count="340">0</div><div class="stat-label">Components</div></div>
+              <div class="stat-card"><div class="stat-num" data-count="0">0<span>ms</span></div><div class="stat-label">Dependencies</div></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec04-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec04-html"><span class="t-tag">&lt;section</span> <span class="t-attr">class</span>=<span class="t-val">"stats"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"stats-grid"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"stat-card"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"stat-num"</span>
+           <span class="t-attr">data-count</span>=<span class="t-val">"12400"</span><span class="t-tag">&gt;</span>0<span class="t-tag">&lt;/div&gt;</span>
+      <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"stat-label"</span><span class="t-tag">&gt;</span>Developers<span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-com">&lt;!-- repeat .stat-card --&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/section&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec04-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec04-css"><span class="t-sel">.stats-grid</span> {
+  <span class="t-prop">display</span>: <span class="t-str">grid</span>;
+  <span class="t-prop">grid-template-columns</span>:
+    <span class="t-str">repeat(auto-fill, minmax(140px,1fr))</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">1rem</span>;
+}
+<span class="t-sel">.stat-card</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#151820</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">14px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">1.5rem 1rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">border-color .25s,
+    transform .25s</span>;
+}
+<span class="t-sel">.stat-card:hover</span> {
+  <span class="t-prop">border-color</span>: <span class="t-str">rgba(90,240,196,.4)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(-3px)</span>;
+}
+<span class="t-sel">.stat-num</span> {
+  <span class="t-prop">font-size</span>: <span class="t-num">2.2rem</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-num">800</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">line-height</span>: <span class="t-num">1</span>;
+}</pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag js">JS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec04-js')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec04-js"><span class="t-kw">const</span> animateCounter = (el) => {
+  <span class="t-kw">const</span> target = +el.dataset.count;
+  <span class="t-kw">const</span> suffix = el.querySelector(<span class="t-str">'span'</span>)
+    ?.textContent ?? <span class="t-str">''</span>;
+  <span class="t-kw">const</span> duration = <span class="t-num">1800</span>;
+  <span class="t-kw">let</span> start = <span class="t-kw">null</span>;
+  <span class="t-kw">const</span> ease = t =>
+    t &lt; <span class="t-num">.5</span> ? <span class="t-num">2</span>*t*t : -<span class="t-num">1</span>+(<span class="t-num">4</span>-<span class="t-num">2</span>*t)*t;
+  <span class="t-kw">const</span> step = (ts) => {
+    <span class="t-kw">if</span> (!start) start = ts;
+    <span class="t-kw">const</span> p = ease(
+      Math.min((ts-start)/duration,<span class="t-num">1</span>));
+    el.textContent =
+      Math.floor(p*target)+suffix;
+    <span class="t-kw">if</span> (p &lt; <span class="t-num">1</span>) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+<span class="t-kw">new</span> IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    <span class="t-kw">if</span> (e.isIntersecting)
+      animateCounter(e.target);
+  });
+}, { threshold: <span class="t-num">0.5</span> })
+.observe(document.querySelector(
+  <span class="t-str">'.stat-num'</span>));</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 Marquee Ticker -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">05</span> Marquee Ticker <span class="desc">— infinite horizontal scroll, gradient fade edges, pause on hover</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover to pause</div>
+      <div class="preview-area" style="padding:1.5rem 0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="marquee-demo">
+            <p class="marquee-label">// trusted by teams at</p>
+            <div class="marquee-track-wrap">
+              <div class="marquee-track" id="marquee-track">
+                <span class="marquee-item"><span class="mi-dot"></span>Vercel</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Stripe</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>Linear</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Notion</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Figma</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>GitHub</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Tailwind</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Supabase</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>PlanetScale</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Railway</span>
+                <!-- duplicated for seamless loop -->
+                <span class="marquee-item"><span class="mi-dot"></span>Vercel</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Stripe</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>Linear</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Notion</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Figma</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>GitHub</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Tailwind</span>
+                <span class="marquee-item"><span class="mi-dot purple"></span>Supabase</span>
+                <span class="marquee-item"><span class="mi-dot amber"></span>PlanetScale</span>
+                <span class="marquee-item"><span class="mi-dot"></span>Railway</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec05-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec05-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"marquee-wrap"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"marquee-track"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Vercel<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Stripe<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Linear<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-com">&lt;!-- ...duplicate all items --&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Vercel<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Stripe<span class="t-tag">&lt;/span&gt;</span>
+    <span class="t-tag">&lt;span&gt;</span>Linear<span class="t-tag">&lt;/span&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec05-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec05-css"><span class="t-sel">.marquee-wrap</span> {
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">mask-image</span>: <span class="t-str">linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%)</span>;
+}
+<span class="t-sel">.marquee-track</span> {
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">0.75rem</span>;
+  <span class="t-prop">width</span>: <span class="t-str">max-content</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">ticker 22s
+    linear infinite</span>;
+}
+<span class="t-sel">.marquee-track:hover</span> {
+  <span class="t-prop">animation-play-state</span>: <span class="t-str">paused</span>;
+}
+<span class="t-sel">@keyframes ticker</span> {
+  <span class="t-kw">from</span> { <span class="t-prop">transform</span>: <span class="t-str">translateX(0)</span>; }
+  <span class="t-kw">to</span>   { <span class="t-prop">transform</span>: <span class="t-str">translateX(-50%)</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 Bento Grid -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">06</span> Bento Grid <span class="desc">— asymmetric Apple-style grid with cursor-following glow on each cell</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — move cursor over cells</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="bento-demo">
+            <p class="eyebrow">// what's inside</p>
+            <h2>Everything in one place</h2>
+            <p>Asymmetric bento layout — hover each cell for the spotlight effect.</p>
+            <div class="bento-grid" id="bento-grid">
+              <div class="bento-card bento-card--large">
+                <div class="bc-icon">🚀</div>
+                <h3>Ship faster</h3>
+                <p>Drop-in components with zero build step. Copy, paste, done.</p>
+                <span class="bc-badge">// no dependencies</span>
+              </div>
+              <div class="bento-card">
+                <div class="bc-num">340+</div>
+                <div class="stat-label" style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#6b7390;text-transform:uppercase;letter-spacing:.06em;">Snippets</div>
+              </div>
+              <div class="bento-card">
+                <div class="bc-icon">🎨</div>
+                <h3>Dark-first</h3>
+                <p>Built for dark mode from day one.</p>
+              </div>
+              <div class="bento-card bento-card--wide">
+                <div class="bc-icon">⚡</div>
+                <h3>Pure CSS &amp; HTML</h3>
+                <p>No framework. No runtime. Just standards-based code that works anywhere.</p>
+              </div>
+              <div class="bento-card">
+                <div class="bc-icon">🔒</div>
+                <h3>Secure</h3>
+                <p>Zero third-party scripts or CDN dependencies.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec06-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec06-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"bento-grid"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"bento-card bento-card--large"</span><span class="t-tag">&gt;</span>
+    <span class="t-com">&lt;!-- spans 2 cols × 2 rows --&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Ship faster<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"bento-card"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Dark-first<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"bento-card bento-card--wide"</span><span class="t-tag">&gt;</span>
+    <span class="t-com">&lt;!-- spans 2 cols --&gt;</span>
+    <span class="t-tag">&lt;h3&gt;</span>Pure CSS<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec06-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec06-css"><span class="t-sel">.bento-grid</span> {
+  <span class="t-prop">display</span>: <span class="t-str">grid</span>;
+  <span class="t-prop">grid-template-columns</span>:
+    <span class="t-str">repeat(4, 1fr)</span>;
+  <span class="t-prop">grid-auto-rows</span>: <span class="t-num">130px</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">0.75rem</span>;
+}
+<span class="t-sel">.bento-card--large</span> {
+  <span class="t-prop">grid-column</span>: <span class="t-str">span 2</span>;
+  <span class="t-prop">grid-row</span>: <span class="t-str">span 2</span>;
+}
+<span class="t-sel">.bento-card--wide</span> {
+  <span class="t-prop">grid-column</span>: <span class="t-str">span 2</span>;
+}
+<span class="t-sel">.bento-card::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">width</span>: <span class="t-num">240px</span>; <span class="t-prop">height</span>: <span class="t-num">240px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">radial-gradient(circle,
+    rgba(90,240,196,.15) 0%,
+    transparent 70%)</span>;
+  <span class="t-prop">left</span>: <span class="t-str">calc(var(--mx) - 120px)</span>;
+  <span class="t-prop">top</span>:  <span class="t-str">calc(var(--my) - 120px)</span>;
+}</pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag js">JS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec06-js')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec06-js"><span class="t-kw">const</span> cards =
+  document.querySelectorAll(<span class="t-str">'.bento-card'</span>);
+cards.forEach(card => {
+  card.addEventListener(<span class="t-str">'mousemove'</span>, e => {
+    <span class="t-kw">const</span> r = card.getBoundingClientRect();
+    card.style.setProperty(<span class="t-str">'--mx'</span>,
+      (e.clientX - r.left) + <span class="t-str">'px'</span>);
+    card.style.setProperty(<span class="t-str">'--my'</span>,
+      (e.clientY - r.top)  + <span class="t-str">'px'</span>);
+  });
+});</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 Vertical Timeline -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">07</span> Vertical Timeline <span class="desc">— staggered fade-in, gradient connector line, slide-right hover cards</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the cards</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-section-wrap">
+          <section class="timeline-demo">
+            <p class="eyebrow">// changelog</p>
+            <h2>What's new</h2>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-card">
+                  <div class="tl-date">May 2026</div>
+                  <h3>v3.0 — Bento &amp; Timeline</h3>
+                  <p>New section layouts: bento grid, vertical timeline, animated stats counter, and marquee ticker.</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-card">
+                  <div class="tl-date">Feb 2026</div>
+                  <h3>v2.5 — Card Effects</h3>
+                  <p>3D tilt, neon pulse, and spotlight card patterns added to the library.</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-card">
+                  <div class="tl-date">Nov 2025</div>
+                  <h3>v2.0 — Dark Redesign</h3>
+                  <p>Full visual overhaul. New dark navy palette, JetBrains Mono monospace, and Syne headings.</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-card">
+                  <div class="tl-date">Jun 2025</div>
+                  <h3>v1.0 — Launch</h3>
+                  <p>Initial release with buttons, navbars, forms, and basic card patterns.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec07-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec07-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"timeline"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"tl-item"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"tl-card"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"tl-date"</span><span class="t-tag">&gt;</span>May 2026<span class="t-tag">&lt;/div&gt;</span>
+      <span class="t-tag">&lt;h3&gt;</span>v3.0 — New Sections<span class="t-tag">&lt;/h3&gt;</span>
+      <span class="t-tag">&lt;p&gt;</span>Bento, timeline &amp; more.<span class="t-tag">&lt;/p&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-tag">&lt;/div&gt;</span>
+  <span class="t-com">&lt;!-- repeat .tl-item --&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'sec07-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="sec07-css"><span class="t-sel">.timeline</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">padding-left</span>: <span class="t-num">2rem</span>;
+}
+<span class="t-sel">.timeline::before</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">left</span>: <span class="t-num">0</span>; <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">bottom</span>: <span class="t-num">0</span>;
+  <span class="t-prop">width</span>: <span class="t-num">2px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(
+    to bottom,
+    #5af0c4, #7b8cff, transparent)</span>;
+}
+<span class="t-sel">.tl-item</span> {
+  <span class="t-prop">opacity</span>: <span class="t-num">0</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateX(-10px)</span>;
+  <span class="t-prop">animation</span>: <span class="t-str">tlFade .5s forwards</span>;
+}
+<span class="t-sel">.tl-item:hover .tl-card</span> {
+  <span class="t-prop">border-color</span>:
+    <span class="t-str">rgba(90,240,196,0.3)</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateX(4px)</span>;
+}
+<span class="t-sel">@keyframes tlFade</span> {
+  <span class="t-kw">to</span> { <span class="t-prop">opacity</span>:<span class="t-num">1</span>;
+    <span class="t-prop">transform</span>:<span class="t-str">translateX(0)</span>; }
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /snippets-container -->
+
+<footer class="site-footer">
+  <div class="footer-logo">CodeSnippetz</div>
+  <p class="footer-tagline">// copy. paste. ship. · pure html &amp; css, zero dependencies</p>
+</footer>
+
+<script src="../js/copy.js"></script>
+<script>
+  // Stats Counter — animate on scroll into view
+  const animateCounter = (el) => {
+    const target = +el.dataset.count;
+    const suffix = el.querySelector('span:last-child')?.textContent ?? '';
+    const duration = 1800;
+    let start = null;
+    const ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const p = ease(Math.min((ts - start) / duration, 1));
+      el.textContent = Math.floor(p * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.observe(el));
+
+  // Bento Grid — cursor-following glow
+  document.querySelectorAll('#bento-grid .bento-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+    });
+  });
+</script>
+</body>
+</html>

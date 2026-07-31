@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberProgram — Get Involved</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── DESIGN TOKENS */
+    :root {
+      --teal:        #145C68;
+      --teal-light:  #1c8a9e;
+      --teal-glow:   rgba(20,92,104,.5);
+      --orange:      #FF5B00;
+      --orange-glow: rgba(255,91,0,.4);
+      --lime:        #D3CE16;
+      --yellow:      #FACF00;
+      --aqua:        #A0DAEF;
+      --aqua-glow:   rgba(160,218,239,.25);
+      --bg-void:  #040d12;
+      --bg-deep:  #071520;
+      --bg-panel: #0b2030;
+      --bg-card:  #0d2535;
+      --border:   rgba(160,218,239,.14);
+      --text-primary:   #e8f4f8;
+      --text-secondary: #88b8c8;
+      --text-muted:     #4a7a8a;
+      --nav-h: 68px;
+      --font-display: 'Orbitron', sans-serif;
+      --font-body:    'Exo 2', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void); color: var(--text-primary);
+      padding-top: var(--nav-h); overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(160,218,239,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160,218,239,.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    body::after {
+      content: ''; position: fixed; top: -220px; left: -220px;
+      width: 640px; height: 640px; pointer-events: none; z-index: 0;
+      background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-h);
+      background: rgba(4,13,18,.94); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+      display: flex; align-items: center; padding: 0 44px;
+    }
+    .navbar::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg,transparent,var(--teal),var(--orange),var(--lime),var(--teal),transparent);
+      background-size: 300% 100%; animation: scan 6s linear infinite;
+    }
+    @keyframes scan { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+    .navbar__brand {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 900;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--aqua); margin-right: auto;
+      text-shadow: 0 0 20px var(--aqua-glow); white-space: nowrap;
+    }
+    .navbar__brand span { color: var(--orange); }
+    .navbar__links { display: flex; align-items: stretch; height: 100%; list-style: none; }
+    .navbar__item  { position: relative; display: flex; align-items: stretch; }
+    .navbar__link {
+      display: flex; align-items: center; padding: 0 22px;
+      font-family: var(--font-display); font-size: .67rem; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--text-secondary); transition: color .2s, background .2s;
+      position: relative; white-space: nowrap;
+    }
+    .navbar__link::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%; height: 2px;
+      background: var(--orange); transition: left .22s ease, right .22s ease;
+    }
+    .navbar__item:hover .navbar__link,
+    .navbar__link.active { color: var(--aqua); background: rgba(160,218,239,.06); }
+    .navbar__item:hover .navbar__link::after,
+    .navbar__link.active::after { left: 0; right: 0; }
+    .dropdown {
+      position: absolute; top: 100%; left: 0; min-width: 205px;
+      background: rgba(7,21,32,.97); border: 1px solid var(--border);
+      border-top: 2px solid var(--teal); list-style: none; padding: 6px 0;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity .18s, transform .18s, visibility .18s; z-index: 200;
+    }
+    .navbar__item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown__item a {
+      display: block; padding: 10px 20px;
+      font-family: var(--font-body); font-size: .82rem;
+      letter-spacing: .05em; color: var(--text-secondary);
+      transition: color .15s, background .15s, padding-left .15s;
+    }
+    .dropdown__item a:hover { color: var(--aqua); background: rgba(160,218,239,.08); padding-left: 28px; }
+
+    /* ── SHARED LAYOUT */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 44px; }
+    .section { padding: 20px 0; position: relative; z-index: 1; }
+
+    /* ── PAGE HERO */
+    .page-hero { position: relative; z-index: 1; padding: 72px 44px 56px; max-width: 1200px; margin: 0 auto; }
+    .page-hero__label {
+      font-family: var(--font-display); font-size: .6rem; font-weight: 700;
+      letter-spacing: .35em; text-transform: uppercase; color: var(--orange);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .page-hero__label::before { content: ''; width: 30px; height: 1px; background: var(--orange); }
+    .page-hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
+      line-height: 1.06; letter-spacing: -.025em; margin-bottom: 18px;
+    }
+    .page-hero__headline em { font-style: normal; color: var(--teal-light); }
+    .page-hero__sub { font-size: 1rem; line-height: 1.7; color: var(--text-secondary); max-width: 640px; }
+
+    /* ── INVOLVEMENT OPTION CARDS  (above the form)
+          Three teaser boxes showing ways to get involved.       */
+    .involve-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-bottom: 72px;
+    }
+    .involve-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 28px 24px; position: relative; overflow: hidden;
+      transition: border-color .22s, transform .22s, box-shadow .22s;
+    }
+    .involve-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    }
+    .involve-box--teal::before   { background: var(--teal); }
+    .involve-box--orange::before { background: var(--orange); }
+    .involve-box--aqua::before   { background: var(--aqua); }
+    .involve-box:hover { border-color: rgba(160,218,239,.4); transform: translateY(-3px); box-shadow: 0 8px 36px rgba(20,92,104,.3); }
+    .involve-box__icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+    .involve-box__heading {
+      font-family: var(--font-display); font-size: .78rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 10px;
+    }
+    .involve-box__body { font-size: .88rem; line-height: 1.72; color: var(--text-secondary); }
+
+    /* ── CONTACT FORM
+          Wire up the action="" attribute to your form handler
+          (e.g. Formspree, Netlify Forms, or your own backend).     */
+    .form-wrap {
+      display: grid; grid-template-columns: 1fr 480px;
+      gap: 60px; align-items: start;
+    }
+
+    /* Left column: context text */
+    .form-context {}
+    .form-context__label {
+      font-family: var(--font-display); font-size: .58rem; font-weight: 700;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .form-context__label::before { content: ''; width: 22px; height: 1px; background: var(--orange); }
+    .form-context__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 900;
+      letter-spacing: -.02em; color: var(--text-primary); margin-bottom: 18px;
+    }
+    .form-context__title em { font-style: normal; color: var(--teal-light); }
+    .form-context__body {
+      font-size: .95rem; line-height: 1.78; color: var(--text-secondary); margin-bottom: 32px;
+    }
+    .form-context__list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .form-context__list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: .9rem; color: var(--text-secondary); line-height: 1.6;
+    }
+    .form-context__list li::before {
+      content: '→'; color: var(--orange); font-family: var(--font-display);
+      font-size: .7rem; margin-top: 3px; flex-shrink: 0;
+    }
+
+    /* Right column: the actual form */
+    .contact-form {
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 36px 32px; position: relative; overflow: hidden;
+    }
+    .contact-form::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--orange));
+    }
+
+    .contact-form__title {
+      font-family: var(--font-display); font-size: .8rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 28px;
+    }
+
+    /* Form field group */
+    .form-group { margin-bottom: 20px; }
+
+    .form-label {
+      display: block; margin-bottom: 7px;
+      font-family: var(--font-display); font-size: .58rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Text inputs, select, and textarea share these styles */
+    .form-control {
+      width: 100%;
+      background: rgba(4,13,18,.7);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-family: var(--font-body); font-size: .92rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+    .form-control:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(20,92,104,.25), 0 0 18px var(--teal-glow);
+    }
+    .form-control::placeholder { color: var(--text-muted); }
+
+    /* Textarea — set min-height here */
+    textarea.form-control { min-height: 140px; resize: vertical; }
+
+    /* Select dropdown arrow */
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231c8a9e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select.form-control option { background: var(--bg-deep); }
+
+    /* Two fields side by side (name + email) */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Checkbox group */
+    .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .checkbox-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .88rem; color: var(--text-secondary); cursor: pointer;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 16px; height: 16px; cursor: pointer;
+      accent-color: var(--teal);
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%; margin-top: 8px;
+      padding: 16px;
+      background: var(--teal);
+      color: var(--text-primary);
+      font-family: var(--font-display); font-size: .72rem;
+      font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      box-shadow: 0 0 22px var(--teal-glow);
+      transition: background .2s, box-shadow .2s, transform .2s;
+    }
+    .btn-submit:hover {
+      background: var(--teal-light);
+      box-shadow: 0 0 40px var(--teal-glow), 0 4px 20px rgba(20,92,104,.5);
+      transform: translateY(-2px);
+    }
+
+    /* Success message (shown via JS after submit) */
+    .form-success {
+      display: none;
+      padding: 20px; margin-top: 16px;
+      background: rgba(20,92,104,.2); border: 1px solid var(--teal);
+      font-size: .88rem; color: var(--teal-light);
+      text-align: center; letter-spacing: .04em;
+    }
+
+    /* ── FOOTER */
+    .footer {
+      background: var(--bg-deep); border-top: 1px solid var(--border);
+      padding: 36px 44px; text-align: center;
+      font-size: .78rem; color: var(--text-muted); letter-spacing: .05em;
+      position: relative; z-index: 1;
+    }
+    .footer strong { color: var(--teal-light); }
+    .footer a { color: var(--teal-light); transition: color .15s; }
+    .footer a:hover { color: var(--aqua); }
+
+    /* ── RESPONSIVE */
+    @media (max-width: 960px) {
+      .form-wrap { grid-template-columns: 1fr; }
+      .involve-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .involve-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .navbar { padding: 0 18px; }
+      .navbar__brand { font-size: .8rem; }
+      .navbar__link { padding: 0 12px; font-size: .6rem; }
+      .page-hero, .container { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+    <ul class="navbar__links">
+      <li class="navbar__item">
+        <a href="index.html" class="navbar__link">Home</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="index.html#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="index.html#tools">Tools</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="topics.html" class="navbar__link">Topics</a>
+        <ul class="dropdown">
+           <li class="dropdown__item"><a href="topics.html#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="partners.html" class="navbar__link">Partners</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="partners.html#industry">Industry</a></li>
+          <li class="dropdown__item"><a href="partners.html#academic">Academic</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="get-involved.html" class="navbar__link active">Get Involved</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="#contact">Contact Form</a></li>
+          <li class="dropdown__item"><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="learn/index.html" class="navbar__link">Learn</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="learn/powershell/index.html">PowerShell</a></li>
+          <li class="dropdown__item"><a href="learn/codesnippetz/index.html">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="learn/kqwho/index.html">KQ Who?</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ── PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero__label">Join Us</div>
+    <h1 class="page-hero__headline">Get <em>Involved</em></h1>
+    <p class="page-hero__sub">
+      Whether you're an industry professional, researcher, educator, or community member,
+      there are meaningful ways to support the next generation of cybersecurity talent.
+      Tell us how you'd like to contribute.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       INVOLVEMENT OPTIONS  —  three teaser boxes
+       Edit the heading and body text for each box.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="volunteer">
+    <div class="container">
+
+      <div class="involve-grid">
+
+        <!-- Option 1 -->
+        <div class="involve-box involve-box--teal">
+          <span class="involve-box__icon">🎤</span>
+          <div class="involve-box__heading">Guest Speaker</div>
+          <p class="involve-box__body">
+            Share your expertise with students. We welcome professionals from all areas
+            of cybersecurity, technology, and adjacent fields to speak about careers,
+            industry trends, or specific technical topics.
+          </p>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="involve-box involve-box--orange">
+          <span class="involve-box__icon">🤝</span>
+          <div class="involve-box__heading">Industry Partnership</div>
+          <p class="involve-box__body">
+            Partner with us to offer internship pipelines, tool access, sponsored
+            competitions, or curriculum input. Help shape what the next generation of
+            professionals knows and can do.
+          </p>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="involve-box involve-box--aqua">
+          <span class="involve-box__icon">💡</span>
+          <div class="involve-box__heading">Resource &amp; Mentorship</div>
+          <p class="involve-box__body">
+            Donate lab equipment, software licenses, or your time as a mentor.
+            Even occasional mentorship sessions make a significant impact on students
+            exploring a future in this field.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONTACT FORM
+       Set the form action="" to your email handler URL.
+       Common options: Formspree (https://formspree.io),
+       Netlify Forms (add netlify attribute), or your own backend.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="form-wrap">
+
+        <!-- Left: context / instructions -->
+        <div class="form-context">
+
+          <div class="form-context__label">Contact Us</div>
+          <h2 class="form-context__title">Tell Us How You <em>Want to Help</em></h2>
+
+          <p class="form-context__body">
+            Use the form to introduce yourself and share your idea. There's no wrong
+            answer — we want to hear from anyone who is excited about supporting
+            cybersecurity education.
+          </p>
+
+          <!-- List of things people might do — edit freely -->
+          <ul class="form-context__list">
+            <li>Speak to students about your career path and daily work</li>
+            <li>Provide access to tools, platforms, or lab environments</li>
+            <li>Sponsor a student team for a CTF competition</li>
+            <li>Create an internship or job-shadow opportunity</li>
+            <li>Donate hardware or software licenses for the lab</li>
+            <li>Mentor a student on a capstone or independent project</li>
+            <li>Propose something we haven't listed here</li>
+          </ul>
+
+        </div>
+
+        <!-- Right: the form -->
+        <!-- Change action="" to your form handler endpoint -->
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="https://formspree.io/f/mzdnqwaq"
+          method="POST"
+        >
+          <div class="contact-form__title">Send a Message</div>
+
+          <!-- Name + Email on one row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name *</label>
+              <input
+                type="text" id="name" name="name"
+                class="form-control" required
+                placeholder="Your name"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input
+                type="email" id="email" name="email"
+                class="form-control" required
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <!-- Organization -->
+          <div class="form-group">
+            <label class="form-label" for="org">Organization / Affiliation</label>
+            <input
+              type="text" id="org" name="organization"
+              class="form-control"
+              placeholder="Company, university, or N/A"
+            />
+          </div>
+
+          <!-- Role / how they want to help -->
+          <div class="form-group">
+            <label class="form-label" for="role">How would you like to be involved? *</label>
+            <select id="role" name="involvement_type" class="form-control" required>
+              <option value="" disabled selected>Select the best fit…</option>
+              <option value="guest-speaker">Guest Speaker / Panelist</option>
+              <option value="industry-partner">Industry Partner</option>
+              <option value="mentor">Student Mentor</option>
+              <option value="resource-donation">Tool / Resource Donation</option>
+              <option value="sponsor">Competition Sponsor</option>
+              <option value="internship">Internship / Job-Shadow Host</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+
+          <!-- Interest checkboxes — add or remove as needed -->
+          <div class="form-group">
+            <label class="form-label">Areas of interest (check all that apply)</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="network-security" />
+                Network Security
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="cloud-security" />
+                Cloud Security
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="ethical-hacking" />
+                Ethical Hacking / Pen Testing
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="dfir" />
+                Digital Forensics &amp; Incident Response
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="career-development" />
+                Career Development &amp; Pathways
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="open" />
+                Open to anything — let me know where I'm most useful
+              </label>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label class="form-label" for="message">Message *</label>
+            <textarea
+              id="message" name="message"
+              class="form-control" required
+              placeholder="Tell us a bit about yourself, your idea, and what you hope to contribute. The more detail, the better."
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-submit">Send Message ›</button>
+
+          <!-- Success message (shown after JS-based submission if desired) -->
+          <div class="form-success" id="form-success" role="alert">
+            ✓ &nbsp; Message received — we'll be in touch soon.
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER -->
+  <footer class="footer">
+    <strong>CyberProgram</strong> &nbsp;·&nbsp; The HILL / Fayette County Public Schools &nbsp;·&nbsp;
+    <a href="partners.html">Partners</a> &nbsp;·&nbsp;
+    © <span id="yr"></span> All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Show success message without a page reload
+       Works with Formspree AJAX endpoint — remove if using standard POST redirect */
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST', body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          /* Fall back to standard form submission if fetch fails */
+          form.submit();
+        }
+      } catch {
+        form.submit();
+      }
+    });
+  </script>
+
+</body>
+</html>

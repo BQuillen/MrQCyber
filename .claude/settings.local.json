@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -nE \"^\\\\s*//|^\\\\s*/\\\\*\")",
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(where py *)",
+      "Bash(python -c \"print\\('ok'\\)\")",
+      "PowerShell(Get-Command node,npm,npx,python,php -ErrorAction SilentlyContinue)",
+      "Bash(perl -MHTTP::Daemon -e 'print \"HTTP::Daemon available\\\\n\"')",
+      "Bash(perl -MIO::Socket::INET -e 'print \"IO::Socket::INET available\\\\n\"')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://127.0.0.1:8080/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://127.0.0.1:8080/learn/powershell/index.html)",
+      "Bash(command -v gh)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(rm -rf learn/kqwho/.github)",
+      "Bash(rmdir learn/kqwho/.github)"
+    ]
+  }
+}

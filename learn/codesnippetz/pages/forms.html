@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forms — CodeSnippetz</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <style>
+    /* 1. Floating Label Input */
+    .fl-group {
+      position: relative;
+      margin-bottom: 0.25rem;
+      width: 260px;
+    }
+    .fl-input {
+      width: 100%;
+      background: #1c2030;
+      border: 1px solid #2a2f42;
+      color: #e4e8f0;
+      padding: 1.2rem 1rem 0.45rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: 'Syne', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .fl-input:focus {
+      border-color: #5af0c4;
+      box-shadow: 0 0 0 3px rgba(90,240,196,0.08);
+    }
+    .fl-label {
+      position: absolute;
+      top: 50%; left: 1rem;
+      transform: translateY(-50%);
+      color: #6b7390;
+      font-size: 0.85rem;
+      pointer-events: none;
+      transition: top 0.2s, font-size 0.2s, color 0.2s;
+    }
+    .fl-input:focus ~ .fl-label,
+    .fl-input:not(:placeholder-shown) ~ .fl-label {
+      top: 0.45rem;
+      font-size: 0.65rem;
+      color: #5af0c4;
+      letter-spacing: 0.05em;
+    }
+
+    /* 2. Custom Checkbox */
+    .check-group { display: flex; flex-direction: column; gap: 0.75rem; }
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.85rem;
+      color: #9aa0b8;
+      transition: color 0.18s;
+    }
+    .check-label:hover { color: #e4e8f0; }
+    .check-label input[type="checkbox"] { display: none; }
+    .check-box {
+      width: 18px; height: 18px;
+      border: 2px solid #2a2f42;
+      border-radius: 5px;
+      background: #1c2030;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+    .check-box::after {
+      content: '';
+      width: 5px; height: 9px;
+      border-right: 2px solid #0d0f14;
+      border-bottom: 2px solid #0d0f14;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.15s ease;
+      margin-top: -2px;
+    }
+    .check-label input:checked ~ .check-box {
+      background: #5af0c4;
+      border-color: #5af0c4;
+    }
+    .check-label input:checked ~ .check-box::after {
+      transform: rotate(45deg) scale(1);
+    }
+
+    /* 3. Glassmorphism Login Form */
+    .glass-form-wrap {
+      background: linear-gradient(135deg, #7c3aed 0%, #0ea5e9 50%, #10b981 100%);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+    }
+    .glass-form {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 280px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .glass-form h2 {
+      font-size: 1.1rem; font-weight: 800; color: white;
+      margin-bottom: 0.25rem;
+    }
+    .glass-form .subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+    }
+    .glass-field {
+      margin-bottom: 1rem;
+    }
+    .glass-field label {
+      display: block;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.75);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+    .glass-field input {
+      width: 100%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.65rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      outline: none;
+      font-family: 'Syne', sans-serif;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .glass-field input::placeholder { color: rgba(255,255,255,0.4); }
+    .glass-field input:focus {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.18);
+    }
+    .glass-submit {
+      width: 100%;
+      background: white;
+      color: #1a1a2e;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: opacity 0.18s;
+      font-family: 'Syne', sans-serif;
+    }
+    .glass-submit:hover { opacity: 0.88; }
+    .glass-form .form-footer {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.55);
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">CodeSnippetz</a>
+  <ul class="nav-links">
+    <li><a href="buttons.html">Buttons</a></li>
+    <li><a href="navbars.html">Navbars</a></li>
+    <li><a href="cards.html">Cards</a></li>
+    <li><a href="sliders.html">Sliders</a></li>
+    <li><a href="sections.html">Sections</a></li>
+    <li><a href="forms.html" class="active">Forms</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / Forms</p>
+  <h1>Forms</h1>
+  <p>// 3 form patterns · floating label input, styled checkbox &amp; glassmorphism login</p>
+</header>
+
+<div class="filter-row">
+  <button class="filter-tag active">All</button>
+  <button class="filter-tag">Input</button>
+  <button class="filter-tag">Checkbox</button>
+  <button class="filter-tag">Glassmorphism</button>
+</div>
+
+<div class="snippets-container">
+
+  <!-- 01 Floating Label -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">01</span> Floating Label Input <span class="desc">— label animates above the field when the input gains focus</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click to focus each field</div>
+      <div class="preview-area" style="gap:1.25rem;flex-wrap:wrap;">
+        <div class="fl-group">
+          <input class="fl-input" type="text" id="fl1" placeholder=" "/>
+          <label class="fl-label" for="fl1">Full Name</label>
+        </div>
+        <div class="fl-group">
+          <input class="fl-input" type="email" id="fl2" placeholder=" "/>
+          <label class="fl-label" for="fl2">Email Address</label>
+        </div>
+        <div class="fl-group">
+          <input class="fl-input" type="password" id="fl3" placeholder=" "/>
+          <label class="fl-label" for="fl3">Password</label>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f01-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f01-html"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"fl-group"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;input</span>
+    <span class="t-attr">class</span>=<span class="t-val">"fl-input"</span>
+    <span class="t-attr">type</span>=<span class="t-val">"text"</span>
+    <span class="t-attr">id</span>=<span class="t-val">"name"</span>
+    <span class="t-attr">placeholder</span>=<span class="t-val">" "</span>
+  <span class="t-tag">/&gt;</span>
+  <span class="t-tag">&lt;label</span>
+    <span class="t-attr">class</span>=<span class="t-val">"fl-label"</span>
+    <span class="t-attr">for</span>=<span class="t-val">"name"</span>
+  <span class="t-tag">&gt;</span>Full Name<span class="t-tag">&lt;/label&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f01-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f01-css"><span class="t-sel">.fl-group</span> { <span class="t-prop">position</span>: <span class="t-str">relative</span>; }
+<span class="t-sel">.fl-input</span> {
+  <span class="t-prop">padding</span>: <span class="t-num">1.2rem 1rem 0.45rem</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#e4e8f0</span>;
+  <span class="t-prop">width</span>: <span class="t-num">100%</span>;
+}
+<span class="t-sel">.fl-input:focus</span> {
+  <span class="t-prop">border-color</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">outline</span>: <span class="t-str">none</span>;
+}
+<span class="t-sel">.fl-label</span> {
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">top</span>: <span class="t-num">50%</span>; <span class="t-prop">left</span>: <span class="t-num">1rem</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(-50%)</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#6b7390</span>;
+  <span class="t-prop">pointer-events</span>: <span class="t-str">none</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">top 0.2s, font-size 0.2s</span>;
+}
+<span class="t-sel">.fl-input:focus ~ .fl-label,
+.fl-input:not(:placeholder-shown) ~ .fl-label</span> {
+  <span class="t-prop">top</span>: <span class="t-num">0.45rem</span>;
+  <span class="t-prop">font-size</span>: <span class="t-num">0.65rem</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#5af0c4</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Styled Checkbox -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">02</span> Styled Checkbox <span class="desc">— hidden native input replaced with a CSS-animated custom box</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click to toggle</div>
+      <div class="preview-area">
+        <div class="check-group">
+          <label class="check-label">
+            <input type="checkbox" checked/>
+            <span class="check-box"></span>
+            Send me product updates
+          </label>
+          <label class="check-label">
+            <input type="checkbox"/>
+            <span class="check-box"></span>
+            Weekly digest emails
+          </label>
+          <label class="check-label">
+            <input type="checkbox" checked/>
+            <span class="check-box"></span>
+            Security alerts
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f02-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f02-html"><span class="t-tag">&lt;label</span> <span class="t-attr">class</span>=<span class="t-val">"check-label"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"checkbox"</span><span class="t-tag">/&gt;</span>
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"check-box"</span><span class="t-tag">&gt;&lt;/span&gt;</span>
+  Accept terms &amp; conditions
+<span class="t-tag">&lt;/label&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f02-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f02-css"><span class="t-sel">.check-label input[type="checkbox"]</span> {
+  <span class="t-prop">display</span>: <span class="t-str">none</span>;
+}
+<span class="t-sel">.check-box</span> {
+  <span class="t-prop">width</span>: <span class="t-num">18px</span>; <span class="t-prop">height</span>: <span class="t-num">18px</span>;
+  <span class="t-prop">border</span>: <span class="t-num">2px</span> <span class="t-str">solid</span> <span class="t-num">#2a2f42</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">5px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#1c2030</span>;
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">align-items</span>: <span class="t-str">center</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-str">center</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">all 0.2s</span>;
+}
+<span class="t-sel">.check-box::after</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">width</span>: <span class="t-num">5px</span>; <span class="t-prop">height</span>: <span class="t-num">9px</span>;
+  <span class="t-prop">border-right</span>: <span class="t-num">2px</span> <span class="t-str">solid</span> <span class="t-num">#0d0f14</span>;
+  <span class="t-prop">border-bottom</span>: <span class="t-num">2px</span> <span class="t-str">solid</span> <span class="t-num">#0d0f14</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">rotate(45deg) scale(0)</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.15s ease</span>;
+}
+<span class="t-sel">input:checked ~ .check-box</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">border-color</span>: <span class="t-num">#5af0c4</span>;
+}
+<span class="t-sel">input:checked ~ .check-box::after</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">rotate(45deg) scale(1)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 Glass Form -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">03</span> Glassmorphism Login Form <span class="desc">— frosted glass card with blurred gradient background</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click inputs to focus</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="glass-form-wrap">
+          <form class="glass-form" onsubmit="return false;">
+            <h2>Welcome back</h2>
+            <p class="subtitle">// sign in to your account</p>
+            <div class="glass-field">
+              <label>Email</label>
+              <input type="email" placeholder="you@example.com"/>
+            </div>
+            <div class="glass-field">
+              <label>Password</label>
+              <input type="password" placeholder="••••••••"/>
+            </div>
+            <button type="submit" class="glass-submit">Sign In</button>
+            <p class="form-footer">No account? <a href="#" style="color:rgba(255,255,255,0.8)">Sign up</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f03-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f03-html"><span class="t-com">&lt;!-- needs a colourful parent --&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"gradient-bg"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;form</span> <span class="t-attr">class</span>=<span class="t-val">"glass-form"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;h2&gt;</span>Welcome back<span class="t-tag">&lt;/h2&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"field"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;label&gt;</span>Email<span class="t-tag">&lt;/label&gt;</span>
+      <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"email"</span>
+        <span class="t-attr">placeholder</span>=<span class="t-val">"you@example.com"</span><span class="t-tag">/&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"field"</span><span class="t-tag">&gt;</span>
+      <span class="t-tag">&lt;label&gt;</span>Password<span class="t-tag">&lt;/label&gt;</span>
+      <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"password"</span>
+        <span class="t-attr">placeholder</span>=<span class="t-val">"••••••••"</span><span class="t-tag">/&gt;</span>
+    <span class="t-tag">&lt;/div&gt;</span>
+    <span class="t-tag">&lt;button</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span><span class="t-tag">&gt;</span>Sign In<span class="t-tag">&lt;/button&gt;</span>
+  <span class="t-tag">&lt;/form&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'f03-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="f03-css"><span class="t-sel">.glass-form</span> {
+  <span class="t-prop">backdrop-filter</span>: <span class="t-str">blur(20px)</span>;
+  <span class="t-prop">-webkit-backdrop-filter</span>: <span class="t-str">blur(20px)</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.1)</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.2)</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">16px</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2rem</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+}
+<span class="t-sel">.glass-form input</span> {
+  <span class="t-prop">width</span>: <span class="t-num">100%</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.12)</span>;
+  <span class="t-prop">border</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.2)</span>;
+  <span class="t-prop">color</span>: <span class="t-str">white</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0.65rem 0.9rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">8px</span>;
+  <span class="t-prop">outline</span>: <span class="t-str">none</span>;
+}
+<span class="t-sel">.glass-form input:focus</span> {
+  <span class="t-prop">border-color</span>: <span class="t-str">rgba(255,255,255,0.5)</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(255,255,255,0.18)</span>;
+}
+<span class="t-sel">.gradient-bg</span> {
+  <span class="t-prop">background</span>: <span class="t-str">linear-gradient(135deg,
+    #7c3aed, #0ea5e9, #10b981)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">2.5rem</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /snippets-container -->
+
+<footer class="site-footer">
+  <div class="footer-logo">CodeSnippetz</div>
+  <p class="footer-tagline">// copy. paste. ship. · pure html &amp; css, zero dependencies</p>
+</footer>
+
+<script src="../js/copy.js"></script>
+</body>
+</html>

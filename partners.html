@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberProgram — Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="partners.css">
+  
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+    <ul class="navbar__links">
+      <li class="navbar__item">
+        <a href="index.html" class="navbar__link">Home</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="index.html#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="index.html#tools">Tools</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="topics.html" class="navbar__link">Topics</a>
+        <ul class="dropdown">
+           <li class="dropdown__item"><a href="topics.html#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="topics.html#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="partners.html" class="navbar__link active">Partners</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="#industry">Industry</a></li>
+          <li class="dropdown__item"><a href="#academic">Academic</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="get-involved.html" class="navbar__link">Get Involved</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="get-involved.html#contact">Contact Form</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="learn/index.html" class="navbar__link">Learn</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="learn/powershell/index.html">PowerShell</a></li>
+          <li class="dropdown__item"><a href="learn/codesnippetz/index.html">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="learn/kqwho/index.html">KQ Who?</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ── PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero__label">Our Network</div>
+    <h1 class="page-hero__headline">Program <em>Partners</em></h1>
+    <p class="page-hero__sub">
+      Our program is strengthened by relationships with industry leaders and academic
+      institutions who provide resources, mentorship, and real-world opportunities for
+      our students. Click any partner card to visit their website.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       INDUSTRY PARTNERS SECTION
+       Each .partner-card is an <a> tag linking to the partner's site.
+       Add / remove cards — the grid auto-arranges into rows of 3.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="industry">
+    <div class="container">
+
+      <div class="section-label">Industry</div>
+      <h2 class="section-title">Industry <em>Partners</em></h2>
+      <div class="divider"></div>
+
+      <div class="partner-grid">
+
+        <!-- PARTNER CARD TEMPLATE
+             - href: link to partner's website
+             - img src: partner logo or relevant image
+             - partner-card__category: e.g. "Technology" / "Defense" / "Cloud"
+             - partner-card__name: partner organization name
+             - partner-card__desc: 2-3 sentences on the partnership and student benefit -->
+
+        <!-- Partner 1 -->
+        <a href="https://www.kc7cyber.com" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/kc7cyber.png" alt="KC7 Cybersecurity" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Cybersecurity</div>
+            <div class="partner-card__name">KC7 Cyber Foundation</div>
+            <p class="partner-card__desc">
+              Replace this with a 2–3 sentence description of the partnership.
+              How does this organization support the program? What do students
+              gain from this relationship?
+            </p>
+          </div>
+        </a>
+
+        <!-- Partner 2 -->
+        <!-- <a href="https://www.partnerwebsite.com" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/partner-2-logo.jpg" alt="University of Kentucky" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Technology</div>
+            <div class="partner-card__name">The University of Kentucky</div>
+            <p class="partner-card__desc">
+              Replace this with a 2–3 sentence description of the partnership
+              and what it means for students in the program.
+            </p>
+          </div>
+        </a> -->
+
+        <!-- Partner 3 -->
+        <a href="https://www.nationalguard.com/" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/nationalguard.jpg" alt="The National Guard" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Cyber Defense</div>
+            <div class="partner-card__name">National Guard</div>
+            <p class="partner-card__desc">
+              Replace this with a description of how this partner is involved
+              — guest speakers, tooling access, internship pathways, etc.
+            </p>
+          </div>
+        </a>
+
+        <!-- Partner 4 — add more in sets of 3 for full rows -->
+        <a href="https://redsiege.com/" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/redsiege.png" alt="Red Siege" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Red Teaming</div>
+            <div class="partner-card__name">Red Siege</div>
+            <p class="partner-card__desc">
+              Describe this partnership and its value to students.
+            </p>
+          </div>
+        </a>
+
+        <!-- Partner 5 -->
+        <!-- <a href="https://www.partnerwebsite.com" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/partner-5-logo.jpg" alt="Transylvania University" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Risk Management</div>
+            <div class="partner-card__name">Transylvania University</div>
+            <p class="partner-card__desc">Describe this partnership.</p>
+          </div>
+        </a> -->
+
+        <!-- Partner 6 -->
+        <a href="https://www.microsoft.com/en-us/corporate-responsibility/topics/cybersecurity/" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/microsoft.jpg" alt="Microsoft" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Training</div>
+            <div class="partner-card__name">Microsoft - Project Bayfield</div>
+            <p class="partner-card__desc">Describe this partnership.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-sep" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       ACADEMIC PARTNERS SECTION
+       Same card structure — duplicate more .partner-card blocks as needed.
+       ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="academic">
+    <div class="container">
+
+      <div class="section-label">Academic</div>
+      <h2 class="section-title">Academic <em>Partners</em></h2>
+      <div class="divider"></div>
+
+      <div class="partner-grid">
+
+        <!-- Academic Partner 1 -->
+        <a href="https://engr.uky.edu/academics-1/undergraduate-students/cybersecurity" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/ukcyber.jpg" alt="University of Kentucky" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">University</div>
+            <div class="partner-card__name">University of Kentucky</div>
+            <p class="partner-card__desc">
+              Describe the academic partnership — dual-credit agreements, pathway
+              programs, articulation agreements, or joint research initiatives.
+            </p>
+          </div>
+        </a>
+
+        <!-- Academic Partner 2 -->
+               <a href="https://www.transy.edu/" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/transy.jpg" alt="Transy" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Research Institute</div>
+            <div class="partner-card__name">Transylvania University</div>
+            <p class="partner-card__desc">Describe this academic partnership.</p>
+          </div>
+        </a>
+       
+    
+
+        <!-- Academic Partner 3 -->
+         <a href="https://bluegrass.kctcs.edu/" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-card__img">
+            <img src="images/bctc.jpg" alt="BCTC" />
+            <span class="partner-card__visit">Visit Site →</span>
+          </div>
+          <div class="partner-card__body">
+            <div class="partner-card__category">Community College</div>
+            <div class="partner-card__name">BCTC</div>
+            <p class="partner-card__desc">
+              Describe how this academic relationship benefits students — credit
+              transfers, scholarships, or early-entry programs.
+            </p>
+          </div>
+        </a>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER -->
+  <footer class="footer">
+    <strong>CyberProgram</strong> &nbsp;·&nbsp; The HILL / Fayette County Public Schools &nbsp;·&nbsp;
+    <a href="get-involved.html">Get Involved</a> &nbsp;·&nbsp;
+    © <span id="yr"></span> All rights reserved.
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

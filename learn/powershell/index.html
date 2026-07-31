@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerShell Ops Range</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">PS</div>
+  <div>
+    <h1>PowerShell <span>Ops Range</span></h1>
+    <div class="tagline">hands-on cyber missions · simulated PowerShell</div>
+  </div>
+  <div class="hd-right">
+    <a class="btn gold" href="../../index.html">← CyberProgram</a>
+    <button class="btn nav active" id="navRange">Missions</button>
+    <button class="btn nav" id="navDict">Command Dictionary</button>
+    <span class="variation" id="varLabel">Variation #—</span>
+    <select id="scenarioSel" aria-label="Choose scenario"></select>
+    <button class="btn gold" id="newVar" title="Regenerate this scenario with new random names, folders, and values">⟳ New variation</button>
+    <button class="btn" id="copyBtnHeader" title="Copy the current terminal transcript to the clipboard">⧉ Copy Terminal</button>
+  </div>
+</header>
+<main>
+  <aside>
+    <div class="card">
+      <h2>Mission briefing</h2>
+      <span class="diff" id="diffBadge"></span>
+      <div class="brief" id="brief"></div>
+    </div>
+    <div class="card">
+      <h2>New in this mission</h2>
+      <div id="newCmds"></div>
+    </div>
+    <div class="card">
+      <h2>This workstation</h2>
+      <div class="sys" id="sysinfo"></div>
+    </div>
+    <div class="card">
+      <h2>Objectives</h2>
+      <div id="tasks"></div>
+      <div class="progress-wrap"><div class="progress" id="pbar"></div></div>
+      <div class="plabel" id="plabel">0 / 0 complete</div>
+    </div>
+    <div class="card">
+      <details class="ref">
+        <summary>Command reference</summary>
+        <table class="reftable"><tbody id="refbody"></tbody></table>
+      </details>
+    </div>
+  </aside>
+  <section class="term-col">
+    <div class="term-bar">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span class="term-title" id="termTitle">Windows PowerShell — Ops Range</span>
+    </div>
+    <div id="term" aria-live="polite"></div>
+    <div id="doneBanner">
+      <h3>◈ Mission complete</h3>
+      <p id="doneMsg"></p>
+      <div class="banner-actions">
+        <button class="btn gold nextbtn" id="nextBtn">Next scenario →</button>
+        <button class="btn nextbtn" id="copyBtn">⧉ Copy Terminal Commands</button>
+      </div>
+    </div>
+    <div class="input-row" onclick="document.getElementById('cmd').focus()">
+      <span class="pr" id="prompt">PS C:\Users\cadet&gt;</span>
+      <input id="cmd" autocomplete="off" spellcheck="false" aria-label="PowerShell command input" autofocus>
+    </div>
+  </section>
+</main>
+<section id="dictView" hidden>
+  <div class="dict-head">
+    <h2>Command <span>Dictionary</span></h2>
+    <input id="dictSearch" placeholder="Filter commands… (e.g. hash, hidden, count)" aria-label="Filter commands">
+    <span id="dictCount"></span>
+  </div>
+  <div id="dictBody"></div>
+</section>
+<script src="js/engine.js"></script>
+<script src="js/scenarios.js"></script>
+<script src="js/dictionary.js"></script>
+<script src="js/terminal.js"></script>
+</body></html>

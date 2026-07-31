@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbars — CodeSnippetz</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <style>
+    /* ── Demo navbar wrappers ── */
+    .demo-frame {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 1. Sticky Blur Navbar */
+    .nb1 {
+      background: rgba(13,15,20,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nb1-logo { font-weight: 800; font-size: 1.1rem; color: #5af0c4; letter-spacing: -0.02em; }
+    .nb1-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nb1-links a { font-size: 0.82rem; color: #9aa0b8; text-decoration: none; transition: color 0.18s; }
+    .nb1-links a:hover { color: #e4e8f0; }
+    .nb1-cta {
+      background: #5af0c4; color: #0d0f14; border: none;
+      padding: 0.45rem 1.1rem; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 700; cursor: pointer;
+      transition: opacity 0.18s;
+    }
+    .nb1-cta:hover { opacity: 0.85; }
+
+    /* 2. Underline Hover Navbar */
+    .nb2 {
+      background: #151820;
+      border-bottom: 1px solid #2a2f42;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nb2-logo { font-weight: 800; font-size: 1.05rem; color: #e4e8f0; }
+    .nb2-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nb2-links a {
+      font-size: 0.82rem; color: #9aa0b8;
+      text-decoration: none; padding: 0.35rem 0.75rem;
+      position: relative; transition: color 0.2s;
+    }
+    .nb2-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0.75rem; right: 0.75rem;
+      height: 2px; background: #7b8cff;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nb2-links a:hover { color: #e4e8f0; }
+    .nb2-links a:hover::after { transform: scaleX(1); }
+    .nb2-links a.nb2-active { color: #7b8cff; }
+    .nb2-links a.nb2-active::after { transform: scaleX(1); }
+
+    /* 3. Transparent → Solid on scroll (simulated with class toggle) */
+    .nb3-wrapper {
+      background: linear-gradient(180deg, rgba(90,240,196,0.08) 0%, transparent 100%);
+      padding: 0;
+    }
+    .nb3 {
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.35s, border-color 0.35s, backdrop-filter 0.35s;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
+    .nb3.scrolled {
+      background: rgba(13,15,20,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: #2a2f42;
+    }
+    .nb3-logo { font-weight: 800; color: #e4e8f0; }
+    .nb3-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nb3-links a { font-size: 0.82rem; color: #9aa0b8; text-decoration: none; transition: color 0.18s; }
+    .nb3-links a:hover { color: #e4e8f0; }
+    .nb3-toggle-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      background: rgba(90,240,196,0.1); color: #5af0c4;
+      border: 1px solid rgba(90,240,196,0.3);
+      padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer;
+    }
+
+    /* 4. Hamburger Menu Navbar */
+    .nb4 {
+      background: #1c2030;
+      border-bottom: 1px solid #2a2f42;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .nb4-logo { font-weight: 800; color: #e4e8f0; }
+    .nb4-hamburger {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nb4-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #9aa0b8; border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.2s;
+    }
+    .nb4-hamburger:hover span { background: #5af0c4; }
+    .nb4-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nb4-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nb4-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nb4-menu {
+      position: absolute; top: 56px; left: 0; right: 0;
+      background: #1c2030; border-bottom: 1px solid #2a2f42;
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .nb4-menu.open { max-height: 200px; }
+    .nb4-menu a {
+      display: block; padding: 0.75rem 2rem;
+      font-size: 0.85rem; color: #9aa0b8;
+      text-decoration: none; border-top: 1px solid #2a2f42;
+      transition: color 0.18s, background 0.18s;
+    }
+    .nb4-menu a:hover { color: #e4e8f0; background: rgba(255,255,255,0.03); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">CodeSnippetz</a>
+  <ul class="nav-links">
+    <li><a href="buttons.html">Buttons</a></li>
+    <li><a href="navbars.html" class="active">Navbars</a></li>
+    <li><a href="cards.html">Cards</a></li>
+    <li><a href="sliders.html">Sliders</a></li>
+    <li><a href="sections.html">Sections</a></li>
+    <li><a href="forms.html">Forms</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / Navbars</p>
+  <h1>Navbars</h1>
+  <p>// 4 navigation bar patterns · sticky, underline, transparent-scroll &amp; hamburger</p>
+</header>
+
+<div class="filter-row">
+  <button class="filter-tag active">All</button>
+  <button class="filter-tag">Sticky</button>
+  <button class="filter-tag">Animated</button>
+  <button class="filter-tag">Hamburger</button>
+  <button class="filter-tag">Minimal</button>
+</div>
+
+<div class="snippets-container">
+
+  <!-- 01 Sticky Blur -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">01</span> Sticky Blur Navbar <span class="desc">— frosted-glass bar that stays fixed at top on scroll</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-frame">
+          <nav class="nb1">
+            <span class="nb1-logo">Brand</span>
+            <ul class="nb1-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Docs</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+            <button class="nb1-cta">Sign Up</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n01-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n01-html"><span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Brand<span class="t-tag">&lt;/span&gt;</span>
+  <span class="t-tag">&lt;ul</span> <span class="t-attr">class</span>=<span class="t-val">"nav-links"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Home<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Docs<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Blog<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="t-tag">&lt;/ul&gt;</span>
+  <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"cta"</span><span class="t-tag">&gt;</span>Sign Up<span class="t-tag">&lt;/button&gt;</span>
+<span class="t-tag">&lt;/nav&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n01-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n01-css"><span class="t-sel">.navbar</span> {
+  <span class="t-prop">position</span>: <span class="t-str">sticky</span>;
+  <span class="t-prop">top</span>: <span class="t-num">0</span>;
+  <span class="t-prop">z-index</span>: <span class="t-num">100</span>;
+  <span class="t-prop">backdrop-filter</span>: <span class="t-str">blur(14px)</span>;
+  <span class="t-prop">-webkit-backdrop-filter</span>: <span class="t-str">blur(14px)</span>;
+  <span class="t-prop">background</span>: <span class="t-str">rgba(13,15,20,0.88)</span>;
+  <span class="t-prop">border-bottom</span>: <span class="t-num">1px</span> <span class="t-str">solid rgba(255,255,255,0.08)</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0 2rem</span>;
+  <span class="t-prop">height</span>: <span class="t-num">56px</span>;
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">align-items</span>: <span class="t-str">center</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-str">space-between</span>;
+}
+<span class="t-sel">.nav-links</span> {
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">1.5rem</span>;
+  <span class="t-prop">list-style</span>: <span class="t-str">none</span>;
+}
+<span class="t-sel">.nav-links a</span> {
+  <span class="t-prop">font-size</span>: <span class="t-num">0.82rem</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#9aa0b8</span>;
+  <span class="t-prop">text-decoration</span>: <span class="t-str">none</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">color 0.18s</span>;
+}
+<span class="t-sel">.nav-links a:hover</span> { <span class="t-prop">color</span>: <span class="t-num">#e4e8f0</span>; }
+<span class="t-sel">.cta</span> {
+  <span class="t-prop">background</span>: <span class="t-num">#5af0c4</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#0d0f14</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0.45rem 1.1rem</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">6px</span>;
+  <span class="t-prop">font-weight</span>: <span class="t-num">700</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Underline Hover -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">02</span> Underline Hover Navbar <span class="desc">— active indicator slides in from left via scaleX transform</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — hover the links</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-frame">
+          <nav class="nb2">
+            <span class="nb2-logo">Acme</span>
+            <ul class="nb2-links">
+              <li><a href="#" class="nb2-active">Home</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n02-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n02-html"><span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Acme<span class="t-tag">&lt;/span&gt;</span>
+  <span class="t-tag">&lt;ul</span> <span class="t-attr">class</span>=<span class="t-val">"nav-links"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span> <span class="t-attr">class</span>=<span class="t-val">"active"</span><span class="t-tag">&gt;</span>Home<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Products<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>About<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Contact<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="t-tag">&lt;/ul&gt;</span>
+<span class="t-tag">&lt;/nav&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n02-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n02-css"><span class="t-sel">.nav-links a</span> {
+  <span class="t-prop">position</span>: <span class="t-str">relative</span>;
+  <span class="t-prop">color</span>: <span class="t-num">#9aa0b8</span>;
+  <span class="t-prop">text-decoration</span>: <span class="t-str">none</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0.35rem 0.75rem</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">color 0.2s</span>;
+}
+<span class="t-sel">.nav-links a::after</span> {
+  <span class="t-prop">content</span>: <span class="t-str">''</span>;
+  <span class="t-prop">position</span>: <span class="t-str">absolute</span>;
+  <span class="t-prop">bottom</span>: <span class="t-num">0</span>;
+  <span class="t-prop">left</span>: <span class="t-num">0.75rem</span>; <span class="t-prop">right</span>: <span class="t-num">0.75rem</span>;
+  <span class="t-prop">height</span>: <span class="t-num">2px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#7b8cff</span>;
+  <span class="t-prop">transform</span>: <span class="t-str">scaleX(0)</span>;
+  <span class="t-prop">transform-origin</span>: <span class="t-str">left</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.25s ease</span>;
+}
+<span class="t-sel">.nav-links a:hover,
+.nav-links a.active</span> { <span class="t-prop">color</span>: <span class="t-num">#e4e8f0</span>; }
+<span class="t-sel">.nav-links a:hover::after,
+.nav-links a.active::after</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">scaleX(1)</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 Transparent Scroll -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">03</span> Transparent → Solid on Scroll <span class="desc">— JS adds a class when scrollY &gt; 0 to solidify the bar</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click "Simulate Scroll" to toggle</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-frame nb3-wrapper">
+          <nav class="nb3" id="nb3demo">
+            <span class="nb3-logo">Studio</span>
+            <ul class="nb3-links">
+              <li><a href="#">Work</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="nb3-toggle-btn" onclick="document.getElementById('nb3demo').classList.toggle('scrolled')">Simulate Scroll</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n03-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n03-html"><span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span> <span class="t-attr">id</span>=<span class="t-val">"mainNav"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Studio<span class="t-tag">&lt;/span&gt;</span>
+  <span class="t-tag">&lt;ul</span> <span class="t-attr">class</span>=<span class="t-val">"nav-links"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Work<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Services<span class="t-tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="t-tag">&lt;/ul&gt;</span>
+<span class="t-tag">&lt;/nav&gt;</span>
+
+<span class="t-tag">&lt;script&gt;</span>
+<span class="t-kw">const</span> nav = document.getElementById(<span class="t-str">'mainNav'</span>);
+window.addEventListener(<span class="t-str">'scroll'</span>, () =&gt; {
+  nav.classList.toggle(<span class="t-str">'scrolled'</span>, scrollY &gt; 0);
+});
+<span class="t-tag">&lt;/script&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n03-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n03-css"><span class="t-sel">.navbar</span> {
+  <span class="t-prop">position</span>: <span class="t-str">fixed</span>;
+  <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">left</span>: <span class="t-num">0</span>; <span class="t-prop">right</span>: <span class="t-num">0</span>;
+  <span class="t-prop">background</span>: <span class="t-str">transparent</span>;
+  <span class="t-prop">border-bottom</span>: <span class="t-num">1px</span> <span class="t-str">solid transparent</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">background 0.35s, border-color 0.35s</span>;
+  <span class="t-prop">height</span>: <span class="t-num">60px</span>;
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">align-items</span>: <span class="t-str">center</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">0 2rem</span>;
+}
+<span class="t-sel">.navbar.scrolled</span> {
+  <span class="t-prop">background</span>: <span class="t-str">rgba(13,15,20,0.95)</span>;
+  <span class="t-prop">backdrop-filter</span>: <span class="t-str">blur(12px)</span>;
+  <span class="t-prop">border-bottom-color</span>: <span class="t-num">#2a2f42</span>;
+}</pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 Hamburger -->
+  <div class="snippet-section">
+    <div class="section-title"><span class="num">04</span> Hamburger Menu <span class="desc">— animated ☰→✕ icon, slide-down mobile menu</span></div>
+    <div class="preview-strip">
+      <div class="preview-label">▶ live preview — click the hamburger icon</div>
+      <div class="preview-area" style="padding:0;display:block;">
+        <div class="demo-frame" style="position:relative;">
+          <nav class="nb4">
+            <span class="nb4-logo">Startup</span>
+            <button class="nb4-hamburger" id="hb" onclick="toggleHamburger()">
+              <span></span><span></span><span></span>
+            </button>
+          </nav>
+          <div class="nb4-menu" id="hbMenu">
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snippets-row">
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag html">HTML</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n04-html')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n04-html"><span class="t-tag">&lt;nav</span> <span class="t-attr">class</span>=<span class="t-val">"navbar"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;span</span> <span class="t-attr">class</span>=<span class="t-val">"logo"</span><span class="t-tag">&gt;</span>Startup<span class="t-tag">&lt;/span&gt;</span>
+  <span class="t-tag">&lt;button</span> <span class="t-attr">class</span>=<span class="t-val">"hamburger"</span> <span class="t-attr">id</span>=<span class="t-val">"hb"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</span>
+  <span class="t-tag">&lt;/button&gt;</span>
+<span class="t-tag">&lt;/nav&gt;</span>
+<span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"mobile-menu"</span> <span class="t-attr">id</span>=<span class="t-val">"menu"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Home<span class="t-tag">&lt;/a&gt;</span>
+  <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Features<span class="t-tag">&lt;/a&gt;</span>
+  <span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"#"</span><span class="t-tag">&gt;</span>Pricing<span class="t-tag">&lt;/a&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span>
+<span class="t-tag">&lt;script&gt;</span>
+hb.addEventListener(<span class="t-str">'click'</span>, () =&gt; {
+  hb.classList.toggle(<span class="t-str">'open'</span>);
+  menu.classList.toggle(<span class="t-str">'open'</span>);
+});
+<span class="t-tag">&lt;/script&gt;</span></pre></div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-header">
+          <div class="snippet-meta"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="lang-tag css">CSS</span></div>
+          <button class="copy-btn" onclick="copyCode(this,'n04-css')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+        </div>
+        <div class="snippet-body"><pre id="n04-css"><span class="t-sel">.hamburger</span> {
+  <span class="t-prop">display</span>: <span class="t-str">flex</span>;
+  <span class="t-prop">flex-direction</span>: <span class="t-str">column</span>;
+  <span class="t-prop">gap</span>: <span class="t-num">5px</span>;
+  <span class="t-prop">background</span>: <span class="t-str">none</span>;
+  <span class="t-prop">border</span>: <span class="t-str">none</span>;
+  <span class="t-prop">cursor</span>: <span class="t-str">pointer</span>;
+}
+<span class="t-sel">.hamburger span</span> {
+  <span class="t-prop">display</span>: <span class="t-str">block</span>;
+  <span class="t-prop">width</span>: <span class="t-num">22px</span>; <span class="t-prop">height</span>: <span class="t-num">2px</span>;
+  <span class="t-prop">background</span>: <span class="t-num">#9aa0b8</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">transform 0.3s, opacity 0.3s</span>;
+}
+<span class="t-sel">.hamburger.open span:nth-child(1)</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(7px) rotate(45deg)</span>;
+}
+<span class="t-sel">.hamburger.open span:nth-child(2)</span> { <span class="t-prop">opacity</span>: <span class="t-num">0</span>; }
+<span class="t-sel">.hamburger.open span:nth-child(3)</span> {
+  <span class="t-prop">transform</span>: <span class="t-str">translateY(-7px) rotate(-45deg)</span>;
+}
+<span class="t-sel">.mobile-menu</span> {
+  <span class="t-prop">max-height</span>: <span class="t-num">0</span>;
+  <span class="t-prop">overflow</span>: <span class="t-str">hidden</span>;
+  <span class="t-prop">transition</span>: <span class="t-str">max-height 0.35s ease</span>;
+}
+<span class="t-sel">.mobile-menu.open</span> { <span class="t-prop">max-height</span>: <span class="t-num">300px</span>; }</pre></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /snippets-container -->
+
+<footer class="site-footer">
+  <div class="footer-logo">CodeSnippetz</div>
+  <p class="footer-tagline">// copy. paste. ship. · pure html &amp; css, zero dependencies</p>
+</footer>
+
+<script src="../js/copy.js"></script>
+<script>
+  function toggleHamburger() {
+    document.getElementById('hb').classList.toggle('open');
+    document.getElementById('hbMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
