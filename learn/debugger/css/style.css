@@ -311,6 +311,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .panel--brief { border-left: 2px solid var(--orange); }
 .panel--goal { border-left: 2px solid var(--aqua); }
+.panel--cta { border-left: 2px solid var(--orange); display: flex; flex-direction: column; gap: 10px; }
+.panel--cta .btn { align-self: flex-start; }
+
+.btn--back-lesson { border-color: var(--border-lit); color: var(--text-secondary); }
+.btn--back-lesson:hover { background: rgba(255,255,255,.04); }
 
 .panel__title {
   font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 2px;

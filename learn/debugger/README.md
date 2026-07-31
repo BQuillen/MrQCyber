@@ -1,9 +1,10 @@
 # Debugger — Find It. Fix It.
 
 A self-contained web app for teaching HTML, CSS, JavaScript and Python through
-**debugging**. Each language track is ten stages: five short lessons that show
-working code beside its live output, then five programs that are subtly broken
-and have to be repaired.
+**debugging**. Each language track is twenty stages: ten short lessons that show
+working code beside its live output, each immediately followed by its own
+repair job — a program that's broken in exactly the way that lesson just taught,
+subtly, and has to be fixed.
 
 No build step, no frameworks, no CDN dependencies at runtime (only Google Fonts,
 which degrade gracefully). Drop the folder on any static host.
@@ -12,14 +13,19 @@ which degrade gracefully). Drop the folder on any static host.
 
 ## How it works for students
 
-**Lessons (stages 1–5).** Working code in the editor, the real result in the
-right-hand pane. Every lesson ends with a few "try it yourself" prompts that ask
-the student to deliberately break the code and watch what happens — including,
-in each track, the exact bug they will have to fix later.
+**Lessons.** Working code in the editor, the real result in the right-hand
+pane. Every lesson ends with a few "try it yourself" prompts that ask the
+student to deliberately break the code and watch what happens — including the
+exact bug they're about to meet in the repair job — and a **Debug this
+lesson →** button that jumps straight there.
 
-**Repair jobs (stages 6–10).** A broken program, a description of what it
-*should* do, and a checklist of conditions that must hold before it counts as
-fixed. Students edit, run, and press **Check my fix**.
+**Repair jobs.** A broken program, a description of what it *should* do, and a
+checklist of conditions that must hold before it counts as fixed. Students
+edit, run, and press **Check my fix**. A link back to the lesson sits at the
+bottom of the rail. Most repair jobs chain two or three bugs rather than one —
+fixing the first reveals the second, the same way real debugging goes. The
+step rail lists lessons and repairs in the order the student meets them:
+lesson 1, repair 1, lesson 2, repair 2, … lesson 10, repair 10.
 
 **Hints, not answers.** Three tiers per repair job:
 
@@ -97,13 +103,26 @@ inside the supported subset — if you add your own, run it before assigning it.
 
 ## Adding a lesson or a repair job
 
-Append to the `stages` array in the relevant `lessons-*.js`. A repair job looks
-like this:
+Each track's `stages` array is interleaved: a `kind: 'teach'` stage immediately
+followed by the `kind: 'debug'` stage that breaks what it just taught, ten
+times over. The two halves of a pair are linked by id so the app can render
+the "Debug this lesson →" button and the "← Back to the lesson" link:
 
 ```js
 {
+  id: 'c-l6',
+  kind: 'teach',
+  title: 'Positioning',
+  repairId: 'c-d6',           // the debug stage this lesson links to
+  concept: '<p>...</p>',
+  files: [{ name: 'style.css', lang: 'css', editable: true, code: '...' }],
+  runMode: 'compose',
+  tryIt: ['...']
+},
+{
   id: 'c-d6',                 // must be unique — it is the progress key and the deep link
   kind: 'debug',
+  lessonId: 'c-l6',           // the teach stage this repair links back to
   title: 'Short symptom, not the cause',
   brief: '<p>What should happen, and what happens instead.</p>',
   goal: 'One line of prose, or multi-line text to show as literal target output.',
@@ -119,6 +138,11 @@ like this:
   hints: ['where to look', 'narrow it down', 'the rule — still not the fix']
 }
 ```
+
+Most repair jobs should chain two or three bugs rather than one: fixing the
+first should reveal (or simply require noticing) the second. Keep early
+repairs in a track to two bugs and let the later ones grow to three as the
+student's skill builds.
 
 The context object passed to `test`:
 

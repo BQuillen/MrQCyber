@@ -322,13 +322,19 @@
 
   /* ---------- the rail ---------- */
 
+  const teachStages = track => track.stages.filter(s => s.kind === 'teach');
+  const debugStages = track => track.stages.filter(s => s.kind === 'debug');
+  const stageIndexById = (track, id) => track.stages.findIndex(x => x.id === id);
+
   function renderRail() {
     const s = S.stage;
     const debug = s.kind === 'debug';
     let h = '';
 
+    const group = debug ? debugStages(S.track) : teachStages(S.track);
+    const posInGroup = group.indexOf(s) + 1;
     h += '<div class="kicker ' + (debug ? 'kicker--debug' : 'kicker--learn') + '">' +
-      (debug ? 'Repair job ' : 'Lesson ') + (S.idx + 1) + ' of ' + S.track.stages.length + '</div>';
+      (debug ? 'Repair job ' : 'Lesson ') + posInGroup + ' of ' + group.length + '</div>';
     h += '<h2>' + esc(s.title) + '</h2>';
 
     if (debug) {
@@ -342,11 +348,19 @@
       h += '<div class="hint-box"><div id="hints"></div><div class="hint-actions">' +
         '<button class="btn btn--sm btn--hint" id="hint-btn">Need a nudge?</button>' +
         '</div></div>';
+      if (s.lessonId && stageIndexById(S.track, s.lessonId) !== -1) {
+        h += '<button class="btn btn--sm btn--back-lesson" id="back-lesson-btn">↩ Back to the lesson</button>';
+      }
     } else {
       h += '<div class="prose">' + s.concept + '</div>';
       if (s.tryIt && s.tryIt.length) {
         h += '<div class="panel panel--goal"><div class="panel__title">Try it yourself</div>' +
           '<div class="prose"><ul>' + s.tryIt.map(t => '<li>' + t + '</li>').join('') + '</ul></div></div>';
+      }
+      if (s.repairId && stageIndexById(S.track, s.repairId) !== -1) {
+        h += '<div class="panel panel--cta"><div class="panel__title">Ready to break it?</div>' +
+          '<div class="prose">Now go find this exact bug hiding in a real page.</div>' +
+          '<button class="btn btn--sm btn--check" id="debug-lesson-btn">Debug this lesson →</button></div>';
       }
     }
 
@@ -355,6 +369,11 @@
     if (debug) {
       $('#hint-btn').addEventListener('click', showNextHint);
       renderChecks();
+      const back = $('#back-lesson-btn');
+      if (back) back.addEventListener('click', () => loadStage(stageIndexById(S.track, s.lessonId)));
+    } else {
+      const db = $('#debug-lesson-btn');
+      if (db) db.addEventListener('click', () => loadStage(stageIndexById(S.track, s.repairId)));
     }
     renderFoot();
   }
