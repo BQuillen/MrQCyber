@@ -4,7 +4,7 @@
   --panel:   #142639;
   --border:  rgba(150,214,232,.16);
   --accent:  #22e0c6;
-  --accent2: #ff8c5a;
+  --accent2: #38bdf8;
   --amber:   #ffcf6b;
   --text:    #e7f2f7;
   --muted:   #6f93a3;
@@ -229,7 +229,7 @@ body::before {
     transform: scale(1.03);
     box-shadow:
       0 0 10px rgba(255, 255, 255, 0.2),
-      0 0 20px rgba(255, 140, 90, 0.4),
+      0 0 20px rgba(56, 189, 248, 0.4),
       0 6px 12px rgba(0, 0, 0, 0.25);
     border-color: var(--accent2);
   }
@@ -248,6 +248,17 @@ body::before {
     border-radius: 5px;
     text-align: center;
     color: #003858;
+  }
+
+  /* Filter accordion items manage their own background via .filter-header/.filter-content —
+     override the generic white li box above so it doesn't wash out their text. */
+  .right-panel .filter-item {
+    background: transparent;
+    margin-bottom: 0.4rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    text-align: left;
   }
 
   .new-round {
@@ -271,7 +282,7 @@ body::before {
 
   .banner {
     background-color: var(--panel);
-    border: 1px solid rgba(255,140,90,.35);
+    border: 1px solid rgba(56,189,248,.35);
     padding: 1rem 2rem;
     border-radius: 6px;
     text-align: center;
@@ -429,8 +440,8 @@ body::before {
 
 /* Filter content (expandable box) */
 .filter-content {
-  background: rgba(255, 140, 90, 0.1); /* soft orange overlay */
-  color: var(--text);
+  background: var(--surface);
+  color: var(--accent2);
   font-size: 0.7rem;
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--accent2);
