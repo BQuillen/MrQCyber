@@ -120,17 +120,14 @@ function initTeacherGate() {
 function autoSolveCurrentPhase() {
   const key = S.phases[S.currentIdx].key;
 
-  if (key === 'briefing' || key === 'locker') {
-    unlockNext();
-    return;
-  }
+  // briefing, locker, reflect: nothing to reveal — nothing to do
 
   if (key === 'timeline') {
     const t = S.timeline;
     t.slots = S.scn.timeline.slice();
     t.pool = S.scn.evidence.map(e => e.id).filter(id => !t.slots.includes(id));
     t.lastResult = t.slots.map((id, i) => id === S.scn.timeline[i]);
-    unlockNext();
+    renderPhase();
     return;
   }
 
@@ -141,7 +138,7 @@ function autoSolveCurrentPhase() {
     st.selected = st.options.findIndex(o => o.correct);
     st.checked = true;
     st.correct = true;
-    unlockNext();
+    renderPhase();
     return;
   }
 
@@ -149,7 +146,7 @@ function autoSolveCurrentPhase() {
     const st = S.factcheck;
     st.items.forEach(it => { st.answers[it.id] = it.relevant; });
     st.checked = true;
-    unlockNext();
+    renderPhase();
     return;
   }
 
@@ -158,7 +155,7 @@ function autoSolveCurrentPhase() {
     st.selected = st.options.findIndex(o => o.correct);
     st.checked = true;
     st.correct = true;
-    unlockNext();
+    renderPhase();
     return;
   }
 
@@ -168,7 +165,7 @@ function autoSolveCurrentPhase() {
     st.selected = new Set(goods);
     st.checked = true;
     st.correct = true;
-    unlockNext();
+    renderPhase();
     return;
   }
 
@@ -178,11 +175,9 @@ function autoSolveCurrentPhase() {
     st.selected = new Set(goods);
     st.checked = true;
     st.correct = true;
-    unlockNext();
+    renderPhase();
     return;
   }
-
-  // reflect: nothing left to solve
 }
 
 /* ---------------- init / scenario load ---------------- */
