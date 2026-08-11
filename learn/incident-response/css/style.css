@@ -186,7 +186,26 @@ aside { position: sticky; top: calc(var(--bar-h) + 18px); display: flex; flex-di
 .ev-mail div { margin-bottom: 3px; color: var(--text-secondary); }
 .ev-mail .ev-link { color: var(--aqua); text-decoration: underline; word-break: break-all; }
 .ev-card .ev-log-line { font-family: var(--font-mono); font-size: .76rem; color: var(--text-secondary); }
+.ev-code {
+  font-family: var(--font-mono); font-size: .74rem; color: var(--text-secondary);
+  background: var(--bg-code); border: 1px solid var(--border); border-radius: 6px;
+  padding: 9px 10px; word-break: break-all; line-height: 1.5;
+}
 .ev-card .ev-cat { font-family: var(--font-mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); margin-top: 8px; display:block; }
+
+/* ---------------- decrypt the note ---------------- */
+.decode-input {
+  width: 100%; min-height: 84px; resize: vertical;
+  font-family: var(--font-mono); font-size: .78rem; color: var(--text-primary);
+  background: var(--bg-code); border: 1px solid var(--border-lit); border-radius: 8px;
+  padding: 10px 12px; line-height: 1.5; word-break: break-all;
+}
+.decode-input:focus { outline: none; border-color: var(--aqua); }
+.decode-output {
+  font-family: var(--font-mono); font-size: .86rem; color: var(--ok);
+  background: var(--bg-code); border: 1px solid var(--ok); border-radius: 8px;
+  padding: 12px 14px; line-height: 1.5;
+}
 
 /* ---------------- timeline builder ---------------- */
 .tl-sub { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .6px; color: var(--text-muted); margin-bottom: 8px; }

@@ -27,8 +27,10 @@ const SCENARIOS = [
    ══════════════════════════════════════════════════════════════════ */
 {
   id: 'hill01',
-  title: 'Case #HILL-01 — The Grade Portal Email',
+  seq: 1,
+  title: 'The Grade Portal Email',
   caseNumber: 'HILL-01',
+  orgName: 'The HILL',
 
   briefing: {
     heading: '8:10 a.m. — Tuesday morning at The HILL',
@@ -203,6 +205,210 @@ const SCENARIOS = [
       'How did building the timeline change your understanding of how this incident actually unfolded?',
       'What could have reduced the harm in this situation?',
       'How can investigating one incident like this help The HILL strengthen its defenses against future ones?'
+    ]
+  }
+},
+
+/* ══════════════════════════════════════════════════════════════════
+   CASE #QBIT-01 — The GlacierForge Beta Key
+   Adds two new mechanics on top of the base game: files that get
+   encrypted after a click, and a Base64-encoded note the team has to
+   decrypt themselves before they can reason about what it means.
+   ══════════════════════════════════════════════════════════════════ */
+{
+  id: 'qbit01',
+  seq: 2,
+  title: 'The GlacierForge Beta Key',
+  caseNumber: 'QBIT-01',
+  orgName: 'Q-Bit Games',
+
+  briefing: {
+    heading: '9:10 a.m. — Monday at Q-Bit Games',
+    lines: [
+      'Barry Shmelly, a systems programmer on the GlacierForge team, calls the help desk sounding rattled.'
+    ],
+    messages: [
+      '"None of my files will open — they all have some weird new extension."',
+      '"There\'s a text file on my desktop that\'s just random letters and numbers."',
+      '"I think it might be from an email about a beta key?"'
+    ],
+    linesAfter: [
+      'Barry is well known around the office — and online — for being vocal about the games he loves, especially the studio\'s upcoming release, GlacierForge. He streams a few nights a week and isn\'t shy about sharing details of his life with his audience.',
+      'IT has asked your team to figure out what happened, and what Q-Bit Games should do right now to contain it.'
+    ],
+    mission: [
+      'What most likely happened to Barry\'s account and files?',
+      'What does the note left on his computer tell us?',
+      'What should Q-Bit Games do immediately to contain this and protect other employees?'
+    ]
+  },
+
+  /* ---------------- EVIDENCE LOCKER ---------------- */
+  evidence: [
+    { id:'email', cat:'inbox', title:'The email Barry received', time:'9:14 a.m.',
+      email:{ from:'GlacierForge Beta Team <beta-access@glacierforge-keys.example>',
+              subject:'🎮 You\'re Invited: GlacierForge Beta Key Inside!',
+              body:'Hey Barry! Loved your stream last week where you said you\'d give anything for early access to GlacierForge. Here\'s your exclusive beta key — just sign in with your Q-Bit email to claim it before spots run out!',
+              linkText:'Claim My Beta Key',
+              linkHref:'http://glacierforge-betakeys.example/claim' } },
+
+    { id:'statement-click', cat:'statements', title:'Barry describes clicking the link', who:'Barry Shmelly', time:null,
+      text:'"I saw an email about a beta key for GlacierForge — I\'ve literally been begging for access on stream for weeks, so I didn\'t think twice. I clicked the link and signed in with my work email like it asked."' },
+
+    { id:'installer', cat:'logs', title:'Download activity log', time:'9:15 a.m.',
+      lines:['9:15 a.m. — beta_key_installer.exe downloaded and executed from Downloads folder'] },
+
+    { id:'outbound', cat:'logs', title:'Endpoint protection log', time:'9:17 a.m.',
+      lines:['9:17 a.m. — Outbound connection attempt to 185.44.12.9 blocked by endpoint protection'] },
+
+    { id:'encrypt-log', cat:'logs', title:'File activity log', time:'9:19 a.m.',
+      lines:['9:19 a.m. — 1,240 files renamed with extension .qlockedq across Barry\'s local drive'] },
+
+    { id:'statement-notice', cat:'statements', title:'Barry describes his files breaking', who:'Barry Shmelly', time:null,
+      text:'"A few minutes later my file explorer started acting weird — icons changed, and then I couldn\'t open anything. Everything had this new extension on it."' },
+
+    { id:'note', cat:'board', title:'An encoded text file on Barry\'s desktop', time:null,
+      code:'VGhhbmtzIGZvciB0aGUgYmV0YSBrZXkgdGlwLCBCYXJyeS4gU2F5IGhpIHRvIFBpeGVsIGZvciBtZS4gLSBTaGFkb3dLZXk=' },
+
+    { id:'report', cat:'statements', title:'Barry\'s help-desk ticket', who:'Barry Shmelly', time:'9:25 a.m.',
+      text:'"None of my files will open and there\'s a weird text file on my desktop. I think it happened right after I clicked a link in an email."' },
+
+    { id:'bio', cat:'board', title:'Pinned message in the team Discord', time:null,
+      text:'Barry, pinned in #general: "Streaming GlacierForge every Tues/Thurs after work — come hang out! Ask me anything, or say hi to my dog Pixel 🐕"' },
+
+    { id:'policy', cat:'board', title:'Q-Bit Games security policy', time:null,
+      text:'Never enter your company credentials on a site opened from an email link. Report unexpected "exclusive access" or beta-key offers to IT before clicking anything.' },
+
+    { id:'reminder', cat:'board', title:'Reminder posted in the break room', time:null,
+      text:'If an offer feels exclusive or too good to pass up, verify it directly through the official source first — not through the link in the email.' },
+
+    { id:'monitor', cat:'board', title:'IT ticket from last Friday', time:null,
+      text:'Barry\'s monitor has been flickering intermittently. Replacement requested.' },
+
+    { id:'usb-layoffs', cat:'board', title:'Unlabeled USB drive found', time:null,
+      text:'A USB drive labeled "CONFIDENTIAL — LAYOFFS LIST" was found in the break room. No one has claimed it.' }
+  ],
+
+  /* ---------------- TIMELINE ----------------
+     8 true events. 'statement-click', 'statement-notice', and 'note'
+     carry no explicit time in their displayed text — one more untimed
+     item than HILL-01, since this case is meant to run a little harder. */
+  timeline: ['email', 'statement-click', 'installer', 'outbound', 'encrypt-log', 'statement-notice', 'note', 'report'],
+
+  /* ---------------- DECRYPT THE NOTE ----------------
+     A new mechanic: the note evidence card shows raw Base64 gibberish.
+     Here they actually decode it, then have to reason about what the
+     decoded text implies rather than just being told. */
+  decrypt: {
+    heading: 'A note, but not in plain text',
+    intro: 'Tucked inside a file called READ_ME_NOW.txt on Barry\'s desktop is a block of text that isn\'t readable as-is. It looks encoded rather than encrypted — decode it below to find out what it says.',
+    encoded: 'VGhhbmtzIGZvciB0aGUgYmV0YSBrZXkgdGlwLCBCYXJyeS4gU2F5IGhpIHRvIFBpeGVsIGZvciBtZS4gLSBTaGFkb3dLZXk=',
+    question: {
+      prompt: 'Now that you can read it, what does this note suggest about how the attacker knew what Barry wanted?',
+      options: [
+        { text:'The attacker gained access to Q-Bit\'s internal employee database and looked up Barry\'s interests.',
+          correct:false,
+          rationale:'There\'s no evidence of a database breach anywhere in the logs — everything the note references was already sitting in public view.' },
+        { text:'The attacker used information Barry had already shared publicly, like his dog\'s name, to sound convincing.',
+          correct:true,
+          rationale:'Barry\'s own pinned Discord message mentions his dog Pixel — the exact detail the note references. The attacker didn\'t need to hack anything; they just read what Barry already posted.' },
+        { text:'Someone at Q-Bit who knows Barry personally leaked his information to the attacker.',
+          correct:false,
+          rationale:'Nothing in the evidence points to an insider — every detail in the note lines up with things Barry posted publicly himself.' },
+        { text:'The attacker randomly guessed details about Barry and got lucky with the dog\'s name.',
+          correct:false,
+          rationale:'A random guess landing on the exact name of Barry\'s dog, in a note that also references his beta-key interest, isn\'t a coincidence — it\'s research.' }
+      ]
+    }
+  },
+
+  /* ---------------- FACT-CHECK ---------------- */
+  factCheck: {
+    prompt: 'Not everything on the table belongs in this investigation. Sort these four.',
+    items: [
+      { id:'policy', relevant:true,
+        why:'This matters for what Q-Bit should reinforce going forward — it\'s the standard Barry\'s click didn\'t follow.' },
+      { id:'reminder', relevant:true,
+        why:'This is exactly the instinct that would have stopped this — verify an "exclusive" offer before acting on it, which is precisely what didn\'t happen here.' },
+      { id:'monitor', relevant:false,
+        why:'A real ticket, but it\'s a hardware issue logged days earlier with nothing tying it to Barry\'s account or this email.' },
+      { id:'usb-layoffs', relevant:false,
+        why:'A tempting find, and a real social-engineering tactic worth knowing about — but nothing ties it to Barry\'s account or this incident.' }
+    ]
+  },
+
+  /* ---------------- WHAT HAPPENED ---------------- */
+  whatHappened: {
+    prompt: 'Based on the evidence, what most likely happened to Barry\'s account and files?',
+    options: [
+      { text:'Barry\'s computer had outdated antivirus software, which let the malicious file run undetected.',
+        correct:false,
+        rationale:'There\'s no evidence of an antivirus gap in the logs — the file ran because Barry executed it himself after clicking the link, not because a scanner missed it.' },
+      { text:'Barry clicked a phishing link personalized with details he\'d shared publicly, launching malicious software.',
+        correct:true,
+        rationale:'The timeline and the decoded note both point here: the email was crafted using Barry\'s own public posts, he clicked it, and the malicious file executed right after.' },
+      { text:'An attacker on the same office network intercepted Barry\'s files as they were being saved.',
+        correct:false,
+        rationale:'Nothing in the logs shows activity from another device — the outbound connection and file encryption both trace back to Barry\'s own machine after he ran the file.' },
+      { text:'A coworker plugged in an infected USB drive that spread malware to Barry\'s computer.',
+        correct:false,
+        rationale:'The USB drive that turned up was never connected to Barry\'s account or machine in any log — it\'s a separate, unconnected item.' }
+    ]
+  },
+
+  /* ---------------- STRONGEST EVIDENCE ---------------- */
+  strongestEvidence: {
+    prompt: 'Pick the two pieces of evidence that most strongly support that conclusion.',
+    pick: 2,
+    options: [
+      { id:'email', good:true,
+        blurb:'A "beta key" offer arrives referencing a game Barry had talked about publicly.' },
+      { id:'installer', good:true,
+        blurb:'A program downloaded from that link runs on Barry\'s machine minutes later.' },
+      { id:'note', good:true,
+        blurb:'A note left behind decodes to a message referencing details from Barry\'s own posts.' },
+      { id:'outbound', good:false,
+        blurb:'A blocked connection attempt is logged shortly after the file was run.' },
+      { id:'monitor', good:false,
+        blurb:'Barry\'s monitor had been flickering — logged as a separate ticket days earlier.' },
+      { id:'usb-layoffs', good:false,
+        blurb:'An unclaimed USB drive turns up in the break room, labeled to grab attention.' }
+    ],
+    rationaleGood: 'Strong picks. The email shows exactly how the attacker got Barry to click, and the decoded note is direct proof the attacker had researched him rather than guessed — together they explain both how and why this worked. The installer log is a close third, marking the exact moment the compromise began.',
+    rationaleBad: 'Those are real details from the case, but they don\'t explain how the attack succeeded. The blocked connection is a downstream effect, the monitor ticket is an unrelated hardware issue, and the USB drive was never tied to Barry\'s account at all.'
+  },
+
+  /* ---------------- PROTECT Q-BIT GAMES NOW ---------------- */
+  protectHill: {
+    prompt: 'Choose the three immediate actions you\'d recommend right now.',
+    pick: 3,
+    options: [
+      { text:'Isolate Barry\'s machine from the network immediately to stop the encryption from spreading.', good:true,
+        rationale:'This directly stops the encryption process from reaching more files or shared drives — contain first, investigate after.' },
+      { text:'Pay whatever the note is asking for so Barry can get his files back faster.', good:false,
+        rationale:'There\'s no guarantee paying gets anything back, and it directly funds the attacker to do this again — to Barry or someone else.' },
+      { text:'Have Barry try to fix the encrypted files himself before looping in IT.', good:false,
+        rationale:'Untrained attempts to "fix" encrypted files can destroy evidence IT needs, and waste time while the account could still be exposed.' },
+      { text:'Force a password reset and revoke Barry\'s active sessions.', good:true,
+        rationale:'Barry\'s credentials were entered on a fake page — resetting the password and killing active sessions closes that specific door.' },
+      { text:'Send a warning to other employees about the fake GlacierForge beta-key email.', good:true,
+        rationale:'Other employees are just as likely to want early access to GlacierForge — they need to know this exact lure is circulating.' },
+      { text:'Quietly restore Barry\'s files from backup and consider the incident closed.', good:false,
+        rationale:'Restoring files doesn\'t answer how the attacker knew what they knew, or whether Barry\'s credentials are still exposed somewhere else.' }
+    ]
+  },
+
+  /* ---------------- REFLECT ---------------- */
+  reflect: {
+    reveal: [
+      'Barry received a phishing email personalized around something he had publicly said he wanted — early access to a game he was excited about. He clicked the link and signed in with his work credentials, which let an attacker run a program that began encrypting his files. The note left behind referenced his dog by name — the same detail from a message Barry had pinned in the team Discord — confirming the attacker built this message using information Barry had already shared publicly.',
+      'This is the best-supported explanation — not a certainty. The flickering monitor and the "layoffs list" USB drive were never connected to it. Nothing about this attack required breaking into Q-Bit\'s systems — it worked because it was personal.'
+    ],
+    questions: [
+      'What made this email more convincing than a generic phishing attempt?',
+      'How did Barry\'s own public posts end up helping the attacker?',
+      'Before clicking, what could Barry have done to verify this email was really from who it claimed to be?',
+      'Why does recognizing phishing matter, even for someone who doesn\'t think of themselves as an easy target?'
     ]
   }
 }

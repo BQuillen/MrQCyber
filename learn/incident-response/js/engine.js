@@ -1,20 +1,30 @@
 /* ════════════════════════════════════════════════════════════════════
    INCIDENT RESPONSE — engine
    Generic phase state machine. Knows the shape of a scenario object
-   (see scenarios.js) but nothing about HILL-01 specifically, so new
+   (see scenarios.js) but nothing about any specific case, so new
    cases just get appended to SCENARIOS.
    ════════════════════════════════════════════════════════════════════ */
 
-const PHASES = [
-  { key:'briefing',           label:'Briefing' },
-  { key:'locker',              label:'Evidence Locker' },
-  { key:'timeline',            label:'Build the Timeline' },
-  { key:'factcheck',           label:'Fact-Check the Board' },
-  { key:'whatHappened',        label:'What Happened' },
-  { key:'strongestEvidence',   label:'Strongest Evidence' },
-  { key:'protectHill',         label:'Protect The HILL' },
-  { key:'reflect',             label:'Reflect' }
-];
+/* Phase list is built per scenario — a scenario that defines a `decrypt`
+   block gets that phase inserted automatically, and the protect-phase
+   label follows the scenario's own orgName, so nothing here is tied to
+   any one case. */
+function phasesFor(scn) {
+  const phases = [
+    { key:'briefing',    label:'Briefing' },
+    { key:'locker',      label:'Evidence Locker' },
+    { key:'timeline',    label:'Build the Timeline' }
+  ];
+  if (scn.decrypt) phases.push({ key:'decrypt', label:'Decrypt the Note' });
+  phases.push(
+    { key:'factcheck',         label:'Fact-Check the Board' },
+    { key:'whatHappened',      label:'What Happened' },
+    { key:'strongestEvidence', label:'Strongest Evidence' },
+    { key:'protectHill',       label:'Protect ' + scn.orgName },
+    { key:'reflect',           label:'Reflect' }
+  );
+  return phases;
+}
 
 const CAT_LABELS = { inbox:'Inbox', statements:'Statements', logs:'Logs', board:'Board' };
 
@@ -48,7 +58,7 @@ function highlightTimes(str) {
 
 function init() {
   const sel = document.getElementById('scenarioSel');
-  sel.innerHTML = SCENARIOS.map((s, i) => `<option value="${i}">${esc(s.title)}</option>`).join('');
+  sel.innerHTML = SCENARIOS.map((s, i) => `<option value="${i}">Case ${s.seq} · #${esc(s.caseNumber)} — ${esc(s.title)}</option>`).join('');
   sel.addEventListener('change', () => loadScenario(+sel.value));
   loadScenario(0);
 }
@@ -58,6 +68,7 @@ function loadScenario(idx) {
   S = {
     idx,
     scn,
+    phases: phasesFor(scn),
     currentIdx: 0,
     unlockedIdx: 0,
     lockerCat: Object.keys(CAT_LABELS)[0],
@@ -66,6 +77,14 @@ function loadScenario(idx) {
       slots: new Array(scn.timeline.length).fill(null),
       lastResult: null
     },
+    decrypt: scn.decrypt ? {
+      input: scn.decrypt.encoded,
+      decoded: null,
+      options: shuffle(scn.decrypt.question.options),
+      selected: null,
+      checked: false,
+      correct: false
+    } : null,
     factcheck: {
       items: shuffle(scn.factCheck.items),
       answers: {},
@@ -76,7 +95,7 @@ function loadScenario(idx) {
     protectHill: { options: shuffle(scn.protectHill.options), selected: new Set(), checked: false, correct: false }
   };
   document.getElementById('scenarioSel').value = idx;
-  document.getElementById('caseBadge').textContent = 'Case #' + scn.caseNumber;
+  document.getElementById('caseBadge').textContent = 'Case ' + scn.seq + ' · #' + scn.caseNumber;
   renderPhaseList();
   renderPhase();
 }
@@ -90,7 +109,7 @@ function goToPhase(i) {
 }
 
 function unlockNext() {
-  S.currentIdx = Math.min(S.currentIdx + 1, PHASES.length - 1);
+  S.currentIdx = Math.min(S.currentIdx + 1, S.phases.length - 1);
   S.unlockedIdx = Math.max(S.unlockedIdx, S.currentIdx);
   renderPhaseList();
   renderPhase();
@@ -98,7 +117,7 @@ function unlockNext() {
 
 function renderPhaseList() {
   const ol = document.getElementById('phaseList');
-  ol.innerHTML = PHASES.map((p, i) => {
+  ol.innerHTML = S.phases.map((p, i) => {
     let cls = 'locked';
     if (i < S.unlockedIdx || (i <= S.unlockedIdx && i < S.currentIdx)) cls = 'done';
     if (i === S.currentIdx) cls = 'active';
@@ -114,12 +133,13 @@ function renderPhaseList() {
 }
 
 function renderPhase() {
-  const key = PHASES[S.currentIdx].key;
+  const key = S.phases[S.currentIdx].key;
   const root = document.getElementById('phaseRoot');
   const renderers = {
     briefing: renderBriefing,
     locker: renderLocker,
     timeline: renderTimeline,
+    decrypt: renderDecrypt,
     factcheck: renderFactCheck,
     whatHappened: renderWhatHappened,
     strongestEvidence: renderStrongestEvidence,
@@ -159,6 +179,8 @@ function renderEvidenceBody(ev) {
     </div>`;
   } else if (ev.lines) {
     return ev.lines.map(l => `<div class="ev-log-line">${highlightTimes(l)}</div>`).join('');
+  } else if (ev.code) {
+    return `<div class="ev-code">${esc(ev.code)}</div>`;
   } else if (ev.text) {
     return `<div>${highlightTimes(ev.text)}</div>`;
   }
@@ -228,7 +250,7 @@ function renderTimeline() {
     </div>` : ''}
     <div class="panel-actions">
       <button class="btn gold" id="checkTimelineBtn" ${t.slots.includes(null) ? 'disabled' : ''}>Check timeline</button>
-      <button class="btn" id="toFactCheckBtn" ${t.lastResult && t.lastResult.every(Boolean) ? '' : 'disabled'}>Continue to fact-check →</button>
+      <button class="btn" id="toFactCheckBtn" ${t.lastResult && t.lastResult.every(Boolean) ? '' : 'disabled'}>Continue →</button>
     </div>
   </div>`;
 }
@@ -252,6 +274,34 @@ function timelineMove(id, source, dest) {
   }
   t.lastResult = null;
   renderPhase();
+}
+
+/* ---------------- decrypt the note ---------------- */
+
+function renderDecrypt() {
+  const d = S.scn.decrypt;
+  const st = S.decrypt;
+  return `<div class="panel">
+    <span class="eyebrow">${esc(S.scn.caseNumber)} · Decrypt the note</span>
+    <h2>${esc(d.heading)}</h2>
+    <p>${esc(d.intro)}</p>
+    <div class="tl-sub">Encoded text</div>
+    <textarea id="decodeInput" class="decode-input" spellcheck="false">${esc(st.input)}</textarea>
+    <div class="panel-actions">
+      <button class="btn gold" id="decodeBtn">Decode</button>
+    </div>
+    ${st.decoded !== null ? `
+      <div class="tl-sub" style="margin-top:16px;">Decoded text</div>
+      <div class="decode-output">${esc(st.decoded)}</div>
+      <h2 style="margin-top:22px;">${esc(d.question.prompt)}</h2>
+      ${renderMCOptions(st.options, st)}
+    ` : ''}
+    <div class="panel-actions">
+      ${st.decoded !== null && st.checked && !st.correct ? '<button class="btn gold" id="retryDecryptBtn">Try again</button>' : ''}
+      ${st.decoded !== null && !st.checked ? `<button class="btn gold" id="submitDecryptBtn" ${st.selected === null ? 'disabled' : ''}>Submit answer</button>` : ''}
+      <button class="btn" id="toFactCheckFromDecryptBtn" ${st.correct ? '' : 'disabled'}>Continue to fact-check →</button>
+    </div>
+  </div>`;
 }
 
 /* ---------------- fact check ---------------- */
@@ -287,6 +337,42 @@ function renderFactCheck() {
   </div>`;
 }
 
+/* ---------------- single-choice MC (shared by "what happened" and any
+   scenario's decrypt comprehension check) ---------------- */
+
+function renderMCOptions(options, st) {
+  return `<div class="opt-list">
+    ${options.map((o, i) => {
+      let cls = 'opt mc';
+      if (st.selected === i) cls += ' selected';
+      if (st.checked && st.selected === i) cls += o.correct ? ' correct' : ' incorrect';
+      if (st.checked) cls += ' disabled';
+      return `<button class="${cls}" data-i="${i}" ${st.checked ? 'disabled' : ''}>
+        <span class="opt-mark">${st.selected === i ? '●' : ''}</span>
+        <span>${esc(o.text)}</span>
+      </button>`;
+    }).join('')}
+  </div>
+  ${st.checked ? `<div class="rationale-box ${st.correct ? 'good' : 'bad'}">
+    <strong>${st.correct ? 'Correct' : 'Not quite'}</strong>
+    ${esc(options[st.selected].rationale)}
+  </div>` : ''}`;
+}
+
+function wireMCOptions(root, options, st, { submitBtnId, retryBtnId }) {
+  root.querySelectorAll('.opt.mc').forEach(btn => {
+    btn.addEventListener('click', () => { st.selected = +btn.dataset.i; renderPhase(); });
+  });
+  const submitBtn = root.querySelector('#' + submitBtnId);
+  if (submitBtn) submitBtn.addEventListener('click', () => {
+    st.checked = true;
+    st.correct = options[st.selected].correct;
+    renderPhase();
+  });
+  const retryBtn = root.querySelector('#' + retryBtnId);
+  if (retryBtn) retryBtn.addEventListener('click', () => { st.checked = false; renderPhase(); });
+}
+
 /* ---------------- what happened (single MC, gates the rest) ---------------- */
 
 function renderWhatHappened() {
@@ -295,22 +381,7 @@ function renderWhatHappened() {
   return `<div class="panel">
     <span class="eyebrow">${esc(S.scn.caseNumber)} · What happened</span>
     <h2>${esc(wh.prompt)}</h2>
-    <div class="opt-list">
-      ${st.options.map((o, i) => {
-        let cls = 'opt mc';
-        if (st.selected === i) cls += ' selected';
-        if (st.checked && st.selected === i) cls += o.correct ? ' correct' : ' incorrect';
-        if (st.checked) cls += ' disabled';
-        return `<button class="${cls}" data-i="${i}" ${st.checked ? 'disabled' : ''}>
-          <span class="opt-mark">${st.selected === i ? '●' : ''}</span>
-          <span>${esc(o.text)}</span>
-        </button>`;
-      }).join('')}
-    </div>
-    ${st.checked ? `<div class="rationale-box ${st.correct ? 'good' : 'bad'}">
-      <strong>${st.correct ? 'Correct' : 'Not quite'}</strong>
-      ${esc(st.options[st.selected].rationale)}
-    </div>` : ''}
+    ${renderMCOptions(st.options, st)}
     <div class="panel-actions">
       ${st.checked && !st.correct ? '<button class="btn gold" id="retryWhBtn">Try again</button>' : ''}
       ${!st.checked ? `<button class="btn gold" id="submitWhBtn" ${st.selected === null ? 'disabled' : ''}>Submit answer</button>` : ''}
@@ -381,7 +452,7 @@ function renderProtectHill() {
   const ph = S.scn.protectHill;
   const st = S.protectHill;
   return renderMultiSelect({
-    eyebrow: `${S.scn.caseNumber} · Protect The HILL`,
+    eyebrow: `${S.scn.caseNumber} · Protect ${S.scn.orgName}`,
     prompt: ph.prompt,
     list: st.options.map((o, i) => ({ key:String(i), good:o.good, text:o.text })),
     pickN: ph.pick,
@@ -493,22 +564,27 @@ function wirePhase(key) {
   }
 
   if (key === 'whatHappened') {
-    root.querySelectorAll('.opt.mc').forEach(btn => {
-      btn.addEventListener('click', () => { S.whatHappened.selected = +btn.dataset.i; renderPhase(); });
-    });
-    const submitBtn = root.querySelector('#submitWhBtn');
-    if (submitBtn) submitBtn.addEventListener('click', () => {
-      const st = S.whatHappened;
-      st.checked = true;
-      st.correct = st.options[st.selected].correct;
-      renderPhase();
-    });
-    const retryBtn = root.querySelector('#retryWhBtn');
-    if (retryBtn) retryBtn.addEventListener('click', () => {
-      S.whatHappened.checked = false;
-      renderPhase();
-    });
+    wireMCOptions(root, S.whatHappened.options, S.whatHappened, { submitBtnId:'submitWhBtn', retryBtnId:'retryWhBtn' });
     const nextBtn = root.querySelector('#toStrongestBtn');
+    if (nextBtn) nextBtn.addEventListener('click', unlockNext);
+  }
+
+  if (key === 'decrypt') {
+    const input = root.querySelector('#decodeInput');
+    if (input) input.addEventListener('input', () => { S.decrypt.input = input.value; });
+    const decodeBtn = root.querySelector('#decodeBtn');
+    if (decodeBtn) decodeBtn.addEventListener('click', () => {
+      try {
+        S.decrypt.decoded = atob(S.decrypt.input.trim());
+      } catch (e) {
+        S.decrypt.decoded = 'That doesn’t decode as valid Base64 — check for typos or missing characters and try again.';
+      }
+      renderPhase();
+    });
+    if (S.decrypt.decoded !== null) {
+      wireMCOptions(root, S.decrypt.options, S.decrypt, { submitBtnId:'submitDecryptBtn', retryBtnId:'retryDecryptBtn' });
+    }
+    const nextBtn = root.querySelector('#toFactCheckFromDecryptBtn');
     if (nextBtn) nextBtn.addEventListener('click', unlockNext);
   }
 
