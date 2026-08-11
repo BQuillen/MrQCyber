@@ -54,12 +54,144 @@ function highlightTimes(str) {
   return esc(str).replace(/\b\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.)?/gi, m => `<span class="ev-time-inline">${m}</span>`);
 }
 
+/* ---------------- instructor gate ----------------
+   Client-side only, so nothing here is a real security boundary — the
+   answers already live in plain sight in scenarios.js. This just keeps
+   the PIN itself out of the source (hashed, checked via Web Crypto)
+   so a casual glance doesn't hand it over, and gives the teacher a
+   one-click way to blast through a phase they've already solved once
+   instead of re-solving it in front of every class. */
+const TEACHER_HASH = '37ba3881108bf3e48180350246c5959b9481633d0cb1d8694fb141dc74e5fe79';
+const TEACHER_KEY = 'ir-teacher-mode';
+
+async function sha256Hex(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function isTeacherMode() {
+  return localStorage.getItem(TEACHER_KEY) === '1';
+}
+
+function initTeacherGate() {
+  const gate = document.getElementById('teacherGate');
+  const popover = document.getElementById('teacherPopover');
+  const pin = document.getElementById('teacherPin');
+  const unlockBtn = document.getElementById('teacherUnlock');
+
+  if (isTeacherMode()) gate.classList.add('active');
+
+  gate.addEventListener('click', () => {
+    if (isTeacherMode()) {
+      autoSolveCurrentPhase();
+      return;
+    }
+    popover.hidden = !popover.hidden;
+    if (!popover.hidden) pin.focus();
+  });
+
+  async function tryUnlock() {
+    const hash = await sha256Hex(pin.value);
+    if (hash === TEACHER_HASH) {
+      localStorage.setItem(TEACHER_KEY, '1');
+      gate.classList.add('active');
+      popover.hidden = true;
+      pin.value = '';
+    } else {
+      pin.classList.add('wrong');
+      popover.classList.add('shake');
+      setTimeout(() => popover.classList.remove('shake'), 300);
+      pin.value = '';
+      pin.focus();
+    }
+  }
+
+  unlockBtn.addEventListener('click', tryUnlock);
+  pin.addEventListener('input', () => pin.classList.remove('wrong'));
+  pin.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+  document.addEventListener('click', e => {
+    if (!popover.hidden && !popover.contains(e.target) && e.target !== gate) popover.hidden = true;
+  });
+}
+
+/* Solves whatever phase is currently active exactly the way a correct
+   playthrough would, then advances — same state transitions a student
+   would trigger, just done instantly. */
+function autoSolveCurrentPhase() {
+  const key = S.phases[S.currentIdx].key;
+
+  if (key === 'briefing' || key === 'locker') {
+    unlockNext();
+    return;
+  }
+
+  if (key === 'timeline') {
+    const t = S.timeline;
+    t.slots = S.scn.timeline.slice();
+    t.pool = S.scn.evidence.map(e => e.id).filter(id => !t.slots.includes(id));
+    t.lastResult = t.slots.map((id, i) => id === S.scn.timeline[i]);
+    unlockNext();
+    return;
+  }
+
+  if (key === 'decrypt') {
+    const st = S.decrypt;
+    st.input = S.scn.decrypt.encoded;
+    st.decoded = atob(st.input);
+    st.selected = st.options.findIndex(o => o.correct);
+    st.checked = true;
+    st.correct = true;
+    unlockNext();
+    return;
+  }
+
+  if (key === 'factcheck') {
+    const st = S.factcheck;
+    st.items.forEach(it => { st.answers[it.id] = it.relevant; });
+    st.checked = true;
+    unlockNext();
+    return;
+  }
+
+  if (key === 'whatHappened') {
+    const st = S.whatHappened;
+    st.selected = st.options.findIndex(o => o.correct);
+    st.checked = true;
+    st.correct = true;
+    unlockNext();
+    return;
+  }
+
+  if (key === 'strongestEvidence') {
+    const st = S.strongestEvidence;
+    const goods = st.options.filter(o => o.good).slice(0, S.scn.strongestEvidence.pick).map(o => o.id);
+    st.selected = new Set(goods);
+    st.checked = true;
+    st.correct = true;
+    unlockNext();
+    return;
+  }
+
+  if (key === 'protectHill') {
+    const st = S.protectHill;
+    const goods = st.options.map((o, i) => ({ ...o, id:String(i) })).filter(o => o.good).slice(0, S.scn.protectHill.pick).map(o => o.id);
+    st.selected = new Set(goods);
+    st.checked = true;
+    st.correct = true;
+    unlockNext();
+    return;
+  }
+
+  // reflect: nothing left to solve
+}
+
 /* ---------------- init / scenario load ---------------- */
 
 function init() {
   const sel = document.getElementById('scenarioSel');
   sel.innerHTML = SCENARIOS.map((s, i) => `<option value="${i}">Case ${s.seq} · #${esc(s.caseNumber)} — ${esc(s.title)}</option>`).join('');
   sel.addEventListener('change', () => loadScenario(+sel.value));
+  initTeacherGate();
   loadScenario(0);
 }
 

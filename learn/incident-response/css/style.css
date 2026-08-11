@@ -318,3 +318,32 @@ aside { position: sticky; top: calc(var(--bar-h) + 18px); display: flex; flex-di
   main { grid-template-columns: 1fr; }
   aside { position: static; }
 }
+
+/* ---------------- instructor gate (discreet, bottom corner) ---------------- */
+#teacherGate {
+  position: fixed; right: 14px; bottom: 12px; z-index: 40;
+  width: 16px; height: 16px; padding: 0; border: none; border-radius: 50%;
+  background: var(--text-muted); opacity: .14; cursor: pointer;
+  transition: opacity .2s ease;
+}
+#teacherGate:hover { opacity: .55; }
+#teacherGate.active { background: var(--ok); opacity: .3; }
+#teacherGate.active:hover { opacity: .8; }
+
+.teacher-popover {
+  position: fixed; right: 14px; bottom: 36px; z-index: 41;
+  display: flex; gap: 6px; padding: 8px; border-radius: 8px;
+  background: var(--bg-panel); border: 1px solid var(--border-lit);
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.teacher-popover input {
+  width: 100px; font-family: var(--font-mono); font-size: .8rem;
+  background: var(--bg-code); border: 1px solid var(--border-lit); border-radius: 6px;
+  color: var(--text-primary); padding: 6px 8px;
+}
+.teacher-popover input:focus { outline: none; border-color: var(--aqua); }
+.teacher-popover.shake { animation: shake .3s ease; }
+.teacher-popover input.wrong { border-color: var(--err); }
+@keyframes shake {
+  25% { transform: translateX(-5px); } 75% { transform: translateX(5px); }
+}
