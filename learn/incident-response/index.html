@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Response</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">IR</div>
+  <div>
+    <h1>Incident <span>Response</span></h1>
+    <div class="tagline">investigate the evidence · build the timeline · protect The HILL</div>
+  </div>
+  <div class="hd-right">
+    <a class="btn gold" href="../index.html">← Home</a>
+    <span class="case-badge" id="caseBadge">Case #—</span>
+    <select id="scenarioSel" aria-label="Choose case"></select>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <div class="card">
+      <h2>Case progress</h2>
+      <ol id="phaseList" class="phase-list"></ol>
+    </div>
+  </aside>
+
+  <section class="case-col">
+    <div id="phaseRoot"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <strong>Incident Response</strong> &nbsp;·&nbsp; CyberProgram at The HILL &nbsp;·&nbsp; a classroom investigation exercise
+</footer>
+
+<script src="js/scenarios.js"></script>
+<script src="js/engine.js"></script>
+</body>
+</html>
