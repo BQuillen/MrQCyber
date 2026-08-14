@@ -61,7 +61,7 @@ async function loadExisting() {
   return { usedUrls, entries, existingDates: new Set(entries.map((e) => e.date)) };
 }
 
-async function fetchCandidates(category, usedUrls) {
+async function fetchCandidates(category, usedUrls, { requireFresh }) {
   const parser = new Parser({ headers: { "User-Agent": USER_AGENT } });
   const cutoff = Date.now() - FRESH_WINDOW_HOURS * 3600 * 1000;
   const items = [];
@@ -73,7 +73,11 @@ async function fetchCandidates(category, usedUrls) {
         const pubDate = item.pubDate || item.isoDate;
         if (!link || usedUrls.has(link)) continue;
         const ts = pubDate ? Date.parse(pubDate) : NaN;
-        if (Number.isNaN(ts) || ts < cutoff) continue;
+        if (Number.isNaN(ts)) continue;
+        // The live daily run only wants genuinely current news. A manual
+        // backfill for an older date can't satisfy that (feeds have moved
+        // on), so it just takes the most recent unused item instead.
+        if (requireFresh && ts < cutoff) continue;
         items.push({ title: item.title, link, pubDate: ts, sourceName: feed.name });
       }
     } catch (err) {
@@ -176,6 +180,7 @@ async function writeIndex(entries) {
 async function main() {
   // DAILY_BYTE_DATE lets us backfill a specific past date (e.g. for testing
   // or catching up missed days) instead of always targeting "today".
+  const isBackfill = !!process.env.DAILY_BYTE_DATE;
   const date = process.env.DAILY_BYTE_DATE || todayInEastern();
   const { usedUrls, entries, existingDates } = await loadExisting();
 
@@ -189,8 +194,8 @@ async function main() {
 
   for (const category of rotation) {
     console.log(`[try] category=${category}`);
-    const candidates = await fetchCandidates(category, usedUrls);
-    console.log(`[info] ${candidates.length} fresh unused candidate(s) in ${category}`);
+    const candidates = await fetchCandidates(category, usedUrls, { requireFresh: !isBackfill });
+    console.log(`[info] ${candidates.length} unused candidate(s) in ${category}`);
 
     for (const candidate of candidates.slice(0, 8)) {
       try {
