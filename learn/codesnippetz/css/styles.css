@@ -84,6 +84,12 @@ img { display: block; max-width: 100%; }
   background-size: 300% 100%;
   animation: navscan 7s linear infinite;
   opacity: .8;
+  /* Isolate this element's paint so the page's own frequent repaints
+     (the mousemove-driven resizable split panes) don't interrupt the
+     gradient mid-cycle and make it look like it's flashing instead of
+     fading smoothly. */
+  contain: paint;
+  will-change: background-position;
 }
 @keyframes navscan { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
 
