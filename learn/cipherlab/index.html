@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cipher Lab — Encode, Decode, Decipher</title>
+<meta name="description" content="A classroom cipher workbench and challenge range. Encrypt, decrypt, and learn to recognize ciphers by sight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="mark">C</div>
+      <div>
+        <h1>Cipher Lab</h1>
+        <div class="sub">Encode · Decode · Decipher</div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="tab-bench" aria-controls="p-bench" aria-selected="true">Workbench</button>
+      <button role="tab" id="tab-range" aria-controls="p-range" aria-selected="false">Challenges</button>
+      <button role="tab" id="tab-learn" aria-controls="p-learn" aria-selected="false">Field Guide</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============================ WORKBENCH ============================ -->
+<section class="panel active" id="p-bench" role="tabpanel" aria-labelledby="tab-bench">
+  <div class="bench">
+
+    <!-- LEFT: the machine -->
+    <div>
+      <div class="card">
+        <div class="card-h">
+          <h2>Workbench</h2>
+          <span class="tag" id="benchCat">Classical</span>
+          <span style="margin-left:auto"><button class="btn ghost sm" id="btnClear">Clear</button></span>
+        </div>
+        <div class="card-b">
+
+          <div style="margin-bottom:14px">
+            <label class="fl" for="cipherSel">Cipher</label>
+            <select id="cipherSel" aria-describedby="cipherBlurb"></select>
+            <p class="hint" id="cipherBlurb"></p>
+          </div>
+
+          <div class="keybar" id="keyBar"></div>
+
+          <div class="io">
+            <div class="io-col">
+              <div class="io-head">
+                <label class="fl" for="inBox" style="margin:0" id="inLabel">Plain text</label>
+                <button class="btn ghost sm" id="btnPaste" type="button">Paste</button>
+              </div>
+              <textarea id="inBox" spellcheck="false" placeholder="Type here…"></textarea>
+              <!-- Pigpen decode replaces the textarea with a clickable glyph strip -->
+              <div id="glyphInput" hidden>
+                <div class="glyph-stage" id="glyphStage" aria-live="polite"><span class="ph">Click glyphs below to build the message…</span></div>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                  <button class="btn ghost sm" id="glyphBack" type="button">Backspace</button>
+                  <button class="btn ghost sm" id="glyphSpace" type="button">Space</button>
+                  <button class="btn ghost sm" id="glyphWipe" type="button">Clear</button>
+                </div>
+                <div class="glyphgrid mute-labels" id="glyphPad" style="margin-top:10px"></div>
+                <p class="hint">Match each glyph on your worksheet to a shape here. The letters appear on the right as you go.</p>
+              </div>
+            </div>
+
+            <div class="mid">
+              <button class="dirbtn" id="dirEnc" aria-pressed="true">Encrypt →</button>
+              <button class="dirbtn" id="dirDec" aria-pressed="false">← Decrypt</button>
+              <button class="btn ghost sm" id="btnSwap" title="Move the result back into the input">Swap</button>
+            </div>
+
+            <div class="io-col">
+              <div class="io-head">
+                <label class="fl" for="outBox" style="margin:0" id="outLabel">Cipher text</label>
+                <button class="btn ghost sm" id="btnCopy" type="button">Copy</button>
+              </div>
+              <textarea id="outBox" spellcheck="false" readonly placeholder="Result appears here…"></textarea>
+              <!-- Pigpen encode renders real glyphs instead of letters -->
+              <div class="glyph-stage" id="glyphOut" hidden></div>
+            </div>
+          </div>
+
+          <div id="benchNote"></div>
+        </div>
+      </div>
+
+      <div class="card" id="learnInline" style="margin-top:18px">
+        <div class="card-h"><h3 id="learnTitle">About this cipher</h3></div>
+        <div class="card-b"><dl class="dl" id="learnBody"></dl></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: the visual -->
+    <div>
+      <div class="card" id="visCard">
+        <div class="card-h"><h3 id="visTitle">Cipher wheel</h3></div>
+        <div class="card-b" id="visBody"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ CHALLENGES ============================ -->
+<section class="panel" id="p-range" role="tabpanel" aria-labelledby="tab-range">
+
+  <div id="rangeHome">
+    <div class="hud">
+      <div class="stat"><div class="n" id="stSolved">0</div><div class="l">Total solved</div></div>
+      <div class="stat"><div class="n gold" id="stPts">0</div><div class="l">Points</div></div>
+      <div class="stat"><div class="n" id="stBest">0</div><div class="l">Best triage run</div></div>
+      <div class="stat"><div class="n gold" id="stRank" style="font-size:15px;padding-top:6px">Recruit</div><div class="l">Rank</div></div>
+    </div>
+
+    <div class="pickrow">
+      <label class="fl" id="pickLabel" style="margin:0">Challenge set</label>
+      <button class="btn ghost sm" id="btnReset">Reset progress</button>
+    </div>
+
+    <div class="picker">
+      <button class="pick-trigger" id="pickBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="pickLabel">
+        <span class="pt-name" id="pickName">Caesar Shift<span class="pt-cat" id="pickCat">Substitution</span></span>
+        <span class="pt-prog" id="pickProg">0 / 12</span>
+        <svg class="chev" width="13" height="13" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 4l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      </button>
+      <div class="pick-menu" id="pickMenu" role="listbox" hidden></div>
+    </div>
+
+    <div id="rangeContent"></div>
+  </div>
+
+  <div id="rangeSolve" hidden></div>
+</section>
+
+<!-- ============================ FIELD GUIDE ============================ -->
+<section class="panel" id="p-learn" role="tabpanel" aria-labelledby="tab-learn">
+  <div class="card" style="margin-top:20px">
+    <div class="card-h"><h2>Field Guide</h2><span class="tag" id="guideCount"></span></div>
+    <div class="card-b">
+      <p class="hint" style="margin:0 0 14px">Where each cipher came from, who used it, and how to spot it in the wild.</p>
+      <div id="guideBody"></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  Cipher Lab — a classroom tool. Everything runs in your browser; nothing you type leaves this page.
+</div>
+</div>
+<script src="js/ciphers.js"></script>
+<script src="js/challenges.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/engine.js"></script>
+</body>
+</html>

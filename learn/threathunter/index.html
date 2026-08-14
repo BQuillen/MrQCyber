@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THREAT HUNTER</title>
+<!-- =====================================================================
+     THREAT HUNTER — a cybersecurity platformer
+     The hero's weapon is the Keysword; the game is the hunt.
+
+     v2 changes (from playtest):
+     · Double jump (+ air-puff), brighter palette, hero has visible limbs
+     · Underground layer, moving platforms (M/V), spike pits, retracting
+       spikes (x) with telegraph
+     · 3 decryption keys, each a different challenge, all needed for gate
+     · Keysword: rotating keycap words (CTRL/ALT/DEL/…), 3-hit combo ends
+       in an AoE burst ("buffer overflow")
+     · Nunchuck: full 360° spin around the hero — crowd control role
+     · Worms: replicate every 3.5s to a cap of 20, mutate into hoppers
+       after 10s alive; new Heavyworm leaves slow trails and bursts into
+       4 minis on death
+     · Boss: 90 HP, starts on an unreachable perch raining minions and
+       globs — purge 5 minions to force it down. Globs splash. Collect
+       all 10 fragments to break its encrypted shield (else half damage).
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="960" height="512" aria-label="Keysword platformer game"></canvas>
+
+  <div id="titleScreen" class="screen">
+    <h1>THREAT<span class="gold">HUNTER</span></h1>
+    <h2>Level 1 · Worm Outbreak</h2>
+    <p class="sub">Threats are loose across the network. Take up the <b>Keysword</b>, raise your
+      <b>Firewall</b>, and contain them one sector at a time — then face the Hacker behind it all.</p>
+    <div class="controls">
+      <span><b>← → / A D</b></span><span>Move</span>
+      <span><b>↑ / W / Space</b></span><span>Jump — press again in air to double jump</span>
+      <span><b>J</b></span><span>Keysword — 3 fast hits = Buffer Overflow burst</span>
+      <span><b>K</b></span><span>Mouse nunchuck — 360° spin, hits all around you</span>
+      <span><b>Hold L</b></span><span>Firewall shield — blocks frontal, knocks enemies back</span>
+      <span><b>I</b></span><span>Signature scan (Trojan sector) — reveals crate contents</span>
+      <span><b>F</b></span><span>Read a wall terminal when prompted</span>
+      <span><b>P / Esc</b></span><span>Pause · Threat Intel</span>
+    </div>
+    <button class="cta" id="startBtn">Boot Up</button>
+  </div>
+
+  <div id="hubScreen" class="screen hidden">
+    <h2 style="color:var(--teal)">Threat Board · Select Target</h2>
+    <p class="sub" style="max-width:600px">Contain each threat in any order. The Hacker's sector
+      stays sealed until your scan comes back clean on every other threat.</p>
+    <div id="hubCards" class="cards"></div>
+    <div class="scanline"><span id="scanTally">0 / 2 CONTAINED</span></div>
+    <button class="cta" id="archiveBtn" style="font-size:13px;padding:9px 22px">Intel Archive</button>
+  </div>
+
+  <div id="levelScreen" class="screen hidden">
+    <h2 id="lvlSectorName">Sector</h2>
+    <p class="sub" id="lvlSectorBlurb" style="max-width:560px"></p>
+    <div id="lvlCards" class="cards"></div>
+    <button class="cta" id="backBtn">Threat Board</button>
+  </div>
+
+  <div id="archiveScreen" class="screen hidden">
+    <h2>Intel Archive</h2>
+    <div id="archiveBody" class="debrief" style="max-width:700px;max-height:62vh;overflow-y:auto"></div>
+    <button class="cta" id="archBackBtn">Threat Board</button>
+  </div>
+
+  <div id="terminalScreen" class="screen hidden">
+    <h2 id="termTitle">Terminal</h2>
+    <p class="sub mono" id="termBody" style="max-width:620px;white-space:pre-wrap;text-align:left"></p>
+    <button class="cta" id="termBtn">Close</button>
+  </div>
+
+  <div id="pauseScreen" class="screen hidden">
+    <h2>System Paused · Threat Intel</h2>
+    <div class="debrief">
+      <div class="item"><b>WORM</b> — self-replicates with no user action. Minis copy themselves every few seconds (capped); left alive 10s they <i>mutate</i> and start hopping at you. Contain fast.</div>
+      <div class="item"><b>HEAVYWORM</b> — leaves corrupted slow-trails and bursts into 4 minis when killed. Sometimes containment has side effects — plan the takedown.</div>
+      <div class="item"><b>FIREWALL</b> — hold <span class="mono">L</span> to filter frontal attacks; each blocked hit costs power. If it hits zero it goes OFFLINE and must fully reboot (~15s) — unless you deploy a patch. No single control lasts forever.</div>
+      <div class="item"><b>MFA</b> — a second factor fights beside you: your clone mirrors every attack on your blind side, and if you're hit, the clone takes it instead (and is spent). Layers win.</div>
+      <div class="item"><b>ENCRYPTION</b> — the boss gate needs all 3 keys. The boss itself carries an encrypted shield: collect all 10 password fragments to break it, or fight it at half damage.</div>
+    </div>
+    <button class="cta" id="resumeBtn">Resume</button>
+  </div>
+
+  <div id="overScreen" class="screen hidden">
+    <h1 style="color:var(--danger);text-shadow:0 0 24px rgba(255,93,122,.5)">SYSTEM DOWN</h1>
+    <p class="sub">The outbreak overwhelmed your defenses. Incident response is a cycle — analyze, adapt, retry.</p>
+    <button class="cta" id="retryBtn">Restore From Backup</button>
+  </div>
+
+  <div id="winScreen" class="screen hidden">
+    <h1 id="winTitle"><span class="gold">THREAT</span> CONTAINED</h1>
+    <div class="stats">
+      <span>Fragments <b id="statFrags">0/10</b></span>
+      <span>Worms purged <b id="statWorms">0</b></span>
+      <span>Time <b id="statTime">0:00</b></span>
+    </div>
+    <div class="debrief" id="winDebrief"></div>
+    <button class="cta" id="againBtn">Threat Board</button>
+  </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

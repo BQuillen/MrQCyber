@@ -54,14 +54,7 @@ function highlightTimes(str) {
   return esc(str).replace(/\b\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.)?/gi, m => `<span class="ev-time-inline">${m}</span>`);
 }
 
-/* ---------------- instructor gate ----------------
-   Client-side only, so nothing here is a real security boundary — the
-   answers already live in plain sight in scenarios.js. This just keeps
-   the PIN itself out of the source (hashed, checked via Web Crypto)
-   so a casual glance doesn't hand it over, and gives the teacher a
-   one-click way to blast through a phase they've already solved once
-   instead of re-solving it in front of every class. */
-const TEACHER_HASH = '37ba3881108bf3e48180350246c5959b9481633d0cb1d8694fb141dc74e5fe79';
+const TEACHER_HASH = '0ef9ab5dd7be8d31a8ea4c7ea4ab67c07af71f302940e514a20f12fbfb816cb5';
 const TEACHER_KEY = 'ir-teacher-mode';
 
 async function sha256Hex(str) {
