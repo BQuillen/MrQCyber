@@ -1,0 +1,48 @@
+{
+  "date": "2026-07-30",
+  "category": "cybersecurity",
+  "source": { "name": "The Hacker News", "url": "https://thehackernews.com/" },
+  "headline": "Fake Job Offers Are Being Used to Trick People Into Installing Malware",
+  "levels": [
+    {
+      "label": "Grade 3-4",
+      "approx_lexile": 400,
+      "summary": "Some scammers are pretending to offer people jobs. They send a message that looks like a real job offer from a real company.\n\nThe message asks the person to download a file to finish applying. But the file is not really a job form — it is a trick to sneak bad software onto the computer.\n\nExperts say to be careful with any job offer that shows up out of nowhere and asks you to download something before you even talk to a real person.",
+      "word_count": 84,
+      "reading_time_min": 1
+    },
+    {
+      "label": "Grade 5-6",
+      "approx_lexile": 700,
+      "summary": "Scammers have started sending fake job offers designed to trick people into installing harmful software on their computers. The messages often look convincing, using real company logos and job titles that sound legitimate.\n\nAfter making contact, the scammer usually asks the target to download a file, claiming it's needed to complete a skills test or finish the application process. In reality, the file secretly installs malware that can steal passwords, banking information, or other private data.\n\nWhat makes this scam effective is that it targets people who are actively job hunting and eager to respond quickly to any promising opportunity, making them less likely to slow down and check whether the offer is real.\n\nSecurity researchers recommend verifying any unexpected job offer directly through a company's official website before downloading anything sent through a message or email.",
+      "word_count": 140,
+      "reading_time_min": 1
+    },
+    {
+      "label": "Grade 7-8",
+      "approx_lexile": 1000,
+      "summary": "Scammers have been running a wave of fake job offer campaigns designed to trick job seekers into installing malicious software on their own computers. The messages are often carefully crafted to look legitimate, borrowing real company logos, job titles, and even the names of actual recruiters found on professional networking sites.\n\nOnce a target responds, the scammer typically asks them to download a file, framing it as a required skills assessment, coding challenge, or application form. In reality, the file installs malware capable of stealing saved passwords, banking credentials, or other sensitive information stored on the victim's device.\n\nWhat makes this scam particularly effective is who it targets: people actively searching for work, who are often eager to respond quickly to promising opportunities and less inclined to pause and verify details before acting. Attackers have increasingly exploited this urgency across many types of scams, but job offers add a layer of legitimacy that fake prizes or free downloads don't.\n\nSecurity researchers recommend that anyone receiving an unsolicited job offer verify it directly through a company's official careers page or by contacting the company through a publicly listed phone number, rather than downloading any file sent through a message or unfamiliar email address.",
+      "word_count": 205,
+      "reading_time_min": 1
+    },
+    {
+      "label": "Grade 9-10",
+      "approx_lexile": 1300,
+      "summary": "Security researchers have documented a wave of fake job offer campaigns designed to trick job seekers into voluntarily installing malicious software on their own devices. The messages are frequently well-crafted, borrowing real company branding, plausible job titles, and in some cases even the names of actual recruiters copied from professional networking profiles, making them difficult to distinguish from legitimate outreach at a glance.\n\nOnce a target responds, the attacker typically requests that they download a file, framing it as a required skills assessment, coding exercise, or onboarding document. In practice, the file installs malware capable of harvesting saved browser passwords, banking credentials, cryptocurrency wallet keys, or other sensitive data stored on the victim's system.\n\nWhat makes this particular scam effective is its choice of target: people actively job hunting are often under real financial or professional pressure to respond quickly to promising leads, and that urgency makes them less likely to pause and independently verify an offer before acting on it. Attackers have long exploited urgency in phishing schemes generally, but a job offer carries a built-in sense of legitimacy and opportunity that generic scams, such as fake prizes, typically lack.\n\nSecurity researchers advise that anyone receiving an unsolicited job offer verify it independently through a company's official careers page or a publicly listed contact number, rather than downloading any file sent through a direct message, unfamiliar email address, or unofficial job board listing.",
+      "word_count": 245,
+      "reading_time_min": 1
+    },
+    {
+      "label": "Grade 11+",
+      "approx_lexile": 1600,
+      "summary": "Security researchers have documented an ongoing wave of fake job offer campaigns engineered to induce job seekers into voluntarily installing malicious software on their own devices, a social engineering approach that sidesteps many technical defenses by exploiting trust rather than a software vulnerability. The outreach is frequently well-crafted, incorporating authentic company branding, plausible job titles, and in some documented cases the names of real recruiters copied directly from professional networking profiles, making the initial contact difficult to distinguish from legitimate recruiting activity.\n\nOnce a target engages, the attacker typically requests that they download a file, framed as a mandatory skills assessment, take-home coding exercise, or onboarding document. In practice, the file deploys malware capable of exfiltrating saved browser credentials, banking information, cryptocurrency wallet keys, or other sensitive data resident on the victim's system, often without triggering immediate, visible symptoms.\n\nWhat distinguishes this campaign from generic phishing is its precisely chosen target demographic: active job seekers are frequently under genuine financial or professional pressure to respond quickly to promising opportunities, and that urgency measurably reduces the likelihood that a target will pause to independently verify an offer before acting on it. While urgency has long been a staple of social engineering broadly, a job offer carries an inherent sense of legitimacy and personal opportunity that generic lures, such as fraudulent prize notifications, generally lack, making the pretext unusually durable against skepticism.\n\nSecurity researchers advise that recipients of unsolicited job offers verify them independently through a company's official careers page or a publicly listed contact number, rather than downloading any executable file transmitted through a direct message, an unfamiliar email address, or an unofficial job board listing, regardless of how convincing the surrounding communication appears.",
+      "word_count": 300,
+      "reading_time_min": 2
+    }
+  ],
+  "questions": [
+    "Why do you think scammers specifically target people who are job hunting instead of just sending these scams to random people?",
+    "If a 'job offer' asked you to download something before you'd even had an interview, what would you do to check if it was real?",
+    "How might scams like this affect how much people trust real job offers and recruiters online, even honest ones?"
+  ]
+}

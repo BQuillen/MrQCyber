@@ -1,0 +1,16 @@
+{
+  "name": "daily-byte-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CI-only script that generates one day of Daily Byte content for the MrQCyber site. Not shipped to the site itself.",
+  "scripts": {
+    "generate": "node generate.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@mozilla/readability": "^0.5.0",
+    "jsdom": "^25.0.1",
+    "rss-parser": "^3.13.0"
+  }
+}

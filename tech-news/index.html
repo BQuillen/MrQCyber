@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberProgram — Tech News</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR  —  copy unchanged from the other top-level pages.
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="../index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+    <ul class="navbar__links">
+      <li class="navbar__item">
+        <a href="../index.html" class="navbar__link">Home</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="../index.html#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="../index.html#tools">Tools</a></li>
+          <li class="dropdown__item"><a href="../index.html#certifications">Certifications</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="../topics.html" class="navbar__link">Topics</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="../topics.html#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="../topics.html#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="../topics.html#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="../topics.html#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="../topics.html#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="../topics.html#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="../partners.html" class="navbar__link">Partners</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="../partners.html#industry">Industry Partners</a></li>
+          <li class="dropdown__item"><a href="../partners.html#academic">Academic Partners</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="../get-involved.html" class="navbar__link">Get Involved</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="../get-involved.html#contact">Contact Form</a></li>
+          <li class="dropdown__item"><a href="../get-involved.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="../learn/index.html" class="navbar__link">Learn</a>
+        <ul class="dropdown">
+          <li class="dropdown__item"><a href="../learn/powershell/index.html" target="_blank" rel="noopener">PowerShell</a></li>
+          <li class="dropdown__item"><a href="../learn/codesnippetz/index.html" target="_blank" rel="noopener">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="../learn/kqwho/index.html" target="_blank" rel="noopener">KQ Who?</a></li>
+          <li class="dropdown__item"><a href="../learn/debugger/index.html" target="_blank" rel="noopener">Debugger</a></li>
+          <li class="dropdown__item"><a href="../learn/incident-response/index.html" target="_blank" rel="noopener">Incident Response</a></li>
+          <li class="dropdown__item"><a href="../learn/cipherlab/index.html" target="_blank" rel="noopener">Cipher Lab</a></li>
+          <li class="dropdown__item"><a href="../learn/threathunter/index.html" target="_blank" rel="noopener">Threat Hunter</a></li>
+        </ul>
+      </li>
+      <li class="navbar__item">
+        <a href="index.html" class="navbar__link active">Tech News</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ── PAGE HERO BANNER -->
+  <div class="page-hero">
+    <div class="page-hero__label">Updated Daily</div>
+    <h1 class="page-hero__headline">Tech <em>News</em></h1>
+    <p class="page-hero__sub">
+      A new cybersecurity, AI, or general tech story every day, pulled from reputable sources and
+      adapted to whatever reading level works for you. Pick a level with the slider, think through
+      the discussion questions, and follow the link to the full article if you want to dig deeper.
+    </p>
+    <button class="btn" id="jumpToday" type="button">Jump to today's story</button>
+  </div>
+
+  <main>
+    <aside>
+      <div class="card">
+        <h2>Archive</h2>
+        <div class="cal-nav">
+          <button class="btn cal-nav__btn" id="prevMonth" type="button" aria-label="Previous month">‹</button>
+          <div class="cal-nav__label" id="calLabel">—</div>
+          <button class="btn cal-nav__btn" id="nextMonth" type="button" aria-label="Next month">›</button>
+        </div>
+        <div class="cal-weekdays">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="cal-legend">
+          <span class="cal-legend__dot cal-legend__dot--has"></span> has an article
+        </div>
+      </div>
+    </aside>
+
+    <section class="case-col">
+      <div class="panel" id="articlePanel">
+        <p class="empty-state">Loading today's story…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>Tech News</strong> &nbsp;·&nbsp; CyberProgram at The HILL &nbsp;·&nbsp; summaries are AI-adapted from reputable sources, linked below each story
+  </footer>
+
+  <script src="js/app.js"></script>
+
+</body>
+</html>
