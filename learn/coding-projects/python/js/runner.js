@@ -6,8 +6,10 @@
 (function () {
   'use strict';
 
-  var PYODIDE_VER = '0.26.4';
-  var BASE = 'https://cdn.jsdelivr.net/pyodide/v' + PYODIDE_VER + '/full/';
+  /* Pyodide runs from a local copy (vendor/pyodide/) instead of a CDN so
+     the runner works on locked-down school networks with no outbound
+     internet access — see vendor/pyodide/README.md for how to update it. */
+  var BASE = new URL('../vendor/pyodide/', document.currentScript.src).href;
 
   /* The harness runs the student's code inside exec() with a replacement
      input() that reads from the Program input box and echoes what it read,
