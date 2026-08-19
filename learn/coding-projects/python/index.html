@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Concept Notes — Interactive</title>
+<meta name="description" content="Every Python concept from the course, with a runnable example you can edit and execute in the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">PY</div>
+  <div>
+    <h1>Python <span>Concept Notes</span></h1>
+    <div class="tagline">read it · edit it · run it · 15 units · 153 concepts</div>
+  </div>
+  <div class="hd-right">
+    <a class="btn gold" href="../index.html">← Coding Projects</a>
+    <input id="search" type="search" placeholder="Search concepts, syntax, exercises…" aria-label="Search the notes">
+    <span class="hitcount" id="hitcount"></span>
+    <button class="btn" id="expandAll" title="Expand or collapse every unit in the sidebar">⇕ Units</button>
+    <button class="btn teal" id="runnerToggle" title="Show or hide the code window">▶ Code window</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <aside id="nav" aria-label="Course navigation"></aside>
+
+  <section class="notes" id="notes"></section>
+
+  <section class="runner" id="runner" aria-label="Python code window">
+    <div class="runner-bar">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span class="runner-title" id="runnerTitle">Try it yourself</span>
+      <span class="sp"></span>
+      <button class="run" id="runBtn" title="Run this code (Ctrl+Enter)">▶ Run</button>
+      <button class="stop" id="stopBtn" disabled title="Stop a program that will not finish">■ Stop</button>
+      <button id="resetBtn" title="Put the original example back">⟲ Reset</button>
+      <button id="clearBtn" title="Clear the output pane">⌫ Clear</button>
+    </div>
+
+    <div class="boot hide" id="boot"><span class="spin"></span><span id="bootMsg">Starting Python…</span></div>
+
+    <div class="ed-label">Your code</div>
+    <textarea id="editor" spellcheck="false" autocomplete="off" autocapitalize="off"
+      aria-label="Python code editor">print("Hello, world!")
+
+# Pick any example from the notes and press "Try it",
+# or just type your own Python here and press Run.
+</textarea>
+
+    <details class="stdin-wrap" id="stdinWrap">
+      <summary>Program input <span class="hint">— one line for each input() your program asks for</span></summary>
+      <textarea id="stdin" spellcheck="false" aria-label="Standard input, one value per line"></textarea>
+    </details>
+
+    <div class="ed-label">Output</div>
+    <div id="output" aria-live="polite"><span class="sys">Press Run. The first run downloads Python and takes a few seconds; after that it is instant.</span></div>
+  </section>
+
+</main>
+
+<script src="js/notes-data.js"></script>
+<script src="js/runner.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

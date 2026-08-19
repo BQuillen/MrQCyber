@@ -6,6 +6,26 @@
   <title>CyberProgram — Learn</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Coding Projects banner */
+    .cp-banner {
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+      border: 1px solid var(--border); border-left: 3px solid var(--orange);
+      background: linear-gradient(90deg, rgba(255,91,0,.07), rgba(13,37,53,0) 65%);
+      padding: 26px 30px; margin-bottom: 44px;
+    }
+    .cp-banner__text { flex: 1; min-width: 260px; }
+    .cp-banner__label {
+      font-family: var(--font-display); font-size: .58rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
+    }
+    .cp-banner__title {
+      font-family: var(--font-display); font-size: 1.05rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-primary); margin-bottom: 8px;
+    }
+    .cp-banner p { font-size: .9rem; line-height: 1.7; color: var(--text-secondary); margin: 0; }
+    @media (max-width: 600px) { .cp-banner { padding: 22px; } .cp-banner .btn { width: 100%; justify-content: center; } }
+  </style>
 </head>
 <body>
 
@@ -55,6 +75,7 @@
       <li class="navbar__item">
         <a href="index.html" class="navbar__link active">Learn</a>
         <ul class="dropdown" aria-label="Learn submenu">
+          <li class="dropdown__item"><a href="coding-projects/index.html">Coding Projects</a></li>
           <li class="dropdown__item"><a href="powershell/index.html" target="_blank" rel="noopener">PowerShell</a></li>
           <li class="dropdown__item"><a href="codesnippetz/index.html" target="_blank" rel="noopener">CodeSnippetz</a></li>
           <li class="dropdown__item"><a href="kqwho/index.html" target="_blank" rel="noopener">KQ Who?</a></li>
@@ -78,6 +99,18 @@
       <div class="section-label">Student Tools</div>
       <h2 class="section-title">Learn by <em>Doing</em></h2>
       <div class="divider"></div>
+
+      <div class="cp-banner">
+        <div class="cp-banner__text">
+          <div class="cp-banner__label">Coding Projects</div>
+          <div class="cp-banner__title">Notes you can run</div>
+          <p>
+            Interactive concept notes for Python, JavaScript and HTML&nbsp;+&nbsp;CSS &mdash; every
+            example comes with a code window you can edit and run without leaving the page.
+          </p>
+        </div>
+        <a href="coding-projects/index.html" class="btn btn--primary">Coding Projects →</a>
+      </div>
 
       <div class="tool-grid">
 

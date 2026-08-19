@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberProgram — Coding Projects</title>
+  <meta name="description" content="Interactive concept notes for Python, JavaScript and HTML + CSS — read the notes, edit the code, run it in the browser." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    /* scoped to this page */
+    .cp-note { max-width: 74ch; color: var(--text-secondary); font-size: .95rem; line-height: 1.75; margin-bottom: 40px; }
+    .cp-note strong { color: var(--text-primary); }
+    .tool-card--soon { opacity: .72; }
+    .tool-card--soon .tool-card__bar { background: var(--text-muted); }
+    .cp-badge {
+      display: inline-block; align-self: flex-start;
+      font-family: var(--font-display); font-size: .58rem;
+      letter-spacing: .18em; text-transform: uppercase; padding: 4px 10px;
+      border: 1px solid; border-radius: 2px; margin-bottom: 14px;
+    }
+    .cp-badge--live { color: var(--lime); border-color: rgba(211,206,22,.45); }
+    .cp-badge--soon { color: var(--text-muted); border-color: rgba(74,122,138,.5); }
+    .tool-card__cta[aria-disabled="true"] { pointer-events: none; opacity: .5; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+
+    <a href="../../index.html" class="navbar__brand">Cyber <span>With</span> Mr.Q</a>
+
+    <ul class="navbar__links">
+
+      <li class="navbar__item">
+        <a href="../../index.html" class="navbar__link">Home</a>
+        <ul class="dropdown" aria-label="Home submenu">
+          <li class="dropdown__item"><a href="../../index.html#gallery">Gallery</a></li>
+          <li class="dropdown__item"><a href="../../index.html#tools">Tools</a></li>
+          <li class="dropdown__item"><a href="../../index.html#certifications">Certifications</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="../../topics.html" class="navbar__link">Topics</a>
+        <ul class="dropdown" aria-label="Topics submenu">
+          <li class="dropdown__item"><a href="../../topics.html#topic-1">Digital Footprint</a></li>
+          <li class="dropdown__item"><a href="../../topics.html#topic-2">CIA Triad</a></li>
+          <li class="dropdown__item"><a href="../../topics.html#topic-3">Data Analysis</a></li>
+          <li class="dropdown__item"><a href="../../topics.html#topic-4">Threat Management</a></li>
+          <li class="dropdown__item"><a href="../../topics.html#topic-5">Security and Compliance</a></li>
+          <li class="dropdown__item"><a href="../../topics.html#topic-6">Coding and Programming</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="../../partners.html" class="navbar__link">Partners</a>
+        <ul class="dropdown" aria-label="Partners submenu">
+          <li class="dropdown__item"><a href="../../partners.html#industry">Industry Partners</a></li>
+          <li class="dropdown__item"><a href="../../partners.html#academic">Academic Partners</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="../../get-involved.html" class="navbar__link">Get Involved</a>
+        <ul class="dropdown" aria-label="Get Involved submenu">
+          <li class="dropdown__item"><a href="../../get-involved.html#contact">Contact Form</a></li>
+          <li class="dropdown__item"><a href="../../get-involved.html#volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="../index.html" class="navbar__link active">Learn</a>
+        <ul class="dropdown" aria-label="Learn submenu">
+          <li class="dropdown__item"><a href="index.html">Coding Projects</a></li>
+          <li class="dropdown__item"><a href="../powershell/index.html" target="_blank" rel="noopener">PowerShell</a></li>
+          <li class="dropdown__item"><a href="../codesnippetz/index.html" target="_blank" rel="noopener">CodeSnippetz</a></li>
+          <li class="dropdown__item"><a href="../kqwho/index.html" target="_blank" rel="noopener">KQ Who?</a></li>
+          <li class="dropdown__item"><a href="../debugger/index.html" target="_blank" rel="noopener">Debugger</a></li>
+          <li class="dropdown__item"><a href="../incident-response/index.html" target="_blank" rel="noopener">Incident Response</a></li>
+          <li class="dropdown__item"><a href="../cipherlab/index.html" target="_blank" rel="noopener">Cipher Lab</a></li>
+          <li class="dropdown__item"><a href="../threathunter/index.html" target="_blank" rel="noopener">Threat Hunter</a></li>
+        </ul>
+      </li>
+
+      <li class="navbar__item">
+        <a href="../../tech-news/index.html" class="navbar__link">Tech News</a>
+      </li>
+
+    </ul>
+  </nav>
+
+
+  <section class="section" style="padding-top:64px;">
+    <div class="container">
+      <div class="section-label">Coding Projects</div>
+      <h2 class="section-title">Notes You Can <em>Run</em></h2>
+      <div class="divider"></div>
+
+      <p class="cp-note">
+        Every concept in the language, in the order the course teaches it &mdash; with a working example,
+        what it does, why you would use it, and the syntax detail that trips people up.
+        <strong>The code window runs right in this page</strong>, so you can change an example,
+        run it, break it, and see what happens without leaving the notes.
+      </p>
+
+      <div class="tool-grid">
+
+        <!-- Add a new .tool-card block here for each new language -->
+        <div class="tool-card tool-card--teal fade-up">
+          <div class="tool-card__bar"></div>
+          <div class="tool-card__body">
+            <span class="tool-card__icon">🐍</span>
+            <span class="cp-badge cp-badge--live">Live</span>
+            <div class="tool-card__title">Python Concept Notes</div>
+            <p>
+              Fifteen units, 67 lessons, 153 concepts &mdash; printing and variables through functions,
+              strings, lists, dictionaries and file input/output. Real Python runs in the browser,
+              so every example is one click from running, and yours is one edit away.
+            </p>
+            <a href="python/index.html" class="btn btn--primary tool-card__cta">Open Notes</a>
+          </div>
+        </div>
+
+        <div class="tool-card tool-card--orange tool-card--soon fade-up">
+          <div class="tool-card__bar"></div>
+          <div class="tool-card__body">
+            <span class="tool-card__icon">🎨</span>
+            <span class="cp-badge cp-badge--soon">In development</span>
+            <div class="tool-card__title">HTML + CSS Concept Notes</div>
+            <p>
+              Structure and style, one concept at a time &mdash; elements, the box model, flexbox, grid,
+              colour and type &mdash; with a live preview beside every example. Until this lands,
+              <a href="../codesnippetz/index.html" target="_blank" rel="noopener">CodeSnippetz</a>
+              has the playground and a full snippet library.
+            </p>
+            <a class="btn btn--ghost tool-card__cta" aria-disabled="true" tabindex="-1">Coming Soon</a>
+          </div>
+        </div>
+
+        <div class="tool-card tool-card--aqua tool-card--soon fade-up">
+          <div class="tool-card__bar"></div>
+          <div class="tool-card__body">
+            <span class="tool-card__icon">⚡</span>
+            <span class="cp-badge cp-badge--soon">In development</span>
+            <div class="tool-card__title">JavaScript Concept Notes</div>
+            <p>
+              The language that makes a page do something &mdash; variables, functions, events,
+              the DOM, arrays and objects &mdash; each with a console you can type into.
+              Until this lands, the <a href="../debugger/index.html" target="_blank" rel="noopener">Debugger</a>
+              covers JavaScript one concept at a time.
+            </p>
+            <a class="btn btn--ghost tool-card__cta" aria-disabled="true" tabindex="-1">Coming Soon</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <strong>CyberProgram</strong> &nbsp;·&nbsp; The HILL / Fayette County Public Schools &nbsp;·&nbsp;
+    <a href="../../get-involved.html">Get Involved</a> &nbsp;·&nbsp;
+    © <span id="yr"></span> All rights reserved.
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
