@@ -18,6 +18,9 @@ const CFG = {
   CRATE_HP:3, MITE_HP:1, MITE_CAP:16, SENTRY_HP:9, SENTRY_SPD:1.5,
   PAYLOAD_MS:3000, PAYLOAD_R:66, SCAN_START:2, SCAN_MAX:4, SCAN_R:250, SCAN_MS:2600,
   HORSE_HP:120, HORSE_LAUNCH_MS:6000, HORSE_WAVE_CRATES:9,
+  // --- Level 3: Phisherman ---
+  VERIFY_R:80, VERIFY_MS:1400, HOOK_KNOCK:6.5, CONFUSE_MS:4000,
+  FISH_HP:3, FISH_SPIT_MS:2200, FISH_RANGE:340, HOOK_SPD:4.2,
 };
 const WORDS = ['CTRL','ALT','DEL','ESC','TAB','F5'];  // keysword easter eggs
 
@@ -30,6 +33,9 @@ const WORDS = ['CTRL','ALT','DEL','ESC','TAB','F5'];  // keysword easter eggs
    f  password fragment (10)  k  decryption key (3)  h  hidden folder
    a  AI token (+1 max HP)    s  shield recharge     m  MFA power-up
    G  encrypted gate (needs all 3 keys)  B  boss trigger  H  health patch (+2)
+   L  lure — looks exactly like a real pickup; verify (I, Phisherman
+      sector) before you touch it, or it hooks you
+   y  fish — patrols and casts a hook at range (Phisherman sector)
    ===================================================================== */
 const SECTORS={
  1:{name:"The Worm",threat:"WORM",blurb:"Self-replicating malware is chewing through Cache Valley.",levels:[
@@ -182,6 +188,42 @@ const SECTORS={
 "##############################^^^^############################################^^^^##################################################################",
 "####################################################################################################################################################",
   ]}
+ ]},
+ 3:{name:"The Phisherman",threat:"PHISHERMAN",blurb:"Something out there is baiting your crew, one convincing message at a time.",levels:[
+  {id:"3.1",name:"Proving Ground",kind:"proving",
+   doors:[],
+   signs:[
+    {col:5,row:8,text:"THE PHISHERMAN CASTS WIDE. MOST BAIT LOOKS REAL."},
+    {col:18,row:7,text:"THIS ONE'S REAL. GO AHEAD."},
+    {col:33,row:7,text:"I — VERIFY. CHECK BEFORE YOU TOUCH."},
+    {col:33,row:8,text:"SOME LINKS AREN'T WHAT THEY SHOW."},
+    {col:48,row:7,text:"A FISH. IT CASTS FROM RANGE."},
+    {col:48,row:8,text:"DODGE, BLOCK (L), OR SPIN (K) TO KNOCK IT BACK."},
+    {col:63,row:7,text:"MIXED AHEAD. VERIFY EACH ONE."},
+    {col:98,row:7,text:"STILL WATCHING? GOOD. KEEP CHECKING."},
+    {col:122,row:7,text:"UNVERIFIED = UNTRUSTED. ALWAYS."}
+   ],
+   terminals:[
+    {col:44,row:10,title:"SPOOFED DOMAINS",body:"A fake domain is never exactly right — it's close enough to not notice at a glance.\n\nSwapped letters (rn for m), a wrong extension (.io instead of .com), an extra word bolted on (-secure, -verify, -alert).\n\nVerifying costs nothing. Reading the whole address, every time, is the entire defense."},
+    {col:92,row:10,title:"WHY IT WORKS",body:"Phishing doesn't need to fool a computer. It only needs to fool a person moving fast.\n\nIt borrows trust that already exists — a brand you recognize, a coworker's name, a service you actually use — and asks you to act before you think.\n\nThe fix isn't suspicion of everything. It's one habit: check before you click, every single time."}
+   ],
+   rows:[
+    "######################################################################################################################################################",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#                                                                                                                                                    #",
+    "#  P                a              L              f    y         L         h         L              a           L     y     s               D        #",
+    "######################################################################################################################################################",
+    "######################################################################################################################################################",
+    "######################################################################################################################################################",
+    "######################################################################################################################################################",
+  ]}
  ]}
 };
 let CUR=SECTORS[1].levels[0];
@@ -202,7 +244,10 @@ const DOSSIERS={
   {t:"Industrialized",d:"2007 onward",
    b:"Zeus turned Trojans into a business — a banking Trojan that watched quietly for login credentials and moved money. Its source code leaked in 2011 and fragmented into a generation of descendants.\n\nEmotet went further and became delivery as a service: a Trojan whose product was smuggling other people's malware inside, rented to whoever paid. Dismantling it took an international law-enforcement operation in January 2021.\n\nTrojans stopped being written by individuals and became infrastructure with customers."},
   {t:"Signed, Sealed, Trusted",d:"December 2020",
-   b:"Attackers compromised the build system of a widely used network-monitoring product and inserted a backdoor before the software was compiled and cryptographically signed. Around 18,000 organizations installed it as a routine update.\n\nNothing was disguised. Nothing was hidden. The software was legitimate, correctly signed, and delivered through the proper channel.\n\nThe Horse hid in its own cargo. This hid in the supply chain — and every control designed to verify authenticity confirmed it was safe, because it was authentically compromised."}]}
+   b:"Attackers compromised the build system of a widely used network-monitoring product and inserted a backdoor before the software was compiled and cryptographically signed. Around 18,000 organizations installed it as a routine update.\n\nNothing was disguised. Nothing was hidden. The software was legitimate, correctly signed, and delivered through the proper channel.\n\nThe Horse hid in its own cargo. This hid in the supply chain — and every control designed to verify authenticity confirmed it was safe, because it was authentically compromised."}]},
+ 3:{title:"THE PHISHERMAN",frags:[
+  {t:"The Name Comes From Fishing",d:"January 2, 1996",
+   b:"The word first appears in a Usenet post: hackers on AOL, posing as staff, messaging users to 'verify your account' and typing the password back themselves.\n\nThe 'ph' was borrowed from 'phreaking' — the earlier culture of hacking phone networks. The bait was never technical. It was a message that looked like it came from someone with the authority to ask.\n\nEvery phishing email since has been some version of the same move: borrow trust, then spend it before anyone checks."}]}
 };
 
 
@@ -354,6 +399,8 @@ function spawnFromMap(){
     if(ch==='g')entities.push({type:'package',x:x+3,y:y+4,w:26,h:26,bob:Math.random()*6,idx:0});
     if(ch==='z')entities.push(makePickup('scan',x+7,y+6));
     if(ch==='H')entities.push(makePickup('health',x+7,y+6));
+    if(ch==='L')entities.push(makeLure(x+7,y+7));
+    if(ch==='y')entities.push(makeFish(x,y));
   }));
   // the first package you'd naturally reach is the gift; the rest are the trap
   entities.filter(e=>e.type==='package').sort((a,b)=>a.x-b.x).forEach((p,i)=>p.idx=i);
@@ -362,7 +409,7 @@ function spawnFromMap(){
 function makePlayer(x,y){return{x,y,w:22,h:30,vx:0,vy:0,face:1,hp:CFG.PLAYER_HP,
   maxHp:CFG.PLAYER_HP,shield:CFG.SHIELD_MAX,shielding:false,inv:0,coyote:0,jbuf:0,
   airJumps:CFG.AIR_JUMPS,atkT:0,atkCd:0,combo:0,comboT:0,word:'CTRL',
-  spinT:0,spinCd:0,slow:0,mfa:0,mfaGuard:false,hardT:0,fwDown:false,walk:0,
+  spinT:0,spinCd:0,slow:0,confused:0,mfa:0,mfaGuard:false,hardT:0,fwDown:false,walk:0,
   didDouble:false,didBlock:false,didSpin:false,didCombo:false,didScan:false,scans:0,spawnX:x,spawnY:y,onMover:null};}
 function makeWorm(x,y,fromSplit=false,bossKin=false){return{type:'worm',x,y:y-4,w:26,h:18,
   vx:(Math.random()<.5?-1:1)*1.4,vy:0,hp:CFG.WORM_HP,born:performance.now(),
@@ -372,6 +419,14 @@ function makeBig(x,y){return{type:'big',x,y:y-10,w:40,h:26,
   vx:(Math.random()<.5?-1:1)*0.9,vy:0,hp:CFG.BIG_HP,trailT:0,flash:0,stun:0,spinHit:-1};}
 function makeMover(x,y,axis,amp){return{x,y,w:3*T,h:12,axis,cx:x,cy:y,amp,t:Math.random()*6,dx:0,dy:0};}
 function makePickup(kind,x,y){return{type:'pickup',kind,x,y,w:18,h:18,bob:Math.random()*6};}
+const LURE_KINDS=['frag','key','shield','mfa','token','health'];
+const FAKE_DOMAINS=['arnaz0n-secure.io','paypaI-verify.com','qb1t-games.net',
+  'micros0ft-alert.com','the-hill.edu-check.info','netfIix-billing.com'];
+function makeLure(x,y){
+  const kind=LURE_KINDS[Math.floor(Math.random()*LURE_KINDS.length)];
+  const fakeDomain=FAKE_DOMAINS[Math.floor(Math.random()*FAKE_DOMAINS.length)];
+  return{type:'lure',kind,x,y,w:18,h:18,bob:Math.random()*6,verified:false,revealT:0,fakeDomain};
+}
 function makeGlob(x,y,vx,vy){return{type:'glob',x,y,w:12,h:12,vx,vy};}
 function makeBoss(x,y){return{type:'boss',x,y,w:88,h:64,vx:1.2,vy:0,
   hp:CFG.BOSS_HP,maxHp:CFG.BOSS_HP,state:'perch',
@@ -385,8 +440,11 @@ function updatePlayer(){
   const spd=CFG.MOVE*(p.slow>0?0.45:1);
   p.shielding=down('KeyL')&&p.shield>0&&!p.fwDown;   // usable to the last drop — then it burns out
   const mv=p.shielding?spd*0.4:spd;
-  if(down('ArrowLeft','KeyA')){p.vx=-mv;p.face=-1;}
-  else if(down('ArrowRight','KeyD')){p.vx=mv;p.face=1;}
+  // confused: left/right are swapped — a phishing hook scrambled your inputs
+  const goLeft=p.confused>0?down('ArrowRight','KeyD'):down('ArrowLeft','KeyA');
+  const goRight=p.confused>0?down('ArrowLeft','KeyA'):down('ArrowRight','KeyD');
+  if(goLeft){p.vx=-mv;p.face=-1;}
+  else if(goRight){p.vx=mv;p.face=1;}
   else p.vx=0;
   p.walk+= Math.abs(p.vx)*0.22;
 
@@ -460,8 +518,10 @@ function updatePlayer(){
   trails.forEach(tr=>{ if(overlap(inset,tr)) p.slow=Math.max(p.slow,700); });
 
   if(tapped('KeyI')&&S.sector===2)doScan();
+  if(tapped('KeyI')&&S.sector===3)doVerify();
   if(S.scanT>0)S.scanT-=16.7;
   if(p.slow>0)p.slow-=16.7;
+  if(p.confused>0)p.confused-=16.7;
   if(p.inv>0)p.inv--;
   if(p.mfa>0){p.mfa-=16.7;if(p.mfa<=0){p.mfa=0;p.mfaGuard=false;}}
 }
@@ -513,7 +573,7 @@ function damagePlayer(n,envHit=false){
 /* =====================================================================
    9. ENEMIES
    ===================================================================== */
-const HITTABLE=new Set(['worm','big','boss','mite','sentry','crate','horse','dummy','charger']);
+const HITTABLE=new Set(['worm','big','boss','mite','sentry','crate','horse','dummy','charger','fish']);
 function wormCount(){return entities.filter(e=>!e.dead&&((e.type==='worm'&&!e.bossKin)||e.type==='big')).length;}
 function kinCount(){return entities.filter(e=>!e.dead&&e.type==='worm'&&e.bossKin).length;}
 
@@ -537,10 +597,10 @@ function hitEnemy(e,dmg){
     if(e.hp<=0){e.dead=true;SFX.boom();burst(...center(e),'#35f0dc',12);}
     return;
   }
-  if(e.type==='mite'||e.type==='sentry'){
+  if(e.type==='mite'||e.type==='sentry'||e.type==='fish'){
     e.hp-=dmg;e.flash=6;
-    burst(...center(e),e.type==='sentry'?'#c9a227':'#8f6cff',7);
-    if(e.hp<=0){e.dead=true;S.wormsKilled++;SFX.boom();burst(...center(e),'#8f6cff',12);}
+    burst(...center(e),e.type==='sentry'?'#c9a227':(e.type==='fish'?'#35a9f0':'#8f6cff'),7);
+    if(e.hp<=0){e.dead=true;S.wormsKilled++;SFX.boom();burst(...center(e),'#35a9f0',12);}
     return;
   }
   if(e.type==='boss'){
@@ -811,6 +871,123 @@ function updatePickup(e){
   }
 }
 
+/* --- Lure: looks exactly like a real pickup until verified --- */
+function updateLure(e){
+  e.bob+=0.06;
+  if(e.revealT>0)e.revealT-=16.7;
+  const box={x:e.x,y:e.y+Math.sin(e.bob)*3,w:e.w,h:e.h};
+  if(!overlap(box,player))return;
+  e.dead=true;
+  if(e.verified){
+    burst(e.x+9,e.y+9,'#35f0dc',10);SFX.pick();
+    alertMsg('dodged','SPOTTED IN TIME — a verified spoof can\'t hook you. That\'s the whole point of checking first.');
+  }else{
+    burst(e.x+9,e.y+9,'#ff5d7a',16);shake=Math.max(shake,8);SFX.slam();
+    damagePlayer(1);applyPhishDebuff();
+    player.vx=(player.x<e.x?-1:1)*CFG.HOOK_KNOCK;player.vy=-4.5;
+    alertMsg('hooked','HOOKED — that looked exactly like the real thing. Verify (I) before you touch it next time.',true);
+  }
+}
+/* --- Shared punishment for getting hooked, whether by a lure or a fish's
+   cast: damage alone was easy to shrug off at full speed, so a bad click
+   now costs you control too, not just HP. --- */
+function applyPhishDebuff(){
+  if(Math.random()<0.5){
+    player.slow=Math.max(player.slow,CFG.SLOW_MS);
+    alertMsg('phishSlow','SLOWED — that cost you speed on top of the hit. Verify before you touch the next one.',true);
+  }else{
+    player.confused=Math.max(player.confused,CFG.CONFUSE_MS);
+    alertMsg('phishConfuse','CONTROLS SCRAMBLED — left and right are swapped for a few seconds!',true);
+  }
+}
+function drawLure(e){
+  drawPickup(e);
+  const y=e.y+Math.sin(e.bob)*3;
+  if(e.verified){
+    ctx.save();ctx.strokeStyle='#ff5d7a';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(e.x-2,y-2);ctx.lineTo(e.x+20,y+20);
+    ctx.moveTo(e.x+20,y-2);ctx.lineTo(e.x-2,y+20);ctx.stroke();ctx.restore();
+  }
+  if(e.revealT>0){
+    ctx.save();ctx.globalAlpha=Math.min(1,e.revealT/300);
+    ctx.font='10px "JetBrains Mono"';ctx.textAlign='center';ctx.fillStyle='#ff5d7a';
+    ctx.fillText(e.fakeDomain,e.x+9,y-10);ctx.restore();
+  }
+}
+/* --- Verify: check the nearest un-checked link before you touch it --- */
+function doVerify(){
+  const near=entities.find(e=>!e.dead&&e.type==='lure'&&!e.verified&&
+    dist(...center(player),...center(e))<CFG.VERIFY_R);
+  if(!near){alertMsg('noverify','NOTHING NEARBY TO VERIFY — get closer to a link or file before checking it.');return;}
+  near.verified=true;near.revealT=CFG.VERIFY_MS;
+  SFX.key();
+  alertMsg('verify','VERIFIED — spoofed domains are almost right, never exactly right. Read the whole address.');
+}
+
+/* --- Fish: patrols and casts a hook at range. Spin (K) knocks the hook
+   back like a payload; Firewall blocks it frontally like a glob. --- */
+function makeFish(x,y){return{type:'fish',x,y:y-4,w:24,h:16,
+  vx:(Math.random()<.5?-1:1)*0.9,vy:0,hp:CFG.FISH_HP,
+  spitT:CFG.FISH_SPIT_MS*(0.4+Math.random()*0.6),flash:0,stun:0,spinHit:-1};}
+function updateFish(f){
+  f.vy=Math.min(f.vy+CFG.GRAV,10);
+  if(f.stun>0){f.stun--;moveAndCollide(f);return;}
+  f.hitWall=false;moveAndCollide(f);
+  if(f.hitWall)f.vx*=-1;
+  f.spitT-=16.7;
+  const d=dist(...center(f),...center(player));
+  if(f.spitT<=0&&d<CFG.FISH_RANGE){
+    f.spitT=CFG.FISH_SPIT_MS;
+    const [fx,fy]=center(f),[px,py]=center(player);
+    const ang=Math.atan2(py-fy,px-fx);
+    entities.push(makeHook(fx,fy,Math.cos(ang)*CFG.HOOK_SPD,Math.sin(ang)*CFG.HOOK_SPD));
+    SFX.block();
+    alertMsg('fish','PHISHING FISH — casts a hook from range. Dodge it, block it with Firewall, or spin (K) to knock it back.');
+  }
+  if(f.flash>0)f.flash--;
+  if(overlap(f,player))tryHitPlayer(f,1);
+}
+function drawFish(f){
+  ctx.save();
+  const flip=f.vx<0;
+  ctx.fillStyle=f.flash>0?'#fff':'#35a9f0';
+  ctx.beginPath();
+  ctx.ellipse(f.x+f.w/2,f.y+f.h/2,f.w/2,f.h/2,0,0,7);ctx.fill();
+  ctx.beginPath();
+  const tailX=flip?f.x+f.w+7:f.x-7;
+  ctx.moveTo(flip?f.x+f.w:f.x,f.y+2);ctx.lineTo(tailX,f.y+f.h/2);ctx.lineTo(flip?f.x+f.w:f.x,f.y+f.h-2);
+  ctx.fill();
+  ctx.fillStyle='#0d1530';
+  ctx.beginPath();ctx.arc(flip?f.x+6:f.x+f.w-6,f.y+6,2,0,7);ctx.fill();
+  ctx.restore();
+}
+function makeHook(x,y,vx,vy){return{type:'hook',x,y,w:12,h:12,vx,vy,spinHit:-1,life:2600};}
+function updateHook(h){
+  h.life-=16.7;
+  if(player.spinT>0&&h.spinHit!==S.spinId&&dist(...center(h),...center(player))<CFG.SPIN_R+16){
+    h.spinHit=S.spinId;h.vx*=-1;h.vy=-3;SFX.block();
+    h.x+=h.vx;h.y+=h.vy;return;
+  }
+  h.x+=h.vx;h.y+=h.vy;
+  if(solidAt(h.x+h.w/2,h.y+h.h/2)){h.dead=true;burst(h.x,h.y,'#ff5d7a',6);return;}
+  if(overlap(h,player)){hookPlayer(h);return;}
+  if(h.life<=0||h.y>levelH+60)h.dead=true;
+}
+function hookPlayer(h){
+  h.dead=true;
+  const frontal=(h.x-(player.x+player.w/2))*player.face>0;
+  if(player.shielding&&frontal){player.shield=Math.max(0,player.shield-8);SFX.block();return;}
+  burst(h.x,h.y,'#ff5d7a',10);shake=Math.max(shake,6);SFX.slam();
+  damagePlayer(1);applyPhishDebuff();
+  player.vx=(player.x<h.x?-1:1)*CFG.HOOK_KNOCK;player.vy=-4;
+}
+function drawHook(h){
+  ctx.save();ctx.strokeStyle='#ffd75e';ctx.lineWidth=2.5;ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.arc(h.x+6,h.y+6,5,0.4,Math.PI*1.6);
+  ctx.stroke();ctx.restore();
+}
+
 /* =====================================================================
    11. PARTICLES / FX
    ===================================================================== */
@@ -867,6 +1044,9 @@ function update(){
     else if(e.type==='boss')updateBoss(e);
     else if(e.type==='glob')updateGlob(e);
     else if(e.type==='pickup')updatePickup(e);
+    else if(e.type==='lure')updateLure(e);
+    else if(e.type==='fish')updateFish(e);
+    else if(e.type==='hook')updateHook(e);
     else if(e.type==='rspike')updateRspike(e);
     else if(e.type==='horse')updateHorse(e);
     else if(e.type==='mite')updateMite(e);
@@ -1000,6 +1180,9 @@ function render(){
 
   entities.forEach(e=>{
     if(e.type==='pickup')drawPickup(e);
+    else if(e.type==='lure')drawLure(e);
+    else if(e.type==='fish')drawFish(e);
+    else if(e.type==='hook')drawHook(e);
     else if(e.type==='worm')drawWorm(e);
     else if(e.type==='big')drawBig(e);
     else if(e.type==='boss')drawBoss(e);
@@ -1094,6 +1277,14 @@ function drawPlayer(){
   if(p.mfa>0){ctx.save();ctx.globalAlpha=0.45;
     drawHero(p.x-p.face*26,p.y,-p.face,p.walk,'#ffd75e');ctx.restore();}
   drawHero(p.x,p.y,p.face,p.walk,'#35f0dc');
+
+  // phishing debuffs: small status glyph over the hero's head
+  if(p.confused>0||p.slow>0){
+    ctx.save();ctx.textAlign='center';ctx.font='13px "JetBrains Mono"';
+    ctx.globalAlpha=0.6+0.4*Math.sin(performance.now()/120);
+    ctx.fillText(p.confused>0?'🔀':'🐌',p.x+p.w/2,p.y-10);
+    ctx.restore();ctx.textAlign='left';
+  }
 
   // keysword slash: an actual blade of keycaps + gold arc
   if(p.atkT>0){
@@ -1813,7 +2004,9 @@ function openHub(){
   $('hubScreen').classList.remove('hidden');
 }
 
-/* level list inside a sector — unlocks in order */
+/* level list inside a sector — all three are playable right away;
+   the sector only counts toward the final boss once every level in
+   it is complete (see secDone/allDone). */
 const KINDLABEL={proving:'PROVING GROUND · learn the tools',
                  gauntlet:'GAUNTLET · no instructions',
                  containment:'CONTAINMENT · boss'};
@@ -1825,16 +2018,14 @@ function openSector(sid){
   const wrap=$('lvlCards');wrap.innerHTML='';
   L.levels.forEach((lev,i)=>{
     const clear=lvlDone(lev.id);
-    const open=i===0||lvlDone(L.levels[i-1].id);
     const frag=(DOSSIERS[sid]||{}).frags?.[i];
-    wrap.appendChild(card('card'+(clear?' done':'')+(open?'':' locked'),
+    wrap.appendChild(card('card'+(clear?' done':''),
       `<span class="lv">LEVEL ${lev.id}</span>
-       <span class="nm">${open?lev.name:'🔒 LOCKED'}</span>
+       <span class="nm">${lev.name}</span>
        <span class="th">${KINDLABEL[lev.kind]}</span>
-       <span class="bl">${open?(clear&&frag?'Dossier recovered: '+frag.t:'Dossier fragment '+(i+1)+'/3 awaits.')
-         :'Complete the previous level first.'}</span>
-       <span class="st">${clear?'✔ COMPLETE — replay':(open?'◍ AVAILABLE':'◍ SEALED')}</span>`,
-      open?()=>startGame(Number(sid),i):null));
+       <span class="bl">${clear&&frag?'Dossier recovered: '+frag.t:'Dossier fragment '+(i+1)+'/3 awaits.'}</span>
+       <span class="st">${clear?'✔ COMPLETE — replay':'◍ AVAILABLE'}</span>`,
+      ()=>startGame(Number(sid),i)));
   });
   $('levelScreen').classList.remove('hidden');
 }
@@ -1864,7 +2055,9 @@ const DEBRIEFS={
  1:[['DEBRIEF','You fought a <b>worm</b>: it replicated on its own, mutated when ignored, degraded performance, and hid behind encryption. Real worms — Conficker, WannaCry\'s spreader — behave the same way. Speed and layers win.'],
     ['THREAT ACTOR','Worms are tools. Someone deployed this one — and the trace routes lead onward.']],
  2:[['DEBRIEF','A <b>Trojan</b> never breaks in. It arrives as a crate, a gift, a statue — something you open, accept, or walk past. You carried one inside yourself. Every container looked identical until you inspected it.'],
-    ['THREAT ACTOR','The Horse hid inside its own supply chain. Real attackers do the same: they hide in the software you already trust.']]
+    ['THREAT ACTOR','The Horse hid inside its own supply chain. Real attackers do the same: they hide in the software you already trust.']],
+ 3:[['DEBRIEF','A <b>phish</b> never breaks anything. It asks, and you decide. Every lure in this sector looked exactly like something real — the only defense that worked was checking before touching, every time.'],
+    ['THREAT ACTOR','The Phisherman doesn\'t need to be clever. He only needs one person to be in a hurry.']]
 };
 function endGame(won){
   S.mode=won?'win':'over';
