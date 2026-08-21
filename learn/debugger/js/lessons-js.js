@@ -1,5 +1,5 @@
 /* ============================================================
-   JavaScript track — 15 lessons, each followed by its own repair job.
+   JavaScript track — 20 lessons, each followed by its own repair job.
 
    Every lesson (kind: 'teach') carries a `repairId` pointing at the
    debug stage that breaks the exact thing it just taught, and every
@@ -1663,6 +1663,459 @@ clicks[2]();`
         'All three clicks should announce a different label — but check what actually prints for each one. Are any two of them the same? All three?',
         'Add <code>console.log(i)</code> right before <code>handlers.push(...)</code>, inside the loop — those numbers look correct as the loop runs. Now add a <code>console.log(i)</code> INSIDE one of the pushed functions instead, and call it after the loop has already finished. Same number every time?',
         'This is the same rule from the scope lesson: <code>var</code> in a <code>for</code> loop is one single variable, shared by every function created inside that loop — by the time any of them actually runs, the loop has already finished, and <code>i</code> holds its final value. <code>let</code> in a <code>for</code> loop header is special-cased to give each pass through the loop its own separate variable, which is exactly what each closure needs to remember its own value.'
+      ]
+    },
+
+    /* ═══════════════════ 16 · Classes ═══════════════════ */
+
+    {
+      id: 'j-l16',
+      kind: 'teach',
+      title: 'Classes',
+      repairId: 'j-d16',
+      concept: `
+        <p>A <code>class</code> bundles data with the behavior that acts on it. The
+        <code>constructor</code> runs once per <code>new</code>, setting up whatever the object needs to
+        remember — every value it should carry gets attached to <code>this</code>, or a method looking
+        for it later will not find it.</p>
+        <p>Each call to <code>new</code> builds a completely independent object. Two instances of the
+        same class do not share their properties, the same way two calls to a closure-returning function
+        do not share their variables.</p>
+        <p>Methods are called <em>on</em> an instance — <code>sensor.isTripped()</code> — and inside a
+        method, <code>this</code> refers to whichever instance it was called on.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `class Sensor {
+  constructor(name, threshold) {
+    this.name = name;
+    this.threshold = threshold;
+    this.readings = [];
+  }
+
+  log(value) {
+    this.readings.push(value);
+  }
+
+  isTripped() {
+    return this.readings.some((v) => v > this.threshold);
+  }
+
+  describe() {
+    return this.name + ": " + this.readings.length + " readings";
+  }
+}
+
+const doorSensor = new Sensor("Front door", 80);
+doorSensor.log(20);
+doorSensor.log(95);
+console.log(doorSensor.describe());
+console.log("Tripped?", doorSensor.isTripped());
+
+const windowSensor = new Sensor("Window", 80);
+windowSensor.log(10);
+console.log(windowSensor.describe());
+console.log("Tripped?", windowSensor.isTripped());`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Create a third sensor and log values into it — check that it does not affect <code>doorSensor</code>\'s readings at all.',
+        'Add a new method <code>reset()</code> that sets <code>this.readings = [];</code>, and call it on <code>doorSensor</code> after logging some values.',
+        'Remove <code>this.</code> from one assignment inside the constructor, like writing <code>name = name;</code> instead of <code>this.name = name;</code>, and call <code>describe()</code> on that sensor — read the error.'
+      ]
+    },
+
+    {
+      id: 'j-d16',
+      kind: 'debug',
+      title: 'The scoreboard that would not count',
+      lessonId: 'j-l16',
+      brief: `<p>A scoreboard should add up a list of scores and report the total along with how many entries
+        it received.</p>
+        <p>Right now nothing prints at all.</p>`,
+      goal: `Total: 45 (3 entries)`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `class ScoreBoard {
+  constructor() {
+    this.total = 0;
+    this.entries = [];
+  }
+
+  addAll(scores) {
+    scores.forEach(function (score) {
+      this.total = this.total + score;
+      this.entries.push(score);
+    });
+  }
+
+  summary() {
+    return "Total: " + this.total + " (" + this.entries.length + " entries)";
+  }
+}
+
+const board = new ScoreBoard();
+board.addAll([10, 20, 15]);
+console.log(board.summary());`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'No unhandled errors', test: c => c.errors.length === 0 },
+        { label: 'Reports the correct total and entry count', test: c => c.text.includes('Total: 45 (3 entries)') }
+      ],
+      hints: [
+        'This crashes on the very first score, before any total accumulates — read exactly what value the error says is undefined.',
+        'The callback passed to <code>.forEach()</code> is a regular <code>function</code> — when <code>forEach</code> calls it, what does <code>this</code> refer to inside a plain function like that? Compare it against how <code>this</code> behaves inside <code>addAll</code> itself, which IS called as <code>board.addAll(...)</code>.',
+        'A regular <code>function</code> gets its own <code>this</code> when called as a plain callback — inside a class, that makes it <code>undefined</code>. An arrow function has no <code>this</code> of its own; it uses whatever <code>this</code> the surrounding code already has, which here is exactly the <code>ScoreBoard</code> instance you want. Change the callback to an arrow function, <code>(score) => { ... }</code>, to fix it.'
+      ]
+    },
+
+    /* ═══════════════════ 17 · localStorage and JSON ═══════════════════ */
+
+    {
+      id: 'j-l17',
+      kind: 'teach',
+      title: 'localStorage and JSON',
+      repairId: 'j-d17',
+      concept: `
+        <p><code>localStorage</code> saves data in the browser between page loads — but it only stores
+        <strong>strings</strong>. To save an object or array, convert it first with
+        <code>JSON.stringify(value)</code>; to get it back as a real object again, use
+        <code>JSON.parse(text)</code> on the way out.</p>
+        <p><code>localStorage.getItem(key)</code> hands back <code>null</code> — not an error, not an
+        empty string — for a key that was never set. <code>localStorage.removeItem(key)</code> deletes a
+        single key.</p>
+        <p>This is exactly the same pair of functions this very tool uses to remember your progress
+        between visits.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const settings = { theme: "dark", volume: 7 };
+
+localStorage.setItem("demo-settings", JSON.stringify(settings));
+
+const raw = localStorage.getItem("demo-settings");
+console.log("Raw string:", raw);
+
+const loaded = JSON.parse(raw);
+console.log("Theme:", loaded.theme);
+
+const missing = localStorage.getItem("does-not-exist");
+console.log("Missing key:", missing);
+
+localStorage.removeItem("demo-settings");
+console.log("After removal:", localStorage.getItem("demo-settings"));`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Add a third property to <code>settings</code>, rerun, and look at how the raw JSON string changes.',
+        'Change the <code>setItem</code> call to skip <code>JSON.stringify</code> — just pass <code>settings</code> directly — and log <code>raw</code> afterward. Read what actually got stored.',
+        'Call <code>localStorage.getItem</code> for a key that was never set, on its own line — confirm it comes back as <code>null</code>, not an error.'
+      ]
+    },
+
+    {
+      id: 'j-d17',
+      kind: 'debug',
+      title: 'The profile that would not load',
+      lessonId: 'j-l17',
+      brief: `<p>A saved profile should load back with its real username and level.</p>
+        <p>Right now reading it back crashes.</p>`,
+      goal: `Username: mquinn
+Level: 4`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const profile = { username: "mquinn", level: 4 };
+
+localStorage.setItem("demo-profile", profile);
+
+const raw = localStorage.getItem("demo-profile");
+const loaded = JSON.parse(raw);
+console.log("Username:", loaded.username);
+console.log("Level:", loaded.level);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'No unhandled errors', test: c => c.errors.length === 0 },
+        { label: 'Loads the real username', test: c => c.text.includes('Username: mquinn') },
+        { label: 'Loads the real level', test: c => c.text.includes('Level: 4') },
+        { label: 'Still converts the object before saving it', test: c => /JSON\.stringify/.test(c.code) }
+      ],
+      hints: [
+        'This crashes while trying to read the profile back, not while saving it. Log <code>raw</code> right after <code>localStorage.getItem("demo-profile")</code>, before parsing it — what does that string actually look like?',
+        '<code>localStorage.setItem</code> can only store a string — hand it anything else and JavaScript converts it to a string automatically, which for a plain object does not produce useful JSON. What is the one function that turns an object into a real JSON string?',
+        'Always pair <code>JSON.stringify(value)</code> when SAVING an object to <code>localStorage</code>, with <code>JSON.parse(text)</code> when LOADING it back. Skip the stringify step and you save <code>"[object Object]"</code> instead of real data — which <code>JSON.parse</code> cannot make sense of.'
+      ]
+    },
+
+    /* ═══════════════════ 18 · Recursion ═══════════════════ */
+
+    {
+      id: 'j-l18',
+      kind: 'teach',
+      title: 'Recursion',
+      repairId: 'j-d18',
+      concept: `
+        <p>A <strong>recursive</strong> function calls <em>itself</em>, working on a smaller piece of the
+        problem each time, until it reaches a <strong>base case</strong> small enough to answer directly,
+        with no further call to itself.</p>
+        <p>Every recursive function needs two things: a base case that stops the recursion, and a
+        recursive case that makes real progress toward that base case on every call. Skip the base case,
+        or never actually shrink the problem, and the function calls itself forever — until the browser
+        gives up with <code>RangeError: Maximum call stack size exceeded</code>.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function countdown(n) {
+  if (n <= 0) {
+    console.log("Liftoff!");
+    return;
+  }
+  console.log(n);
+  countdown(n - 1);
+}
+countdown(3);
+
+function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+console.log("5! =", factorial(5));
+
+function sumTo(n) {
+  if (n === 0) return 0;
+  return n + sumTo(n - 1);
+}
+console.log("Sum 1-10:", sumTo(10));`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Remove the base case from <code>countdown</code> entirely and run it — read what the browser says about a function that never stops calling itself.',
+        'Change <code>factorial(5)</code> to <code>factorial(0)</code> — does the base case handle it correctly?',
+        'Trace <code>sumTo(3)</code> on paper before running it: what does each call return, and what adds up to what?'
+      ]
+    },
+
+    {
+      id: 'j-d18',
+      kind: 'debug',
+      title: 'One step too far, and one that never lands',
+      lessonId: 'j-l18',
+      brief: `<p>Counting down by 3 from 10 should print 10, 7, 4, 1 and then stop. Separately, the digit sum
+        of 194 should add up to 14.</p>
+        <p>Right now the countdown prints one value past where it should ever go, and the digit sum comes
+        out wrong.</p>`,
+      goal: `10
+7
+4
+1
+Digit sum of 194: 14`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function countBy(n, step) {
+  console.log(n);
+  if (n <= 0) return;
+  countBy(n - step, step);
+}
+countBy(10, 3);
+
+function digitSum(n) {
+  if (n < 10) return n;
+  return (n % 10) + digitSum(n / 10);
+}
+console.log("Digit sum of 194:", digitSum(194));`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'Counts down 10, 7, 4, 1', test: c => c.lines[0] === '10' && c.lines[1] === '7' && c.lines[2] === '4' && c.lines[3] === '1' },
+        { label: 'Stops right at 1 — no negative number printed', test: c => !c.lines.some(l => l.trim().startsWith('-')) },
+        { label: 'Digit sum of 194 is 14', test: c => c.text.includes('Digit sum of 194: 14') },
+        { label: 'Still recursive, not unrolled by hand', test: c => (c.code.match(/countBy\(/g) || []).length >= 2 && (c.code.match(/digitSum\(/g) || []).length >= 2 }
+      ],
+      hints: [
+        '<code>countBy</code> prints one value too many, ending on a negative number it should never reach. Separately, <code>digitSum</code> lands on a strange, decimal-looking total instead of a clean whole number — trace what kind of value <code>n</code> becomes after the very first recursive call.',
+        'For <code>countBy</code>, check the order: does it test whether to stop before or after it prints? For <code>digitSum</code>, log <code>n</code> right after computing <code>n / 10</code> the first time — is it still a whole number the way <code>194</code> was?',
+        'A base-case check has to run before the action that should not happen once the base case is true. And plain <code>/</code> in JavaScript always keeps decimal places — recursion meant to shrink toward a whole-number base case needs <code>Math.floor(n / 10)</code> instead, to drop back down to a whole number each time.'
+      ]
+    },
+
+    /* ═══════════════════ 19 · Map and Set ═══════════════════ */
+
+    {
+      id: 'j-l19',
+      kind: 'teach',
+      title: 'Map and Set',
+      repairId: 'j-d19',
+      concept: `
+        <p>A <code>Set</code> stores <strong>unique</strong> values — adding a value that is already in
+        it does nothing. Check size with <code>.size</code> (not <code>.length</code> — that is an array
+        thing), test membership with <code>.has()</code>, and add or remove with <code>.add()</code> /
+        <code>.delete()</code>. Spread it into an array with <code>[...mySet]</code> when you need one.</p>
+        <p>A <code>Map</code> is a key-value store like a plain object, but keys can be any type, insertion
+        order is preserved, and it is directly iterable — <code>for (const [key, value] of myMap)</code>
+        walks every pair. Read and write with <code>.get(key)</code> / <code>.set(key, value)</code>.
+        Setting an existing key again <strong>overwrites</strong> it rather than adding a duplicate.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const uniqueTags = new Set(["urgent", "reviewed", "urgent", "flagged", "reviewed"]);
+console.log("Unique tags:", uniqueTags.size);
+console.log([...uniqueTags]);
+
+uniqueTags.add("critical");
+console.log("Has urgent?", uniqueTags.has("urgent"));
+
+const scores = new Map();
+scores.set("Maya", 92);
+scores.set("Dev", 81);
+console.log("Maya's score:", scores.get("Maya"));
+console.log("Has Sam?", scores.has("Sam"));
+
+for (const [name, score] of scores) {
+  console.log(name, "-", score);
+}`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Call <code>uniqueTags.add("urgent")</code> again, a value already in the set — check <code>.size</code> before and after. Did it grow?',
+        'Try <code>scores.length</code> instead of <code>scores.size</code> and read what you get back.',
+        'Loop over <code>scores</code> with <code>for (const entry of scores)</code> — one variable instead of destructuring <code>[name, score]</code> — and log <code>entry</code> directly. What shape is each item?'
+      ]
+    },
+
+    {
+      id: 'j-d19',
+      kind: 'debug',
+      title: 'The counts that were not there',
+      lessonId: 'j-l19',
+      brief: `<p>A unique-visitor count and an inventory item-type count should both print as real numbers.</p>
+        <p>Right now both print as something else entirely.</p>`,
+      goal: `Unique visitors: 3
+Scanner count: 7
+Total item types: 2`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const visitorIds = new Set([101, 205, 101, 310, 205, 101]);
+console.log("Unique visitors:", visitorIds.length);
+
+const inventory = new Map();
+inventory.set("scanner", 4);
+inventory.set("firewall", 2);
+inventory.set("scanner", 7);
+
+console.log("Scanner count:", inventory.get("scanner"));
+console.log("Total item types:", inventory.length);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'Reports the real unique visitor count', test: c => c.text.includes('Unique visitors: 3') },
+        { label: 'Scanner count reflects the latest value set', test: c => c.text.includes('Scanner count: 7') },
+        { label: 'Reports the real item-type count', test: c => c.text.includes('Total item types: 2') },
+        { label: 'Nothing prints as undefined', test: c => !c.text.includes('undefined') }
+      ],
+      hints: [
+        'Two of these three lines print something other than a real number — check which two, and what they have in common.',
+        'Log <code>visitorIds</code> and <code>inventory</code> directly and look at what properties actually exist on each one — is <code>length</code> one of them?',
+        'Arrays use <code>.length</code>. Sets and Maps use <code>.size</code> instead — a common mix-up, since both hold a count of items too, just under a different name.'
+      ]
+    },
+
+    /* ═══════════════════ 20 · Arrow functions and this ═══════════════════ */
+
+    {
+      id: 'j-l20',
+      kind: 'teach',
+      title: 'Arrow functions and this',
+      repairId: 'j-d20',
+      concept: `
+        <p>Inside a regular <code>function</code>, <code>this</code> depends entirely on <em>how the
+        function was called</em> — call it as <code>obj.method()</code> and <code>this</code> is
+        <code>obj</code>; call the exact same function on its own and <code>this</code> is something
+        else entirely (inside a class, <code>undefined</code>).</p>
+        <p>An <strong>arrow function has no <code>this</code> of its own</strong>. It simply uses whatever
+        <code>this</code> already existed in the surrounding code at the moment it was written. That makes
+        arrow functions the natural choice for a callback that needs to keep using the same
+        <code>this</code> as the method it was created inside — a <code>.forEach()</code> callback inside
+        a class method being the most common example.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `class Tracker {
+  constructor(label) {
+    this.label = label;
+    this.count = 0;
+  }
+
+  bumpAll(amounts) {
+    amounts.forEach((amount) => {
+      this.count = this.count + amount;
+    });
+  }
+
+  describe() {
+    return this.label + ": " + this.count;
+  }
+}
+
+const uptime = new Tracker("Uptime");
+uptime.bumpAll([5, 3, 2]);
+console.log(uptime.describe());`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Change the arrow function inside <code>bumpAll</code> to a regular <code>function (amount) { ... }</code> and run it again — read the error about <code>this</code>.',
+        'Create a second tracker and call <code>bumpAll</code> on it with different amounts — confirm the two counts stay independent.',
+        'Add a second method that also uses <code>this.count</code> inside an arrow callback, and check it still reaches the right instance.'
+      ]
+    },
+
+    {
+      id: 'j-d20',
+      kind: 'debug',
+      title: 'The playlist that lost count',
+      lessonId: 'j-l20',
+      brief: `<p>A playlist should report its total running time in minutes, added up from a list of track
+        lengths.</p>
+        <p>Right now adding up the tracks crashes.</p>`,
+      goal: `Total: 27 minutes (4 tracks)`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `class Playlist {
+  constructor() {
+    this.minutes = 0;
+    this.trackCount = 0;
+  }
+
+  addTracks(lengths) {
+    lengths.forEach(function (length) {
+      this.minutes = this.minutes + length;
+      this.trackCount = this.trackCount + 1;
+    });
+  }
+
+  summary() {
+    return "Total: " + this.minutes + " minutes (" + this.trackCount + " tracks)";
+  }
+}
+
+const mix = new Playlist();
+mix.addTracks([8, 6, 9, 4]);
+console.log(mix.summary());`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'No unhandled errors', test: c => c.errors.length === 0 },
+        { label: 'Reports the correct total and track count', test: c => c.text.includes('Total: 27 minutes (4 tracks)') }
+      ],
+      hints: [
+        'This crashes on the very first track — read exactly what value the error says is undefined, and where it happens.',
+        'The callback passed to <code>.forEach()</code> is a regular <code>function</code> — what does <code>this</code> refer to inside a plain function called as a bare callback like that? Compare it to <code>addTracks</code> itself, which IS called as <code>mix.addTracks(...)</code>.',
+        'Change the callback to an arrow function, <code>(length) => { ... }</code>. An arrow function keeps the surrounding <code>this</code> — the <code>Playlist</code> instance — instead of getting a <code>this</code> of its own.'
       ]
     }
   ]

@@ -5,7 +5,7 @@ A self-contained web app for teaching HTML, CSS, JavaScript and Python through
 beside its live output, each immediately followed by its own repair job — a
 program that's broken in exactly the way that lesson just taught, subtly, and
 has to be fixed. HTML and CSS are ten lessons each (twenty stages); JavaScript
-and Python are fifteen each (thirty stages), with room to keep growing —
+and Python are twenty each (forty stages), with room to keep growing —
 past the concepts that get their own new lesson, later stages sometimes just
 add another repair scenario against a concept already taught.
 

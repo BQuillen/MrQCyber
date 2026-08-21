@@ -1,5 +1,5 @@
 /* ============================================================
-   Python track — 15 lessons, each followed by its own repair job.
+   Python track — 20 lessons, each followed by its own repair job.
 
    Runs on the built-in interpreter in minipy.js — a real (if partial)
    tree-walking interpreter, not a text diff. Output is stdout, plus a
@@ -1347,6 +1347,384 @@ print(f"Squared: {squared}")`
         'This crashes before it ever gets to announce next year\'s age — read exactly what type of value the crash is complaining about, and where <code>age_text</code> actually came from. Once that is fixed, run it again and the squared number is not a number at all.',
         '<code>input()</code> always hands back a string, never a real number — check every place a value that came from <code>input()</code> gets used in math, not just the first one.',
         'Wrap the result of <code>input()</code> in <code>int(...)</code> the moment you need to do arithmetic with it — <code>age_text + 1</code> fails for the exact reason <code>"Score: " + 47</code> fails elsewhere in this track: you cannot add a string and a number directly. The same rule applies to <code>*</code> between two strings — it does not multiply their numeric value, because they are not numbers yet.'
+      ]
+    },
+
+    /* ═══════════════════ 16 · Nested functions and scope ═══════════════════ */
+
+    {
+      id: 'p-l16',
+      kind: 'teach',
+      title: 'Nested functions and scope',
+      repairId: 'p-d16',
+      concept: `
+        <p>A function can <strong>read</strong> a variable from outside itself freely. But the moment a
+        function <strong>assigns</strong> to a name — even once, even deep inside an <code>if</code> —
+        Python treats that name as local to the whole function, for its entire body. It creates a
+        brand-new variable that shadows the outer one, exactly like <code>var</code> and <code>let</code>
+        can create two separate variables with the same spelling.</p>
+        <p>To genuinely change a variable that lives outside the function, declare it first with
+        <code>global name</code>. That tells Python "this assignment means the real outer variable, not a
+        new local one."</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `status = "idle"
+
+def start_scan():
+    status = "scanning"
+    print("Inside start_scan:", status)
+
+start_scan()
+print("After start_scan:", status)
+
+def start_scan_global():
+    global status
+    status = "scanning"
+    print("Inside start_scan_global:", status)
+
+start_scan_global()
+print("After start_scan_global:", status)`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Delete the <code>global status</code> line from <code>start_scan_global</code> and rerun it — it goes back to only changing its own local copy.',
+        'Add <code>print(status)</code> as the very first line inside <code>start_scan</code>, before the assignment, and run it. Read the error — what does it tell you about when Python decides a name is local?',
+        'Write a third function that also uses <code>global status</code> to set <code>status = "done"</code>, call it last, and check the final value.'
+      ]
+    },
+
+    {
+      id: 'p-d16',
+      kind: 'debug',
+      title: 'The count that would not climb',
+      lessonId: 'p-l16',
+      brief: `<p>Each scan should add one to a running count and remember the most recent result.</p>
+        <p>Right now the count never gets past 1 — even the second scan reports itself as "#1" — and the
+        totals printed at the end never move from where they started.</p>`,
+      goal: `Scan #1: clean
+Scan #2: threat found
+Total scans: 2
+Last result: threat found`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `scan_count = 0
+last_result = "none"
+
+def run_scan(result):
+    scan_count = scan_count + 1
+    last_result = result
+    print(f"Scan #{scan_count}: {result}")
+
+run_scan("clean")
+run_scan("threat found")
+print("Total scans:", scan_count)
+print("Last result:", last_result)`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'First scan reports #1', test: c => c.lines[0] === 'Scan #1: clean' },
+        { label: 'Second scan reports #2', test: c => c.lines[1] === 'Scan #2: threat found' },
+        { label: 'Total scans is correct', test: c => c.text.includes('Total scans: 2') },
+        { label: 'Last result is correct', test: c => c.text.includes('Last result: threat found') },
+        { label: 'Still uses global rather than working around it', test: c => /global\s+scan_count/.test(c.code) }
+      ],
+      hints: [
+        'Both scans print "Scan #1" — even the second one — and the totals at the bottom never move from where they started. Something inside <code>run_scan</code> is not actually reaching the variables declared outside it.',
+        'Add <code>print(scan_count)</code> as the very first line inside <code>run_scan</code>, before anything gets reassigned — it reads <code>0</code> every single time the function runs, no matter how many times you have already called it. What is <code>scan_count</code> being reassigned to inside this function, and what does assigning to a name anywhere inside a function do to every use of that name in the same function?',
+        'Add <code>global scan_count, last_result</code> as the first line inside <code>run_scan</code>. Without it, an assignment anywhere inside a function creates its own local copy of that name — so <code>run_scan</code> was quietly counting inside a version of <code>scan_count</code> that resets back to the outer starting value every time the function is called again, instead of ever changing the real one.'
+      ]
+    },
+
+    /* ═══════════════════ 17 · f-string format specs ═══════════════════ */
+
+    {
+      id: 'p-l17',
+      kind: 'teach',
+      title: 'f-string format specs',
+      repairId: 'p-d17',
+      concept: `
+        <p>A format spec after the colon in an f-string controls how a value is displayed —
+        <code>f"{price:.2f}"</code> was the first one this track covered. There are a few more:</p>
+        <ul>
+          <li><code>{value:&lt;10}</code> — left-align within a field 10 characters wide</li>
+          <li><code>{value:&gt;10}</code> — right-align within a field 10 characters wide</li>
+          <li><code>{value:^10}</code> — center within a field 10 characters wide</li>
+          <li><code>{value:,}</code> — insert thousands separators into a large number</li>
+        </ul>
+        <p>Text usually reads better left-aligned; numbers usually read better right-aligned — lining
+        both up the same way is what makes a printed table actually look like a table.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `name = "Sam"
+score = 7
+
+print(f"{name:<10}|{score:>5}")
+print(f"{'Dev':<10}|{92:>5}")
+
+big_number = 48213
+print(f"{big_number:,}")
+
+label = "OK"
+print(f"[{label:^8}]")`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Change <code>{name:&lt;10}</code> to <code>{name:&gt;10}</code> and watch the padding move from the right side of the name to the left.',
+        'Change the width in <code>{score:&gt;5}</code> to a wider number, like <code>10</code>, and see how much space opens up before it.',
+        'Try <code>{label:^12}</code> with a wider center width and compare how the brackets line up around it.'
+      ]
+    },
+
+    {
+      id: 'p-d17',
+      kind: 'debug',
+      title: 'The table that would not line up',
+      lessonId: 'p-l17',
+      brief: `<p>An inventory table should show each item name left-aligned, its count right-aligned next to
+        it, and a plain whole-number total underneath — no decimals, since nothing here is measured in
+        fractions.</p>
+        <p>Right now the columns drift the wrong way, and the total shows two decimal places it should
+        not have.</p>`,
+      goal: `Firewall        42
+Scanner          7
+Logger         128
+Total: 177`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `items = [("Firewall", 42), ("Scanner", 7), ("Logger", 128)]
+
+for name, count in items:
+    print(f"{name:>12}{count:<6}")
+
+total = 42 + 7 + 128
+print(f"Total: {total:.2f}")`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Firewall row is left-aligned, count right-aligned', test: c => /^Firewall\s+42$/m.test(c.text) },
+        { label: 'Scanner row is left-aligned, count right-aligned', test: c => /^Scanner\s+7$/m.test(c.text) },
+        { label: 'Logger row is left-aligned, count right-aligned', test: c => /^Logger\s+128$/m.test(c.text) },
+        { label: 'Total has no decimal places', test: c => c.text.includes('Total: 177') && !c.text.includes('177.00') }
+      ],
+      hints: [
+        'Every row has the right name and the right number, but the columns do not line up the way a normal table would — the name drifts toward the right side of its column, and the number drifts toward the left. Separately, the total shows two decimal places for a value that was never a decimal in the first place.',
+        'Compare <code>&lt;</code> and <code>&gt;</code> in a format spec — which direction does each one push the text? Try swapping just one of them and watch which way the padding moves. For the total, ask whether <code>total</code> actually needs <code>.2f</code> at all.',
+        '<code>&lt;width</code> left-aligns (padding goes on the right); <code>&gt;width</code> right-aligns (padding goes on the left) — names usually read better left-aligned, numbers usually read better right-aligned, the opposite of what this file does. And <code>.2f</code> forces exactly two decimal places on a value that is already a whole number — drop the format spec entirely, or just print <code>{total}</code> plain.'
+      ]
+    },
+
+    /* ═══════════════════ 18 · Building strings with join() ═══════════════════ */
+
+    {
+      id: 'p-l18',
+      kind: 'teach',
+      title: 'Building strings with join()',
+      repairId: 'p-d18',
+      concept: `
+        <p><code>.join()</code> is the reverse of <code>.split()</code> — instead of breaking a string
+        apart, it glues a list of strings together, with a separator of your choice in between:
+        <code>", ".join(["a", "b", "c"])</code> gives back <code>"a, b, c"</code>.</p>
+        <p>The separator is what you call <code>.join()</code> <em>on</em> — the list you are gluing
+        together is the <strong>argument</strong>, not the other way around. Lists do not have a
+        <code>.join()</code> method at all; strings do.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `tools = ["scanner", "firewall", "logger"]
+
+summary = ", ".join(tools)
+print("Tools:", summary)
+
+digits = ["4", "0", "4"]
+code = "".join(digits)
+print("Code:", code)
+
+csv_line = "Maya,15,cyber club"
+parts = csv_line.split(",")
+rebuilt = ",".join(parts)
+print(rebuilt == csv_line)`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Change the separator in <code>summary = ", ".join(tools)</code> to just <code>"-"</code> and rerun.',
+        'Try calling it backwards — <code>tools.join(", ")</code> — the method on the list instead of the separator, and read the error.',
+        'Add an extra comma onto the end of <code>csv_line</code>, then rerun the equality check at the bottom — does split-then-join still perfectly reconstruct it?'
+      ]
+    },
+
+    {
+      id: 'p-d18',
+      kind: 'debug',
+      title: 'Joined the wrong direction',
+      lessonId: 'p-l18',
+      brief: `<p>A list of tags should print as one comma-separated line, and a list of path parts should
+        print joined by slashes.</p>
+        <p>Right now nothing prints at all.</p>`,
+      goal: `Tags: urgent, reviewed, flagged
+Path: usr/local/bin`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `tags = ["urgent", "reviewed", "flagged"]
+
+summary = tags.join(", ")
+print("Tags:", summary)
+
+path_parts = ["usr", "local", "bin"]
+path = "/".join(path_parts)
+print("Path:", path)`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Tags line reads correctly', test: c => c.text.includes('Tags: urgent, reviewed, flagged') },
+        { label: 'Path line reads correctly', test: c => c.text.includes('Path: usr/local/bin') }
+      ],
+      hints: [
+        'This crashes before printing anything at all — read exactly what kind of object the error says does not have this method.',
+        'Compare this line against the very next <code>.join()</code> call just below it, which already works — what is <code>.join()</code> actually being called ON in each case?',
+        '<code>.join()</code> belongs to the separator string, not the list being joined: <code>separator.join(list)</code>, never <code>list.join(separator)</code>. Swap which side of the dot each one is on.'
+      ]
+    },
+
+    /* ═══════════════════ 19 · Default parameters and keyword arguments ═══════════════════ */
+
+    {
+      id: 'p-l19',
+      kind: 'teach',
+      title: 'Default parameters and keyword arguments',
+      repairId: 'p-d19',
+      concept: `
+        <p>A parameter can have a <strong>default value</strong> — <code>def greet(name,
+        greeting="Hello"):</code> — which makes it optional. Leave it out when calling and Python uses
+        the default; provide one and it overrides it.</p>
+        <p>Calling with <code>name=value</code> — a <strong>keyword argument</strong> — lets you pass
+        arguments by name instead of position, in any order, and lets you skip earlier optional
+        parameters to set only the one you actually want to change.</p>
+        <p>A parameter with no default is still <strong>required</strong>, no matter how you call the
+        function — by position or by name. Leave one out and Python raises a
+        <code>TypeError</code> naming exactly which one is missing.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `def greet(name, greeting="Hello"):
+    print(f"{greeting}, {name}!")
+
+greet("Maya")
+greet("Dev", "Welcome")
+greet(name="Sam", greeting="Hey")
+greet(greeting="Yo", name="Priya")
+
+def scan(target, deep=False, timeout=30):
+    print(f"Scanning {target} (deep={deep}, timeout={timeout})")
+
+scan("server-1")
+scan("server-2", deep=True)
+scan("server-3", timeout=60)`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Call <code>greet("Maya", "Yo")</code> with the greeting passed positionally instead of by name — same result, different style.',
+        'Call <code>scan("server-4", True)</code>, with <code>deep</code> passed positionally — it still works, since position still counts even for a parameter that has a default.',
+        'Add a third parameter to <code>greet</code> with its own default, like <code>punctuation="!"</code>, use it in the message, and call <code>greet("Maya", punctuation="?")</code> — skipping the middle parameter entirely.'
+      ]
+    },
+
+    {
+      id: 'p-d19',
+      kind: 'debug',
+      title: 'The alert that forgot what to say',
+      lessonId: 'p-l19',
+      brief: `<p>The first alert should print once, and the second should print twice, each with the message
+        it was actually given.</p>
+        <p>Right now the second alert crashes.</p>`,
+      goal: `[INFO] Scan complete
+[WARNING] Disk almost full
+[WARNING] Disk almost full`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `def send_alert(message, level="info", repeat=1):
+    for i in range(repeat):
+        print(f"[{level.upper()}] {message}")
+
+send_alert("Scan complete")
+send_alert(level="warning", repeat=2)`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'First alert prints once', test: c => c.lines[0] === '[INFO] Scan complete' },
+        { label: 'Second alert prints twice', test: c => c.lines[1] === '[WARNING] Disk almost full' && c.lines[2] === '[WARNING] Disk almost full' },
+        { label: 'Exactly three lines of output', test: c => c.lines.filter(l => l !== '').length === 3 }
+      ],
+      hints: [
+        'The first alert prints fine. The second one crashes — read exactly which argument the error says is missing, and compare that call against the function\'s own definition.',
+        '<code>level</code> and <code>repeat</code> both have defaults, so they are optional — but does <code>message</code> have one? Every call still has to provide every parameter that does not have a default, whether by position or by name.',
+        'A parameter with no default is required no matter how you call the function. Add <code>message="Disk almost full"</code> (or a value in the right position) to the call that is missing it.'
+      ]
+    },
+
+    /* ═══════════════════ 20 · The counting pattern ═══════════════════ */
+
+    {
+      id: 'p-l20',
+      kind: 'teach',
+      title: 'The counting pattern',
+      repairId: 'p-d20',
+      concept: `
+        <p>A very common job: count how many times each item appears. Start with an empty dictionary,
+        and for each item, look up its <strong>current</strong> count with <code>.get(item, 0)</code> —
+        defaulting to <code>0</code> the first time you see it — then add 1 and store the result back.</p>
+        <p>Without the default, the very first time a brand-new item shows up, looking it up would raise
+        a <code>KeyError</code> before you ever got the chance to start counting it.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `words = ["scan", "block", "scan", "alert", "block", "scan"]
+
+counts = {}
+for word in words:
+    counts[word] = counts.get(word, 0) + 1
+
+print(counts)
+
+for word, n in counts.items():
+    print(f"{word}: {n}")`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Remove the <code>, 0</code> default from <code>.get(word, 0)</code> and run it — read the error the very first time a brand-new word shows up.',
+        'Add a new word to <code>words</code> that does not appear anywhere else, rerun, and check that it shows up in <code>counts</code> with a count of 1.',
+        'Change <code>counts.get(word, 0) + 1</code> to plain <code>counts[word] + 1</code>, dropping <code>.get()</code> entirely, and run it — same kind of error, different word.'
+      ]
+    },
+
+    {
+      id: 'p-d20',
+      kind: 'debug',
+      title: 'The tally that could not start counting',
+      lessonId: 'p-l20',
+      brief: `<p>A vote tally should count up "yes," "no," and "abstain" votes from a list.</p>
+        <p>Right now it crashes on the very first vote.</p>`,
+      goal: `{'yes': 3, 'no': 2, 'abstain': 1}`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `votes = ["yes", "no", "yes", "yes", "abstain", "no"]
+
+tally = {}
+for vote in votes:
+    tally[vote] = tally[vote] + 1
+
+print(tally)`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'The tally counts every vote correctly', test: c => c.text.includes("{'yes': 3, 'no': 2, 'abstain': 1}") },
+        { label: 'Still uses .get() for the running count', test: c => /\.get\(/.test(c.code) }
+      ],
+      hints: [
+        'This crashes on the very first vote — read exactly what the error says is missing, and think about what <code>tally</code> actually contains before the loop even starts.',
+        '<code>tally[vote]</code> demands that the key already exist. Is there anything in this loop that creates a NEW key the first time a particular vote shows up?',
+        'Use <code>tally.get(vote, 0)</code> instead of <code>tally[vote]</code> on the right-hand side — the default of <code>0</code> means a brand-new vote starts counting from zero instead of crashing on a lookup that was never there.'
       ]
     }
   ]
