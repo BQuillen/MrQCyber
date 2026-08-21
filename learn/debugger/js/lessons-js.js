@@ -1,5 +1,5 @@
 /* ============================================================
-   JavaScript track — 10 lessons, each followed by its own repair job.
+   JavaScript track — 15 lessons, each followed by its own repair job.
 
    Every lesson (kind: 'teach') carries a `repairId` pointing at the
    debug stage that breaks the exact thing it just taught, and every
@@ -1138,6 +1138,531 @@ scanButton.addEventListener("click", function () {
         'Open the console before touching anything. The very first line should report how many scans have been logged so far, but it is complaining about a name that was never actually declared — find the exact word being logged and compare it against every variable this file actually declares.',
         'Once the console stops complaining about page load, click "Parse report." If nothing happens at all, the button was never really wired up — check the id the script is searching for against the id on the real element in <code>page.html</code>, the same mismatch from Lesson 5.',
         'With the button responding, click it using the sample text already in the box — it is not valid JSON. <code>JSON.parse</code> throws on exactly this kind of malformed input, and nothing here is catching that throw. This is precisely the situation this lesson describes: wrap only the risky call in <code>try</code>, and use <code>catch</code> to show something reasonable instead of letting the whole handler die.'
+      ]
+    },
+
+    /* ═══════════════════ 11 · Scope: let, const, var ═══════════════════ */
+
+    {
+      id: 'j-l11',
+      kind: 'teach',
+      title: 'Scope: let, const, and var',
+      repairId: 'j-d11',
+      concept: `
+        <p>Every <code>let</code>/<code>const</code> you declare only exists inside the nearest pair of
+        curly braces — an <code>if</code>-block, a loop, a function body. Declare a new <code>let</code>
+        with the same name inside a block and it <strong>shadows</strong> any outer variable of that
+        name: they are two separate variables that happen to share a spelling. The inner one disappears
+        the moment the block ends; the outer one is never touched.</p>
+        <p><code>var</code> does not work that way. It ignores block boundaries entirely and only cares
+        about the nearest <em>function</em> — which means a <code>var</code> buried inside an
+        <code>if</code>-block is really the same variable as one declared anywhere else in that same
+        function, reassigning it instead of shadowing it. There is a sharper version of this:
+        <code>var</code> declarations are hoisted to the top of their function before the function runs,
+        so that shared variable already exists (holding <code>undefined</code>) from the very first
+        line — even before the block that declares it has run. <code>let</code>/<code>const</code> don't
+        do this; using one before its declaration line throws immediately instead of silently handing
+        you <code>undefined</code>.</p>
+        <p><code>const</code> blocks <em>reassigning</em> the variable itself — the box is sealed shut.
+        It does not freeze what's inside: an array or object held by a <code>const</code> can still be
+        changed in place with <code>.push()</code>, <code>.pop()</code>, or by setting a property.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function classify(score) {
+  let label = "fail";
+  if (score >= 60) {
+    let label = "pass";
+    console.log("Inside the if:", label);
+  }
+  return label;
+}
+
+console.log(classify(75));   // "fail" -- the outer label was never touched
+console.log(classify(40));
+
+// var does not respect block scope the way let does
+function classifyOld(score) {
+  var label = "fail";
+  if (score >= 60) {
+    var label = "pass";
+  }
+  return label;
+}
+console.log(classifyOld(75)); // "pass" -- same variable, reassigned
+
+const roster = ["Maya", "Dev"];
+roster.push("Sam");   // fine -- push changes the array in place
+console.log(roster);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Change the inner <code>let label = "pass";</code> to just <code>label = "pass";</code> (delete the word <code>let</code>) and run <code>classify(75)</code> again — now it reassigns the OUTER label instead of shadowing it.',
+        'Add <code>roster = [];</code> as a new line right after the <code>.push()</code> call and run it. Read what the browser calls this.',
+        'In <code>classifyOld</code>, delete the inner <code>var label = "pass";</code> entirely and run <code>classifyOld(75)</code> again — with nothing left to reassign, what does it return now?'
+      ]
+    },
+
+    {
+      id: 'j-d11',
+      kind: 'debug',
+      title: 'The flag that started out wrong',
+      lessonId: 'j-l11',
+      brief: `<p>A folder scan should announce the flag it inherited before scanning, add up the file sizes,
+        then report whether the folder is now flagged.</p>
+        <p>Right now the very first line prints something other than the flag it started with. Fix that,
+        run it again, and a completely unrelated line further down crashes.</p>`,
+      goal: `Previous flag: false
+Total size: 550
+Flagged: true
+["scan complete"]`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function scanFolder(files) {
+  console.log("Previous flag:", flagged);
+  var total = 0;
+
+  for (var i = 0; i < files.length; i++) {
+    total = total + files[i].size;
+  }
+
+  if (total > 500) {
+    var flagged = true;
+  }
+
+  console.log("Total size:", total);
+  return flagged;
+}
+
+let flagged = false;
+const files = [{ size: 200 }, { size: 350 }];
+console.log("Flagged:", scanFolder(files));
+
+const log = [];
+log = log.concat("scan complete");
+console.log(log);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'Reports the flag it started with', test: c => c.lines[0] === 'Previous flag: false' },
+        { label: 'Total size adds up correctly', test: c => c.text.includes('Total size: 550') },
+        { label: 'Reports flagged as true afterward', test: c => c.text.includes('Flagged: true') },
+        { label: 'The scan log records the entry', test: c => c.text.includes('["scan complete"]') },
+        { label: 'No unhandled errors', test: c => c.errors.length === 0 }
+      ],
+      hints: [
+        'Two separate things are wrong here: the very first line does not print the value <code>flagged</code> actually held before the function ran, and the program stops partway through instead of finishing.',
+        'Inside <code>scanFolder</code>, that first <code>console.log</code> is trying to read the outer <code>flagged</code> — but is there a variable named <code>flagged</code> declared anywhere else inside this same function? Where a <code>var</code> is declared inside a function decides what any earlier line in that same function actually sees. Separately, look at what happens when code tries to reassign something declared with <code>const</code>.',
+        '<code>var flagged</code> anywhere inside <code>scanFolder</code> makes <code>flagged</code> a variable local to the whole function, from its very first line — shadowing the outer one for the entire call, not just from that line downward. Change it to a plain reassignment (no <code>var</code>) and it correctly reaches out to the outer <code>let flagged</code> instead. And a <code>const</code> can be mutated in place (<code>.push()</code>, <code>.concat()</code> assigned back to a new variable) but never reassigned — either switch <code>log</code> to <code>let</code>, or build the new array with <code>.push()</code> instead of reassigning.'
+      ]
+    },
+
+    /* ═══════════════════ 12 · switch and the ternary operator ═══════════════════ */
+
+    {
+      id: 'j-l12',
+      kind: 'teach',
+      title: 'switch and the ternary operator',
+      repairId: 'j-d12',
+      concept: `
+        <p>A <code>switch</code> checks one value against several possible matches without a chain of
+        <code>if</code>/<code>else if</code>. Each <code>case</code> needs its own <code>break</code> —
+        without one, execution does not stop at the matching case, it <strong>falls through</strong> and
+        keeps running every case below it, in order, until it hits a <code>break</code> or reaches the
+        end of the <code>switch</code>.</p>
+        <p><code>switch (true)</code> is a common trick for matching a <em>range</em> instead of an exact
+        value: each <code>case</code> becomes a condition, and the first one that evaluates to
+        <code>true</code> wins.</p>
+        <p>The <strong>ternary operator</strong> — <code>condition ? ifTrue : ifFalse</code> — is a
+        compact <code>if</code>/<code>else</code> that produces a <em>value</em> instead of running a
+        block of statements, which makes it useful for picking between two things in the middle of an
+        expression.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function badgeColor(role) {
+  let color;
+  switch (role) {
+    case "admin":
+      color = "gold";
+      break;
+    case "staff":
+      color = "blue";
+      break;
+    default:
+      color = "gray";
+  }
+  return color;
+}
+
+console.log(badgeColor("admin"));
+console.log(badgeColor("staff"));
+console.log(badgeColor("guest"));
+
+function threatLevel(score) {
+  switch (true) {
+    case score >= 90:
+      return "critical";
+    case score >= 70:
+      return "high";
+    default:
+      return "low";
+  }
+}
+console.log(threatLevel(95));
+
+const count = 3;
+const label = count === 1 ? "1 alert" : count + " alerts";
+console.log(label);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Remove the <code>break;</code> right after <code>color = "gold";</code> and call <code>badgeColor("admin")</code> again — read what color comes back and think through why.',
+        'Change <code>count</code> to <code>1</code> and rerun — the ternary picks the other branch.',
+        'Add a new <code>case "guest":</code> above <code>default</code> in <code>badgeColor</code> that sets <code>color = "green";</code>, but leave off its <code>break;</code>. Call <code>badgeColor("guest")</code> and read what actually comes back.'
+      ]
+    },
+
+    {
+      id: 'j-d12',
+      kind: 'debug',
+      title: 'Every alert comes back red',
+      lessonId: 'j-l12',
+      brief: `<p>A minor incident (fewer than 5 alerts) should show up yellow, and only a severe one (15 or
+        more) should show up red — with a plain-language summary underneath.</p>
+        <p>Right now the minor incident shows up red too, the exact same color as severe.</p>`,
+      goal: `minor -> yellow
+severe -> red
+no action needed`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function alertLabel(count) {
+  switch (true) {
+    case count === 0:
+      return "all clear";
+    case count < 5:
+      return "minor";
+    case count < 15:
+      return "moderate";
+    default:
+      return "severe";
+  }
+}
+
+function statusColor(level) {
+  let color;
+  switch (level) {
+    case "minor":
+      color = "yellow";
+    case "moderate":
+      color = "orange";
+    case "severe":
+      color = "red";
+      break;
+    default:
+      color = "green";
+  }
+  return color;
+}
+
+console.log(alertLabel(2), "->", statusColor(alertLabel(2)));
+console.log(alertLabel(20), "->", statusColor(alertLabel(20)));
+
+const summary = alertLabel(0) === "all clear" ? "no action needed" : "review required";
+console.log(summary);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'A minor incident shows up yellow', test: c => c.text.includes('minor -> yellow') },
+        { label: 'A severe incident still shows up red', test: c => c.text.includes('severe -> red') },
+        { label: 'The all-clear summary still reads correctly', test: c => c.text.includes('no action needed') },
+        { label: 'Still built with a switch, not rewritten as if/else', test: c => /switch/.test(c.code) }
+      ],
+      hints: [
+        'Two of the three color lookups happen to land on the right answer, and one does not — read <code>statusColor</code> case by case for whichever level came out wrong, and watch what runs right after its matching case.',
+        'Add a <code>console.log</code> as the very first line inside <code>statusColor</code>, logging <code>level</code>. Then step through the cases by hand: once the matching case is found, does the function stop there, or does it keep running the cases underneath it too?',
+        'A <code>case</code> with no <code>break</code> falls through into the next one, and keeps falling until it finds a <code>break</code> — which here is only at the very bottom, on <code>"severe"</code>. Every case that should stand on its own needs its own <code>break</code>, not just the last one.'
+      ]
+    },
+
+    /* ═══════════════════ 13 · More array methods ═══════════════════ */
+
+    {
+      id: 'j-l13',
+      kind: 'teach',
+      title: 'Reduce, sort, find, some, and every',
+      repairId: 'j-d13',
+      concept: `
+        <p><code>.reduce((acc, item) => ..., start)</code> walks the array and builds up a single value —
+        a running total, a maximum, anything — by combining each item into an <strong>accumulator</strong>
+        that carries forward from one call to the next, starting from the value you give it.</p>
+        <p><code>.sort()</code> reorders the array <strong>in place</strong> — unlike <code>.map()</code>
+        and <code>.filter()</code>, it changes the original. With no arguments it compares elements as
+        <em>text</em>, which sorts numbers in a strange order (<code>10</code> comes before <code>2</code>,
+        because <code>"10"</code> comes before <code>"2"</code> alphabetically). Give it a compare
+        function, <code>(a, b) => a - b</code>, to sort numbers correctly.</p>
+        <p><code>.find(fn)</code> returns the first item where <code>fn</code> is true — or
+        <code>undefined</code> if none match. <code>.some(fn)</code> and <code>.every(fn)</code> answer a
+        yes-or-no question about the whole array, returning an actual <code>true</code>/<code>false</code>
+        instead of an item.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const scores = [88, 45, 92, 55, 78];
+
+const total = scores.reduce(function (sum, score) {
+  return sum + score;
+}, 0);
+console.log("Total:", total);
+
+const sorted = [...scores].sort(function (a, b) {
+  return a - b;
+});
+console.log("Sorted:", sorted.join(", "));
+console.log("Original untouched:", scores.join(", "));
+
+const firstFail = scores.find(function (score) {
+  return score < 60;
+});
+console.log("First failing score:", firstFail);
+
+console.log("Any failing?", scores.some(function (score) { return score < 60; }));
+console.log("All passing?", scores.every(function (score) { return score >= 60; }));`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Change <code>.sort(function (a, b) { return a - b; })</code> to plain <code>.sort()</code> with no compare function, and log <code>sorted</code> again — watch the numeric order break.',
+        'Remove the <code>[...scores]</code> copy and call <code>.sort()</code> directly on <code>scores</code> itself, then log <code>scores</code> afterward — see that it changed the original.',
+        'Change <code>firstFail</code>\'s condition to <code>score < 30</code> — nothing in the list is that low, so <code>.find()</code> returns <code>undefined</code>.'
+      ]
+    },
+
+    {
+      id: 'j-d13',
+      kind: 'debug',
+      title: 'The leaderboard sorted wrong',
+      lessonId: 'j-l13',
+      brief: `<p>A leaderboard should rank scores from lowest to highest, and separately report whether a
+        perfect score of 100 is anywhere in the list.</p>
+        <p>Right now the ranking is nowhere close to sorted, and the perfect-score line prints a number
+        where it should print <code>true</code> or <code>false</code>.</p>`,
+      goal: `Ranked: 3, 7, 25, 42, 100
+Has a perfect score: true`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const scores = [7, 25, 3, 100, 42];
+
+const ranked = scores.sort();
+console.log("Ranked:", ranked.join(", "));
+
+const hasPerfect = scores.find(function (score) {
+  return score === 100;
+});
+console.log("Has a perfect score:", hasPerfect);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'Ranked smallest to largest, numerically', test: c => c.text.includes('Ranked: 3, 7, 25, 42, 100') },
+        { label: 'Reports a real true/false, not a score', test: c => c.text.includes('Has a perfect score: true') },
+        { label: 'Still uses .sort() with a compare function', test: c => /\.sort\(\s*(function|\([^)]*\)\s*=>|\w+\s*=>)/.test(c.code) },
+        { label: 'Uses .some() for the yes/no question', test: c => /\.some\(/.test(c.code) }
+      ],
+      hints: [
+        'Two things read wrong: the "ranked" order is not actually smallest-to-largest once you check it by hand, and the perfect-score line prints a number instead of <code>true</code> or <code>false</code>.',
+        'Log <code>ranked</code> right after sorting and compare it against the original numbers sorted by hand — is <code>100</code> really the biggest one here, or did it get treated like text? Separately, look at what <code>.find()</code> hands back when something matches — is that the same shape of value as <code>true</code>?',
+        '<code>.sort()</code> with no function compares elements as text, not numbers — always pass a compare function like <code>(a, b) => a - b</code> when sorting numbers. And <code>.find()</code> returns the matching item itself (or <code>undefined</code>), not a boolean — for a plain yes/no answer, <code>.some()</code> is the method that actually returns one.'
+      ]
+    },
+
+    /* ═══════════════════ 14 · Destructuring and spread ═══════════════════ */
+
+    {
+      id: 'j-l14',
+      kind: 'teach',
+      title: 'Destructuring and the spread operator',
+      repairId: 'j-d14',
+      concept: `
+        <p><strong>Destructuring</strong> pulls values out of an object or array into their own named
+        variables in one line: <code>const { name, grade } = student;</code> reads properties by name;
+        <code>const [first, second] = list;</code> reads by position. Ask for a property that does not
+        exist and you get <code>undefined</code> back — quietly, with no error.</p>
+        <p>The <strong>spread operator</strong> (<code>...</code>) unpacks a collection where several
+        individual values are expected. Spreading objects together into one, <code>{ ...a, ...b }</code>,
+        copies every property from both — and when two spreads list the <em>same</em> key, the
+        <strong>later</strong> one wins, overwriting whatever came before it.</p>
+        <p><strong>Rest</strong> is the same three dots used the other direction: <code>...rest</code> in
+        a destructuring pattern, or a function's parameter list, gathers up "everything left over" into
+        one array.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const student = { name: "Maya", grade: 10, scores: [88, 92, 79] };
+
+const { name, grade } = student;
+console.log(name, "is in grade", grade);
+
+const [first, second, ...rest] = student.scores;
+console.log("First two:", first, second);
+console.log("Rest:", rest.join(", "));
+
+const updated = { ...student, grade: 11 };
+console.log("Original grade:", student.grade);
+console.log("Updated grade:", updated.grade);
+
+function total(...nums) {
+  return nums.reduce(function (sum, n) { return sum + n; }, 0);
+}
+console.log(total(1, 2, 3, 4));`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Destructure a property that does not exist on <code>student</code>, like <code>const { age } = student;</code>, then log <code>age</code> — no error, just a value that means "not found."',
+        'Change <code>const [first, second, ...rest]</code> to only take <code>const [first, ...rest]</code> and log <code>rest</code> again — one more item lands in it.',
+        'In <code>updated</code>, change <code>{ ...student, grade: 11 }</code> to <code>{ grade: 11, ...student }</code> — put the spread AFTER the override — and see which grade wins.'
+      ]
+    },
+
+    {
+      id: 'j-d14',
+      kind: 'debug',
+      title: 'The preference that would not stick',
+      lessonId: 'j-l14',
+      brief: `<p>A settings object should start from the defaults, then apply whatever the user actually
+        chose on top. A profile lookup should greet the signed-in user by name.</p>
+        <p>Right now the user's chosen font size is being ignored in favor of the default, and the login
+        greeting is missing a name entirely.</p>`,
+      goal: `Font size: 18
+Theme: dark
+Logged in as: mquinn - member`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `const defaults = { theme: "dark", fontSize: 14, sound: true };
+const userPrefs = { fontSize: 18 };
+
+const settings = { ...userPrefs, ...defaults };
+console.log("Font size:", settings.fontSize);
+console.log("Theme:", settings.theme);
+
+const profile = { username: "mquinn", role: "member" };
+const { user, role } = profile;
+console.log("Logged in as:", user, "-", role);`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'Keeps the font size the user actually chose', test: c => c.text.includes('Font size: 18') },
+        { label: 'Theme still comes from the defaults', test: c => c.text.includes('Theme: dark') },
+        { label: 'Login line includes the username', test: c => c.text.includes('Logged in as: mquinn - member') },
+        { label: 'Nothing prints as undefined', test: c => !c.text.includes('undefined') },
+        { label: 'Still built with spread, not written out property by property', test: c => /\.\.\./.test(c.code) }
+      ],
+      hints: [
+        'Two separate values come back wrong: the font size ends up as the default instead of what the user actually picked, and the login line is missing a name it should clearly have.',
+        'Log <code>settings</code> as a whole and compare it against <code>defaults</code> and <code>userPrefs</code> side by side — when two spreads list the same key, which one actually wins, the first or the last? For the login line, log <code>profile</code> by itself and compare its real key names against what is being pulled out of it.',
+        'When you spread multiple objects into one, keys from LATER spreads overwrite keys from earlier ones — the object meant to win should be spread last. And destructuring only pulls out a value if the name matches exactly: <code>const { user }</code> from an object that actually has <code>username</code> (not <code>user</code>) gives you <code>undefined</code>, not an error.'
+      ]
+    },
+
+    /* ═══════════════════ 15 · Closures ═══════════════════ */
+
+    {
+      id: 'j-l15',
+      kind: 'teach',
+      title: 'Closures',
+      repairId: 'j-d15',
+      concept: `
+        <p>A function defined inside another function <strong>remembers</strong> the variables from where
+        it was <em>defined</em>, not from where it happens to get called later — even after the outer
+        function has already finished running. That remembered connection is a
+        <strong>closure</strong>.</p>
+        <p>Each call to the outer function creates a brand-new, completely independent set of those
+        variables. Two counters built from the same "counter factory" function do not share state —
+        each one remembers its own.</p>
+        <p>This has a sharp edge inside loops: a function created during each pass of a loop closes over
+        whichever variable the loop used — and if that variable is a single shared <code>var</code>
+        rather than a fresh <code>let</code> for each pass, every one of those functions ends up
+        remembering the exact same final value.</p>`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function makeCounter() {
+  let count = 0;
+  return function () {
+    count = count + 1;
+    return count;
+  };
+}
+
+const counterA = makeCounter();
+console.log(counterA());
+console.log(counterA());
+console.log(counterA());
+
+const counterB = makeCounter();
+console.log(counterB());
+
+function makeGreeter(name) {
+  return function () {
+    console.log("Hello, " + name + "!");
+  };
+}
+
+const greetMaya = makeGreeter("Maya");
+const greetDev = makeGreeter("Dev");
+greetMaya();
+greetDev();`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      tryIt: [
+        'Call <code>counterA()</code> two more times before calling <code>counterB()</code> for the first time — does calling counterA change what counterB starts at?',
+        'Add a second inner function inside <code>makeCounter</code>, <code>function reset() { count = 0; }</code>, and return both as an object <code>{ increment: ..., reset: ... }</code> — see how both share the exact same <code>count</code>.',
+        'Rewrite <code>makeGreeter</code> to take no parameter at all, and have its inner function use a variable named <code>name</code> defined outside <code>makeGreeter</code> entirely — see whether both greeters now say the same name.'
+      ]
+    },
+
+    {
+      id: 'j-d15',
+      kind: 'debug',
+      title: 'Every button remembers the same one',
+      lessonId: 'j-l15',
+      brief: `<p>Three buttons are built from three labels, and clicking each one should announce its own
+        label — "Scan", then "Report", then "Reset".</p>
+        <p>Right now clicking any of them announces something that does not even exist on the list.</p>`,
+      goal: `Clicked: Scan
+Clicked: Report
+Clicked: Reset`,
+      files: [{
+        name: 'script.js', lang: 'js', editable: true,
+        code: `function makeButtons(labels) {
+  const handlers = [];
+  for (var i = 0; i < labels.length; i++) {
+    handlers.push(function () {
+      console.log("Clicked:", labels[i]);
+    });
+  }
+  return handlers;
+}
+
+const clicks = makeButtons(["Scan", "Report", "Reset"]);
+clicks[0]();
+clicks[1]();
+clicks[2]();`
+      }],
+      runMode: 'compose',
+      outputMode: 'console',
+      checks: [
+        { label: 'First click announces "Scan"', test: c => c.lines[0] === 'Clicked: Scan' },
+        { label: 'Second click announces "Report"', test: c => c.lines[1] === 'Clicked: Report' },
+        { label: 'Third click announces "Reset"', test: c => c.lines[2] === 'Clicked: Reset' },
+        { label: 'Nothing prints as undefined', test: c => !c.text.includes('undefined') }
+      ],
+      hints: [
+        'All three clicks should announce a different label — but check what actually prints for each one. Are any two of them the same? All three?',
+        'Add <code>console.log(i)</code> right before <code>handlers.push(...)</code>, inside the loop — those numbers look correct as the loop runs. Now add a <code>console.log(i)</code> INSIDE one of the pushed functions instead, and call it after the loop has already finished. Same number every time?',
+        'This is the same rule from the scope lesson: <code>var</code> in a <code>for</code> loop is one single variable, shared by every function created inside that loop — by the time any of them actually runs, the loop has already finished, and <code>i</code> holds its final value. <code>let</code> in a <code>for</code> loop header is special-cased to give each pass through the loop its own separate variable, which is exactly what each closure needs to remember its own value.'
       ]
     }
   ]

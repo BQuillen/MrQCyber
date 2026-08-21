@@ -1,5 +1,5 @@
 /* ============================================================
-   Python track — 10 lessons, each followed by its own repair job.
+   Python track — 15 lessons, each followed by its own repair job.
 
    Runs on the built-in interpreter in minipy.js — a real (if partial)
    tree-walking interpreter, not a text diff. Output is stdout, plus a
@@ -919,6 +919,434 @@ print(f"Team total: {total}")`
         'It crashes immediately, before printing anything — on a dictionary lookup. Compare that key to how the dictionaries were actually built above. Once that is fixed and you run it again, notice how the very same line just keeps repeating, forever.',
         'The loop\'s variable is used to reach into the list, but scan the whole <code>while</code> block for any line that actually changes it — there isn\'t one. Add that, run it again, and a third problem appears right as the last member should print.',
         'Three separate rules, each from earlier in this track: a dictionary key has to match exactly how it was written; a <code>while</code> loop needs something in its body that moves its condition toward becoming false; and a three-item list\'s valid positions are only 0, 1, and 2 — so a loop condition that allows one position beyond that will always run one step too far.'
+      ]
+    },
+
+    /* ═══════════════════ 11 · enumerate() and zip() ═══════════════════ */
+
+    {
+      id: 'p-l11',
+      kind: 'teach',
+      title: 'enumerate() and zip()',
+      repairId: 'p-d11',
+      concept: `
+        <p><code>enumerate(list)</code> walks a list and hands back <strong>both</strong> the position and
+        the value together, as a pair you can unpack right in the loop:
+        <code>for i, item in enumerate(items):</code>. Add a second argument to start counting somewhere
+        other than 0: <code>enumerate(items, start=1)</code> — handy the moment you want to show people a
+        1-based count instead of a 0-based index.</p>
+        <p><code>zip(listA, listB)</code> walks two (or more) lists side by side, pairing up the item at
+        each matching position. It stops the moment the <strong>shortest</strong> list runs out — extra
+        items in a longer list are simply never reached. No error, nothing printed for them. If two lists
+        are supposed to line up one-to-one, a length mismatch is a sign something is missing from your
+        data, not a signal <code>zip()</code> will ever give you itself.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `tools = ["scanner", "firewall", "logger"]
+
+for i, tool in enumerate(tools):
+    print(i, "-", tool)
+
+for i, tool in enumerate(tools, start=1):
+    print(f"Step {i}: {tool}")
+
+names = ["Maya", "Dev", "Sam"]
+scores = [92, 81, 75]
+
+for name, score in zip(names, scores):
+    print(f"{name} scored {score}")
+
+extra_names = ["Maya", "Dev", "Sam", "Priya"]
+for name, score in zip(extra_names, scores):
+    print(name, score)`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Change the first <code>enumerate(tools)</code> to <code>enumerate(tools, start=1)</code> and compare its numbers against the second loop, which already starts at 1.',
+        'Add a fourth score to <code>scores</code> so it is longer than <code>names</code>, then rerun the <code>zip(names, scores)</code> loop — see which list actually controls how many pairs come out.',
+        'Change <code>extra_names</code> back to exactly three names matching <code>scores</code> — watch "Priya" disappear from the plan entirely, with nothing printed to say she was dropped.'
+      ]
+    },
+
+    {
+      id: 'p-d11',
+      kind: 'debug',
+      title: 'The roster and the reality do not match',
+      lessonId: 'p-l11',
+      brief: `<p>A four-person roster should print as a numbered list, 1 through 4, followed by each
+        person's score.</p>
+        <p>Right now the numbering starts one lower than it should, and the score report is missing the
+        last person on the roster entirely.</p>`,
+      goal: `1. Maya
+2. Dev
+3. Sam
+4. Priya
+Maya: 92
+Dev: 81
+Sam: 75
+Priya: 88`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `names = ["Maya", "Dev", "Sam", "Priya"]
+scores = [92, 81, 75]
+
+for i, name in enumerate(names):
+    print(f"{i}. {name}")
+
+for name, score in zip(names, scores):
+    print(f"{name}: {score}")`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Numbering starts at 1', test: c => c.lines[0] === '1. Maya' },
+        { label: 'Numbering reaches 4 for the last person', test: c => c.lines[3] === '4. Priya' },
+        { label: 'Priya appears in the score report', test: c => c.text.includes('Priya: 88') },
+        { label: 'Exactly eight lines of output', test: c => c.lines.filter(l => l !== '').length === 8 }
+      ],
+      hints: [
+        'The numbered roster starts one number lower than it should. Separately, the score report ends up one name shorter than the roster printed just above it — two different problems, from two different causes.',
+        'For the numbering, check what number <code>enumerate</code> starts counting from by default, and compare that to what actually prints. For the score report, print <code>len(names)</code> and <code>len(scores)</code> right before that loop and compare them.',
+        '<code>enumerate(names, start=1)</code> begins counting at 1 instead of 0. And <code>zip()</code> silently stops at the shortest list with no warning at all — Priya is missing from the score report because <code>scores</code> genuinely only has three numbers in it. Give her one and <code>zip()</code> will include her.'
+      ]
+    },
+
+    /* ═══════════════════ 12 · Sorting without disturbing the original ═══════════════════ */
+
+    {
+      id: 'p-l12',
+      kind: 'teach',
+      title: 'sorted(), .sort(), and reversed()',
+      repairId: 'p-d12',
+      concept: `
+        <p><code>sorted(list)</code> returns a <strong>brand-new</strong> list in order — the original is
+        never touched. <code>.sort()</code> is a <em>list method</em> that reorders the list
+        <strong>in place</strong> and hands back <code>None</code> — assigning the result of
+        <code>.sort()</code> to a variable gives you <code>None</code>, not the sorted list.</p>
+        <p>Both accept <code>reverse=True</code> to sort largest-to-smallest instead of
+        smallest-to-largest.</p>
+        <p><code>reversed(list)</code> does not sort anything at all — it just walks the list back to
+        front, whatever order it was already in.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `scores = [55, 92, 78, 40, 88]
+
+ranked = sorted(scores)
+print("Ranked:", ranked)
+print("Original:", scores)
+
+top_first = sorted(scores, reverse=True)
+print("Highest first:", top_first)
+
+scores.sort()
+print("After .sort():", scores)
+
+names = ["Priya", "Dev", "Maya"]
+print("Reversed:", list(reversed(names)))`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Add <code>reverse=True</code> directly onto <code>scores.sort()</code> — the parentheses go on <code>.sort()</code> itself, not on a separate <code>sorted()</code> call.',
+        'Try <code>print(scores.sort())</code> on its own line — <code>.sort()</code> hands back <code>None</code>, not the sorted list.',
+        'Change <code>names</code> to five names instead of three, and reverse them again — no length limit to worry about.'
+      ]
+    },
+
+    {
+      id: 'p-d12',
+      kind: 'debug',
+      title: 'The podium has the wrong three names',
+      lessonId: 'p-l12',
+      brief: `<p>A ranked list should print the scores lowest to highest, and a separate line should name
+        the top three scores, highest first.</p>
+        <p>Right now the ranked line prints something that is not a list of scores at all, and the "top
+        three" turns out to be the three lowest scores instead of the three highest.</p>`,
+      goal: `Ranked: [60, 70, 85, 95]
+Lowest to highest: [60, 70, 85, 95]
+Top three: 95 85 70`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `scores = [70, 95, 60, 85]
+
+ranked = scores.sort()
+print("Ranked:", ranked)
+
+lowest_first = sorted(scores)
+print("Lowest to highest:", lowest_first)
+
+podium = sorted(scores, reverse=False)
+print("Top three:", podium[0], podium[1], podium[2])`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Ranked prints the actual sorted list', test: c => c.text.includes('Ranked: [60, 70, 85, 95]') },
+        { label: 'Lowest to highest is correct', test: c => c.text.includes('Lowest to highest: [60, 70, 85, 95]') },
+        { label: 'Top three are the three highest scores, in order', test: c => c.text.includes('Top three: 95 85 70') },
+        { label: 'Nothing prints as None', test: c => !c.text.includes('None') },
+        { label: 'Still built with sorted(), not hardcoded', test: c => (c.code.match(/sorted\(/g) || []).length >= 2 }
+      ],
+      hints: [
+        'The first line does not print a ranked list at all — read exactly what it says instead. The "Top three" line does print three real scores, but they are not the three highest in the list.',
+        'Check what <code>.sort()</code> actually returns by itself — is it the sorted list, or something else entirely? Separately, print <code>podium</code> on its own line before picking out positions 0 through 2 — is the highest score at the front of that list, or the back?',
+        '<code>.sort()</code> reorders a list in place and hands back <code>None</code> — to get a variable holding the sorted list, use <code>sorted(list)</code> instead. And <code>reverse=True</code> is what puts the biggest values first; <code>reverse=False</code> (or leaving it off) sorts smallest first.'
+      ]
+    },
+
+    /* ═══════════════════ 13 · Recursion ═══════════════════ */
+
+    {
+      id: 'p-l13',
+      kind: 'teach',
+      title: 'Recursion',
+      repairId: 'p-d13',
+      concept: `
+        <p>A <strong>recursive</strong> function calls <em>itself</em>, working on a smaller piece of the
+        problem each time, until it reaches a <strong>base case</strong> — small enough to answer
+        directly, with no further call to itself.</p>
+        <p>Every recursive function needs two things: a base case that stops the recursion, and a
+        recursive case that makes real progress toward that base case on every single call. Skip the base
+        case, or never actually shrink the problem, and the function calls itself forever — until this
+        interpreter gives up and reports the program never finished.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `def countdown(n):
+    if n <= 0:
+        print("Liftoff!")
+        return
+    print(n)
+    countdown(n - 1)
+
+countdown(3)
+
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print("5! =", factorial(5))
+
+def sum_to(n):
+    if n == 0:
+        return 0
+    return n + sum_to(n - 1)
+
+print("Sum 1-10:", sum_to(10))`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Remove the <code>if n <= 0: ... return</code> base case from <code>countdown</code> entirely and run it — read what this interpreter says about a program that never finishes.',
+        'Change <code>factorial(5)</code> to <code>factorial(0)</code> — does the base case handle it correctly?',
+        'Trace <code>sum_to(3)</code> by hand before running it: what does each call return, and what adds up to what?'
+      ]
+    },
+
+    {
+      id: 'p-d13',
+      kind: 'debug',
+      title: 'One step too far, and one that never lands',
+      lessonId: 'p-l13',
+      brief: `<p>Counting down by 3 from 10 should print 10, 7, 4, 1 and then stop. Separately, the digit sum
+        of 194 should add up to 14.</p>
+        <p>Right now the countdown prints one value past where it should ever go, and the digit sum
+        either runs long or comes out wrong.</p>`,
+      goal: `10
+7
+4
+1
+Digit sum of 194: 14`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `def count_down_by(n, step):
+    print(n)
+    if n <= 0:
+        return
+    count_down_by(n - step, step)
+
+count_down_by(10, 3)
+
+def digit_sum(n):
+    if n < 10:
+        return n
+    return n % 10 + digit_sum(n / 10)
+
+print("Digit sum of 194:", digit_sum(194))`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Counts down 10, 7, 4, 1', test: c => c.lines[0] === '10' && c.lines[1] === '7' && c.lines[2] === '4' && c.lines[3] === '1' },
+        { label: 'Stops right at 1 -- no negative number printed', test: c => !c.lines.some(l => l.trim().startsWith('-')) },
+        { label: 'Digit sum of 194 is 14', test: c => c.lines.filter(l => l !== '').pop() === 'Digit sum of 194: 14' },
+        { label: 'Still recursive, not unrolled by hand', test: c => (c.code.match(/count_down_by\(/g) || []).length >= 2 && (c.code.match(/digit_sum\(/g) || []).length >= 2 }
+      ],
+      hints: [
+        '<code>count_down_by</code> prints one value too many, ending on a negative number it should never reach. Separately, <code>digit_sum</code> either runs for a very long time or lands on the wrong total — trace what kind of number <code>n</code> becomes after the very first recursive call.',
+        'For the countdown, check the order of operations: does it test whether to stop <em>before</em> or <em>after</em> it prints? For the digit sum, print <code>n</code> right after computing <code>n / 10</code> the first time — is it still a whole number the way <code>194</code> was?',
+        'A base-case check has to run before the action that should not happen once the base case is true — check first, then act, not the other way around. And <code>/</code> in Python always produces a float, even when both sides are whole numbers — recursion meant to shrink toward a whole-number base case needs <code>//</code> instead, which floors the result back down to an int.'
+      ]
+    },
+
+    /* ═══════════════════ 14 · More list methods ═══════════════════ */
+
+    {
+      id: 'p-l14',
+      kind: 'teach',
+      title: 'insert, remove, pop, count, and index',
+      repairId: 'p-d14',
+      concept: `
+        <p><code>.insert(position, value)</code> puts a new value at a specific position, shifting
+        everything after it down. <code>.remove(value)</code> deletes the <strong>first</strong> match of
+        that value — and raises a <code>ValueError</code> if the value is not in the list at all.</p>
+        <p><code>.pop(position)</code> deletes <strong>and returns</strong> whatever was at that position
+        — with no argument, it takes the last item. <code>.remove()</code> takes a <em>value</em> and
+        gives nothing back; <code>.pop()</code> takes a <em>position</em> and hands back the item it
+        removed. Mixing the two up — passing a value where a position is expected — raises an error.</p>
+        <p><code>.count(value)</code> tells you how many times a value appears. <code>.index(value)</code>
+        tells you the position of its <strong>first</strong> appearance. They answer different questions,
+        even though both take the same kind of argument.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `queue = ["scan-1", "scan-2", "scan-3"]
+
+queue.insert(0, "scan-urgent")
+print("Queue:", queue)
+
+queue.remove("scan-2")
+print("After remove:", queue)
+
+next_job = queue.pop(0)
+print("Now running:", next_job)
+print("Remaining:", queue)
+
+history = ["ok", "fail", "ok", "ok", "fail"]
+print("Fail count:", history.count("fail"))
+print("First fail at position:", history.index("fail"))`
+      }],
+      runMode: 'python',
+      tryIt: [
+        'Call <code>queue.remove("scan-9")</code> for a job that is not in the list, and read the error this raises.',
+        'Call <code>queue.pop()</code> with no argument at all — which end of the list does it take from by default?',
+        'Call <code>history.index("fail", 2)</code> with a second argument — does it still find the first fail, or the next one after position 2?'
+      ]
+    },
+
+    {
+      id: 'p-d14',
+      kind: 'debug',
+      title: 'Closed by name, found by count',
+      lessonId: 'p-l14',
+      brief: `<p>Closing ticket "t-101" should remove it from the queue and report it as closed. Separately,
+        the log should report the position of the first error, not how many there were.</p>
+        <p>Right now closing the ticket crashes before anything prints, and once that is fixed, the error
+        line reports a count instead of a position.</p>`,
+      goal: `Closed: t-101
+Still open: ['t-100', 't-102', 't-103']
+First error at position: 2`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `tickets = ["t-100", "t-101", "t-102", "t-103"]
+
+closed = tickets.pop("t-101")
+print("Closed:", closed)
+print("Still open:", tickets)
+
+log = ["ok", "ok", "error", "ok", "error", "error"]
+error_position = log.count("error")
+print("First error at position:", error_position)`
+      }],
+      runMode: 'python',
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Reports the correct ticket as closed', test: c => c.text.includes('Closed: t-101') },
+        { label: 'The remaining queue no longer includes t-101', test: c => c.text.includes("Still open: ['t-100', 't-102', 't-103']") },
+        { label: 'Reports a position, not a count', test: c => c.text.includes('First error at position: 2') },
+        { label: 'Still uses .pop() and .index() together', test: c => /\.pop\(/.test(c.code) && /\.index\(/.test(c.code) }
+      ],
+      hints: [
+        'The first line crashes before printing anything at all — read exactly what type of value <code>.pop()</code> is complaining about. Once that is fixed, the error-position line prints a number that looks more like a count than a position.',
+        '<code>.pop()</code> expects a position (a whole number), not a ticket name — how could you find "t-101"\'s position first, then hand that number to <code>.pop()</code>? And compare <code>.count()</code> against <code>.index()</code>: one tells you how many times something appears, the other tells you where it first appears — which one actually answers "at position"?',
+        '<code>.remove(value)</code> deletes by value but hands back nothing useful; <code>.pop(position)</code> deletes by position and hands back the removed item. Combine <code>.index(value)</code> with <code>.pop()</code> when you need both the removal and the item, found by value: <code>tickets.pop(tickets.index("t-101"))</code>. And <code>.index()</code>, not <code>.count()</code>, is the one that finds a position.'
+      ]
+    },
+
+    /* ═══════════════════ 15 · Reading input with input() ═══════════════════ */
+
+    {
+      id: 'p-l15',
+      kind: 'teach',
+      title: 'Reading input with input()',
+      repairId: 'p-d15',
+      concept: `
+        <p><code>input(prompt)</code> shows the prompt, waits for something to be typed, and hands back
+        whatever was typed — <strong>always as a string</strong>, even if it looks like a number. Add or
+        multiply it directly and you will either glue text together or crash; convert it first with
+        <code>int(...)</code> or <code>float(...)</code>.</p>
+        <p>Since this exercise cannot literally wait for you to type, the values you would normally enter
+        are supplied automatically and echoed right after each prompt — watch for them in the output,
+        exactly like a real terminal session.</p>`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `name = input("What's your name? ")
+print(f"Hello, {name}!")
+
+age_text = input("How old are you? ")
+age = int(age_text)
+print(f"Next year you'll be {age + 1}.")
+
+raw = input("Pick a number: ")
+print(type(raw))
+doubled = int(raw) * 2
+print("Doubled:", doubled)`
+      }],
+      runMode: 'python',
+      inputs: ['Maya', '15', '7'],
+      tryIt: [
+        'Change <code>int(age_text)</code> to <code>float(age_text)</code> and rerun — since the test value queued for this prompt is <code>"15"</code>, does the output look any different?',
+        'Delete the <code>int(...)</code> around <code>age_text</code> entirely and try <code>age_text + 1</code> instead — read what kind of error that raises, since <code>input()</code> always hands back a string, never a number.',
+        'Add a fourth <code>input("Anything else? ")</code> call at the very bottom and run it — this lesson only has three test values queued up, so read what this interpreter says when a program asks for input it does not have.'
+      ]
+    },
+
+    {
+      id: 'p-d15',
+      kind: 'debug',
+      title: 'The sign-up form that could not do math',
+      lessonId: 'p-l15',
+      brief: `<p>A short sign-up flow should greet the user, compute their age next year, and square the
+        number they picked.</p>
+        <p>Right now it crashes announcing next year's age. Fix that, run it again, and the squared number
+        is not a number at all.</p>`,
+      goal: `Name: Priya
+Age: 13
+Priya turns 14 next year.
+Favorite number: 6
+Squared: 36`,
+      files: [{
+        name: 'main.py', lang: 'python', editable: true,
+        code: `name = input("Name: ")
+age_text = input("Age: ")
+
+next_age = age_text + 1
+print(f"{name} turns {next_age} next year.")
+
+favorite = input("Favorite number: ")
+squared = favorite * favorite
+print(f"Squared: {squared}")`
+      }],
+      runMode: 'python',
+      inputs: ['Priya', '13', '6'],
+      checks: [
+        { label: 'The program runs with no error', test: c => !c.error },
+        { label: 'Greets the right name', test: c => c.text.includes('Name: Priya') },
+        { label: 'Computes next year\'s age correctly', test: c => c.text.includes('Priya turns 14 next year.') },
+        { label: 'Squares the chosen number correctly', test: c => c.text.includes('Squared: 36') },
+        { label: 'Still converts input() results before doing math', test: c => (c.code.match(/\bint\(/g) || []).length >= 2 }
+      ],
+      hints: [
+        'This crashes before it ever gets to announce next year\'s age — read exactly what type of value the crash is complaining about, and where <code>age_text</code> actually came from. Once that is fixed, run it again and the squared number is not a number at all.',
+        '<code>input()</code> always hands back a string, never a real number — check every place a value that came from <code>input()</code> gets used in math, not just the first one.',
+        'Wrap the result of <code>input()</code> in <code>int(...)</code> the moment you need to do arithmetic with it — <code>age_text + 1</code> fails for the exact reason <code>"Score: " + 47</code> fails elsewhere in this track: you cannot add a string and a number directly. The same rule applies to <code>*</code> between two strings — it does not multiply their numeric value, because they are not numbers yet.'
       ]
     }
   ]

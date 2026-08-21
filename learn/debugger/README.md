@@ -1,10 +1,13 @@
 # Debugger — Find It. Fix It.
 
 A self-contained web app for teaching HTML, CSS, JavaScript and Python through
-**debugging**. Each language track is twenty stages: ten short lessons that show
-working code beside its live output, each immediately followed by its own
-repair job — a program that's broken in exactly the way that lesson just taught,
-subtly, and has to be fixed.
+**debugging**. Each track is a run of short lessons that show working code
+beside its live output, each immediately followed by its own repair job — a
+program that's broken in exactly the way that lesson just taught, subtly, and
+has to be fixed. HTML and CSS are ten lessons each (twenty stages); JavaScript
+and Python are fifteen each (thirty stages), with room to keep growing —
+past the concepts that get their own new lesson, later stages sometimes just
+add another repair scenario against a concept already taught.
 
 No build step, no frameworks, no CDN dependencies at runtime (only Google Fonts,
 which degrade gracefully). Drop the folder on any static host.
@@ -104,8 +107,8 @@ inside the supported subset — if you add your own, run it before assigning it.
 ## Adding a lesson or a repair job
 
 Each track's `stages` array is interleaved: a `kind: 'teach'` stage immediately
-followed by the `kind: 'debug'` stage that breaks what it just taught, ten
-times over. The two halves of a pair are linked by id so the app can render
+followed by the `kind: 'debug'` stage that breaks what it just taught, over and
+over. The two halves of a pair are linked by id so the app can render
 the "Debug this lesson →" button and the "← Back to the lesson" link:
 
 ```js
