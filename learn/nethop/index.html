@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Net Hop — Build the network. Survive the trip.</title>
+<meta name="description" content="A two-sided networking game. Architects build the maze; packets have to survive it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="mark">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M2 14 Q6 4 10 10 T18 6" fill="none" stroke="#04202b" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="2.1" fill="#04202b"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Net Hop</h1>
+        <div class="sub">Build it · Survive it</div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" id="tab-play"  aria-controls="p-play"  aria-selected="true">Campaign</button>
+      <button role="tab" id="tab-learn" aria-controls="p-learn" aria-selected="false">Learn</button>
+      <button role="tab" id="tab-build" aria-controls="p-build" aria-selected="false">Architect</button>
+      <button role="tab" id="tab-code"  aria-controls="p-code"  aria-selected="false">Codes</button>
+      <button role="tab" id="tab-gloss" aria-controls="p-gloss" aria-selected="false">Glossary</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= CAMPAIGN ================= -->
+<section class="panel active" id="p-play" role="tabpanel" aria-labelledby="tab-play">
+  <div id="lvlPick">
+    <div class="card" style="margin-top:18px">
+      <div class="card-h"><h2>Campaign</h2><span class="tag" id="lvlCount"></span>
+        <span style="margin-left:auto"><button class="btn ghost sm" id="btnForget">Reset progress</button></span></div>
+      <div class="card-b">
+        <p class="hint" style="margin:0 0 12px">Every level is open. They are ordered so each one builds on the last, and you will get a nudge if you jump ahead — but nothing stops you.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center">
+          <label class="fl" for="tierOverride" style="margin:0">Play at</label>
+          <select id="tierOverride" style="flex:0 1 230px">
+            <option value="">As designed</option>
+            <option value="rookie">Rookie — machines labelled</option>
+            <option value="technician">Technician — names off, 3 scans</option>
+            <option value="analyst">Analyst — scans cost a hop</option>
+            <option value="operator">Operator — fog, 1 scan</option>
+            <option value="wizard">Network Wizard — fog, no scans</option>
+          </select>
+          <span class="hint" id="ovNote" style="margin:0;flex:1 1 200px">Any level can be replayed at any difficulty.</span>
+        </div>
+        <div class="lvls" id="lvlList" style="margin-top:14px"></div>
+      </div>
+    </div>
+  </div>
+  <div id="lvlPlay" hidden></div>
+</section>
+
+<!-- ================= LEARN BY DOING ================= -->
+<section class="panel" id="p-learn" role="tabpanel" aria-labelledby="tab-learn">
+  <div class="stage">
+    <div>
+      <div class="card">
+        <div class="card-h"><h2 id="lsnTitle">Pick a component</h2>
+          <span class="tag" id="lsnTag"></span>
+          <span style="margin-left:auto;display:flex;gap:7px">
+            <button class="btn ghost sm" id="lsnWatch" aria-pressed="true">1 &middot; Watch it</button>
+            <button class="btn ghost sm" id="lsnDo" aria-pressed="false">2 &middot; Your turn</button>
+          </span></div>
+        <div class="boardwrap"><svg class="board" id="lBoard"></svg></div>
+        <div class="card-b" style="border-top:1px solid var(--line)">
+          <div id="lsnStage"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px" id="lsnReqCard" hidden>
+        <div class="card-h"><h3>What it has to do</h3>
+          <span class="tag" id="lsnReqCount"></span>
+          <span style="margin-left:auto"><button class="btn gold sm" id="lsnCheck">Check my build</button></span></div>
+        <div class="card-b"><div id="lsnReqs"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-h"><h3 id="lsnRightTitle">Components</h3></div>
+        <div class="card-b">
+          <div class="pal" id="lsnList"></div>
+          <div id="lsnBuildTools" hidden>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+              <button class="btn ghost sm" id="lPlace" aria-pressed="true">Place</button>
+              <button class="btn ghost sm" id="lLink" aria-pressed="false">Cable</button>
+              <button class="btn ghost sm" id="lErase" aria-pressed="false">Erase</button>
+              <button class="btn ghost sm" id="lWipe">Wipe</button>
+            </div>
+            <div class="pal" id="lsnPal"></div>
+            <p class="hint" id="lsnTip" style="margin-top:9px">Pick a device, then tap a square.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3 id="lsnSideTitle">What it does</h3></div>
+        <div class="card-b" id="lsnIdea"></div>
+      </div>
+      <div class="card" style="margin-top:14px" id="lsnInspCard" hidden>
+        <div class="card-h"><h3 id="lsnInspTitle">Set up</h3></div>
+        <div class="card-b" id="lsnInsp"><p class="hint" style="margin:0">Tap a device to configure it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARCHITECT ================= -->
+<section class="panel" id="p-build" role="tabpanel" aria-labelledby="tab-build">
+
+  <div style="margin-top:18px;display:flex;gap:6px;background:var(--navy-800);padding:4px;border-radius:12px;border:1px solid var(--line);width:fit-content;max-width:100%;flex-wrap:wrap">
+    <button class="btn ghost sm" id="mGuided" aria-pressed="true" style="border:0">Learn a model</button>
+    <button class="btn ghost sm" id="mFree" aria-pressed="false" style="border:0">Free build &amp; versus</button>
+  </div>
+
+  <div class="stage">
+    <div>
+      <div class="card">
+        <div class="card-h">
+          <h2 id="canvasTitle">Canvas</h2>
+          <span class="tag" id="budgetTag">0 / 15</span>
+          <span style="margin-left:auto;display:flex;gap:7px;flex-wrap:wrap">
+            <button class="btn ghost sm" id="bModePlace" aria-pressed="true">Place</button>
+            <button class="btn ghost sm" id="bModeLink" aria-pressed="false">Cable</button>
+            <button class="btn ghost sm" id="bModeErase" aria-pressed="false">Erase</button>
+            <button class="btn ghost sm" id="bClear">Wipe</button>
+          </span>
+        </div>
+        <div class="boardwrap"><svg class="board" id="bBoard" role="img" aria-label="Network canvas"></svg></div>
+        <div class="card-b" style="border-top:1px solid var(--line)">
+          <p class="hint" style="margin:0" id="bTip">Pick a device, then tap a square to place it.</p>
+        </div>
+      </div>
+
+      <!-- GUIDED -->
+      <div id="guidedPane">
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3>Build this shape</h3>
+            <span style="margin-left:auto"><button class="btn gold sm" id="btnCheckModel">Check my build</button></span></div>
+          <div class="card-b">
+            <div class="frow"><label class="fl" for="modelSel">Network model</label>
+              <select id="modelSel"></select></div>
+            <div id="modelInfo"></div>
+            <div id="modelResult"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FREE -->
+      <div id="freePane" hidden>
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3>Status check</h3>
+            <span style="margin-left:auto;display:flex;gap:7px;flex-wrap:wrap">
+              <button class="btn ghost sm" id="hint1">Hint &middot; look here</button>
+              <button class="btn ghost sm" id="hint2">Hint &middot; name the gap</button>
+            </span></div>
+          <div class="card-b"><div id="statusOut"><p class="hint" style="margin:0">Nothing checked yet.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-h"><h3>Palette</h3></div>
+        <div class="card-b"><div class="pal" id="palette"></div>
+          <p class="hint" id="palHint" style="margin-top:10px"></p></div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3 id="inspTitle">Inspector</h3></div>
+        <div class="card-b" id="inspBody"><p class="hint" style="margin:0">Tap a device to set it up.</p></div>
+      </div>
+
+      <div id="freeSide" hidden>
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3>Need some inspiration?</h3></div>
+          <div class="card-b">
+            <div id="promptOut"><p class="hint" style="margin:0">Stuck for something to build? Get a situation to solve.</p></div>
+            <button class="btn ghost sm" id="btnPrompt" style="margin-top:10px">Give me a scenario</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3>The trip</h3></div>
+          <div class="card-b" id="goalBody"></div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3>Publish</h3></div>
+          <div class="card-b">
+            <p class="hint" style="margin:0 0 10px">You have to survive your own maze before you can hand it to anyone.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn" id="btnProve">Prove it</button>
+              <button class="btn gold" id="btnPublish" disabled>Publish</button>
+            </div>
+            <div id="pubOut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CODES ================= -->
+<section class="panel" id="p-code" role="tabpanel" aria-labelledby="tab-code">
+  <div class="card" style="margin-top:18px">
+    <div class="card-h"><h2>Load a map code</h2></div>
+    <div class="card-b">
+      <p class="hint" style="margin:0 0 10px">Paste a <b>MAP-</b> code from another student to play their network. Level passwords go on the Campaign tab.</p>
+      <textarea class="codebox" id="codeIn" placeholder="MAP-…" spellcheck="false"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
+        <select id="codeTier" style="flex:0 1 190px">
+          <option value="rookie">Rookie — labelled</option>
+          <option value="technician" selected>Technician — 3 scans</option>
+          <option value="analyst">Analyst — scans cost hops</option>
+          <option value="operator">Operator — fog</option>
+          <option value="wizard">Network Wizard</option>
+        </select>
+        <button class="btn" id="btnLoadCode">Load and play</button>
+        <button class="btn ghost" id="btnLoadEdit">Load into Architect</button>
+      </div>
+      <div id="codeMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GLOSSARY ================= -->
+<section class="panel" id="p-gloss" role="tabpanel" aria-labelledby="tab-gloss">
+  <div class="card" style="margin-top:18px">
+    <div class="card-h"><h2>Glossary</h2><span class="tag" id="glossCount"></span></div>
+    <div class="card-b">
+      <p class="hint" style="margin:0 0 12px">Everything here uses one picture: <b>the network is a city, and you are a letter being carried through it.</b></p>
+      <div class="gfilters" id="gFilters"></div>
+      <div id="gList"></div>
+    </div>
+  </div>
+</section>
+
+<div class="scrim" id="scrim" hidden role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <h3 id="dlgTitle">Are you sure?</h3>
+    <div class="body" id="dlgBody"></div>
+    <div class="row">
+      <button class="btn ghost" id="dlgNo">Go back</button>
+      <button class="btn gold" id="dlgYes">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Net Hop — runs entirely in your browser. Nothing is uploaded, nothing is saved except the passwords you write down.</div>
+</div>
+<script src="js/core.js"></script>
+<script src="js/simulator.js"></script>
+<script src="js/campaign.js"></script>
+<script src="js/network-models.js"></script>
+<script src="js/board-renderer.js"></script>
+<script src="js/play-view.js"></script>
+<script src="js/architect.js"></script>
+<script src="js/glossary.js"></script>
+<script src="js/learn-by-doing.js"></script>
+<script src="js/build-tasks.js"></script>
+<script src="js/learn-runner.js"></script>
+<script src="js/levels.js"></script>
+</body>
+</html>
