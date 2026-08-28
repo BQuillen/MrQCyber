@@ -3,15 +3,19 @@ name: Daily Byte
 on:
   schedule:
     # Students start on this by 8:30am ET, so the article needs to be live
-    # well before 8:00. GitHub's cron is best-effort (often delayed 10+ min
-    # to hours, sometimes dropped), so we take four early passes and rely on
-    # at least one landing in time. Times are UTC; ET equivalents shift an
-    # hour between EDT (summer) and EST (winter) but all stay before 8am ET.
-    # The generator and commit step both no-op once the day has an article.
-    - cron: "41 9 * * *"    # ~5:41am EDT / 4:41am EST
-    - cron: "19 10 * * *"   # ~6:19am EDT / 5:19am EST
-    - cron: "57 10 * * *"   # ~6:57am EDT / 5:57am EST
-    - cron: "33 11 * * *"   # ~7:33am EDT / 6:33am EST — last chance before 8
+    # well before 8:00. GitHub's cron is best-effort — it drops individual
+    # invocations under load, but rarely many in a row — so we take seven
+    # passes every ~20 min through the early morning and rely on at least one
+    # landing. Times are UTC; ET equivalents shift an hour between EDT and EST
+    # but all stay before 8am ET. The generator and commit step both no-op
+    # once the day already has an article, so the extra runs are harmless.
+    - cron: "35 9 * * *"    # ~5:35am EDT / 4:35am EST
+    - cron: "55 9 * * *"    # ~5:55am EDT / 4:55am EST
+    - cron: "15 10 * * *"   # ~6:15am EDT / 5:15am EST
+    - cron: "35 10 * * *"   # ~6:35am EDT / 5:35am EST
+    - cron: "55 10 * * *"   # ~6:55am EDT / 5:55am EST
+    - cron: "15 11 * * *"   # ~7:15am EDT / 6:15am EST
+    - cron: "35 11 * * *"   # ~7:35am EDT / 6:35am EST — last chance before 8
   workflow_dispatch:
     inputs:
       date:
