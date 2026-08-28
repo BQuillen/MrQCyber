@@ -2,14 +2,16 @@ name: Daily Byte
 
 on:
   schedule:
-    # GitHub's cron is best-effort — during peak load a run is often delayed
-    # by 10+ minutes to several hours, and sometimes dropped entirely. So we
-    # take several passes through the morning at off-peak minutes (avoid :00).
-    # Both the generator and the commit step are no-ops once the day already
-    # has an article, so the extra runs are harmless.
-    - cron: "7 11 * * *"    # ~7:07am ET
-    - cron: "21 13 * * *"   # ~9:21am ET
-    - cron: "41 15 * * *"   # ~11:41am ET
+    # Students start on this by 8:30am ET, so the article needs to be live
+    # well before 8:00. GitHub's cron is best-effort (often delayed 10+ min
+    # to hours, sometimes dropped), so we take four early passes and rely on
+    # at least one landing in time. Times are UTC; ET equivalents shift an
+    # hour between EDT (summer) and EST (winter) but all stay before 8am ET.
+    # The generator and commit step both no-op once the day has an article.
+    - cron: "41 9 * * *"    # ~5:41am EDT / 4:41am EST
+    - cron: "19 10 * * *"   # ~6:19am EDT / 5:19am EST
+    - cron: "57 10 * * *"   # ~6:57am EDT / 5:57am EST
+    - cron: "33 11 * * *"   # ~7:33am EDT / 6:33am EST — last chance before 8
   workflow_dispatch:
     inputs:
       date:
