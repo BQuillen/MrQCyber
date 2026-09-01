@@ -26,6 +26,16 @@ on:
 permissions:
   contents: write
 
+# GitHub often batches a backlog of missed cron runs and fires them within
+# seconds of each other. Without this, several runs generate the article in
+# parallel and all but the first fail their `git push` with "fetch first".
+# Serialize instead: one run at a time, later ones queue (GitHub keeps only
+# the newest pending and cancels the rest cleanly), and each queued run then
+# finds the day already done and no-ops.
+concurrency:
+  group: daily-byte
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -50,13 +60,34 @@ jobs:
         run: node generate.mjs
 
       - name: Commit and push if there's new content
+        env:
+          DAILY_BYTE_DATE: ${{ github.event.inputs.date }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add tech-news/data
           if git diff --cached --quiet; then
             echo "No new Daily Byte content today — nothing to commit."
-          else
-            git commit -m "Daily Byte: add today's article"
-            git push
+            exit 0
           fi
+          git commit -m "Daily Byte: add today's article"
+          date="${DAILY_BYTE_DATE:-$(TZ=America/New_York date +%F)}"
+          # concurrency: should prevent overlap, but a manual dispatch can still
+          # race a scheduled run — if someone else published today's file first,
+          # drop our commit; otherwise rebase and retry a couple of times.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Pushed on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected on attempt ${attempt}; fetching latest origin/main."
+            git fetch origin main
+            if git cat-file -e "origin/main:tech-news/data/${date}.json" 2>/dev/null; then
+              echo "Another run already published ${date}; discarding our commit."
+              git reset --hard origin/main
+              exit 0
+            fi
+            git rebase origin/main || { git rebase --abort; exit 1; }
+          done
+          echo "::error::Could not push Daily Byte for ${date} after 3 attempts."
+          exit 1
