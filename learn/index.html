@@ -7,24 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css">
   <style>
-    /* Coding Projects banner */
+    /* Compact course entry cards share the tool grid's column widths. */
+    .course-entry-grid { margin-bottom: 32px; }
     .cp-banner {
-      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
       border: 1px solid var(--border); border-left: 3px solid var(--orange);
       background: linear-gradient(90deg, rgba(255,91,0,.07), rgba(13,37,53,0) 65%);
-      padding: 26px 30px; margin-bottom: 44px;
+      padding: 20px; min-height: 180px; min-width: 0;
     }
-    .cp-banner__text { flex: 1; min-width: 260px; }
-    .cp-banner__label {
-      font-family: var(--font-display); font-size: .58rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
-    }
+    .cp-banner__text { flex: 1; min-width: 0; }
     .cp-banner__title {
       font-family: var(--font-display); font-size: 1.05rem; letter-spacing: .06em;
       text-transform: uppercase; color: var(--text-primary); margin-bottom: 8px;
     }
     .cp-banner p { font-size: .9rem; line-height: 1.7; color: var(--text-secondary); margin: 0; }
-    @media (max-width: 600px) { .cp-banner { padding: 22px; } .cp-banner .btn { width: 100%; justify-content: center; } }
+    .cp-banner .btn { margin-top: auto; }
   </style>
 </head>
 <body>
@@ -103,25 +100,24 @@
       <h2 class="section-title">Learn by <em>Doing</em></h2>
       <div class="divider"></div>
 
+      <div class="tool-grid course-entry-grid">
       <div class="cp-banner">
         <div class="cp-banner__text">
-          <div class="cp-banner__label">Course Plans</div>
-          <div class="cp-banner__title">Networking</div>
-          <p>Learning notes, interactive labs and troubleshooting practice. Open your assigned block and build your understanding of how networks work.</p>
+          <div class="cp-banner__title">Course Plans</div>
+          <p>Networking notes, labs and your assigned blocks.</p>
         </div>
         <a href="course-plans/index.html" class="btn btn--primary">Course Plans →</a>
       </div>
 
       <div class="cp-banner">
         <div class="cp-banner__text">
-          <div class="cp-banner__label">Coding Projects</div>
-          <div class="cp-banner__title">Notes you can run</div>
+          <div class="cp-banner__title">Coding Projects</div>
           <p>
-            Interactive concept notes for Python, JavaScript and HTML&nbsp;+&nbsp;CSS &mdash; every
-            example comes with a code window you can edit and run without leaving the page.
+            Interactive notes for Python, JavaScript and HTML&nbsp;+&nbsp;CSS.
           </p>
         </div>
         <a href="coding-projects/index.html" class="btn btn--primary">Coding Projects →</a>
+      </div>
       </div>
 
       <div class="tool-grid">
