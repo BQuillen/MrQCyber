@@ -1,10 +1,10 @@
-// DSC_1042 GPS is a deliberately synthetic teaching fixture, not a real person or venue location.
-// Source: original activity README and the unchanged, already-published JPEG EXIF description.
+// DSC_1042 GPS is staged: teacher-requested public school Easter egg at 100 Midland Ave.
+// Coordinates 38.041160, -84.488690 identify the school, not the fictional photo subjects.
 // Metadata read from the exact bundled JPEG files; works offline as well as online.
 const PHOTO_METADATA = {
   "DSC_1042.jpg": {
     "bytes": 322104,
-    "exif": "Make: Classroom Camera\nModel: Training image\nDate/time: 2026:10:24 10:42:00\nDescription: Synthetic classroom metadata; fictional scenario\nGPS latitude: 38.040000\nGPS longitude: -84.500000"
+    "exif": "Make: Classroom Camera\nModel: Training image\nDate/time: 2026:10:24 10:42:00\nDescription: Synthetic classroom metadata; fictional scenario\nGPS latitude: 38.041160\nGPS longitude: -84.488690"
   },
   "avery-volleyball.jpg": {
     "bytes": 270406,
@@ -82,9 +82,17 @@ const PHOTO_METADATA = {
     "bytes": 305437,
     "exif": "No EXIF block found in this version of the photo."
   },
+  "goblina-premiere.jpg": {
+    "bytes": 255718,
+    "exif": "No EXIF block found in this version of the photo."
+  },
   "lena-print.jpg": {
     "bytes": 325415,
     "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "mr-animal.jpg": {
+    "bytes": 312333,
+    "exif": "No EXIF block found in this version of the photo."
   },
   "night-field.jpg": {
     "bytes": 14228,
@@ -97,6 +105,10 @@ const PHOTO_METADATA = {
   "priya-camera.jpg": {
     "bytes": 344203,
     "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "rich-bay-b.jpg": {
+    "bytes": 262060,
+    "exif": "No EXIF block found in this version of the photo."
   },
   "roblox-avatar.jpg": {
     "bytes": 152371,
@@ -144,6 +156,10 @@ const PHOTO_METADATA = {
   },
   "team-celebration.jpg": {
     "bytes": 279498,
+    "exif": "No EXIF block found in this version of the photo."
+  },
+  "thunder-teammates.jpg": {
+    "bytes": 513280,
     "exif": "No EXIF block found in this version of the photo."
   },
   "volunteers.jpg": {

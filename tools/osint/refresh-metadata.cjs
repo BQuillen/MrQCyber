@@ -19,8 +19,8 @@ for (const name of fs.readdirSync(path.join(root, 'assets')).filter(n => /\.jpg$
     exif: context.parseExif(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength))
   };
 }
-const header = '// DSC_1042 GPS is a deliberately synthetic teaching fixture, not a real person or venue location.\n' +
-  '// Source: original activity README and the unchanged, already-published JPEG EXIF description.\n' +
+const header = '// DSC_1042 GPS is staged: teacher-requested public school Easter egg at 100 Midland Ave.\n' +
+  '// Coordinates 38.041160, -84.488690 identify the school, not the fictional photo subjects.\n' +
   '// Metadata read from the exact bundled JPEG files; works offline as well as online.\n';
 fs.writeFileSync(path.join(root, 'metadata-data.js'), header + 'const PHOTO_METADATA = ' + JSON.stringify(metadata, null, 2) + ';\n');
 console.log(`Indexed ${Object.keys(metadata).length} activity photos.`);
