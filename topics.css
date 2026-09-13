@@ -291,6 +291,15 @@
       background: rgba(20,92,104,.15);
     }
 
+    .topic-card__link {
+      align-self: flex-start; margin-top: 22px; padding: 11px 16px;
+      border: 1px solid var(--aqua); color: var(--aqua);
+      font-size: .9rem; font-weight: 700; border-radius: 3px;
+      transition: color .2s, background .2s;
+    }
+    .topic-card__link:hover { background: var(--aqua); color: var(--bg-deep); }
+    .topic-card__link:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+
     /* ── FOOTER */
     .footer {
       background: var(--bg-deep); border-top: 1px solid var(--border);
