@@ -6,6 +6,10 @@ const PHOTO_METADATA = {
     "bytes": 322104,
     "exif": "Make: Classroom Camera\nModel: Training image\nDate/time: 2026:10:24 10:42:00\nDescription: Synthetic classroom metadata; fictional scenario\nGPS latitude: 38.040000\nGPS longitude: -84.500000"
   },
+  "avery-volleyball.jpg": {
+    "bytes": 270406,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
   "baking.jpg": {
     "bytes": 278459,
     "exif": "No EXIF block found in this version of the photo."
@@ -14,9 +18,29 @@ const PHOTO_METADATA = {
     "bytes": 327026,
     "exif": "No EXIF block found in this version of the photo."
   },
+  "casey-artist.jpg": {
+    "bytes": 407884,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "casey-denver.jpg": {
+    "bytes": 373713,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "casey-stage.jpg": {
+    "bytes": 299940,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
   "casey.jpg": {
     "bytes": 262701,
     "exif": "No EXIF block found in this version of the photo."
+  },
+  "coach-kai.jpg": {
+    "bytes": 296838,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "corey-shop.jpg": {
+    "bytes": 354706,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
   },
   "cupcake.jpg": {
     "bytes": 273358,
@@ -25,6 +49,10 @@ const PHOTO_METADATA = {
   "dana-work.jpg": {
     "bytes": 234780,
     "exif": "No EXIF block found in this version of the photo."
+  },
+  "ellis-library.jpg": {
+    "bytes": 338367,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
   },
   "family.jpg": {
     "bytes": 268716,
@@ -54,13 +82,29 @@ const PHOTO_METADATA = {
     "bytes": 305437,
     "exif": "No EXIF block found in this version of the photo."
   },
+  "lena-print.jpg": {
+    "bytes": 325415,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
   "night-field.jpg": {
     "bytes": 14228,
     "exif": "No EXIF block found in this version of the photo."
   },
+  "noah-gaming.jpg": {
+    "bytes": 318717,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
+  "priya-camera.jpg": {
+    "bytes": 344203,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
+  },
   "roblox-avatar.jpg": {
     "bytes": 152371,
     "exif": "No EXIF block found in this version of the photo."
+  },
+  "sam-garden.jpg": {
+    "bytes": 361753,
+    "exif": "EXIF exists, but no supported date or GPS fields were found."
   },
   "school-friends.jpg": {
     "bytes": 399913,
