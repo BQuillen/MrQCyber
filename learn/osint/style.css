@@ -32,3 +32,5 @@ main:focus{outline:none}.game-grid img{height:180px;object-fit:cover;object-posi
 @media(max-width:900px){.featured-profiles{grid-template-columns:1fr}.featured-profile{padding:22px}.squad-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .squad-grid .squad-face{display:block;width:100%;aspect-ratio:1;border-radius:8px;background-size:400%;margin-bottom:7px}
+
+.message-tools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.fake-link-builder{border:1px solid var(--line);border-radius:8px;padding:18px;margin:20px 0;min-width:0}.fake-link-builder legend{font-weight:700}.fake-link-builder button{margin-top:14px}.message-preview{min-height:140px;border:1px solid var(--line);background:#f8fafc;border-radius:8px;padding:22px;white-space:pre-wrap;overflow-wrap:anywhere}.simulated-link{color:#214edf;text-decoration:underline}.message-destinations{padding:12px 18px;border-left:3px solid #9bacdf;margin:15px 0;overflow-wrap:anywhere;font-size:.85rem}.message-destinations h4{margin:0 0 10px}.assignment-part{border-top:2px solid var(--line);padding-top:28px;margin-top:35px}
