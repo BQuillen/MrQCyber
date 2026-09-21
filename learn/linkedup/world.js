@@ -1,0 +1,1195 @@
+/* Fictional people and employers. Universities are real; affiliations are invented. */
+const WORLD = {
+  "people": {
+    "dana": {
+      "name": "Dana Selvin",
+      "image": "dana-work",
+      "headline": "Project coordinator · turning good intentions into actual deadlines",
+      "bio": "I translate creative chaos into plans people can follow. Community projects, clear handoffs, and enough room in the schedule for real life. My most-used tool is a well-timed question.",
+      "company": "cedar",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "University of Kentucky",
+          "degree": "BA, Communication",
+          "years": "2002–2006"
+        }
+      ],
+      "skills": [
+        "Project coordination",
+        "Stakeholder communication",
+        "Event logistics",
+        "Budget tracking"
+      ],
+      "history": [
+        {
+          "company": "cedar",
+          "role": "Project coordinator",
+          "years": "2021–present",
+          "detail": "Coordinates community campaigns and client handoffs. Current focus: a guest-wayfinding pilot."
+        },
+        {
+          "company": "good-enough",
+          "role": "Client operations associate",
+          "years": "2014–2021",
+          "detail": "Built onboarding checklists and learned that “final_v7” is not a filing system."
+        }
+      ],
+      "connections": [
+        "lena",
+        "sam",
+        "morgan",
+        "dev",
+        "kai"
+      ],
+      "posts": [
+        {
+          "id": "dana-1",
+          "date": "25 Oct 2026",
+          "text": "Weekend fundraiser complete. Monday is for receipts, then back to the Juniper handoff plan. There is no project-management certificate for removing blue icing from a clipboard.",
+          "image": "volunteers",
+          "comments": [
+            [
+              "dev",
+              "Your check-in line moved faster than my badge printer."
+            ],
+            [
+              "tessa",
+              "Those outdoor signs held up well!"
+            ]
+          ]
+        },
+        {
+          "id": "dana-2",
+          "date": "8 Oct 2026",
+          "text": "I am interested in operations roles that combine community partnerships with creative delivery. Not looking to move away from Lexington; curious about part-time mentoring and hybrid project leadership.",
+          "image": null,
+          "comments": [
+            [
+              "morgan",
+              "Your stakeholder examples would make a strong portfolio case study."
+            ],
+            [
+              "sam",
+              "Please keep the checklist templates if you become famous."
+            ]
+          ]
+        },
+        {
+          "id": "dana-3",
+          "date": "14 Sep 2026",
+          "text": "Good Enough Tomorrow alumni lunch reminded me how much onboarding shapes the rest of a project. I still keep my old handoff checklist, even if the stationery has improved.",
+          "image": "cafe",
+          "comments": [
+            [
+              "ellis",
+              "We could use a checklist workshop at the library."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "open",
+          "A small group with a specific question beats a ballroom full of vague introductions."
+        ],
+        [
+          "next",
+          "Please put the working hours and location in the first conversation. Families plan around those details."
+        ]
+      ]
+    },
+    "lena": {
+      "name": "Lena Ortiz",
+      "image": "lena-print",
+      "headline": "Brand & print designer · making the small details earn their space",
+      "bio": "Type nerd. Printmaker. Enthusiastic reader of the tiny text everyone else skips. I build identities that work on a sign, a screen, and a receipt that has been through the wash.",
+      "company": "cedar",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "University of Louisville",
+          "degree": "BFA, Graphic Design",
+          "years": "2006–2010"
+        }
+      ],
+      "skills": [
+        "Brand identity",
+        "Print production",
+        "Typography",
+        "Workshop facilitation"
+      ],
+      "history": [
+        {
+          "company": "cedar",
+          "role": "Brand & print designer",
+          "years": "2020–present",
+          "detail": "Owns visual systems and print handoffs for community and hospitality clients."
+        },
+        {
+          "company": "press",
+          "role": "Production designer",
+          "years": "2010–2020",
+          "detail": "Ten years of proofs, paper samples, and politely explaining why a screenshot is not a print file."
+        }
+      ],
+      "connections": [
+        "dana",
+        "sam",
+        "tessa",
+        "dev",
+        "morgan"
+      ],
+      "posts": [
+        {
+          "id": "lena-1",
+          "date": "21 Oct 2026",
+          "text": "Proofs for the Juniper pilot are nearly ready. Next up: a small printmaking workshop at the arts center. I would like the next career chapter to include more teaching alongside the design work.",
+          "image": "lena-print",
+          "comments": [
+            [
+              "tessa",
+              "I can bring uncoated samples to the workshop."
+            ],
+            [
+              "dana",
+              "The review dates are on the shared calendar."
+            ]
+          ]
+        },
+        {
+          "id": "lena-2",
+          "date": "18 Sep 2026",
+          "text": "Ten years married to Alex today. Still choosing the restaurant by the quality of the menu typography. Tessa dug up our old stationery, which is both lovely and evidence that I used too many flourishes.",
+          "image": null,
+          "comments": [
+            [
+              "tessa",
+              "The date stamp on the job ticket settled our argument! It is in Paper Stories."
+            ],
+            [
+              "sam",
+              "Happy anniversary!"
+            ]
+          ]
+        },
+        {
+          "id": "lena-3",
+          "date": "3 Aug 2026",
+          "text": "Mochi has promoted himself to studio supervisor. Excellent at sitting on proofs; less interested in the invoicing. Alex says the dog should get his own business cards.",
+          "image": "studio-desk",
+          "comments": [
+            [
+              "dev",
+              "Put him on the next speaker list."
+            ],
+            [
+              "lena",
+              "He would demand payment in biscuits."
+            ]
+          ]
+        },
+        {
+          "id": "lena-4",
+          "date": "7 May 2026",
+          "text": "Found the program from my 2023 Open Chair talk while clearing the sample drawers. The section about accessible print is still useful. The haircut is a historical document.",
+          "image": null,
+          "comments": [
+            [
+              "ellis",
+              "Our workshop volunteers still use your large-type checklist."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "press",
+          "Please save two of the textured stocks for my November workshop. The students always ask what happens before the ink."
+        ],
+        [
+          "next",
+          "Interested in education partnerships where the designer gets to teach, rather than simply provide the slide template."
+        ]
+      ]
+    },
+    "sam": {
+      "name": "Sam Reed",
+      "image": "sam-garden",
+      "headline": "Digital designer · accessible interfaces, optimistic tomatoes",
+      "bio": "I make websites easier to use and harder to get lost in. Accessibility, plain language, and prototypes that answer a question. Off-screen: a community garden that ignores all my sprint plans.",
+      "company": "cedar",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "Northern Kentucky University",
+          "degree": "BS, Media Informatics",
+          "years": "2013–2017"
+        },
+        {
+          "school": "University of Illinois Urbana-Champaign",
+          "degree": "MS, Information Management",
+          "years": "2018–2020"
+        }
+      ],
+      "skills": [
+        "Accessibility",
+        "UX research",
+        "Prototyping",
+        "Content design"
+      ],
+      "history": [
+        {
+          "company": "cedar",
+          "role": "Digital designer",
+          "years": "2022–present",
+          "detail": "Designs accessible web experiences and the digital companion to the Juniper pilot."
+        },
+        {
+          "company": "good-enough",
+          "role": "Service design associate",
+          "years": "2020–2022",
+          "detail": "Translated internal processes into interfaces that did not require a training novel."
+        }
+      ],
+      "connections": [
+        "dana",
+        "lena",
+        "dev",
+        "morgan",
+        "ellis"
+      ],
+      "posts": [
+        {
+          "id": "sam-1",
+          "date": "24 Oct 2026",
+          "text": "Saturday at the garden. A reminder that user research also means asking the person who has successfully grown a tomato before.",
+          "image": "sam-garden",
+          "comments": [
+            [
+              "lena",
+              "The plants have better naming conventions than our file server."
+            ]
+          ]
+        },
+        {
+          "id": "sam-2",
+          "date": "12 Oct 2026",
+          "text": "Preparing a lightning talk on accessible forms for Open Chair in November. Interested in paid opportunities to review small organizations’ onboarding flows. Please bring actual users into the conversation.",
+          "image": null,
+          "comments": [
+            [
+              "dev",
+              "I have you down for seven minutes, not seventy."
+            ],
+            [
+              "morgan",
+              "That is a useful niche. Happy to talk portfolio structure."
+            ]
+          ]
+        },
+        {
+          "id": "sam-3",
+          "date": "4 Sep 2026",
+          "text": "My old information-management classmates are comparing research notes again. I miss the studio critiques; I do not miss pretending an all-nighter was a methodology.",
+          "image": "studio-desk",
+          "comments": [
+            [
+              "ellis",
+              "Our library signup form volunteers would love your checklist."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "juniper",
+          "I tested the mobile directions using one hand and a very uncooperative coffee. Useful constraints."
+        ],
+        [
+          "open",
+          "Can we reserve the quiet room for people who need a break between sessions?"
+        ]
+      ]
+    },
+    "morgan": {
+      "name": "Morgan Vale",
+      "image": "morgan-vale",
+      "headline": "Creative recruiter · translating potential into a useful introduction",
+      "bio": "I help small teams hire clearly and help candidates tell a specific story. Less “rock star,” more “here is the work.” Collector of excellent questions and spectacularly ordinary coffee mugs.",
+      "company": "next",
+      "location": "Cincinnati, OH",
+      "education": [
+        {
+          "school": "University of Cincinnati",
+          "degree": "BA, Organizational Leadership",
+          "years": "2007–2011"
+        }
+      ],
+      "skills": [
+        "Recruitment",
+        "Portfolio coaching",
+        "Interview design",
+        "Role scoping"
+      ],
+      "history": [
+        {
+          "company": "next",
+          "role": "Senior talent partner",
+          "years": "2021–present",
+          "detail": "Creative and community-sector recruitment across Kentucky and southern Ohio."
+        },
+        {
+          "company": "good-enough",
+          "role": "People operations coordinator",
+          "years": "2015–2021",
+          "detail": "Rewrote role descriptions that had accidentally become wish lists."
+        }
+      ],
+      "connections": [
+        "dana",
+        "lena",
+        "sam",
+        "dev",
+        "tessa"
+      ],
+      "posts": [
+        {
+          "id": "morgan-1",
+          "date": "23 Oct 2026",
+          "text": "November portfolio roundtable: explain one project, one decision, and one result. You do not need to claim you single-handedly transformed the universe.",
+          "image": "morgan-vale",
+          "comments": [
+            [
+              "dana",
+              "Would a volunteer logistics project work?"
+            ],
+            [
+              "morgan",
+              "Absolutely. Explain the decisions, not just the size."
+            ]
+          ]
+        },
+        {
+          "id": "morgan-2",
+          "date": "6 Oct 2026",
+          "text": "A good introduction tells me why this person, why this role, and why now. A recognizable company name is context, not verification.",
+          "image": null,
+          "comments": [
+            [
+              "ellis",
+              "That distinction belongs in our digital-literacy workshop."
+            ]
+          ]
+        },
+        {
+          "id": "morgan-3",
+          "date": "20 Aug 2026",
+          "text": "I am building a list of guest reviewers for winter portfolio sessions. Designers who enjoy teaching: tell us about a workshop you have led, not a follower count.",
+          "image": "studio-gallery",
+          "comments": [
+            [
+              "lena",
+              "This is exactly the kind of partnership I have been looking for."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "open",
+          "The best conversation last month started with “what part of your job is nobody asking about?”"
+        ],
+        [
+          "press",
+          "Production experience deserves more space in creative portfolios."
+        ]
+      ]
+    },
+    "tessa": {
+      "name": "Tessa Brooks",
+      "image": "tessa-brooks",
+      "headline": "Print production lead · professional defender of the proof",
+      "bio": "I turn impossible files into possible print. Twenty questions before a run beats twenty thousand apologies afterward. Ask me about paper, local exhibitions, or why the tiny type matters.",
+      "company": "press",
+      "location": "Covington, KY",
+      "education": [
+        {
+          "school": "Indiana University Bloomington",
+          "degree": "BA, Studio Art",
+          "years": "2001–2005"
+        }
+      ],
+      "skills": [
+        "Color management",
+        "Print estimating",
+        "Vendor coordination",
+        "Quality assurance"
+      ],
+      "history": [
+        {
+          "company": "press",
+          "role": "Production lead",
+          "years": "2018–present",
+          "detail": "Leads print planning, museum graphics, and materials workshops."
+        },
+        {
+          "company": "press",
+          "role": "Prepress specialist",
+          "years": "2005–2018",
+          "detail": "Learned every way a file can arrive missing its fonts."
+        }
+      ],
+      "connections": [
+        "lena",
+        "dana",
+        "morgan",
+        "dev",
+        "corey"
+      ],
+      "posts": [
+        {
+          "id": "tessa-1",
+          "date": "20 Oct 2026",
+          "text": "Building a traveling paper-sample library for November. Looking for community venues that want a practical materials clinic. We bring the samples; you supply curious people.",
+          "image": "tessa-brooks",
+          "comments": [
+            [
+              "ellis",
+              "Our meeting room has tables and a very curious volunteer team."
+            ],
+            [
+              "lena",
+              "Count me in for a session."
+            ]
+          ]
+        },
+        {
+          "id": "tessa-2",
+          "date": "18 Sep 2026",
+          "text": "A familiar job resurfaced in our archive: Lena and Alex’s invitations. We put the story in the company’s Paper Stories collection. A nice reminder that printed things outlast a download folder.",
+          "image": null,
+          "comments": [
+            [
+              "lena",
+              "Thank you for saving a copy!"
+            ]
+          ]
+        },
+        {
+          "id": "tessa-3",
+          "date": "2 Jul 2026",
+          "text": "Trying shorter production briefings: ten minutes, one proof, one decision. Nobody has asked for the forty-slide version back.",
+          "image": null,
+          "comments": [
+            [
+              "dana",
+              "I would attend this workshop on principle."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "library",
+          "Hands-on demonstrations would be a great fit for the winter learning series."
+        ],
+        [
+          "spoke",
+          "The repair checklist labels are holding up. Next time we should try a washable stock."
+        ]
+      ]
+    },
+    "dev": {
+      "name": "Dev Malik",
+      "image": "dev-malik",
+      "headline": "Community producer · a useful conversation is an event outcome",
+      "bio": "I make small events where people leave with a name, an idea, and their own coat. Speaker programs, accessible spaces, and partnerships that survive after the last biscuit.",
+      "company": "open",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "University of Tennessee, Knoxville",
+          "degree": "BS, Communication",
+          "years": "2011–2015"
+        }
+      ],
+      "skills": [
+        "Event production",
+        "Partnerships",
+        "Speaker coaching",
+        "Accessible events"
+      ],
+      "history": [
+        {
+          "company": "open",
+          "role": "Program producer",
+          "years": "2022–present",
+          "detail": "Runs the regional creative roundtable and community speaker series."
+        },
+        {
+          "company": "juniper",
+          "role": "Guest events coordinator",
+          "years": "2015–2022",
+          "detail": "Learned to plan around weather, stairs, and unexpected banjo requests."
+        }
+      ],
+      "connections": [
+        "sam",
+        "lena",
+        "dana",
+        "morgan",
+        "ellis",
+        "kai"
+      ],
+      "posts": [
+        {
+          "id": "dev-1",
+          "date": "25 Oct 2026",
+          "text": "November lightning talks are coming together: accessible forms, useful portfolios, and production mistakes we can all learn from. Still looking for a facilitator for the small-group discussion.",
+          "image": "dev-malik",
+          "comments": [
+            [
+              "sam",
+              "Seven minutes. I have heard the warning."
+            ],
+            [
+              "morgan",
+              "Happy to help with the portfolio group."
+            ]
+          ]
+        },
+        {
+          "id": "dev-2",
+          "date": "9 Oct 2026",
+          "text": "The old speaker-program archive is back in order. Our 2023 Design for Real People session still gets requests from workshop organizers.",
+          "image": null,
+          "comments": [
+            [
+              "lena",
+              "That was my first talk without a podium to hide behind."
+            ]
+          ]
+        },
+        {
+          "id": "dev-3",
+          "date": "11 Sep 2026",
+          "text": "My favorite event metric: someone asks a better question at the end than at the beginning. We are testing a quiet introduction table next month.",
+          "image": null,
+          "comments": [
+            [
+              "kai",
+              "This would work well for new volunteer coaches."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "next",
+          "Could we pair first-time portfolio presenters with reviewers before the event?"
+        ],
+        [
+          "juniper",
+          "Please keep the large-print route cards. They helped more guests than we expected."
+        ]
+      ]
+    },
+    "ellis": {
+      "name": "Ellis Park",
+      "image": "ellis-library",
+      "headline": "Community librarian · connecting people, not just Wi-Fi",
+      "bio": "Local history, useful workshops, and the art of asking one more question. I build learning programs with neighborhood partners. Yes, the printer is asking for paper again.",
+      "company": "library",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "University of Kentucky",
+          "degree": "MS, Library Science",
+          "years": "2008–2010"
+        }
+      ],
+      "skills": [
+        "Community programming",
+        "Research",
+        "Digital literacy",
+        "Partnership building"
+      ],
+      "history": [
+        {
+          "company": "library",
+          "role": "Community programs librarian",
+          "years": "2016–present",
+          "detail": "Coordinates local history, practical workshops, and volunteer learning."
+        },
+        {
+          "company": "open",
+          "role": "Volunteer program adviser",
+          "years": "2023–present",
+          "detail": "Helps speakers adapt technical topics for general audiences."
+        }
+      ],
+      "connections": [
+        "corey",
+        "tessa",
+        "sam",
+        "dev",
+        "kai"
+      ],
+      "posts": [
+        {
+          "id": "ellis-1",
+          "date": "22 Oct 2026",
+          "text": "History walk on Sunday, winter workshop planning on Monday. Looking for people who can explain a practical skill without assuming everyone already knows the vocabulary.",
+          "image": "ellis-library",
+          "comments": [
+            [
+              "corey",
+              "Bike maintenance is available. The bell may need its own session."
+            ]
+          ]
+        },
+        {
+          "id": "ellis-2",
+          "date": "13 Oct 2026",
+          "text": "Our next digital-literacy session will compare a polished message with a trustworthy message. They are not the same thing.",
+          "image": null,
+          "comments": [
+            [
+              "morgan",
+              "Please include recruitment examples."
+            ]
+          ]
+        },
+        {
+          "id": "ellis-3",
+          "date": "8 Sep 2026",
+          "text": "Finally catalogued the station photographs. I am interested in short-term archive partnerships if anyone needs a patient researcher and a sensible naming scheme.",
+          "image": null,
+          "comments": [
+            [
+              "dev",
+              "That would make a good lightning talk."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "press",
+          "We can host a materials clinic on a weekday afternoon; our volunteer team learns by doing."
+        ],
+        [
+          "spoke",
+          "The library bike is officially quieter than the printer. Thank you."
+        ]
+      ]
+    },
+    "corey": {
+      "name": "Corey Selvin",
+      "image": "corey-shop",
+      "headline": "Bicycle mechanic · making the daily ride dependable",
+      "bio": "I fix bikes and explain the fix. Everyday transport deserves the same care as a weekend race machine. Building more neighborhood repair workshops, one stubborn bell at a time.",
+      "company": "spoke",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "Eastern Kentucky University",
+          "degree": "BS, Applied Engineering Management",
+          "years": "2008–2012"
+        }
+      ],
+      "skills": [
+        "Repair education",
+        "Workshop planning",
+        "Customer service",
+        "Mechanical troubleshooting"
+      ],
+      "history": [
+        {
+          "company": "spoke",
+          "role": "Workshop manager",
+          "years": "2019–present",
+          "detail": "Repairs everyday bicycles and coordinates practical community sessions."
+        },
+        {
+          "company": "juniper",
+          "role": "Facilities technician",
+          "years": "2013–2019",
+          "detail": "Kept guest bikes, door closers, and impossible maintenance calendars moving."
+        }
+      ],
+      "connections": [
+        "ellis",
+        "tessa",
+        "dev",
+        "kai"
+      ],
+      "posts": [
+        {
+          "id": "corey-1",
+          "date": "24 Oct 2026",
+          "text": "The library bike rolls again. Two brake adjustments, one inner tube, and a bell that required diplomacy.",
+          "image": "corey-shop",
+          "comments": [
+            [
+              "ellis",
+              "Our volunteers are very grateful."
+            ]
+          ]
+        },
+        {
+          "id": "corey-2",
+          "date": "14 Oct 2026",
+          "text": "Planning winter maintenance workshops with the library. Interested in a community-education partnership, particularly one that reaches people who do not think of themselves as cyclists.",
+          "image": null,
+          "comments": [
+            [
+              "dev",
+              "A short demonstration at Open Chair could help find partners."
+            ]
+          ]
+        },
+        {
+          "id": "corey-3",
+          "date": "1 Sep 2026",
+          "text": "Facilities work taught me that the person describing the problem has useful information even when they do not know the technical word. Still true at the repair stand.",
+          "image": null,
+          "comments": [
+            [
+              "dana",
+              "This applies to project briefs too."
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "library",
+          "We can bring two demonstration bikes and keep the jargon to a minimum."
+        ],
+        [
+          "press",
+          "Readable labels made the beginner workshop much easier to follow."
+        ]
+      ]
+    },
+    "kai": {
+      "name": "Kai Morgan",
+      "image": "coach-kai",
+      "headline": "Science educator & coach · small experiments, strong teams",
+      "bio": "I teach students to test an idea and teammates to trust a pass. Practical science, youth coaching, and volunteer development. My whistle has never improved a spreadsheet.",
+      "company": "riverdale",
+      "location": "Lexington, KY",
+      "education": [
+        {
+          "school": "Western Kentucky University",
+          "degree": "BS, Science Education",
+          "years": "2005–2009"
+        }
+      ],
+      "skills": [
+        "Science education",
+        "Youth coaching",
+        "Volunteer training",
+        "Workshop facilitation"
+      ],
+      "history": [
+        {
+          "company": "riverdale",
+          "role": "Science educator & youth coach",
+          "years": "2014–present",
+          "detail": "Connects practical classroom learning with community sport."
+        },
+        {
+          "company": "library",
+          "role": "Guest workshop facilitator",
+          "years": "2020–present",
+          "detail": "Occasional hands-on science activities for family learning days."
+        }
+      ],
+      "connections": [
+        "dana",
+        "ellis",
+        "dev",
+        "corey"
+      ],
+      "posts": [
+        {
+          "id": "kai-1",
+          "date": "24 Oct 2026",
+          "text": "Proud of the Thunder volunteers today. The quiet work before kickoff made everything else possible.",
+          "image": "coach-kai",
+          "comments": [
+            [
+              "dana",
+              "Thanks for making time for the new helpers."
+            ]
+          ]
+        },
+        {
+          "id": "kai-2",
+          "date": "7 Oct 2026",
+          "text": "Looking for a winter guest session on science in everyday repairs. Students ask better questions when they can hold the object.",
+          "image": null,
+          "comments": [
+            [
+              "corey",
+              "Bicycle gears make a good demonstration."
+            ]
+          ]
+        },
+        {
+          "id": "kai-3",
+          "date": "15 Sep 2026",
+          "text": "Trying a new volunteer induction format: one demonstration, one practice, one question. A long document is not the same as a useful first day.",
+          "image": null,
+          "comments": [
+            [
+              "dev",
+              "Would you share that at a roundtable?"
+            ]
+          ]
+        }
+      ],
+      "activity": [
+        [
+          "open",
+          "I would happily join a discussion about training volunteers without drowning them in paperwork."
+        ],
+        [
+          "library",
+          "The family science afternoon was a highlight. Let us plan another one."
+        ]
+      ]
+    }
+  },
+  "companies": {
+    "cedar": {
+      "name": "Cedar & Finch",
+      "tag": "Design with a pulse. Meetings with an end time.",
+      "sector": "Design services",
+      "location": "Lexington, KY",
+      "size": "11–50",
+      "image": "studio-gallery",
+      "about": "An independent studio making identities, printed spaces, and websites for organizations with actual humans in them. We ask why before choosing a font. Sometimes twice.",
+      "specialties": [
+        "Brand systems",
+        "Community campaigns",
+        "Accessible websites"
+      ],
+      "updates": [
+        [
+          "24 Oct 2026",
+          "Community Cup signs survived the wind. A small victory for teamwork and a large victory for gaffer tape."
+        ],
+        [
+          "15 Oct 2026",
+          "The Juniper wayfinding pilot moves to review in November. Dana is coordinating the handoff; Lena owns print proofs and Sam is checking the digital companion."
+        ]
+      ],
+      "links": [
+        [
+          "Studio website",
+          "../osint/#/work"
+        ],
+        [
+          "Meet the designers",
+          "../osint/#/article/designers"
+        ]
+      ],
+      "docs": [
+        "speaker-notes"
+      ]
+    },
+    "good-enough": {
+      "name": "Good Enough Tomorrow",
+      "tag": "Strategy today. A slightly better spreadsheet tomorrow.",
+      "sector": "Operations consultancy",
+      "location": "Louisville, KY",
+      "size": "11–50",
+      "image": "studio-desk",
+      "about": "We turn “someone should really organize that” into a labeled folder, a sensible schedule, and a meeting that could finally have been an email.",
+      "specialties": [
+        "Project operations",
+        "Client onboarding",
+        "Change management"
+      ],
+      "updates": [
+        [
+          "19 Oct 2026",
+          "Our onboarding workshop is full. Alumni office hours return in November."
+        ],
+        [
+          "6 Oct 2026",
+          "A process diagram is not improved by adding seventeen arrows. We tested this so you do not have to."
+        ]
+      ],
+      "links": [],
+      "docs": []
+    },
+    "press": {
+      "name": "Pressing Matters",
+      "tag": "We have strong opinions about paper. Please ask.",
+      "sector": "Print & production",
+      "location": "Covington, KY",
+      "size": "11–50",
+      "image": "tessa-brooks",
+      "about": "A regional print partner for museums, studios, and the occasional wedding with eighteen rounds of revisions. We translate beautiful files into things you can hold.",
+      "specialties": [
+        "Short-run print",
+        "Exhibition graphics",
+        "Color matching"
+      ],
+      "updates": [
+        [
+          "20 Oct 2026",
+          "Tessa is gathering samples for the November materials clinic. Recycled stocks, honest pricing, and absolutely no glitter near the rollers."
+        ],
+        [
+          "18 Sep 2026",
+          "Ten years since our studio printed Lena and Alex’s wedding stationery. We found the job ticket while organizing our sample archive."
+        ]
+      ],
+      "links": [],
+      "docs": [
+        "paper-stories"
+      ]
+    },
+    "juniper": {
+      "name": "Juniper House",
+      "tag": "Stay curious. Leave the tiny shampoo collection.",
+      "sector": "Hospitality",
+      "location": "Lexington, KY",
+      "size": "51–200",
+      "image": "cafe",
+      "about": "A small collection of independently minded guest houses and cafés. Our guests should be able to find breakfast without a compass or an advanced degree in corridor studies.",
+      "specialties": [
+        "Guest experience",
+        "Community events",
+        "Wayfinding"
+      ],
+      "updates": [
+        [
+          "22 Oct 2026",
+          "Cedar & Finch’s navigation pilot will be reviewed by our guest-experience team next month. Volunteers tested the first signs with impressive honesty."
+        ],
+        [
+          "9 Oct 2026",
+          "Our café noticeboard has run out of pins again. Demand for local poetry is exceeding infrastructure."
+        ]
+      ],
+      "links": [],
+      "docs": []
+    },
+    "next": {
+      "name": "Next Chapter People",
+      "tag": "Careers are not straight lines. Neither are our office plants.",
+      "sector": "Recruitment & career development",
+      "location": "Cincinnati, OH",
+      "size": "11–50",
+      "image": "morgan-vale",
+      "about": "We work with small creative and community organizations on clear job descriptions, practical portfolios, and interviews with fewer mysterious acronyms. Introductions are a beginning, not an endorsement.",
+      "specialties": [
+        "Creative recruitment",
+        "Portfolio reviews",
+        "Career coaching"
+      ],
+      "updates": [
+        [
+          "23 Oct 2026",
+          "Morgan’s portfolio roundtable returns in November. Bring one project you can explain without saying “synergy.”"
+        ],
+        [
+          "2 Oct 2026",
+          "Candidate note: we publish role details before inviting a conversation. Vague excitement is not a job description."
+        ]
+      ],
+      "links": [],
+      "docs": []
+    },
+    "open": {
+      "name": "Open Chair Collective",
+      "tag": "Networking for people who would rather sit down.",
+      "sector": "Community events",
+      "location": "Lexington, KY",
+      "size": "2–10",
+      "image": "dev-malik",
+      "about": "Small gatherings for designers, educators, makers, and people whose job titles do not fit on badges. We value useful conversations over business-card endurance sports.",
+      "specialties": [
+        "Small events",
+        "Speaker programs",
+        "Community partnerships"
+      ],
+      "updates": [
+        [
+          "25 Oct 2026",
+          "Our November session is “Useful work, clearly explained.” Dev is confirming the lightning-talk running order."
+        ],
+        [
+          "10 Oct 2026",
+          "The name-badge printer is working. This is not a drill."
+        ]
+      ],
+      "links": [],
+      "docs": [
+        "speaker-notes",
+        "roundtable"
+      ]
+    },
+    "library": {
+      "name": "Lexington Neighborhood Library",
+      "tag": "Quietly running half the neighborhood.",
+      "sector": "Community learning",
+      "location": "Lexington, KY",
+      "size": "11–50",
+      "image": "ellis-library",
+      "about": "Books, local history, repair afternoons, and a printer that inspires personal growth. Our fictional neighborhood branch brings people together through practical learning.",
+      "specialties": [
+        "Local history",
+        "Community programs",
+        "Digital literacy"
+      ],
+      "updates": [
+        [
+          "22 Oct 2026",
+          "Ellis’s Sunday history walk starts at the library steps. The old station photographs are finally catalogued."
+        ],
+        [
+          "17 Oct 2026",
+          "Community workshop partners met to plan winter sessions. Bike care, printmaking, and learning to spot questionable messages are on the wish list."
+        ]
+      ],
+      "links": [],
+      "docs": []
+    },
+    "spoke": {
+      "name": "Spoke & Wrench",
+      "tag": "Your brakes should be dramatic only when necessary.",
+      "sector": "Bicycle repair",
+      "location": "Lexington, KY",
+      "size": "2–10",
+      "image": "corey-shop",
+      "about": "Neighborhood repairs, patient explanations, and a healthy suspicion of the phrase “it only makes that noise sometimes.” We keep everyday bikes on the road.",
+      "specialties": [
+        "Bicycle maintenance",
+        "Repair education",
+        "Community partnerships"
+      ],
+      "updates": [
+        [
+          "24 Oct 2026",
+          "The library bicycle is back in service. Corey defeated the bell. The bell has declined an interview."
+        ],
+        [
+          "14 Oct 2026",
+          "Winter maintenance workshop planning is underway with the neighborhood library."
+        ]
+      ],
+      "links": [
+        [
+          "Local coverage",
+          "../osint/#/article/news-bikes"
+        ]
+      ],
+      "docs": []
+    },
+    "riverdale": {
+      "name": "Riverdale Learning & Sport",
+      "tag": "Teaching teamwork, including in the equipment cupboard.",
+      "sector": "Education & youth sport",
+      "location": "Lexington, KY",
+      "size": "51–200",
+      "image": "field",
+      "about": "A fictional school-and-community program connecting classroom learning with youth sport. Coach K maintains that organized cones count as a transferable skill.",
+      "specialties": [
+        "Science education",
+        "Youth coaching",
+        "Volunteer coordination"
+      ],
+      "updates": [
+        [
+          "24 Oct 2026",
+          "Community Cup weekend: thank you to the coaches, families, volunteers, and very patient grounds team."
+        ]
+      ],
+      "links": [
+        [
+          "Thunder club",
+          "../osint/#/club"
+        ]
+      ],
+      "docs": []
+    }
+  },
+  "docs": {
+    "speaker-notes": {
+      "company": "open",
+      "title": "Design for Real People · 2023 speaker program",
+      "date": "16 May 2023 · Program archive",
+      "sections": [
+        [
+          "An evening of practical ideas",
+          "Our panel explored accessible print, clearer forms, and better project handoffs. Thanks to our host partners at Cedar & Finch."
+        ],
+        [
+          "Speaker desk",
+          "Lena Ortiz — Brand & print designer, Cedar & Finch. Topic: readable print in everyday spaces. Workshop follow-up: lena.ortiz@cedarfinch.example."
+        ],
+        [
+          "Also on the program",
+          "Dev Malik moderated. Ellis Park shared notes on public-library workshop design. The closing discussion covered practical teaching formats for small teams."
+        ]
+      ],
+      "people": [
+        "lena",
+        "dev",
+        "ellis"
+      ]
+    },
+    "paper-stories": {
+      "company": "press",
+      "title": "Paper Stories · a little type, a long memory",
+      "date": "18 September 2026 · From the sample archive",
+      "sections": [
+        [
+          "The job ticket",
+          "Lena Ortiz + Alex · wedding stationery · event date 09/18/2016. Cream stock, indigo ink, and a small botanical mark that survived several enthusiastic revisions."
+        ],
+        [
+          "Ten years later",
+          "Tessa found the retained sample while preparing the materials clinic. Lena remembered arguing about the flourishes. Everyone remembered the excellent cake."
+        ],
+        [
+          "Why we keep samples",
+          "A useful print archive records what worked as well as what looked good. Our workshop kits include paper, production notes, and several cautionary tales."
+        ]
+      ],
+      "people": [
+        "lena",
+        "tessa"
+      ]
+    },
+    "roundtable": {
+      "company": "open",
+      "title": "Useful work, clearly explained",
+      "date": "November 2026 · Program preview",
+      "sections": [
+        [
+          "Small rooms, specific questions",
+          "Sam Reed will share a short accessible-forms case study. Morgan Vale will facilitate portfolio conversations. The materials table is being assembled with Pressing Matters."
+        ],
+        [
+          "What to bring",
+          "One example of a decision you made, who it helped, and what you would change next time. The evening includes quiet space and a seated introduction table."
+        ]
+      ],
+      "people": [
+        "sam",
+        "morgan",
+        "tessa",
+        "dev"
+      ]
+    }
+  }
+};

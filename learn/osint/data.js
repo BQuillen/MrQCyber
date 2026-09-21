@@ -189,3 +189,9 @@ ARTICLES['thunder-weekly']={service:'club',title:'From the touchline',date:'25 O
 ARTICLES.roster.body+=`<h2>More from the squad</h2><p><a href="#/profile/zoe">Zoe Bennett · #11</a> brings pace on the wing. <a href="#/profile/mateo">Mateo Ruiz · #1</a> keeps everyone talking in goal. <a href="#/profile/harper">Harper Chen · #4</a> reads the game from the back line.</p>`;
 SEARCH_INDEX.push({title:'From the touchline · Riverdale Thunder',route:'/article/thunder-weekly',site:'thunder.training / journal',text:'This week’s soccer highlights, player news, and the Sunday boot swap.',keys:'riverdale thunder soccer zoe bennett mateo ruiz harper chen'});
 for(const id of ['rich','goblina','animal','zoe','mateo','harper']){const p=PROFILES[id];SEARCH_INDEX.push({title:p.name+' · Frame',route:'/profile/'+id,site:'frame.training / '+p.handle,text:p.bio,keys:p.name+' '+p.handle+' '+p.bio});}
+
+// Professional profiles connect the studio to the wider community.
+ARTICLES['work-home'].body+='<p><a href="../linkedup/#/company/cedar">Cedar &amp; Finch on LinkedUP ↗</a></p>';
+for(const id of ['dana','lena','sam'])ARTICLES[id+'-bio'].body+=`<p><a href="../linkedup/#/person/${id}">Professional profile on LinkedUP ↗</a></p>`;
+SEARCH_INDEX.push({title:'LinkedUP · Professional community',route:'/article/linkedup',site:'linkedup.training',text:'Professional profiles, company news, and conversations from the Lexington community.',keys:'linkedup cedar finch professional dana selvin lena ortiz sam reed'});
+ARTICLES.linkedup={service:'directory',title:'LinkedUP',date:'Professional community',body:'<p>Explore professional profiles, company updates, and conversations.</p><p><a href="../linkedup/">Open LinkedUP ↗</a></p>'};
