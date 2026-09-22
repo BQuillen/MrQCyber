@@ -46,8 +46,8 @@ const WORLD = {
         {
           "id": "dana-1",
           "date": "25 Oct 2026",
-          "text": "Weekend fundraiser complete. Monday is for receipts, then back to the Juniper handoff plan. There is no project-management certificate for removing blue icing from a clipboard.",
-          "image": "volunteers",
+          "text": "Weekend fundraiser complete. Found blue icing on my clipboard after we packed the last table. The volunteer who lent us the folding trolley has my lasting gratitude. Monday is for receipts, then back to the Juniper handoff plan.",
+          "image": "dana-fundraiser",
           "comments": [
             [
               "dev",
@@ -57,7 +57,8 @@ const WORLD = {
               "tessa",
               "Those outdoor signs held up well!"
             ]
-          ]
+          ],
+          "imageAlt": "Dana wiping a clipboard while two volunteers pack up the fundraiser."
         },
         {
           "id": "dana-2",
@@ -78,14 +79,19 @@ const WORLD = {
         {
           "id": "dana-3",
           "date": "14 Sep 2026",
-          "text": "Good Enough Tomorrow alumni lunch reminded me how much onboarding shapes the rest of a project. I still keep my old handoff checklist, even if the stationery has improved.",
-          "image": "cafe",
+          "text": "Good Enough Tomorrow alumni lunch: three people ordered the same sandwich they always used to order, and I apparently still carry our old handoff checklist. We spent longer remembering the broken office kettle than discussing work. Good onboarding is the part I brought with me.",
+          "image": "dana-alumni",
           "comments": [
             [
               "ellis",
               "We could use a checklist workshop at the library."
+            ],
+            [
+              "morgan",
+              "That kettle had an unofficial onboarding document of its own."
             ]
-          ]
+          ],
+          "imageAlt": "Dana sharing lunch and an old notebook with former colleagues."
         }
       ],
       "activity": [
@@ -144,8 +150,8 @@ const WORLD = {
         {
           "id": "lena-1",
           "date": "21 Oct 2026",
-          "text": "Proofs for the Juniper pilot are nearly ready. Next up: a small printmaking workshop at the arts center. I would like the next career chapter to include more teaching alongside the design work.",
-          "image": "lena-print",
+          "text": "A second pair of eyes on the Juniper proofs before they leave the table. We agreed on the paper immediately and debated the smallest border for twenty minutes. Next up: the arts-center printmaking workshop. I would like the next career chapter to include more teaching alongside the design work.",
+          "image": "lena-proof-review",
           "comments": [
             [
               "tessa",
@@ -154,14 +160,19 @@ const WORLD = {
             [
               "dana",
               "The review dates are on the shared calendar."
+            ],
+            [
+              "sam",
+              "The smallest border always gets the longest meeting."
             ]
-          ]
+          ],
+          "imageAlt": "Two designers comparing paper proofs on a studio table."
         },
         {
           "id": "lena-2",
           "date": "18 Sep 2026",
           "text": "Ten years married to Alex today. Still choosing the restaurant by the quality of the menu typography. Tessa dug up our old stationery, which is both lovely and evidence that I used too many flourishes.",
-          "image": null,
+          "image": "lena-anniversary",
           "comments": [
             [
               "tessa",
@@ -171,13 +182,14 @@ const WORLD = {
               "sam",
               "Happy anniversary!"
             ]
-          ]
+          ],
+          "imageAlt": "Lena and Alex at a restaurant table with menus and a shared dessert."
         },
         {
           "id": "lena-3",
           "date": "3 Aug 2026",
           "text": "Mochi has promoted himself to studio supervisor. Excellent at sitting on proofs; less interested in the invoicing. Alex says the dog should get his own business cards.",
-          "image": "studio-desk",
+          "image": "lena-mochi",
           "comments": [
             [
               "dev",
@@ -186,8 +198,13 @@ const WORLD = {
             [
               "lena",
               "He would demand payment in biscuits."
+            ],
+            [
+              "tessa",
+              "He has picked the most expensive stock again."
             ]
-          ]
+          ],
+          "imageAlt": "Lena coaxing a small cream terrier away from a pile of paper proofs."
         },
         {
           "id": "lena-4",
@@ -263,20 +280,21 @@ const WORLD = {
         {
           "id": "sam-1",
           "date": "24 Oct 2026",
-          "text": "Saturday at the garden. A reminder that user research also means asking the person who has successfully grown a tomato before.",
-          "image": "sam-garden",
+          "text": "Saturday at the garden: the last tomatoes and a wheelbarrow that strongly prefers turning left. Ruth got more out of one raised bed than I did out of three. Asking the person who has done it before remains an underrated technique.",
+          "image": "sam-garden-workday",
           "comments": [
             [
               "lena",
               "The plants have better naming conventions than our file server."
             ]
-          ]
+          ],
+          "imageAlt": "Sam comparing the last tomatoes with another community gardener."
         },
         {
           "id": "sam-2",
           "date": "12 Oct 2026",
-          "text": "Preparing a lightning talk on accessible forms for Open Chair in November. Interested in paid opportunities to review small organizations’ onboarding flows. Please bring actual users into the conversation.",
-          "image": null,
+          "text": "First rehearsal for the November Open Chair lightning talk on accessible forms. Seven minutes sounds generous until someone starts a stopwatch. One example still needs simplifying. I am also interested in paid reviews of small organizations’ onboarding flows, especially when actual users are part of the conversation.",
+          "image": "sam-rehearsal",
           "comments": [
             [
               "dev",
@@ -285,14 +303,19 @@ const WORLD = {
             [
               "morgan",
               "That is a useful niche. Happy to talk portfolio structure."
+            ],
+            [
+              "dev",
+              "Six minutes forty on the second run. The example with the address form earned its place."
             ]
-          ]
+          ],
+          "imageAlt": "Sam rehearsing a presentation while another organizer listens from the front row."
         },
         {
           "id": "sam-3",
           "date": "4 Sep 2026",
           "text": "My old information-management classmates are comparing research notes again. I miss the studio critiques; I do not miss pretending an all-nighter was a methodology.",
-          "image": "studio-desk",
+          "image": null,
           "comments": [
             [
               "ellis",
@@ -357,8 +380,8 @@ const WORLD = {
         {
           "id": "morgan-1",
           "date": "23 Oct 2026",
-          "text": "November portfolio roundtable: explain one project, one decision, and one result. You do not need to claim you single-handedly transformed the universe.",
-          "image": "morgan-vale",
+          "text": "A practice round before the November portfolio roundtable. One project, one decision, one result. The most useful moment was someone asking what had changed after the first version. Nobody needed to claim they had single-handedly transformed the universe.",
+          "image": "morgan-roundtable",
           "comments": [
             [
               "dana",
@@ -368,25 +391,35 @@ const WORLD = {
               "morgan",
               "Absolutely. Explain the decisions, not just the size."
             ]
-          ]
+          ],
+          "imageAlt": "Morgan discussing a portfolio around a table with three participants."
         },
         {
           "id": "morgan-2",
           "date": "6 Oct 2026",
-          "text": "A good introduction tells me why this person, why this role, and why now. A recognizable company name is context, not verification.",
-          "image": null,
+          "text": "Went to the market for one replacement mug. Came home with two and a very persuasive story about a chipped teapot. Apparently “why this one?” works at a stall as well as in an interview. A good introduction still needs why this person, why this role, and why now. A recognizable company name is context, not verification.",
+          "image": "morgan-mugs",
           "comments": [
             [
               "ellis",
               "That distinction belongs in our digital-literacy workshop."
+            ],
+            [
+              "sam",
+              "The pale one looks exactly like the mug we keep losing at the studio."
+            ],
+            [
+              "morgan",
+              "Mine has a small chip under the handle. I am calling it provenance."
             ]
-          ]
+          ],
+          "imageAlt": "Morgan comparing two secondhand mugs at a weekend market."
         },
         {
           "id": "morgan-3",
           "date": "20 Aug 2026",
           "text": "I am building a list of guest reviewers for winter portfolio sessions. Designers who enjoy teaching: tell us about a workshop you have led, not a follower count.",
-          "image": "studio-gallery",
+          "image": null,
           "comments": [
             [
               "lena",
@@ -451,8 +484,8 @@ const WORLD = {
         {
           "id": "tessa-1",
           "date": "20 Oct 2026",
-          "text": "Building a traveling paper-sample library for November. Looking for community venues that want a practical materials clinic. We bring the samples; you supply curious people.",
-          "image": "tessa-brooks",
+          "text": "The traveling paper-sample library has reached the stage where every surface contains a small labeled pile. Two boxes, twelve textures, and one lid that no longer closes. Looking for community venues for a November materials clinic. We bring the samples; you supply curious people.",
+          "image": "tessa-sample-kits",
           "comments": [
             [
               "ellis",
@@ -462,7 +495,8 @@ const WORLD = {
               "lena",
               "Count me in for a session."
             ]
-          ]
+          ],
+          "imageAlt": "Tessa assembling boxes of paper samples for a traveling materials clinic."
         },
         {
           "id": "tessa-2",
@@ -479,14 +513,23 @@ const WORLD = {
         {
           "id": "tessa-3",
           "date": "2 Jul 2026",
-          "text": "Trying shorter production briefings: ten minutes, one proof, one decision. Nobody has asked for the forty-slide version back.",
-          "image": null,
+          "text": "Ten-minute production briefing this morning: one proof, one decision, and nobody asked for the forty-slide version. Used the rescued time to catch the small-print exhibition after work. One of these pieces was made with a kitchen spoon instead of a press. I have questions.",
+          "image": "tessa-gallery",
           "comments": [
             [
               "dana",
               "I would attend this workshop on principle."
+            ],
+            [
+              "lena",
+              "Please tell me you asked about the paper too."
+            ],
+            [
+              "tessa",
+              "Naturally. It was a very thorough conversation."
             ]
-          ]
+          ],
+          "imageAlt": "Tessa talking with a visitor at an exhibition of small prints."
         }
       ],
       "activity": [
@@ -546,8 +589,8 @@ const WORLD = {
         {
           "id": "dev-1",
           "date": "25 Oct 2026",
-          "text": "November lightning talks are coming together: accessible forms, useful portfolios, and production mistakes we can all learn from. Still looking for a facilitator for the small-group discussion.",
-          "image": "dev-malik",
+          "text": "Room-layout trial for the November lightning talks. The chairs fit, the aisle stays clear, and the microphone cable finally reaches without crossing a doorway. The program is coming together: accessible forms, portfolios, and production mistakes. Still looking for a facilitator for the small-group discussion.",
+          "image": "dev-event-setup",
           "comments": [
             [
               "sam",
@@ -557,7 +600,8 @@ const WORLD = {
               "morgan",
               "Happy to help with the portfolio group."
             ]
-          ]
+          ],
+          "imageAlt": "Dev arranging chairs and a clear aisle before a community event."
         },
         {
           "id": "dev-2",
@@ -574,14 +618,23 @@ const WORLD = {
         {
           "id": "dev-3",
           "date": "11 Sep 2026",
-          "text": "My favorite event metric: someone asks a better question at the end than at the beginning. We are testing a quiet introduction table next month.",
-          "image": null,
+          "text": "Testing biscuits for the quiet introduction table next month. Batch one spread into a single large biscuit; batch two can be served without a structural engineer. I want the table to make it easier to start a conversation without shouting across a room. A better question at the end is still my favorite event metric.",
+          "image": "dev-biscuit-test",
           "comments": [
             [
               "kai",
               "This would work well for new volunteer coaches."
+            ],
+            [
+              "ellis",
+              "Happy to help with the trial. I can bring a kettle that works."
+            ],
+            [
+              "morgan",
+              "I can apparently supply more mugs than anyone needs."
             ]
-          ]
+          ],
+          "imageAlt": "Dev testing a batch of homemade biscuits at a kitchen counter."
         }
       ],
       "activity": [
@@ -640,14 +693,15 @@ const WORLD = {
         {
           "id": "ellis-1",
           "date": "22 Oct 2026",
-          "text": "History walk on Sunday, winter workshop planning on Monday. Looking for people who can explain a practical skill without assuming everyone already knows the vocabulary.",
-          "image": "ellis-library",
+          "text": "Sunday history walk: the old photograph settled one argument about the station windows and started another about the steps. We stopped twice because someone remembered a story I had never heard. Monday is for winter-workshop planning and finding people who can explain a practical skill without assuming everyone knows the vocabulary.",
+          "image": "ellis-history-walk",
           "comments": [
             [
               "corey",
               "Bike maintenance is available. The bell may need its own session."
             ]
-          ]
+          ],
+          "imageAlt": "Ellis comparing an old photograph with a brick building during a history walk."
         },
         {
           "id": "ellis-2",
@@ -664,14 +718,15 @@ const WORLD = {
         {
           "id": "ellis-3",
           "date": "8 Sep 2026",
-          "text": "Finally catalogued the station photographs. I am interested in short-term archive partnerships if anyone needs a patient researcher and a sensible naming scheme.",
-          "image": null,
+          "text": "The station photographs are finally in sleeves. Two dates remain uncertain, so they are penciled into the notes as questions rather than facts. The boxes are less romantic than the pictures, but a sensible naming scheme is an act of kindness to the next researcher. Open to short-term archive partnerships.",
+          "image": "ellis-archive",
           "comments": [
             [
               "dev",
               "That would make a good lightning talk."
             ]
-          ]
+          ],
+          "imageAlt": "Ellis sorting railway photographs into sleeves at the archive worktable."
         }
       ],
       "activity": [
@@ -729,26 +784,36 @@ const WORLD = {
         {
           "id": "corey-1",
           "date": "24 Oct 2026",
-          "text": "The library bike rolls again. Two brake adjustments, one inner tube, and a bell that required diplomacy.",
-          "image": "corey-shop",
+          "text": "The library bike rolls again. Two brake adjustments, one inner tube, and a bell that required diplomacy. The basket stayed: its owner was very firm on that point. A five-minute test ride told us more than another half hour staring at the repair stand.",
+          "image": "corey-bench-repair",
           "comments": [
             [
               "ellis",
               "Our volunteers are very grateful."
             ]
-          ]
+          ],
+          "imageAlt": "Corey adjusting the front brake on a green city bicycle."
         },
         {
           "id": "corey-2",
           "date": "14 Oct 2026",
-          "text": "Planning winter maintenance workshops with the library. Interested in a community-education partnership, particularly one that reaches people who do not think of themselves as cyclists.",
-          "image": null,
+          "text": "A small practice session at the library before we plan the winter maintenance workshops. Finding the hole in a tube is easier when everybody can hear the bucket rather than the traffic outside. Interested in a community-education partnership that reaches people who do not think of themselves as cyclists.",
+          "image": "corey-library-clinic",
           "comments": [
             [
               "dev",
               "A short demonstration at Open Chair could help find partners."
+            ],
+            [
+              "ellis",
+              "Next time we will cover the local-history table before the bucket arrives."
+            ],
+            [
+              "corey",
+              "Agreed. The books were an excellent audience, though."
             ]
-          ]
+          ],
+          "imageAlt": "Corey demonstrating an inner-tube patch while three workshop attendees watch."
         },
         {
           "id": "corey-3",
@@ -818,26 +883,36 @@ const WORLD = {
         {
           "id": "kai-1",
           "date": "24 Oct 2026",
-          "text": "Proud of the Thunder volunteers today. The quiet work before kickoff made everything else possible.",
-          "image": "coach-kai",
+          "text": "Before kickoff: cones, roles, and one quick demonstration. The Thunder volunteers made the morning work because everyone knew who to ask. The quiet preparation rarely makes the photos, so this one is for that part of the day.",
+          "image": "kai-volunteer-briefing",
           "comments": [
             [
               "dana",
               "Thanks for making time for the new helpers."
             ]
-          ]
+          ],
+          "imageAlt": "Kai demonstrating a field setup to two volunteers before practice."
         },
         {
           "id": "kai-2",
           "date": "7 Oct 2026",
-          "text": "Looking for a winter guest session on science in everyday repairs. Students ask better questions when they can hold the object.",
-          "image": null,
+          "text": "Trying the bicycle-wheel demonstration before inviting a room full of questions. The first version mostly demonstrated why you should tighten the stand. Looking for a winter guest session on science in everyday repairs. Students ask better questions when they can hold the object.",
+          "image": "kai-science-demo",
           "comments": [
             [
               "corey",
               "Bicycle gears make a good demonstration."
+            ],
+            [
+              "corey",
+              "I can bring a wheel that is already retired from road duty."
+            ],
+            [
+              "kai",
+              "That would save the wheel from my own bike another trip to school."
             ]
-          ]
+          ],
+          "imageAlt": "Kai testing a bicycle-wheel and pulley demonstration in a classroom."
         },
         {
           "id": "kai-3",
@@ -871,7 +946,7 @@ const WORLD = {
       "sector": "Design services",
       "location": "Lexington, KY",
       "size": "11–50",
-      "image": "studio-gallery",
+      "image": "company-cedar",
       "about": "An independent studio making identities, printed spaces, and websites for organizations with actual humans in them. We ask why before choosing a font. Sometimes twice.",
       "specialties": [
         "Brand systems",
@@ -900,7 +975,8 @@ const WORLD = {
       ],
       "docs": [
         "speaker-notes"
-      ]
+      ],
+      "imageAlt": "A shared design studio with paper mockups, sample shelves, and a wall of prints."
     },
     "good-enough": {
       "name": "Good Enough Tomorrow",
@@ -934,7 +1010,7 @@ const WORLD = {
       "sector": "Print & production",
       "location": "Covington, KY",
       "size": "11–50",
-      "image": "tessa-brooks",
+      "image": "company-pressroom",
       "about": "A regional print partner for museums, studios, and the occasional wedding with eighteen rounds of revisions. We translate beautiful files into things you can hold.",
       "specialties": [
         "Short-run print",
@@ -954,7 +1030,8 @@ const WORLD = {
       "links": [],
       "docs": [
         "paper-stories"
-      ]
+      ],
+      "imageAlt": "Paper proofs and a printing press inside the workshop."
     },
     "juniper": {
       "name": "Juniper House",
@@ -962,7 +1039,7 @@ const WORLD = {
       "sector": "Hospitality",
       "location": "Lexington, KY",
       "size": "51–200",
-      "image": "cafe",
+      "image": "company-juniper",
       "about": "A small collection of independently minded guest houses and cafés. Our guests should be able to find breakfast without a compass or an advanced degree in corridor studies.",
       "specialties": [
         "Guest experience",
@@ -980,7 +1057,8 @@ const WORLD = {
         ]
       ],
       "links": [],
-      "docs": []
+      "docs": [],
+      "imageAlt": "The guesthouse cafe and lobby, with tables and a corridor beyond."
     },
     "next": {
       "name": "Next Chapter People",
@@ -988,7 +1066,7 @@ const WORLD = {
       "sector": "Recruitment & career development",
       "location": "Cincinnati, OH",
       "size": "11–50",
-      "image": "morgan-vale",
+      "image": "company-recruiting",
       "about": "We work with small creative and community organizations on clear job descriptions, practical portfolios, and interviews with fewer mysterious acronyms. Introductions are a beginning, not an endorsement.",
       "specialties": [
         "Creative recruitment",
@@ -1006,7 +1084,8 @@ const WORLD = {
         ]
       ],
       "links": [],
-      "docs": []
+      "docs": [],
+      "imageAlt": "A small recruiting office with conversation chairs and a meeting room."
     },
     "open": {
       "name": "Open Chair Collective",
@@ -1014,7 +1093,7 @@ const WORLD = {
       "sector": "Community events",
       "location": "Lexington, KY",
       "size": "2–10",
-      "image": "dev-malik",
+      "image": "company-eventspace",
       "about": "Small gatherings for designers, educators, makers, and people whose job titles do not fit on badges. We value useful conversations over business-card endurance sports.",
       "specialties": [
         "Small events",
@@ -1035,7 +1114,8 @@ const WORLD = {
       "docs": [
         "speaker-notes",
         "roundtable"
-      ]
+      ],
+      "imageAlt": "A community event hall with a circle of chairs and a quiet side table."
     },
     "library": {
       "name": "Lexington Neighborhood Library",
@@ -1043,7 +1123,7 @@ const WORLD = {
       "sector": "Community learning",
       "location": "Lexington, KY",
       "size": "11–50",
-      "image": "ellis-library",
+      "image": "company-library",
       "about": "Books, local history, repair afternoons, and a printer that inspires personal growth. Our fictional neighborhood branch brings people together through practical learning.",
       "specialties": [
         "Local history",
@@ -1061,7 +1141,8 @@ const WORLD = {
         ]
       ],
       "links": [],
-      "docs": []
+      "docs": [],
+      "imageAlt": "Bookshelves, a workshop table, and a local-history cabinet in the neighborhood library."
     },
     "spoke": {
       "name": "Spoke & Wrench",
@@ -1069,7 +1150,7 @@ const WORLD = {
       "sector": "Bicycle repair",
       "location": "Lexington, KY",
       "size": "2–10",
-      "image": "corey-shop",
+      "image": "company-bikeshop",
       "about": "Neighborhood repairs, patient explanations, and a healthy suspicion of the phrase “it only makes that noise sometimes.” We keep everyday bikes on the road.",
       "specialties": [
         "Bicycle maintenance",
@@ -1092,7 +1173,8 @@ const WORLD = {
           "../osint/#/article/news-bikes"
         ]
       ],
-      "docs": []
+      "docs": [],
+      "imageAlt": "Repair stands and commuter bicycles inside the neighborhood bike shop."
     },
     "riverdale": {
       "name": "Riverdale Learning & Sport",
@@ -1191,5 +1273,36 @@ const WORLD = {
         "dev"
       ]
     }
-  }
+  },
+  "localImages": [
+    "morgan-vale",
+    "tessa-brooks",
+    "dev-malik",
+    "dana-fundraiser",
+    "dana-alumni",
+    "lena-proof-review",
+    "lena-anniversary",
+    "lena-mochi",
+    "sam-garden-workday",
+    "sam-rehearsal",
+    "morgan-roundtable",
+    "morgan-mugs",
+    "tessa-sample-kits",
+    "tessa-gallery",
+    "dev-event-setup",
+    "dev-biscuit-test",
+    "ellis-history-walk",
+    "ellis-archive",
+    "corey-bench-repair",
+    "corey-library-clinic",
+    "kai-volunteer-briefing",
+    "kai-science-demo",
+    "company-pressroom",
+    "company-recruiting",
+    "company-eventspace",
+    "company-library",
+    "company-bikeshop",
+    "company-cedar",
+    "company-juniper"
+  ]
 };
