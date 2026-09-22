@@ -195,3 +195,9 @@ ARTICLES['work-home'].body+='<p><a href="../linkedup/#/company/cedar">Cedar &amp
 for(const id of ['dana','lena','sam'])ARTICLES[id+'-bio'].body+=`<p><a href="../linkedup/#/person/${id}">Professional profile on LinkedUP ↗</a></p>`;
 SEARCH_INDEX.push({title:'LinkedUP · Professional community',route:'/article/linkedup',site:'linkedup.training',text:'Professional profiles, company news, and conversations from the Lexington community.',keys:'linkedup cedar finch professional dana selvin lena ortiz sam reed'});
 ARTICLES.linkedup={service:'directory',title:'LinkedUP',date:'Professional community',body:'<p>Explore professional profiles, company updates, and conversations.</p><p><a href="../linkedup/">Open LinkedUP ↗</a></p>'};
+
+POSTS.p301.comments.push(
+ ['thunder','@casey_thunder13, what email should we use for your volunteer-hours confirmation? We are logging the check-in shifts tonight.'],
+ ['casey','casey.selvin13@mail.example please! I helped set up the table before check-in too.'],
+ ['thunder','Got it, thank you! We have the setup time on the sheet as well.']
+);
