@@ -958,13 +958,13 @@ const WORLD = {
           "id": "cedar-sign-table",
           "date": "26 Oct 2026",
           "title": "Follow the arrows",
-          "text": "Today’s Juniper sign review moved off the screen and onto the floor. Dana asked three people to find reception without coaching them. One arrow has been demoted. We are also comparing notes with Bluegrass Current on making customer notices easier to read.",
+          "text": "Today’s Juniper sign review moved off the screen and onto the floor. Three visitors tried to find reception without coaching. One arrow has been demoted. The studio is also comparing notes with Bluegrass Current on making customer notices easier to read.",
           "image": "org-cedar-sign-review",
           "imageAlt": "Dana and colleagues testing freestanding sign prototypes in the studio.",
           "comments": [
             [
-              "sam",
-              "The paper map was upside down for a full minute. Useful test, honestly."
+              "robin-hale",
+              "Trying it with a suitcase was revealing. You read a room differently when both hands are full."
             ],
             [
               "dana",
@@ -1028,12 +1028,12 @@ const WORLD = {
           "imageAlt": "Workshop participants rearranging a process map made from sticky notes.",
           "comments": [
             [
-              "morgan",
-              "Please keep the part where two people discover they have been maintaining the same list."
+              "wes-booker",
+              "The duplicate checklist exercise felt uncomfortably familiar. Keeping the version with fewer boxes."
             ],
             [
-              "dana",
-              "That blue tote has attended more workshops than most of us."
+              "priya-desai",
+              "Our test is whether somebody can follow it when the person who wrote it is on leave."
             ]
           ]
         },
@@ -1076,13 +1076,13 @@ const WORLD = {
           "id": "press-map-folding",
           "date": "24 Oct 2026",
           "title": "Fold, count, start again",
-          "text": "Tessa and the finishing team packed the last neighborhood walking maps today. We kept one misfold for the workshop table: paper is an excellent teacher with no interest in your deadline. A small Ashland visitor-guide enquiry from Laurel Bend Health is on the November planning board.",
-          "image": "org-press-packing",
-          "imageAlt": "Tessa and a coworker packing folded neighborhood walking maps.",
+          "text": "The last neighborhood walking maps are folded, counted, and ready for collection. We kept one misfold for the workshop table: paper is an excellent teacher with no interest in your deadline. A small Ashland visitor-guide enquiry from Laurel Bend Health is on the November planning board.",
+          "image": "org-press-map-order",
+          "imageAlt": "Folded neighborhood walking maps, paper samples, and packed orders on the print shop’s finishing bench.",
           "comments": [
             [
-              "ellis",
-              "The station photograph reproduced beautifully. Thank you for keeping the caption readable."
+              "inez-foster",
+              "The larger map folds down to fit the display rack. A tiny logistical triumph for our exhibition."
             ],
             [
               "tessa",
@@ -1132,8 +1132,8 @@ const WORLD = {
           "imageAlt": "Cafe staff and guests making room on the community noticeboard.",
           "comments": [
             [
-              "lena",
-              "The crooked flyer is somehow the one everybody reads first."
+              "robin-hale",
+              "The walking group found the breakfast room on the first attempt. Keeping that success in the notes."
             ],
             [
               "corey",
@@ -1176,17 +1176,17 @@ const WORLD = {
           "id": "next-practice-room",
           "date": "24 Oct 2026",
           "title": "A rehearsal counts as experience",
-          "text": "Morgan’s practice interview room was full of career changers today. We stopped twice to turn vague achievements into specific stories. One participant brought a beautifully organized folder and forgot their own lunch. Winter reviewer conversations now include Louisville operations teams and an Ashland healthcare-learning group.",
-          "image": "org-next-interviews",
-          "imageAlt": "Morgan listening during a practice interview with two participants.",
+          "text": "Our practice interview room was full of career changers today. Reviewers stopped twice to turn vague achievements into specific stories. One participant brought a beautifully organized folder and forgot their own lunch. Winter reviewer conversations now include Louisville operations teams and an Ashland healthcare-learning group.",
+          "image": "org-next-career-room",
+          "imageAlt": "Career changers comparing project portfolios with a reviewer during a practice interview session.",
           "comments": [
             [
-              "dev",
-              "The pause before answering deserves more respect."
+              "wes-booker",
+              "I used a warehouse handover as my project example. It turns out I had a story before I had a portfolio."
             ],
             [
               "morgan",
-              "And the folder was genuinely excellent."
+              "Explaining the decision is more useful than apologizing for your previous job title."
             ]
           ]
         },
@@ -1225,13 +1225,13 @@ const WORLD = {
           "id": "open-autumn-evening",
           "date": "26 Oct 2026",
           "title": "The useful conversation happened by the coats",
-          "text": "Our small October gathering ran out of chairs before it ran out of stories. Dev kept the quiet table open, and RiverSpan’s outreach team compared workshop notes with local volunteers. Frankfort’s Capitol Commons Forum has asked about borrowing the seated-introduction format. The coat rail is not accepting speaking invitations.",
-          "image": "org-open-coat-rail",
-          "imageAlt": "Dev welcoming guests while others gather near the coat rail and quiet table.",
+          "text": "Our small October gathering ran out of chairs before it ran out of stories. First-time guests settled at the quiet table, and RiverSpan’s outreach team compared workshop notes with local volunteers. Frankfort’s Capitol Commons Forum has asked about borrowing the seated-introduction format. The coat rail is not accepting speaking invitations.",
+          "image": "org-open-room-in-use",
+          "imageAlt": "Small groups talking around tables in a community event hall, with a quiet table and a crowded coat rail nearby.",
           "comments": [
             [
-              "sam",
-              "The quiet table was where I finally finished a sentence."
+              "camila-ortiz",
+              "Being able to sit down before introducing myself made a difference. I stayed longer than planned."
             ],
             [
               "dev",
@@ -1281,13 +1281,13 @@ const WORLD = {
           "id": "library-seed-table",
           "date": "25 Oct 2026",
           "title": "A seed library starts with envelopes",
-          "text": "Ellis and our volunteers are sorting the first seed donations. Sam’s garden group supplied planting notes, and half the envelopes began life as something else. Lockside Water’s community team is comparing rain-garden workshop ideas with us. The basil is already attracting more attention than the printer.",
-          "image": "org-library-seed-swap",
-          "imageAlt": "Ellis and volunteers organizing seed packets at the library.",
+          "text": "The first seed donations are finding a home in our reused catalogue drawers. Neighborhood gardeners supplied planting notes, and half the envelopes began life as something else. Lockside Water’s community team is comparing rain-garden workshop ideas with us. The basil is already attracting more attention than the printer.",
+          "image": "org-library-seed-drawers",
+          "imageAlt": "Reused catalogue drawers filled with seed envelopes, planting notes, and donations at the library’s swap table.",
           "comments": [
             [
-              "sam",
-              "The tomatoes have a more complete filing system than I do."
+              "camila-ortiz",
+              "I came for a book and went home with a packet of beans. Very effective branching out."
             ],
             [
               "ellis",
@@ -1378,7 +1378,7 @@ const WORLD = {
       "location": "Lexington, KY",
       "size": "51–200",
       "image": "org-riverdale-campus",
-      "about": "A fictional school-and-community program connecting classroom learning with youth sport. Coach K maintains that organized cones count as a transferable skill.",
+      "about": "A school-and-community program connecting classroom learning with youth sport. Shared spaces, curious students, and a volunteer team with strong opinions about how to store cones.",
       "specialties": [
         "Science education",
         "Youth coaching",
@@ -1389,9 +1389,9 @@ const WORLD = {
           "id": "riverdale-equipment-sorting",
           "date": "26 Oct 2026",
           "title": "The cupboard has a floor again",
-          "text": "Kai and two volunteers found the missing cones underneath the spare pinnies. Science-club planning is next: Bluegrass Current is bringing a tabletop demonstration in November. Meanwhile the grounds team has requested that “put it somewhere sensible” become a specific location.",
-          "image": "org-riverdale-equipment",
-          "imageAlt": "Kai and two volunteers sorting equipment beside the playing field.",
+          "text": "The volunteer tidy-up found the missing cones underneath the spare pinnies. A clear floor and a repair station should make the shared kit easier for every club to use. Science-club planning is next: Bluegrass Current is bringing a tabletop demonstration in November. Meanwhile the grounds team has requested that “put it somewhere sensible” become a specific location.",
+          "image": "org-riverdale-cupboard",
+          "imageAlt": "Sorted soccer balls, cones, pinnies, and repair materials in the school’s shared equipment cupboard.",
           "comments": [
             [
               "dana",
@@ -1461,6 +1461,10 @@ const WORLD = {
               "We can supply questions. Possibly too many."
             ],
             [
+              "mara-bell",
+              "The kit packs into two cases now. One for the house, one apparently for the lamp’s enormous personality."
+            ],
+            [
               "ellis",
               "Would the kit work for a seated library session?"
             ]
@@ -1521,8 +1525,8 @@ const WORLD = {
               "The pitcher is a better opening than a slide deck."
             ],
             [
-              "tessa",
-              "Happy to compare handout paper if the workshop goes on the road."
+              "nina-cho",
+              "Several visitors asked for a larger-print take-home sheet. That is next on our list."
             ]
           ]
         },
@@ -1581,8 +1585,8 @@ const WORLD = {
               "Delighted the quiet table found another home."
             ],
             [
-              "ellis",
-              "We are keeping that opening invitation for our next session."
+              "rafael-cruz",
+              "The most popular appointment was five minutes spent organizing a downloads folder. Useful does not have to be complicated."
             ]
           ]
         },
@@ -1733,6 +1737,45 @@ const WORLD = {
     "org-lockside-office",
     "org-lockside-library-table",
     "org-riverspan-office",
-    "org-riverspan-open-lab"
-  ]
+    "org-riverspan-open-lab",
+    "org-press-map-order",
+    "org-next-career-room",
+    "org-open-room-in-use",
+    "org-library-seed-drawers",
+    "org-riverdale-cupboard"
+  ],
+  "community": {
+    "priya-desai": {
+      "name": "Priya Desai",
+      "headline": "Operations team · Good Enough Tomorrow"
+    },
+    "robin-hale": {
+      "name": "Robin Hale",
+      "headline": "Facilities coordinator"
+    },
+    "inez-foster": {
+      "name": "Inez Foster",
+      "headline": "Local-history exhibition volunteer"
+    },
+    "wes-booker": {
+      "name": "Wes Booker",
+      "headline": "Career changer · operations to design"
+    },
+    "camila-ortiz": {
+      "name": "Camila Ortiz",
+      "headline": "Community volunteer"
+    },
+    "mara-bell": {
+      "name": "Mara Bell",
+      "headline": "Community education · Bluegrass Current Cooperative"
+    },
+    "nina-cho": {
+      "name": "Nina Cho",
+      "headline": "Conservation team · Lockside Water"
+    },
+    "rafael-cruz": {
+      "name": "Rafael Cruz",
+      "headline": "Community learning · RiverSpan Fiber"
+    }
+  }
 };

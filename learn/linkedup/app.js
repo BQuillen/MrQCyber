@@ -17,14 +17,21 @@ function sidebar(ids=Object.keys(people).slice(0,4)){return `<aside class="sideb
 function postCard(owner,p){return `<article class="card"><div class="post-author"><a href="#/person/${owner}">${avatar(owner)}</a><div><a href="#/person/${owner}"><strong>${esc(people[owner].name)}</strong></a><p>${esc(people[owner].headline)}</p><p>${esc(p.date)} · Public</p></div></div><p class="post-text">${esc(p.text)}</p>${p.image?scenePhoto(p.image,p.imageAlt||p.text):''}${p.comments.length?`<div class="comments">${p.comments.map(([id,text])=>`<div class="comment"><a href="#/person/${id}">${avatar(id)}</a><p><a href="#/person/${id}">${esc(people[id].name)}</a><br>${esc(text)}</p></div>`).join('')}</div>`:''}<div class="post-footer"><a class="meta" href="#/post/${p.id}">Open post</a>${record(people[owner].name+' · '+p.date,'#/post/'+p.id)}</div></article>`;}
 
 function companyMark(id){return `<span class="company-mark" aria-hidden="true">${esc(companies[id].name.split(' ').map(x=>x[0]).slice(0,2).join(''))}</span>`;}
+function communityComment([id,text]){
+  const person=people[id],author=person||WORLD.community[id];
+  const name=person?`<a href="#/person/${id}">${esc(author.name)}</a>`:`<strong>${esc(author.name)}</strong>`;
+  const portrait=person?`<a href="#/person/${id}">${avatar(id)}</a>`:`<span class="comment-initials" aria-hidden="true">${esc(author.name.split(' ').map(part=>part[0]).slice(0,2).join(''))}</span>`;
+  return `<div class="comment">${portrait}<p>${name}${person?'':`<span class="comment-headline">${esc(author.headline)}</span>`}<br>${esc(text)}</p></div>`;
+}
+function searchableCompanyPost(post){return {...post,commenters:post.comments.map(([id])=>{const author=people[id]||WORLD.community[id];return {name:author.name,headline:author.headline};})};}
 function companyPostCard(id,post){
   const c=companies[id];
-  return `<article class="card company-post"><div class="post-author"><a href="#/company/${id}" aria-label="${esc(c.name)}">${companyMark(id)}</a><div>${companyLink(id)}<p>${esc(c.sector)}</p><p>${esc(post.date)} · Public</p></div></div>${post.title?`<h3>${esc(post.title)}</h3>`:''}<p class="post-text">${esc(post.text)}</p>${post.image?scenePhoto(post.image,post.imageAlt):''}${post.comments?.length?`<div class="comments">${post.comments.map(([who,text])=>`<div class="comment"><a href="#/person/${who}">${avatar(who)}</a><p><a href="#/person/${who}">${esc(people[who].name)}</a><br>${esc(text)}</p></div>`).join('')}</div>`:''}<div class="post-footer"><a class="meta" href="#/company-post/${post.id}">Open update</a>${record(c.name+' · '+(post.title||post.date),'#/company-post/'+post.id)}</div></article>`;
+  return `<article class="card company-post"><div class="post-author"><a href="#/company/${id}" aria-label="${esc(c.name)}">${companyMark(id)}</a><div>${companyLink(id)}<p>${esc(c.sector)}</p><p>${esc(post.date)} · Public</p></div></div>${post.title?`<h3>${esc(post.title)}</h3>`:''}<p class="post-text">${esc(post.text)}</p>${post.image?scenePhoto(post.image,post.imageAlt):''}${post.comments?.length?`<div class="comments">${post.comments.map(communityComment).join('')}</div>`:''}<div class="post-footer"><a class="meta" href="#/company-post/${post.id}">Open update</a>${record(c.name+' · '+(post.title||post.date),'#/company-post/'+post.id)}</div></article>`;
 }
 function companyUpdatePage(id){
   for(const [companyId,c] of Object.entries(companies)){
     const post=c.updates.find(p=>p.id===id);
-    if(post){main.innerHTML=`<div class="layout"><section><p><a href="#/company/${companyId}">← ${esc(c.name)}</a></p><h1 class="update-page-title">${esc(post.title||c.name+' update')}</h1>${companyPostCard(companyId,post)}</section>${sidebar(Object.keys(people).filter(pid=>people[pid].company===companyId).concat(post.comments.map(([pid])=>pid)).filter((pid,i,all)=>all.indexOf(pid)===i).slice(0,4))}</div>`;return;}
+    if(post){main.innerHTML=`<div class="layout"><section><p><a href="#/company/${companyId}">← ${esc(c.name)}</a></p><h1 class="update-page-title">${esc(post.title||c.name+' update')}</h1>${companyPostCard(companyId,post)}</section>${sidebar(Object.keys(people).filter(pid=>people[pid].company===companyId).concat(post.comments.map(([pid])=>pid)).filter((pid,i,all)=>own(people,pid)&&all.indexOf(pid)===i).slice(0,4))}</div>`;return;}
   }
   missing();
 }
@@ -47,7 +54,7 @@ function directory(type,q=''){
 function search(q){
   const words=q.toLowerCase().trim().split(/\s+/).filter(Boolean),match=x=>words.every(w=>JSON.stringify(x).toLowerCase().includes(w)),results=[];
   for(const[id,p]of Object.entries(people)){if(match({name:p.name,headline:p.headline,bio:p.bio,skills:p.skills}))results.push([p.name,'/person/'+id,p.headline]);for(const post of p.posts)if(match(post))results.push([p.name+' · '+post.date,'/post/'+post.id,post.text]);}
-  for(const[id,c]of Object.entries(companies)){if(match({name:c.name,tag:c.tag,about:c.about,location:c.location,sector:c.sector,specialties:c.specialties}))results.push([c.name,'/company/'+id,c.tag]);for(const post of c.updates)if(match(post))results.push([c.name+' · '+(post.title||post.date),'/company-post/'+post.id,post.text]);}
+  for(const[id,c]of Object.entries(companies)){if(match({name:c.name,tag:c.tag,about:c.about,location:c.location,sector:c.sector,specialties:c.specialties}))results.push([c.name,'/company/'+id,c.tag]);for(const post of c.updates)if(match(searchableCompanyPost(post)))results.push([c.name+' · '+(post.title||post.date),'/company-post/'+post.id,post.text]);}
   for(const[id,d]of Object.entries(docs))if(match(d))results.push([d.title,'/document/'+id,d.date]);
   main.innerHTML=`<h1>Search results</h1><p class="muted">${results.length} matches for “${esc(q)}”</p>${results.map(([title,route,text])=>`<article class="card"><h2><a href="#${route}">${esc(title)}</a></h2><p>${esc(text)}</p></article>`).join('')||'<p class="empty">Try a name, company, skill, or topic.</p>'}`;
 }
