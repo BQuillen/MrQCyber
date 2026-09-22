@@ -954,14 +954,36 @@ const WORLD = {
         "Accessible websites"
       ],
       "updates": [
-        [
-          "24 Oct 2026",
-          "Community Cup signs survived the wind. A small victory for teamwork and a large victory for gaffer tape."
-        ],
-        [
-          "15 Oct 2026",
-          "The Juniper wayfinding pilot moves to review in November. Dana is coordinating the handoff; Lena owns print proofs and Sam is checking the digital companion."
-        ]
+        {
+          "id": "cedar-sign-table",
+          "date": "26 Oct 2026",
+          "title": "Follow the arrows",
+          "text": "Today’s Juniper sign review moved off the screen and onto the floor. Dana asked three people to find reception without coaching them. One arrow has been demoted. We are also comparing notes with Bluegrass Current on making customer notices easier to read.",
+          "image": "org-cedar-sign-review",
+          "imageAlt": "Dana and colleagues testing freestanding sign prototypes in the studio.",
+          "comments": [
+            [
+              "sam",
+              "The paper map was upside down for a full minute. Useful test, honestly."
+            ],
+            [
+              "dana",
+              "Nobody gets to explain the sign while the person is trying to use it."
+            ]
+          ]
+        },
+        {
+          "id": "cedar-archive-1",
+          "date": "24 Oct 2026",
+          "text": "Community Cup signs survived the wind. A small victory for teamwork and a large victory for gaffer tape.",
+          "comments": []
+        },
+        {
+          "id": "cedar-archive-2",
+          "date": "15 Oct 2026",
+          "text": "The Juniper wayfinding pilot moves to review in November. Dana is coordinating the handoff; Lena owns print proofs and Sam is checking the digital companion.",
+          "comments": []
+        }
       ],
       "links": [
         [
@@ -976,7 +998,12 @@ const WORLD = {
       "docs": [
         "speaker-notes"
       ],
-      "imageAlt": "A shared design studio with paper mockups, sample shelves, and a wall of prints."
+      "imageAlt": "A shared design studio with paper mockups, sample shelves, and a wall of prints.",
+      "partners": [
+        "juniper",
+        "press",
+        "current"
+      ]
     },
     "good-enough": {
       "name": "Good Enough Tomorrow",
@@ -984,7 +1011,7 @@ const WORLD = {
       "sector": "Operations consultancy",
       "location": "Louisville, KY",
       "size": "11–50",
-      "image": "studio-desk",
+      "image": "org-good-enough-office",
       "about": "We turn “someone should really organize that” into a labeled folder, a sensible schedule, and a meeting that could finally have been an email.",
       "specialties": [
         "Project operations",
@@ -992,17 +1019,44 @@ const WORLD = {
         "Change management"
       ],
       "updates": [
-        [
-          "19 Oct 2026",
-          "Our onboarding workshop is full. Alumni office hours return in November."
-        ],
-        [
-          "6 Oct 2026",
-          "A process diagram is not improved by adding seventeen arrows. We tested this so you do not have to."
-        ]
+        {
+          "id": "good-enough-process-table",
+          "date": "26 Oct 2026",
+          "title": "The sticky note that moved six times",
+          "text": "Our Louisville onboarding workshop ended with fewer steps than it started with. Priya Desai from our operations team kept asking who actually needed each handoff. Next month’s alumni office hours will include RiverSpan Fiber and Frankfort’s Capitol Commons Forum. Somebody has promised better biscuits.",
+          "image": "org-good-enough-workshop",
+          "imageAlt": "Workshop participants rearranging a process map made from sticky notes.",
+          "comments": [
+            [
+              "morgan",
+              "Please keep the part where two people discover they have been maintaining the same list."
+            ],
+            [
+              "dana",
+              "That blue tote has attended more workshops than most of us."
+            ]
+          ]
+        },
+        {
+          "id": "good-enough-archive-1",
+          "date": "19 Oct 2026",
+          "text": "Our onboarding workshop is full. Alumni office hours return in November.",
+          "comments": []
+        },
+        {
+          "id": "good-enough-archive-2",
+          "date": "6 Oct 2026",
+          "text": "A process diagram is not improved by adding seventeen arrows. We tested this so you do not have to.",
+          "comments": []
+        }
       ],
       "links": [],
-      "docs": []
+      "docs": [],
+      "imageAlt": "Shared worktables and a busy planning wall at the Louisville office.",
+      "partners": [
+        "riverspan",
+        "next"
+      ]
     },
     "press": {
       "name": "Pressing Matters",
@@ -1018,14 +1072,36 @@ const WORLD = {
         "Color matching"
       ],
       "updates": [
-        [
-          "20 Oct 2026",
-          "Tessa is gathering samples for the November materials clinic. Recycled stocks, honest pricing, and absolutely no glitter near the rollers."
-        ],
-        [
-          "18 Sep 2026",
-          "Ten years since our studio printed Lena and Alex’s wedding stationery. We found the job ticket while organizing our sample archive."
-        ]
+        {
+          "id": "press-map-folding",
+          "date": "24 Oct 2026",
+          "title": "Fold, count, start again",
+          "text": "Tessa and the finishing team packed the last neighborhood walking maps today. We kept one misfold for the workshop table: paper is an excellent teacher with no interest in your deadline. A small Ashland visitor-guide enquiry from Laurel Bend Health is on the November planning board.",
+          "image": "org-press-packing",
+          "imageAlt": "Tessa and a coworker packing folded neighborhood walking maps.",
+          "comments": [
+            [
+              "ellis",
+              "The station photograph reproduced beautifully. Thank you for keeping the caption readable."
+            ],
+            [
+              "tessa",
+              "The misfold now has its own protective sleeve."
+            ]
+          ]
+        },
+        {
+          "id": "press-archive-1",
+          "date": "20 Oct 2026",
+          "text": "Tessa is gathering samples for the November materials clinic. Recycled stocks, honest pricing, and absolutely no glitter near the rollers.",
+          "comments": []
+        },
+        {
+          "id": "press-archive-2",
+          "date": "18 Sep 2026",
+          "text": "Ten years since our studio printed Lena and Alex’s wedding stationery. We found the job ticket while organizing our sample archive.",
+          "comments": []
+        }
       ],
       "links": [],
       "docs": [
@@ -1047,14 +1123,36 @@ const WORLD = {
         "Wayfinding"
       ],
       "updates": [
-        [
-          "22 Oct 2026",
-          "Cedar & Finch’s navigation pilot will be reviewed by our guest-experience team next month. Volunteers tested the first signs with impressive honesty."
-        ],
-        [
-          "9 Oct 2026",
-          "Our café noticeboard has run out of pins again. Demand for local poetry is exceeding infrastructure."
-        ]
+        {
+          "id": "juniper-noticeboard-afternoon",
+          "date": "25 Oct 2026",
+          "title": "A noticeboard with opinions",
+          "text": "The poetry flyers have negotiated a truce with the garden club. Our front-desk team made room for both, plus a weekend walking group from Louisville. Cedar & Finch’s new visitor signs are next; first we must solve the smaller mystery of where the pins go.",
+          "image": "org-juniper-noticeboard",
+          "imageAlt": "Cafe staff and guests making room on the community noticeboard.",
+          "comments": [
+            [
+              "lena",
+              "The crooked flyer is somehow the one everybody reads first."
+            ],
+            [
+              "corey",
+              "I found two pins in the bicycle basket. Returning them next coffee stop."
+            ]
+          ]
+        },
+        {
+          "id": "juniper-archive-1",
+          "date": "22 Oct 2026",
+          "text": "Cedar & Finch’s navigation pilot will be reviewed by our guest-experience team next month. Volunteers tested the first signs with impressive honesty.",
+          "comments": []
+        },
+        {
+          "id": "juniper-archive-2",
+          "date": "9 Oct 2026",
+          "text": "Our café noticeboard has run out of pins again. Demand for local poetry is exceeding infrastructure.",
+          "comments": []
+        }
       ],
       "links": [],
       "docs": [],
@@ -1074,14 +1172,36 @@ const WORLD = {
         "Career coaching"
       ],
       "updates": [
-        [
-          "23 Oct 2026",
-          "Morgan’s portfolio roundtable returns in November. Bring one project you can explain without saying “synergy.”"
-        ],
-        [
-          "2 Oct 2026",
-          "Candidate note: we publish role details before inviting a conversation. Vague excitement is not a job description."
-        ]
+        {
+          "id": "next-practice-room",
+          "date": "24 Oct 2026",
+          "title": "A rehearsal counts as experience",
+          "text": "Morgan’s practice interview room was full of career changers today. We stopped twice to turn vague achievements into specific stories. One participant brought a beautifully organized folder and forgot their own lunch. Winter reviewer conversations now include Louisville operations teams and an Ashland healthcare-learning group.",
+          "image": "org-next-interviews",
+          "imageAlt": "Morgan listening during a practice interview with two participants.",
+          "comments": [
+            [
+              "dev",
+              "The pause before answering deserves more respect."
+            ],
+            [
+              "morgan",
+              "And the folder was genuinely excellent."
+            ]
+          ]
+        },
+        {
+          "id": "next-archive-1",
+          "date": "23 Oct 2026",
+          "text": "Morgan’s portfolio roundtable returns in November. Bring one project you can explain without saying “synergy.”",
+          "comments": []
+        },
+        {
+          "id": "next-archive-2",
+          "date": "2 Oct 2026",
+          "text": "Candidate note: we publish role details before inviting a conversation. Vague excitement is not a job description.",
+          "comments": []
+        }
       ],
       "links": [],
       "docs": [],
@@ -1101,21 +1221,47 @@ const WORLD = {
         "Community partnerships"
       ],
       "updates": [
-        [
-          "25 Oct 2026",
-          "Our November session is “Useful work, clearly explained.” Dev is confirming the lightning-talk running order."
-        ],
-        [
-          "10 Oct 2026",
-          "The name-badge printer is working. This is not a drill."
-        ]
+        {
+          "id": "open-autumn-evening",
+          "date": "26 Oct 2026",
+          "title": "The useful conversation happened by the coats",
+          "text": "Our small October gathering ran out of chairs before it ran out of stories. Dev kept the quiet table open, and RiverSpan’s outreach team compared workshop notes with local volunteers. Frankfort’s Capitol Commons Forum has asked about borrowing the seated-introduction format. The coat rail is not accepting speaking invitations.",
+          "image": "org-open-coat-rail",
+          "imageAlt": "Dev welcoming guests while others gather near the coat rail and quiet table.",
+          "comments": [
+            [
+              "sam",
+              "The quiet table was where I finally finished a sentence."
+            ],
+            [
+              "dev",
+              "We found the missing chair holding six coats."
+            ]
+          ]
+        },
+        {
+          "id": "open-archive-1",
+          "date": "25 Oct 2026",
+          "text": "Our November session is “Useful work, clearly explained.” Dev is confirming the lightning-talk running order.",
+          "comments": []
+        },
+        {
+          "id": "open-archive-2",
+          "date": "10 Oct 2026",
+          "text": "The name-badge printer is working. This is not a drill.",
+          "comments": []
+        }
       ],
       "links": [],
       "docs": [
         "speaker-notes",
         "roundtable"
       ],
-      "imageAlt": "A community event hall with a circle of chairs and a quiet side table."
+      "imageAlt": "A community event hall with a circle of chairs and a quiet side table.",
+      "partners": [
+        "riverspan",
+        "press"
+      ]
     },
     "library": {
       "name": "Lexington Neighborhood Library",
@@ -1131,18 +1277,45 @@ const WORLD = {
         "Digital literacy"
       ],
       "updates": [
-        [
-          "22 Oct 2026",
-          "Ellis’s Sunday history walk starts at the library steps. The old station photographs are finally catalogued."
-        ],
-        [
-          "17 Oct 2026",
-          "Community workshop partners met to plan winter sessions. Bike care, printmaking, and learning to spot questionable messages are on the wish list."
-        ]
+        {
+          "id": "library-seed-table",
+          "date": "25 Oct 2026",
+          "title": "A seed library starts with envelopes",
+          "text": "Ellis and our volunteers are sorting the first seed donations. Sam’s garden group supplied planting notes, and half the envelopes began life as something else. Lockside Water’s community team is comparing rain-garden workshop ideas with us. The basil is already attracting more attention than the printer.",
+          "image": "org-library-seed-swap",
+          "imageAlt": "Ellis and volunteers organizing seed packets at the library.",
+          "comments": [
+            [
+              "sam",
+              "The tomatoes have a more complete filing system than I do."
+            ],
+            [
+              "ellis",
+              "We left blank envelopes for people who bring a story with their seeds."
+            ]
+          ]
+        },
+        {
+          "id": "library-archive-1",
+          "date": "22 Oct 2026",
+          "text": "Ellis’s Sunday history walk starts at the library steps. The old station photographs are finally catalogued.",
+          "comments": []
+        },
+        {
+          "id": "library-archive-2",
+          "date": "17 Oct 2026",
+          "text": "Community workshop partners met to plan winter sessions. Bike care, printmaking, and learning to spot questionable messages are on the wish list.",
+          "comments": []
+        }
       ],
       "links": [],
       "docs": [],
-      "imageAlt": "Bookshelves, a workshop table, and a local-history cabinet in the neighborhood library."
+      "imageAlt": "Bookshelves, a workshop table, and a local-history cabinet in the neighborhood library.",
+      "partners": [
+        "spoke",
+        "lockside",
+        "current"
+      ]
     },
     "spoke": {
       "name": "Spoke & Wrench",
@@ -1158,14 +1331,36 @@ const WORLD = {
         "Community partnerships"
       ],
       "updates": [
-        [
-          "24 Oct 2026",
-          "The library bicycle is back in service. Corey defeated the bell. The bell has declined an interview."
-        ],
-        [
-          "14 Oct 2026",
-          "Winter maintenance workshop planning is underway with the neighborhood library."
-        ]
+        {
+          "id": "spoke-bicycle-home",
+          "date": "25 Oct 2026",
+          "title": "Back to the everyday journey",
+          "text": "A commuter bike went home this morning with quieter brakes and a much happier owner. Corey’s rule: explain the repair before you hand over the handlebars. We are collecting unused panniers for a winter errands workshop. Stylish matching pairs are welcome; mismatched ones also know how to carry groceries.",
+          "image": "org-spoke-commuter",
+          "imageAlt": "Corey returning a repaired commuter bicycle outside the shop.",
+          "comments": [
+            [
+              "ellis",
+              "A library-book-sized bag is the correct unit of measurement."
+            ],
+            [
+              "corey",
+              "We tested that with three large mysteries."
+            ]
+          ]
+        },
+        {
+          "id": "spoke-archive-1",
+          "date": "24 Oct 2026",
+          "text": "The library bicycle is back in service. Corey defeated the bell. The bell has declined an interview.",
+          "comments": []
+        },
+        {
+          "id": "spoke-archive-2",
+          "date": "14 Oct 2026",
+          "text": "Winter maintenance workshop planning is underway with the neighborhood library.",
+          "comments": []
+        }
       ],
       "links": [
         [
@@ -1182,7 +1377,7 @@ const WORLD = {
       "sector": "Education & youth sport",
       "location": "Lexington, KY",
       "size": "51–200",
-      "image": "field",
+      "image": "org-riverdale-campus",
       "about": "A fictional school-and-community program connecting classroom learning with youth sport. Coach K maintains that organized cones count as a transferable skill.",
       "specialties": [
         "Science education",
@@ -1190,10 +1385,42 @@ const WORLD = {
         "Volunteer coordination"
       ],
       "updates": [
-        [
-          "24 Oct 2026",
-          "Community Cup weekend: thank you to the coaches, families, volunteers, and very patient grounds team."
-        ]
+        {
+          "id": "riverdale-equipment-sorting",
+          "date": "26 Oct 2026",
+          "title": "The cupboard has a floor again",
+          "text": "Kai and two volunteers found the missing cones underneath the spare pinnies. Science-club planning is next: Bluegrass Current is bringing a tabletop demonstration in November. Meanwhile the grounds team has requested that “put it somewhere sensible” become a specific location.",
+          "image": "org-riverdale-equipment",
+          "imageAlt": "Kai and two volunteers sorting equipment beside the playing field.",
+          "comments": [
+            [
+              "dana",
+              "We can label the shelves after the fundraiser boxes leave my car."
+            ],
+            [
+              "kai",
+              "The floor was here all along. A major discovery."
+            ]
+          ]
+        },
+        {
+          "id": "riverdale-archive-1",
+          "date": "24 Oct 2026",
+          "text": "Community Cup weekend: thank you to the coaches, families, volunteers, and very patient grounds team.",
+          "comments": []
+        },
+        {
+          "id": "riverdale-winter-clubs",
+          "date": "5 Oct 2026",
+          "title": "More than a match day",
+          "text": "Winter clubs are comparing plans for science, reading, and practical repair sessions. Students suggested an entire afternoon about wheels. Nobody from the bike workshop objected.",
+          "comments": [
+            [
+              "corey",
+              "A surprisingly versatile theme."
+            ]
+          ]
+        }
       ],
       "links": [
         [
@@ -1201,7 +1428,193 @@ const WORLD = {
           "../osint/#/club"
         ]
       ],
-      "docs": []
+      "docs": [],
+      "imageAlt": "A walkway between the school building and community playing fields.",
+      "partners": [
+        "current",
+        "spoke"
+      ]
+    },
+    "current": {
+      "name": "Bluegrass Current Cooperative",
+      "tag": "Keeping the lights on. Remembering where we left the tape.",
+      "sector": "Electric cooperative",
+      "location": "Lexington & central Kentucky",
+      "size": "51–200",
+      "about": "A member-owned electric cooperative serving fictional communities around Lexington and Frankfort. Our public team handles member questions, energy education, and the sort of community events that require three extension-cord conversations before anyone makes coffee.",
+      "specialties": [
+        "Member services",
+        "Energy education",
+        "Community partnerships"
+      ],
+      "updates": [
+        {
+          "id": "current-classroom-model",
+          "date": "26 Oct 2026",
+          "title": "A small house, a lot of questions",
+          "text": "Mara Bell and our education volunteers tried the tabletop house before November’s Riverdale science visit. One miniature lamp refused to cooperate and became the most popular part of the demonstration. The lesson kit is travelling to a Frankfort community room next.",
+          "image": "org-current-school-demo",
+          "imageAlt": "Utility educators preparing a tabletop electricity demonstration with school volunteers.",
+          "comments": [
+            [
+              "kai",
+              "We can supply questions. Possibly too many."
+            ],
+            [
+              "ellis",
+              "Would the kit work for a seated library session?"
+            ]
+          ]
+        },
+        {
+          "id": "current-frankfort-roundtable",
+          "date": "19 Oct 2026",
+          "title": "Notes from Frankfort",
+          "text": "Colleagues joined Lockside Water and the Capitol Commons Forum for a public-communications roundtable. Nobody agreed on the ideal leaflet size. Everyone agreed the print needs to be readable. We will bring the revised samples to the next community drop-in.",
+          "comments": [
+            [
+              "lena",
+              "One version on ordinary paper, please. That is how most people will see it."
+            ]
+          ]
+        },
+        {
+          "id": "current-member-morning",
+          "date": "8 Oct 2026",
+          "title": "A less mysterious bill",
+          "text": "Our member-services desk tested a shorter explanation of seasonal energy use. The most useful feedback was “start with the question I actually asked.” Mara Bell is gathering comments before the winter community sessions.",
+          "comments": []
+        }
+      ],
+      "links": [],
+      "docs": [],
+      "partners": [
+        "riverdale",
+        "library"
+      ],
+      "image": "org-current-depot",
+      "imageAlt": "Parked service trucks outside the cooperative office and depot."
+    },
+    "lockside": {
+      "name": "Lockside Water",
+      "tag": "Good water. Clear answers. Occasionally muddy boots.",
+      "sector": "Water services",
+      "location": "Frankfort, KY",
+      "size": "51–200",
+      "about": "An independent water provider for fictional neighborhoods around Frankfort. We work on reliable service, understandable customer notices, and helping people tell the difference between a useful conservation tip and something their uncle invented.",
+      "specialties": [
+        "Water services",
+        "Conservation education",
+        "Customer communications"
+      ],
+      "updates": [
+        {
+          "id": "lockside-library-dropin",
+          "date": "26 Oct 2026",
+          "title": "The drop-in table stayed busy",
+          "text": "Nina Cho’s conservation team brought a demonstration gauge, a pitcher, and enough spare cups for people who had only intended to return a book. Our Frankfort library hosts supplied the difficult questions. We are swapping workshop notes with Lexington Neighborhood Library for the winter.",
+          "image": "org-lockside-library-table",
+          "imageAlt": "Water-conservation educators talking with visitors at a library drop-in table.",
+          "comments": [
+            [
+              "ellis",
+              "The pitcher is a better opening than a slide deck."
+            ],
+            [
+              "tessa",
+              "Happy to compare handout paper if the workshop goes on the road."
+            ]
+          ]
+        },
+        {
+          "id": "lockside-forum-notes",
+          "date": "20 Oct 2026",
+          "title": "Public information should survive a photocopier",
+          "text": "Capitol Commons Forum hosted a useful conversation about accessible public notices. Bluegrass Current brought sample leaflets; our team brought three different versions of the same opening sentence. Franklin Reach Support Association asked about a future session for service-family volunteers.",
+          "comments": []
+        },
+        {
+          "id": "lockside-front-garden",
+          "date": "9 Oct 2026",
+          "title": "The garden is doing some of the explaining",
+          "text": "The demonstration rain garden outside our Frankfort office is settling in. Nina Cho’s team has been keeping a plain-language notebook of what visitors ask. “Does it still work when it looks untidy?” remains a very good question.",
+          "comments": [
+            [
+              "sam",
+              "The community garden would like that question on a T-shirt."
+            ]
+          ]
+        }
+      ],
+      "links": [],
+      "docs": [],
+      "partners": [
+        "library",
+        "good-enough"
+      ],
+      "image": "org-lockside-office",
+      "imageAlt": "A public service office with a planted rain garden and outdoor demonstration barrel."
+    },
+    "riverspan": {
+      "name": "RiverSpan Fiber",
+      "tag": "Connecting the region. Untangling the meeting-room cables.",
+      "sector": "Regional connectivity",
+      "location": "Louisville, KY · Ashland community programs",
+      "size": "51–200",
+      "about": "A regional connectivity company with a Louisville office and community-learning partners in Ashland and Lexington. Our public workshops cover everyday digital confidence. The best support question is the one somebody finally feels comfortable asking.",
+      "specialties": [
+        "Business connectivity",
+        "Digital inclusion",
+        "Community workshops"
+      ],
+      "updates": [
+        {
+          "id": "riverspan-open-lab",
+          "date": "26 Oct 2026",
+          "title": "Bring the question you thought was too small",
+          "text": "Our Ashland digital-help afternoon covered browser tabs, document folders, and the mystery of where downloaded files go. Rafael Cruz and the volunteers kept spare cables on the table and time between appointments. Open Chair’s quiet-table idea travelled well. Somebody came to ask one question and stayed to help with three.",
+          "image": "org-riverspan-open-lab",
+          "imageAlt": "Community volunteers helping residents with laptops at an Ashland digital-help session.",
+          "comments": [
+            [
+              "dev",
+              "Delighted the quiet table found another home."
+            ],
+            [
+              "ellis",
+              "We are keeping that opening invitation for our next session."
+            ]
+          ]
+        },
+        {
+          "id": "riverspan-ashland-partners",
+          "date": "21 Oct 2026",
+          "title": "More seats at the planning table",
+          "text": "Laurel Bend Health’s community-learning team joined our Ashland partners to discuss winter digital-help sessions. These are still planning conversations: dates and venues will follow. Rafael Cruz is collecting suggestions for topics people can use at home, not another stack of acronyms.",
+          "comments": []
+        },
+        {
+          "id": "riverspan-office-swap",
+          "date": "7 Oct 2026",
+          "title": "One shelf, fewer duplicate boxes",
+          "text": "A Louisville office tidy turned up six nearly identical cable boxes and the welcome booklet nobody could find. Good Enough Tomorrow is helping us make onboarding easier. The new shelf labels have already survived a very frank staff review.",
+          "comments": [
+            [
+              "morgan",
+              "A useful portfolio case study hiding in plain sight."
+            ]
+          ]
+        }
+      ],
+      "links": [],
+      "docs": [],
+      "partners": [
+        "open",
+        "library",
+        "good-enough"
+      ],
+      "image": "org-riverspan-office",
+      "imageAlt": "The regional fiber team office with a service van and workshop supplies."
     }
   },
   "docs": {
@@ -1303,6 +1716,23 @@ const WORLD = {
     "company-library",
     "company-bikeshop",
     "company-cedar",
-    "company-juniper"
+    "company-juniper",
+    "org-cedar-sign-review",
+    "org-good-enough-office",
+    "org-good-enough-workshop",
+    "org-press-packing",
+    "org-juniper-noticeboard",
+    "org-next-interviews",
+    "org-open-coat-rail",
+    "org-library-seed-swap",
+    "org-spoke-commuter",
+    "org-riverdale-equipment",
+    "org-riverdale-campus",
+    "org-current-depot",
+    "org-current-school-demo",
+    "org-lockside-office",
+    "org-lockside-library-table",
+    "org-riverspan-office",
+    "org-riverspan-open-lab"
   ]
 };

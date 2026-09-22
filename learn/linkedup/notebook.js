@@ -83,7 +83,7 @@ function sourceRequests() {
   return found.sort((a, b) => a.time - b.time);
 }
 function safeSource(value) {
-  try { const url = new URL(value, location.href); return url.origin === location.origin && url.pathname === location.pathname && /^#\/(person|company|post|document)\//.test(url.hash) ? url.href : ''; }
+  try { const url = new URL(value, location.href); return url.origin === location.origin && url.pathname === location.pathname && /^#\/(person|company|company-post|post|document)\//.test(url.hash) ? url.href : ''; }
   catch { return ''; }
 }
 function sendFindingSource(button) {

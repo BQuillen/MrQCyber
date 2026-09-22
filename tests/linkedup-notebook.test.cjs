@@ -43,4 +43,6 @@ test('highlighted email escapes pasted markup and source links stay within resea
   assert.equal(run('safeSource("https://outside.example/learn/linkedup/#/person/lena")'),'');
   assert.equal(run('safeSource("#/login")'),'');
   assert.equal(run('safeSource("#/post/lena-1")'),'https://classroom.example/learn/linkedup/#/post/lena-1');
+  assert.equal(run('safeSource("#/company-post/current-classroom-model")'),'https://classroom.example/learn/linkedup/#/company-post/current-classroom-model');
+  assert.equal(run('safeSource("https://outside.example/learn/linkedup/#/company-post/current-classroom-model")'),'');
 });
