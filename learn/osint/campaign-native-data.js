@@ -93,7 +93,7 @@
   }
   if (get('BARRY-PROFILE-02')) addProfile('campaign-barry', 'Barry Shmelly', [{ artifactId: 'BARRY-PROFILE-02', bio: body('BARRY-PROFILE-02')[0], image: images('BARRY-PROFILE-02')[0] }]);
   if (get('LEON-PROFILE-03')) {
-    addProfile('campaign-leon', 'Leon Tusk', [{ artifactId: 'LEON-PROFILE-03', bio: body('LEON-PROFILE-03')[0], notes: body('LEON-PROFILE-03').slice(1) }, { artifactId: 'LEON-CONTACT-03' }]);
+    addProfile('campaign-leon', 'Leon Tusk', [{ artifactId: 'LEON-PROFILE-03', bio: body('LEON-PROFILE-03')[0], notes: body('LEON-PROFILE-03').slice(1), image: images('LEON-PROFILE-03')[0], gallery: images('LEON-PROFILE-03').slice(1) }, { artifactId: 'LEON-CONTACT-03' }]);
     artifactRoutes['LEON-PROFILE-03'] = '/profile/campaign-leon';
   }
 
@@ -113,6 +113,7 @@
       const evidenceIds = profile.evidenceIds.filter(isAllowed); if (!evidenceIds.length) continue;
       const parts = profile.parts.filter(part => isAllowed(part.artifactId));
       const image = parts.map(part => part.image).find(Boolean);
+      const profilePhotos = parts.flatMap(part => part.gallery || []).map(photo => ({ ...photo, src: assetURL(photo.src) })).filter(photo => photo.src);
       const postIds = profile.posts.filter(postId => POSTS[postId]);
       const links = [];
       for (const evidenceId of evidenceIds) {
@@ -121,7 +122,7 @@
           links.push([get(target)?.title || target, route]);
         }
       }
-      PROFILES[id] = { name: profile.name, handle: profile.handle, bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, stats: postIds.length ? `${postIds.length} preserved public posts` : 'Public profile · no posts in this collection', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
+      PROFILES[id] = { name: profile.name, handle: profile.handle, bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, profilePhotos, stats: postIds.length ? `${postIds.length} preserved public posts` : 'Public profile · no posts in this collection', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
     }
   }
   const searchEntries = Object.entries(profiles).map(([id, profile]) => {

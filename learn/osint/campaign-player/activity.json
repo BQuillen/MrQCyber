@@ -9046,7 +9046,19 @@
           }
         ],
         "author": "Leon Tusk campaign",
-        "date": "2026-10-19"
+        "date": "2026-10-19",
+        "image": {
+          "src": "images/leon-tusk-reference.png",
+          "alt": "Leon Tusk, wearing a charcoal suit and blue tie, in his campaign office.",
+          "caption": "Leon Tusk · Campaign portrait"
+        },
+        "images": [
+          {
+            "src": "images/leon-community-meeting.png",
+            "alt": "Leon Tusk listens to residents around a table at a community meeting.",
+            "caption": "From the campaign diary · Conversations with residents over coffee."
+          }
+        ]
       },
       {
         "id": "LEON-CONTACT-03",
