@@ -1,0 +1,9 @@
+Supabase JavaScript client 2.117.3
+Official package: https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.117.3.tgz
+Source bundle: package/dist/umd/supabase.js
+Local filename: supabase.min.js
+SHA-256: d6a5c4414a5d4ce646d9c1de223aa7067d3ff664c15394ffeb7fcffc763354a3
+License: MIT (see supabase-LICENSE.txt)
+
+Vendored locally so the activity does not depend on a CDN script at runtime.
+Online sign-in and saving still require the configured Supabase service.

@@ -1,0 +1,183 @@
+// Generated from query-lessons.json. Edit the JSON source and rebuild.
+window.CAMPAIGN_QUERY_LESSONS = [
+  {
+    "id": "QUERY-Y2-02",
+    "questionId": "Y2-02",
+    "title": "Find one publication event",
+    "tableName": "PublishingEvents",
+    "objective": "Use a preview, an exact ID filter and a projection to distinguish draft creation, scheduling and publication.",
+    "starterQuery": "PublishingEvents\n| take 5",
+    "steps": [
+      "Run the preview and read the column names. A preview is a sample, not a conclusion.",
+      "Replace the preview with a where filter on post_id, using the incident post ID from the public artifact. Put string values in double quotes.",
+      "Inspect the remaining actions. Add a filter for the action that actually publishes the post and the successful result.",
+      "Use project to retain event_id, timestamp, action, actor_account_id and session_id. Save the query with the cited record."
+    ],
+    "hints": [
+      "The pattern is | where FIELD == \"VALUE\". Exact identifiers are better filters than a broad text fragment.",
+      "The pattern | project FIELD_1, FIELD_2 keeps those columns. A draft and a publication are different rows."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-03",
+    "questionId": "Y2-03",
+    "title": "Separate capability from workflow",
+    "tableName": "AccountPermissions",
+    "objective": "Search a permission term, narrow by resource, and explain what a custodian field means.",
+    "starterQuery": "AccountPermissions\n| where technical_permission has \"REPLACE_ME\"\n| project account_id, custodian_or_role, resource, technical_permission, workflow_condition",
+    "steps": [
+      "Replace REPLACE_ME with a complete permission term relevant to the question. An unchanged placeholder is expected to return no useful match.",
+      "Check which resource each matching row concerns. Add an exact resource filter rather than assuming every similar permission applies to the campaign account.",
+      "Compare technical_permission with workflow_condition. Use the staff and approval exhibits for the explanation.",
+      "Record what the register says about account responsibility; do not convert that label into a finding about a human operator."
+    ],
+    "hints": [
+      "has tests a complete term; contains finds a text fragment. For a known resource or ID, use ==.",
+      "Read resource before interpreting a matching permission. Similar verbs can apply to different services."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-04",
+    "questionId": "Y2-04",
+    "title": "Order observations without inventing a login",
+    "tableName": "SessionObservations",
+    "objective": "Pivot on a session ID and sort separate sources into an observed timeline.",
+    "starterQuery": "SessionObservations\n| where session_id == \"REPLACE_ME\"\n| order by timestamp asc",
+    "steps": [
+      "Replace the placeholder with the session ID identified in the publishing evidence.",
+      "Use ascending time order. Record the earliest supplied observation and its source; call it first observed.",
+      "Run a separate query against PublishingEvents with the same session filter, selecting timestamp, event_id and action. This workspace does not require a join.",
+      "Compare the two results in the notebook. Read the source note explaining scheduled publication before inferring a person was active at that time."
+    ],
+    "hints": [
+      "order by timestamp asc arranges earlier records first. take 1 after ordering selects the first returned record.",
+      "Two separate cited queries can support a timeline. A session observation is not an authentication record."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-05",
+    "questionId": "Y2-05",
+    "title": "Filter the event revisions",
+    "tableName": "EventRevisions",
+    "objective": "Use an event ID and action filters to distinguish requests, edits and resource permissions.",
+    "starterQuery": "EventRevisions\n| where event_id == \"REPLACE_ME\"\n| order by timestamp asc",
+    "steps": [
+      "Replace REPLACE_ME with the event ID from the notice.",
+      "Inspect action values, then keep the venue revision and provider-attendance change. Use a second where clause with two exact action comparisons joined by or.",
+      "Project record_id, timestamp, action, requested_by, recorded_by and reference. Open the message references to compare stated reasons.",
+      "Use AccountPermissions as a separate source to assess publishing authority. State whether these event records evidence any change to it."
+    ],
+    "hints": [
+      "A pattern is | where FIELD == \"VALUE_A\" or FIELD == \"VALUE_B\". An earlier event-ID filter still applies.",
+      "requested_by and recorded_by answer different questions. A scheduling change does not automatically change another service’s permissions."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-06",
+    "questionId": "Y2-06",
+    "title": "Count distinct addresses",
+    "tableName": "NetworkConnections",
+    "objective": "Distinguish the number of rows from the number of different addresses.",
+    "starterQuery": "NetworkConnections\n| take 5",
+    "steps": [
+      "Read the table’s row meaning and source limits before counting.",
+      "Remove the preview limit. Use distinct with the internal-address column, inspect the resulting values, then add count.",
+      "Repeat with the public-address column. Record both queries and compare their results.",
+      "As an extension, use summarize count() by with an address field and explain that the result counts observation rows in each group, not automatically devices or people."
+    ],
+    "hints": [
+      "Use | distinct FIELD_NAME followed by | count to count different values exactly.",
+      "Do not keep take 5 when building a final count query. This excerpt is small; larger datasets would make a preview-based count misleading."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-07",
+    "questionId": "Y2-07",
+    "title": "Retrieve an identity lead, then test its limits",
+    "tableName": "EventRegistrations",
+    "objective": "Optionally retrieve registration context while keeping identity interpretation separate from a table match.",
+    "starterQuery": "EventRegistrations\n| where name contains \"REPLACE_ME\"\n| project registration_id, name, affiliation, purpose, check_in_utc",
+    "steps": [
+      "Optional retrieval: replace REPLACE_ME with a name fragment from the question and inspect all candidates.",
+      "Use the exact name when recording a specific registration. Do not silently treat a partial match as a verified identity.",
+      "Run a separate NetworkConnections query for the forum destination shown in the source. Compare the available columns with the public forum fields.",
+      "Answer the interpretation question using the source notes. List the missing identity bridge rather than manufacturing it with a join."
+    ],
+    "hints": [
+      "A matching registration supplies attendance context. It does not supply an authenticated forum username.",
+      "Querying a destination host cannot reveal fields that the network source never recorded."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-08",
+    "questionId": "Y2-08",
+    "title": "Trace a version change",
+    "tableName": "DocumentEvents",
+    "objective": "Combine an exact document filter, an operation filter and numeric version comparisons.",
+    "starterQuery": "DocumentEvents\n| where document_id == \"REPLACE_ME\"\n| where operation == \"REPLACE_ME\"\n| project event_id, timestamp, operation, version_from, version_to, actor_account_id, session_id",
+    "steps": [
+      "Replace the placeholders with the document ID and relevant operation from the question.",
+      "Use version_from and version_to to select the requested transition. These version columns are numeric in this practice workspace, so compare them with numbers without quotes.",
+      "Record the event’s account, session and time.",
+      "Query PublishingEvents separately for the incident draft, then compare session IDs. State what the shared ID supports and what it does not."
+    ],
+    "hints": [
+      "Add | where version_from == NUMBER and version_to == NUMBER using the versions named in the question.",
+      "An account/session match links records; it does not independently identify the person controlling the account."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-09",
+    "questionId": "Y2-09",
+    "title": "Check a version-specific approval",
+    "tableName": "ApprovalEvents",
+    "objective": "Retrieve the approval for a document and test whether approval coverage supports a negative finding.",
+    "starterQuery": "ApprovalEvents\n| where document_id == \"REPLACE_ME\"\n| project approval_id, timestamp, document_id, version, decision, approver_role",
+    "steps": [
+      "Replace REPLACE_ME with the document ID in scope and inspect every returned approval.",
+      "Compare each numeric version with the two preserved document versions. You can run a second exact version filter to test one version.",
+      "If a filter returns no rows, read the approval exhibit’s stated coverage before interpreting the absence.",
+      "Complete the answer with the actual wording and campaign statement. A query result alone cannot demonstrate the content difference or the intrusion method."
+    ],
+    "hints": [
+      "Approving one version does not automatically approve later versions of the same document.",
+      "An empty result is meaningful only within the source’s defined completeness and collection window."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-10",
+    "questionId": "Y2-10",
+    "title": "Count scoped document actions",
+    "tableName": "DocumentEvents",
+    "objective": "Apply a time window and session/result filters before counting distinct documents by operation.",
+    "starterQuery": "DocumentEvents\n| where session_id == \"REPLACE_ME\"\n| where timestamp >= datetime(2026-10-23T00:00:00Z)\n| where timestamp \u003c datetime(2026-10-25T09:00:00Z)\n| where result == \"REPLACE_ME\"\n| take 5",
+    "steps": [
+      "Fill the session and successful-result placeholders from the case. The supplied time bounds follow the table’s coverage note.",
+      "Remove take 5. Keep only the operations requested by the question, using exact comparisons joined by or.",
+      "Inspect the matching event IDs before aggregation so you can cite the underlying records.",
+      "Use distinct operation, document_id before summarize count() by operation. Explain why distinct pairs are necessary and keep the result tied to the stated coverage."
+    ],
+    "hints": [
+      "The lower time bound is inclusive and the upper bound is exclusive; this avoids overlap between adjacent windows.",
+      "First define the relevant events, then define the unit being counted. Repeated actions on one document are not new documents."
+    ]
+  },
+  {
+    "id": "QUERY-Y2-11",
+    "questionId": "Y2-11",
+    "title": "Separate an export record from a transfer claim",
+    "tableName": "DocumentEvents",
+    "objective": "Optionally retrieve a completed operation, then assess impact and missing evidence.",
+    "starterQuery": "DocumentEvents\n| where operation == \"REPLACE_ME\"\n| project event_id, timestamp, document_id, operation, actor_account_id, session_id, result",
+    "steps": [
+      "Optional retrieval: replace REPLACE_ME with the operation relevant to the confidentiality question.",
+      "Narrow to the session and successful result in scope, then cite the observed operation.",
+      "Read the row meaning and coverage note. Identify which destination or receipt facts are absent from this source.",
+      "Use the document versions for integrity and the coverage note for the availability and intrusion claims. Those conclusions cannot be supplied by a larger count of the same rows."
+    ],
+    "hints": [
+      "An application export records one operation; it is not automatically a record of external delivery.",
+      "Do not infer a network attack or identify an outside recipient from a field the table does not contain."
+    ]
+  }
+];

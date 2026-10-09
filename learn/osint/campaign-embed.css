@@ -1,0 +1,15 @@
+/* The embedded guide uses the same native Frame components and colors. */
+body.campaign-embedded .rail,
+body.campaign-embedded .bookmark-bar,
+body.campaign-embedded .labbar .lab-note,
+body.campaign-embedded .labbar nav a[href="#/investigations"],
+body.campaign-embedded .investigation-link{display:none}
+body.campaign-embedded .workspace{display:block;max-width:none}
+body.campaign-embedded #main{width:100%;max-width:100%;min-width:0;padding:20px}
+body.campaign-embedded .labbar{padding:10px 20px;min-height:48px}
+body.campaign-embedded .feed{max-width:760px}
+body.campaign-embedded .profile-header{flex-wrap:wrap}
+body.campaign-embedded .compass-page{min-height:0}
+body.campaign-embedded .source-site{margin:0 auto;max-width:1100px}
+.campaign-native-source{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:480px){body.campaign-embedded #main{padding:12px}body.campaign-embedded .labbar{padding:8px 12px}}

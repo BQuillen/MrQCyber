@@ -1,0 +1,1516 @@
+{
+  "title": "The Campaign Post",
+  "caseDate": "2026-10-25",
+  "contentRevision": "campaign-post-2026-10-07-query-1",
+  "briefing": "A post on Mandy Schmear’s campaign account has surprised staff and supporters. Follow the public story or the technical records, preserve what you find, and explain what the evidence supports. Both paths investigate the same incident and can be completed independently.",
+  "tracks": [
+    {
+      "id": "year1",
+      "label": "Year 1 · People and public evidence",
+      "description": "Follow public posts, relationships, event changes and document wording. Build an evidence-based account while distinguishing leads from proof.",
+      "sections": [
+        {
+          "id": "y1-start",
+          "title": "Start with the public record",
+          "questions": [
+            {
+              "id": "Y1-01",
+              "prompt": "Record the ID and publication time of the post that starts the investigation. Which part is the publication time, rather than the time investigators preserved it?",
+              "type": "short",
+              "evidenceIds": [
+                "FRAME-04",
+                "CASE-01"
+              ],
+              "hints": [
+                "Open the preserved Frame post.",
+                "The post details contain two different times."
+              ]
+            },
+            {
+              "id": "Y1-02",
+              "prompt": "Compare the incident post with two earlier Mandy posts. What changed in the position or tone, and what does that difference alone fail to prove?",
+              "type": "explanation",
+              "evidenceIds": [
+                "FRAME-01",
+                "FRAME-04"
+              ],
+              "hints": [
+                "Compare policy wording and the treatment of people who disagree.",
+                "Keep an observation separate from an explanation."
+              ],
+              "reflection": "Save one observed difference and two possible explanations."
+            },
+            {
+              "id": "Y1-03",
+              "prompt": "Which person coordinates campaign venues and guest-list revisions, and which person is responsible for the communications workflow? Record the names with their roles.",
+              "type": "short",
+              "evidenceIds": [
+                "STAFF-01"
+              ],
+              "hints": [
+                "Read the responsibilities, not only the job titles.",
+                "A role tells you what a person is expected to do."
+              ]
+            },
+            {
+              "id": "Y1-04",
+              "prompt": "Choose one campaign detail from Benny’s public feed that could help an outsider understand staff roles, timing or routines. Explain its usefulness and one thing it does not reveal.",
+              "type": "explanation",
+              "evidenceIds": [
+                "FRAME-02",
+                "STAFF-01"
+              ],
+              "hints": [
+                "A post can reveal context without revealing a secret password.",
+                "Distinguish intentionally public event information from additional incidental context."
+              ],
+              "reflection": "Describe responsible sharing without blaming Benny for another person’s actions."
+            }
+          ]
+        },
+        {
+          "id": "y1-context",
+          "title": "Follow people and event context",
+          "questions": [
+            {
+              "id": "Y1-05",
+              "prompt": "What changed about the event venue, and who requested the recorded change? Cite the notice, the revision record and the related approval message.",
+              "type": "explanation",
+              "evidenceIds": [
+                "EVENT-01",
+                "EVENT-02",
+                "MESSAGES-01"
+              ],
+              "hints": [
+                "Use EV-CAMPAIGN-01 to keep the sources together.",
+                "Requester, recorded-by account and approver are separate fields."
+              ]
+            },
+            {
+              "id": "Y1-06",
+              "prompt": "How many High Five people were registered for the event after the change? What legitimate service explains their attendance, and what does attendance alone fail to establish?",
+              "type": "explanation",
+              "evidenceIds": [
+                "GUESTS-01",
+                "HIGHFIVE-01",
+                "MESSAGES-01"
+              ],
+              "hints": [
+                "Count the company’s named registrations.",
+                "Compare the service brief with actual campaign publishing responsibilities."
+              ]
+            },
+            {
+              "id": "Y1-07",
+              "prompt": "Does the preserved professional profile prove that Crane’s earlier employment history was fabricated? State what the excerpt supports and what affirmative record you would need to check a specific claim.",
+              "type": "explanation",
+              "evidenceIds": [
+                "LINKEDUP-01",
+                "HIGHFIVE-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "A connection or a missing record is not a verified employment contradiction.",
+                "Name a document or source that could actually test a dated claim."
+              ]
+            },
+            {
+              "id": "Y1-08",
+              "prompt": "What shows that Benny’s contact with Paige Turner began before Crane joined the campaign? Cite both dates, then separate the relationship evidence from a claim about Paige’s intent.",
+              "type": "explanation",
+              "evidenceIds": [
+                "FORUM-01",
+                "STAFF-01"
+              ],
+              "hints": [
+                "Compare the earliest visible conversation with the hiring date.",
+                "A longstanding friendly exchange does not by itself establish knowledge of an operation."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "y1-findings",
+          "title": "Test the story and report",
+          "questions": [
+            {
+              "id": "Y1-09",
+              "prompt": "Can these chapter exhibits establish that Paige Turner is event attendee Paige Bracket? Explain the lead, the missing identity link and one source that could test it.",
+              "type": "explanation",
+              "evidenceIds": [
+                "FORUM-02",
+                "GUESTS-01",
+                "NETWORK-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "The guest list, forum and network note record different kinds of identity.",
+                "A shared network address or a matching first name is not enough."
+              ]
+            },
+            {
+              "id": "Y1-10",
+              "prompt": "Compare the two connectivity-briefing versions, the approval ledger and the public post. What precise content changed, and which approved version did the incident contradict?",
+              "type": "explanation",
+              "evidenceIds": [
+                "DOC-03",
+                "DOC-04",
+                "APPROVALS-01",
+                "FRAME-04"
+              ],
+              "hints": [
+                "Keep the document ID constant while comparing versions.",
+                "An approval of one version does not approve every later edit."
+              ],
+              "reflection": "Record an integrity finding with two source citations."
+            },
+            {
+              "id": "Y1-11",
+              "prompt": "A classmate says Lemon’s account label proves Lemon wrote the post, and Barry’s early article proves he knew about it in advance. Assess each claim using the records and their dates.",
+              "type": "explanation",
+              "evidenceIds": [
+                "ACCESS-01",
+                "PUBLISH-01",
+                "SESSION-01",
+                "NEWS-01",
+                "NEWS-02",
+                "STATEMENT-01"
+              ],
+              "hints": [
+                "Separate account custodianship from the operator.",
+                "Check which article concerns the event and which concerns the incident."
+              ],
+              "reflection": "State what the evidence weakens without claiming it proves universal innocence."
+            },
+            {
+              "id": "Y1-12",
+              "prompt": "Write a short campaign briefing with four cited facts, your strongest supported interpretation, two unanswered questions and two practical actions. End with three sentences for a teenage audience about sharing intentionally, checking background details and responsibility for exploitation.",
+              "type": "explanation",
+              "evidenceIds": [
+                "CASE-01",
+                "FRAME-04",
+                "DOC-03",
+                "DOC-04",
+                "PUBLISH-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "Use observations you saved instead of inventing a technical cause.",
+                "Explain what should be preserved or corrected and what evidence should be collected next."
+              ],
+              "reflection": "You can complete this report from the evidence library without another class’s answer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "year2",
+      "label": "Year 2 · Accounts and records",
+      "description": "Compare account permissions, application actions, sessions and document versions. Reconstruct the observed sequence and identify the missing technical links.",
+      "sections": [
+        {
+          "id": "y2-start",
+          "title": "Identify the recorded activity",
+          "questions": [
+            {
+              "id": "Y2-01",
+              "prompt": "Record the incident post ID and the connectivity document ID. What environment is in scope, and which other systems are not covered by these records?",
+              "type": "explanation",
+              "evidenceIds": [
+                "CASE-01",
+                "FRAME-04",
+                "DOC-03",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "Use stable identifiers before filtering any records.",
+                "A shared public figure does not make campaign and government systems the same."
+              ]
+            },
+            {
+              "id": "Y2-02",
+              "prompt": "Find the completed publication action for the incident post. Record its event ID, UTC timestamp, action, account and session ID.",
+              "type": "short",
+              "evidenceIds": [
+                "PUBLISH-01"
+              ],
+              "hints": [
+                "Filter the rows by POST-MANDY-INCIDENT.",
+                "Distinguish creating or scheduling a draft from publication."
+              ]
+            },
+            {
+              "id": "Y2-03",
+              "prompt": "Which account had the technical permission to publish, and what separate workflow condition applied? Why does the custodian field fail to identify the operator of a particular session?",
+              "type": "explanation",
+              "evidenceIds": [
+                "ACCESS-01",
+                "STAFF-01",
+                "APPROVALS-01"
+              ],
+              "hints": [
+                "Read technical permission and workflow condition separately.",
+                "The account is a recorded identity; the operator is a different question."
+              ]
+            },
+            {
+              "id": "Y2-04",
+              "prompt": "Put the incident session’s first supplied observation, draft creation, scheduling and publication in time order. Why does the final publication row not establish that a person was online at that moment?",
+              "type": "explanation",
+              "evidenceIds": [
+                "SESSION-01",
+                "PUBLISH-01"
+              ],
+              "hints": [
+                "Use CS-072 across both tables.",
+                "Read the explanation of PublishScheduled and first observation."
+              ],
+              "reflection": "Label the earliest entry first observed, not first login."
+            }
+          ]
+        },
+        {
+          "id": "y2-context",
+          "title": "Correlate records carefully",
+          "questions": [
+            {
+              "id": "Y2-05",
+              "prompt": "Which scheduling record changes the venue and which record adds provider attendees? Identify the recorded account and the stated reasons, then assess whether these records evidence any change to campaign publishing permissions.",
+              "type": "explanation",
+              "evidenceIds": [
+                "EVENT-02",
+                "MESSAGES-01",
+                "ACCESS-01"
+              ],
+              "hints": [
+                "Use the action and reference fields.",
+                "Event attendance and publishing permissions are different resources."
+              ]
+            },
+            {
+              "id": "Y2-06",
+              "prompt": "How many different internal device addresses appear in the venue excerpt, and how many public addresses? Explain the attribution mistake that would follow from treating the public address as one person.",
+              "type": "explanation",
+              "evidenceIds": [
+                "NETWORK-01"
+              ],
+              "hints": [
+                "Count distinct values, not rows, in each address column.",
+                "Read the source note before trying to map a device to an attendee."
+              ]
+            },
+            {
+              "id": "Y2-07",
+              "prompt": "Compare the public forum thread with the venue excerpt. Which fields identify a forum account, which identify only network observations, and what bridge is missing for a reliable Paige identity correlation?",
+              "type": "explanation",
+              "evidenceIds": [
+                "FORUM-02",
+                "GUESTS-01",
+                "NETWORK-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "Do not turn destination-host visibility into authenticated-user visibility.",
+                "State the source and time-valid mapping you would need."
+              ]
+            },
+            {
+              "id": "Y2-08",
+              "prompt": "What event changed the connectivity briefing from version 3 to version 4? Record the event ID, account, session and time, then compare that session with the incident draft.",
+              "type": "short",
+              "evidenceIds": [
+                "DOCLOG-01",
+                "PUBLISH-01"
+              ],
+              "hints": [
+                "Filter on the document ID and Edit operation.",
+                "Compare session_id, not just similar timestamps."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "y2-findings",
+          "title": "Bound impact and report",
+          "questions": [
+            {
+              "id": "Y2-09",
+              "prompt": "What evidence supports an integrity incident rather than an ordinary approved policy revision? Cite the version text, approval coverage and campaign statement; do not infer an intrusion method from the result.",
+              "type": "explanation",
+              "evidenceIds": [
+                "DOC-03",
+                "DOC-04",
+                "APPROVALS-01",
+                "STATEMENT-01"
+              ],
+              "hints": [
+                "An application can permit an action while the workflow does not approve its content.",
+                "Show the content difference as well as the audit metadata."
+              ]
+            },
+            {
+              "id": "Y2-10",
+              "prompt": "Within the stated coverage window, how many distinct documents did CS-072 successfully edit, and how many did it successfully export? Identify the records and explain why counting every row would give a misleading scope.",
+              "type": "explanation",
+              "evidenceIds": [
+                "DOCLOG-01"
+              ],
+              "hints": [
+                "Filter session_id and operation before counting distinct document_id.",
+                "Reads and other sessions are different from the actions named in the question."
+              ],
+              "reflection": "State the exact window and the table’s coverage limit."
+            },
+            {
+              "id": "Y2-11",
+              "prompt": "Which confidentiality, integrity and availability claims are supported by this chapter? Distinguish a completed export from proven delivery to an outsider, and identify the missing evidence between the event network and the publishing session.",
+              "type": "explanation",
+              "evidenceIds": [
+                "DOCLOG-01",
+                "DOC-03",
+                "DOC-04",
+                "NETWORK-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "Use a specific observation for every impact claim.",
+                "No supplied record does not mean an event was impossible; qualify the conclusion."
+              ]
+            },
+            {
+              "id": "Y2-12",
+              "prompt": "Write a technical handoff containing the observed sequence, at least four event or artifact citations, an alternative explanation, two immediate response actions and two targeted evidence requests. Finish with a five-sentence explanation for Year 1.",
+              "type": "explanation",
+              "evidenceIds": [
+                "PUBLISH-01",
+                "SESSION-01",
+                "DOCLOG-01",
+                "APPROVALS-01",
+                "COVERAGE-01"
+              ],
+              "hints": [
+                "Separate the recorded account, session and human operator.",
+                "Tie each action or request to a finding or a missing link."
+              ],
+              "reflection": "You may finish without class exchange; leave the initial intrusion mechanism unresolved."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "CASE-01",
+      "type": "document",
+      "title": "Campaign incident briefing",
+      "site": "Case records",
+      "body": [
+        "At 08:10 UTC on 25 October 2026, a post appeared on Mandy Schmear’s campaign account that surprised staff and supporters. The campaign has asked investigators to preserve the record, compare the post with approved material, and explain what can be established.",
+        "This case covers the campaign’s public account, campaign document workspace, and selected records for its 22 October event. It does not include the governor’s official-office systems, voting systems, private bank accounts, or personal messages.",
+        "The evidence library contains public pages and separately identified records supplied to the investigation. The same core material is available to both class tracks. You can finish your investigation without receiving an answer from another class.",
+        "Keep three things separate in your notes: what a source records, what you infer from it, and what additional evidence would test that inference."
+      ],
+      "date": "2026-10-25",
+      "author": "Campaign incident coordinator",
+      "links": [
+        {
+          "label": "Open the post",
+          "artifactId": "FRAME-04"
+        },
+        {
+          "label": "Read the coverage note",
+          "artifactId": "COVERAGE-01"
+        }
+      ]
+    },
+    {
+      "id": "PROFILE-01",
+      "type": "profile",
+      "title": "Mandy Schmear",
+      "site": "Campaign / Frame",
+      "body": [
+        "Mandy Schmear is the governor and a candidate for re-election. Her campaign emphasizes listening to residents, practical decisions, and respectful disagreement.",
+        "Her campaign account shares event updates, family moments, policy explanations, and responses to community concerns. Campaign staff help prepare and publish posts.",
+        "Campaign role: candidate. The public profile does not describe her personal devices or identify who operated any particular posting session."
+      ],
+      "author": "Campaign team",
+      "image": {
+        "src": "../images/mandy-schmear-reference.png",
+        "alt": "Mandy Schmear in a teal blazer.",
+        "caption": "Mandy Schmear · Campaign portrait"
+      },
+      "links": [
+        {
+          "label": "Recent posts",
+          "artifactId": "FRAME-01"
+        },
+        {
+          "label": "Campaign staff",
+          "artifactId": "STAFF-01"
+        }
+      ]
+    },
+    {
+      "id": "FRAME-01",
+      "type": "social",
+      "title": "Mandy’s recent public posts",
+      "site": "Frame",
+      "body": [
+        "POST-MANDY-16 · 16 October 2026, 16:20 UTC — A good listening session means hearing from people who did not arrive agreeing with you. Thank you to everyone who stayed to ask another question.",
+        "POST-MANDY-18 · 18 October 2026, 12:00 UTC — I support free public Wi-Fi across the city, with privacy protections, accessible support, and a clear maintenance plan.",
+        "POST-MANDY-19 · 19 October 2026, 17:15 UTC — Family dinner ran late, the timer lost its argument with the oven, and we still found time to laugh. Back to the community questions tomorrow.",
+        "POST-MANDY-20 · 20 October 2026, 15:10 UTC — Thursday’s listening event has moved to Riverside Learning Center. The team has updated the notice and accessibility details. Thank you for bearing with the change.",
+        "POST-MANDY-21 · 21 October 2026, 09:25 UTC — You do not have to support a proposal to deserve a serious answer. We will keep explaining the costs, the safeguards and the choices.",
+        "POST-MANDY-22 · 22 October 2026, 20:10 UTC — Thank you to the staff, volunteers and residents who made tonight’s event happen. There are useful questions in the notes, and we will follow up."
+      ],
+      "author": "Mandy Schmear campaign account",
+      "links": [
+        {
+          "label": "Event notice",
+          "artifactId": "EVENT-01"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/community-listening.png",
+          "alt": "Mandy and Benny sit with two residents at a library table during a conversation.",
+          "caption": "16 October 2026 · Listening to residents at the community library."
+        }
+      ]
+    },
+    {
+      "id": "FRAME-04",
+      "type": "social",
+      "title": "A post from the campaign account",
+      "site": "Frame",
+      "body": [
+        "I oppose free public Wi-Fi across the city. Residents who cannot pay for internet should stop expecting everyone else to solve their problems.",
+        "Post ID: POST-MANDY-INCIDENT · Published 25 October 2026 at 08:10 UTC · Public edit indicator: no later edit recorded in this preserved copy.",
+        "Rae Chen · 08:12 UTC — This sounds very different from what was said at the listening event.",
+        "Owen Ellis · 08:13 UTC — I have questions about the cost too. I do not think insulting people helps answer them.",
+        "Sam Rowan · 08:14 UTC — Did the proposal change? Is there an updated policy document?",
+        "Jordan Vale · 08:16 UTC — I am waiting for the campaign to clarify before drawing a conclusion.",
+        "Preservation note: the post’s publication time and the time this exhibit was saved are different fields. This copy was preserved at 08:22 UTC."
+      ],
+      "date": "2026-10-25T08:10:00Z",
+      "author": "Mandy Schmear campaign account",
+      "links": [
+        {
+          "label": "Earlier posts",
+          "artifactId": "FRAME-01"
+        },
+        {
+          "label": "Campaign statement",
+          "artifactId": "STATEMENT-01"
+        }
+      ]
+    },
+    {
+      "id": "STAFF-01",
+      "type": "document",
+      "title": "Campaign staff and responsibilities",
+      "site": "Campaign website",
+      "body": [
+        "Mandy Schmear — candidate. Sets the campaign’s positions with the policy team and reviews major public statements.",
+        "Lemon Smellbottom — communications director. An experienced campaign communicator responsible for the approval workflow, publication planning and corrections. Lemon is the listed custodian of the campaign-comms application account.",
+        "Crane Gordon — scheduler. Coordinates venues, staff calendars, invitations and event revisions. Joined the campaign on 4 November 2024. Scheduling responsibility does not include changing approved policy language or administering the publishing service.",
+        "Benny Schmear — the candidate’s son, learning about marketing around the campaign. He shares personal behind-the-scenes content but is not listed as an approver or publishing-service administrator.",
+        "Account custodianship describes responsibility for an account. It does not establish who operated each recorded session."
+      ],
+      "author": "Campaign operations",
+      "links": [
+        {
+          "label": "Crane’s professional page",
+          "artifactId": "LINKEDUP-01"
+        },
+        {
+          "label": "Application permissions supplied to investigators",
+          "artifactId": "ACCESS-01"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/crane-gordon-reference.png",
+          "alt": "Crane Gordon, with short dark curls and a navy blazer.",
+          "caption": "Crane Gordon · Campaign scheduler"
+        }
+      ]
+    },
+    {
+      "id": "FRAME-02",
+      "type": "social",
+      "title": "Benny’s week around the campaign",
+      "site": "Frame",
+      "body": [
+        "20 October 2026, 15:18 UTC — New event plan from Crane: Riverside Learning Center on Thursday. I had only just learned the route to the old place. The updated public notice has the useful details.",
+        "21 October 2026, 16:40 UTC — Tried to film a ten-second update. Accidentally recorded eleven minutes of the ceiling. Marketing is a journey.",
+        "22 October 2026, 17:20 UTC — Setup is moving along. Lemon is checking the words, Crane is checking the running order, and I am checking whether the snack table counts as a filming location.",
+        "22 October 2026, 18:24 UTC — Waiting between sessions, so I am catching up with the marketing thread. Some good ideas in there.",
+        "24 October 2026, 13:00 UTC — Working on a better caption for the event photos. Still trying to make these posts sound like a person rather than a brochure."
+      ],
+      "author": "Benny Schmear",
+      "links": [
+        {
+          "label": "Updated public event notice",
+          "artifactId": "EVENT-01"
+        },
+        {
+          "label": "Marketing discussion",
+          "artifactId": "FORUM-02"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/benny-schmear-reference.png",
+          "alt": "Benny Schmear, with curly brown hair and a green overshirt.",
+          "caption": "Benny Schmear · Profile photograph"
+        }
+      ]
+    },
+    {
+      "id": "LINKEDUP-01",
+      "type": "profile",
+      "title": "Crane Gordon",
+      "site": "LinkedUp",
+      "body": [
+        "Campaign scheduler · Mandy Schmear campaign · November 2024–present.",
+        "I help teams turn an ambitious calendar into an event people can actually attend. My work includes venue coordination, invitations and last-minute changes.",
+        "Recent update, 21 October 2026: A revised venue means a revised guest list, access arrangements and a lot of phone calls. Good event partners make that easier.",
+        "Featured professional connection: High Five Consultancy. Public interaction: Crane thanked Larry Couch for assistance with event logistics on 21 October.",
+        "This preserved profile excerpt does not include verified employment records for earlier jobs."
+      ],
+      "author": "Crane Gordon",
+      "links": [
+        {
+          "label": "High Five Consultancy",
+          "artifactId": "HIGHFIVE-01"
+        },
+        {
+          "label": "Event revision record",
+          "artifactId": "EVENT-02"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/crane-gordon-reference.png",
+          "alt": "Crane Gordon, with short dark curls and a navy blazer.",
+          "caption": "Crane Gordon · Profile photograph"
+        }
+      ]
+    },
+    {
+      "id": "HIGHFIVE-01",
+      "type": "profile",
+      "title": "High Five Consultancy",
+      "site": "Company website",
+      "body": [
+        "Practical support for public-facing teams. High Five Consultancy helps small organizations plan events, understand their audiences and communicate clearly.",
+        "Current team: Winnie Mouse — team leadership; Dex Varnish — technical support; Milo Bracket — research and audience insights; Paige Bracket — community relationships; Larry Couch — client relationships.",
+        "Recent ordinary work includes a neighborhood business workshop and a membership organization’s communications review. The public case summaries describe planning and outreach services.",
+        "For the 22 October campaign listening event, High Five’s published service brief covers audience-feedback collection, registration support and guest coordination. The brief does not grant its staff campaign publishing or policy-approval authority.",
+        "The company page does not identify its five current staff as its complete founding group."
+      ],
+      "author": "High Five Consultancy",
+      "links": [
+        {
+          "label": "Event notice",
+          "artifactId": "EVENT-01"
+        },
+        {
+          "label": "Event registration excerpt",
+          "artifactId": "GUESTS-01"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/paige-bracket-reference.png",
+          "alt": "Paige Bracket, with dark curly hair, round glasses and a rust cardigan.",
+          "caption": "Paige Bracket · Community relationships"
+        },
+        {
+          "src": "../images/dex-varnish-reference.png",
+          "alt": "Dex Varnish, with sandy hair, a short beard and rectangular glasses.",
+          "caption": "Dex Varnish · Technical support"
+        }
+      ]
+    },
+    {
+      "id": "EVENT-01",
+      "type": "document",
+      "title": "City connectivity listening event",
+      "site": "Campaign events",
+      "body": [
+        "Event ID: EV-CAMPAIGN-01 · 22 October 2026 · 18:00–20:00 UTC.",
+        "Current location: Riverside Learning Center. Accessible entrance details and the updated travel notice were posted with the revision.",
+        "Earlier notice, preserved 18 October: Eastbank Community Hall. Revised notice, published 20 October at 15:00 UTC: Riverside Learning Center.",
+        "Agenda: opening remarks; residents’ questions about free citywide public Wi-Fi; small-group feedback; closing summary.",
+        "High Five Consultancy is listed as an event-support provider for feedback collection and guest coordination. Barry Shmelly is listed as accredited press."
+      ],
+      "date": "2026-10-20T15:00:00Z",
+      "author": "Campaign events team",
+      "links": [
+        {
+          "label": "Revision ledger",
+          "artifactId": "EVENT-02"
+        },
+        {
+          "label": "Barry’s event coverage",
+          "artifactId": "NEWS-01"
+        }
+      ]
+    },
+    {
+      "id": "EVENT-02",
+      "type": "table",
+      "title": "Event revision ledger",
+      "site": "Provided campaign scheduling export",
+      "body": [
+        "One row records a scheduling-system action. Requested_by identifies the requester; recorded_by identifies the account that made the system entry. All timestamps are UTC.",
+        "The export covers this event’s venue and registration revisions from 18–22 October. A recorded change does not establish that the stated reason is true or that a later technical incident was caused by it."
+      ],
+      "columns": [
+        "record_id",
+        "timestamp",
+        "event_id",
+        "action",
+        "old_value",
+        "new_value",
+        "requested_by",
+        "recorded_by",
+        "reference"
+      ],
+      "rows": [
+        [
+          "SCH-101",
+          "2026-10-18T10:00:00Z",
+          "EV-CAMPAIGN-01",
+          "Create venue",
+          "—",
+          "Eastbank Community Hall",
+          "Campaign operations",
+          "events-desk",
+          "NOTICE-01"
+        ],
+        [
+          "SCH-102",
+          "2026-10-20T14:30:00Z",
+          "EV-CAMPAIGN-01",
+          "Change venue",
+          "Eastbank Community Hall",
+          "Riverside Learning Center",
+          "Crane Gordon",
+          "crane.gordon",
+          "MSG-044"
+        ],
+        [
+          "SCH-103",
+          "2026-10-20T15:00:00Z",
+          "EV-CAMPAIGN-01",
+          "Publish notice",
+          "NOTICE-01",
+          "NOTICE-02",
+          "Campaign operations",
+          "events-desk",
+          "SCH-102"
+        ],
+        [
+          "SCH-104",
+          "2026-10-21T11:20:00Z",
+          "EV-CAMPAIGN-01",
+          "Add provider attendees",
+          "2 High Five attendees",
+          "5 High Five attendees",
+          "Crane Gordon",
+          "crane.gordon",
+          "MSG-047"
+        ],
+        [
+          "SCH-105",
+          "2026-10-22T16:00:00Z",
+          "EV-CAMPAIGN-01",
+          "Open guest check-in",
+          "Closed",
+          "Open",
+          "Campaign operations",
+          "events-desk",
+          "RUN-08"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Related messages",
+          "artifactId": "MESSAGES-01"
+        },
+        {
+          "label": "Final registrations",
+          "artifactId": "GUESTS-01"
+        }
+      ]
+    },
+    {
+      "id": "MESSAGES-01",
+      "type": "document",
+      "title": "Event coordination messages",
+      "site": "Provided campaign correspondence",
+      "body": [
+        "MSG-044 · 20 October 2026, 14:12 UTC · From Crane Gordon to campaign operations: Riverside can accommodate the revised room layout and the feedback stations. Please confirm the venue change today so we can publish one clear update. I will coordinate with the event-support provider.",
+        "MSG-045 · 20 October 2026, 14:24 UTC · From campaign operations to Crane Gordon: Venue change approved, subject to the updated accessibility and travel notice. This approval covers the event arrangement only.",
+        "MSG-047 · 21 October 2026, 11:05 UTC · From Crane Gordon to events desk: Please add Dex Varnish, Milo Bracket and Paige Bracket to the existing High Five registrations for Winnie Mouse and Larry Couch. The provider is bringing the full feedback-support team.",
+        "MSG-048 · 21 October 2026, 11:27 UTC · From events desk to Crane Gordon: The five provider registrations are now recorded. Guest Wi-Fi is handled by the venue. No campaign publishing permissions were requested in this change.",
+        "These are preserved message excerpts supplied by campaign operations. The excerpts establish what was requested and stated; the sender’s explanation can be tested against other records."
+      ],
+      "links": [
+        {
+          "label": "Event revision ledger",
+          "artifactId": "EVENT-02"
+        }
+      ]
+    },
+    {
+      "id": "GUESTS-01",
+      "type": "table",
+      "title": "Event registration excerpt",
+      "site": "Provided event registration ledger",
+      "body": [
+        "This excerpt shows named registrations and check-in records for the people relevant to the public sources. Registration names and check-in records establish attendance context; they do not establish who operated a network session.",
+        "All listed check-ins occurred on 22 October 2026. Staff entries use staff check-in; other attendees use event registration."
+      ],
+      "columns": [
+        "registration_id",
+        "name",
+        "affiliation",
+        "purpose",
+        "check_in_utc"
+      ],
+      "rows": [
+        [
+          "REG-001",
+          "Mandy Schmear",
+          "Campaign",
+          "Candidate",
+          "2026-10-22T17:35:00Z"
+        ],
+        [
+          "REG-002",
+          "Lemon Smellbottom",
+          "Campaign",
+          "Communications",
+          "2026-10-22T16:42:00Z"
+        ],
+        [
+          "REG-003",
+          "Crane Gordon",
+          "Campaign",
+          "Scheduling",
+          "2026-10-22T16:20:00Z"
+        ],
+        [
+          "REG-004",
+          "Benny Schmear",
+          "Campaign guest",
+          "Personal guest",
+          "2026-10-22T17:10:00Z"
+        ],
+        [
+          "REG-010",
+          "Winnie Mouse",
+          "High Five Consultancy",
+          "Event support",
+          "2026-10-22T17:02:00Z"
+        ],
+        [
+          "REG-011",
+          "Larry Couch",
+          "High Five Consultancy",
+          "Event support",
+          "2026-10-22T17:02:00Z"
+        ],
+        [
+          "REG-012",
+          "Dex Varnish",
+          "High Five Consultancy",
+          "Event support",
+          "2026-10-22T17:05:00Z"
+        ],
+        [
+          "REG-013",
+          "Milo Bracket",
+          "High Five Consultancy",
+          "Event support",
+          "2026-10-22T17:08:00Z"
+        ],
+        [
+          "REG-014",
+          "Paige Bracket",
+          "High Five Consultancy",
+          "Event support",
+          "2026-10-22T17:08:00Z"
+        ],
+        [
+          "REG-020",
+          "Barry Shmelly",
+          "News desk",
+          "Accredited press",
+          "2026-10-22T17:30:00Z"
+        ]
+      ],
+      "links": [
+        {
+          "label": "High Five team",
+          "artifactId": "HIGHFIVE-01"
+        },
+        {
+          "label": "Venue network context",
+          "artifactId": "NETWORK-01"
+        }
+      ]
+    },
+    {
+      "id": "NEWS-01",
+      "type": "article",
+      "title": "Residents bring questions to relocated connectivity event",
+      "site": "News site",
+      "body": [
+        "Published 23 October 2026 at 07:30 UTC. By Barry Shmelly.",
+        "The campaign’s city-connectivity listening event moved from Eastbank Community Hall to Riverside Learning Center after a late change. The updated notice appeared on Tuesday, and staff directed attendees to the new venue.",
+        "Residents asked about access, maintenance and privacy in a proposed free public Wi-Fi service. Mandy Schmear said the campaign supports the idea with safeguards and a practical plan.",
+        "High Five Consultancy staff helped collect audience feedback. Campaign scheduler Crane Gordon coordinated event arrangements; communications director Lemon Smellbottom handled campaign statements.",
+        "Reporting note: Barry attended under press registration REG-020. The event report draws on the public notice, observations at the event and a recorded campaign statement. It contains no account of the later 25 October post."
+      ],
+      "date": "2026-10-23T07:30:00Z",
+      "author": "Barry Shmelly",
+      "links": [
+        {
+          "label": "Event notice",
+          "artifactId": "EVENT-01"
+        },
+        {
+          "label": "Later incident coverage",
+          "artifactId": "NEWS-02"
+        }
+      ],
+      "images": [
+        {
+          "src": "../images/event-reception.png",
+          "alt": "Mandy poses with an attendee. Behind them, a man with short dark curls and a navy blazer shakes hands with a sandy-haired, bearded man wearing rectangular glasses.",
+          "caption": "22 October 2026 · Guests and campaign staff at Riverside Learning Center."
+        }
+      ]
+    },
+    {
+      "id": "FORUM-01",
+      "type": "forum",
+      "title": "A long-running discussion about making useful posts",
+      "site": "Community forum",
+      "body": [
+        "Thread ID: THREAD-MARKETING-04. Public discussion excerpts.",
+        "12 September 2023, 19:10 UTC · benny_s: I am trying to learn what makes a short post useful. Is it better to explain one thing well or include every detail?",
+        "12 September 2023, 19:22 UTC · Paige Turner: One useful thing is a good start. Posts that sound like an actual person usually keep my attention.",
+        "14 September 2023, 18:40 UTC · benny_s: That makes sense. I keep writing captions that sound like a brochure.",
+        "3 November 2024, 17:18 UTC · Paige Turner: How is the campaign content going? Do you mostly plan posts or capture things as they happen?",
+        "3 November 2024, 17:30 UTC · benny_s: Mostly little behind-the-scenes moments. There is a new scheduler joining the team, so maybe the calendar will finally make sense to me.",
+        "Public profile note: benny_s identifies himself as Benny Schmear. Paige Turner’s public profile does not display a legal name or employer. These excerpts do not include private messages."
+      ],
+      "author": "Community members",
+      "links": [
+        {
+          "label": "Current discussion",
+          "artifactId": "FORUM-02"
+        },
+        {
+          "label": "Benny’s public feed",
+          "artifactId": "FRAME-02"
+        }
+      ]
+    },
+    {
+      "id": "FORUM-02",
+      "type": "forum",
+      "title": "How much background belongs in a behind-the-scenes post?",
+      "site": "Community forum",
+      "body": [
+        "Thread ID: THREAD-MARKETING-17. Public thread, 22 October 2026.",
+        "18:22 UTC · benny_s: Between sessions at the event, so I have a minute to read the feedback. I am trying to show a real day without posting a wall of announcements.",
+        "18:24 UTC · Paige Turner: The ordinary details help. I would still check the background and tags before posting—sometimes they say more than the caption.",
+        "18:26 UTC · casey_draws: I save a draft and look again later. It is easier to notice an address or someone else’s screen the second time.",
+        "18:28 UTC · benny_s: Good point. I have definitely posted a picture and only noticed the background afterward.",
+        "These visible posts identify forum accounts and posting times. They do not reveal the users’ physical locations, device addresses or legal identities."
+      ],
+      "date": "2026-10-22",
+      "author": "Community members",
+      "links": [
+        {
+          "label": "Earlier history",
+          "artifactId": "FORUM-01"
+        },
+        {
+          "label": "Venue context",
+          "artifactId": "NETWORK-01"
+        }
+      ]
+    },
+    {
+      "id": "NETWORK-01",
+      "type": "table",
+      "title": "Venue network context",
+      "site": "Provided venue operations note",
+      "body": [
+        "The venue’s guest network translated multiple internal devices to the same public address, 203.0.113.44, during the event. The three example rows below demonstrate the shared-address condition.",
+        "The records in this chapter do not map these device labels to named attendees or authenticated forum accounts. A visit to a forum host does not reveal which forum user was logged in.",
+        "Guest Wi-Fi and campaign publishing are separate services. No supplied record proves that connecting to guest Wi-Fi granted campaign access. No MAC-spoofing, ARP-poisoning or token-theft finding has been established from this excerpt."
+      ],
+      "columns": [
+        "observation_id",
+        "timestamp",
+        "device_label",
+        "internal_ip",
+        "public_ip",
+        "observed_destination"
+      ],
+      "rows": [
+        [
+          "NET-101",
+          "2026-10-22T18:22:10Z",
+          "guest-device-14",
+          "10.42.0.14",
+          "203.0.113.44",
+          "community-forum.example"
+        ],
+        [
+          "NET-102",
+          "2026-10-22T18:24:06Z",
+          "guest-device-27",
+          "10.42.0.27",
+          "203.0.113.44",
+          "community-forum.example"
+        ],
+        [
+          "NET-103",
+          "2026-10-22T18:25:20Z",
+          "guest-device-32",
+          "10.42.0.32",
+          "203.0.113.44",
+          "weather.example"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Public thread",
+          "artifactId": "FORUM-02"
+        },
+        {
+          "label": "Coverage limits",
+          "artifactId": "COVERAGE-01"
+        }
+      ]
+    },
+    {
+      "id": "DOC-03",
+      "type": "document",
+      "title": "Connectivity briefing — version 3",
+      "site": "Provided campaign document",
+      "body": [
+        "Document ID: DOC-CONNECTIVITY-01 · Version: 3 · Last saved: 21 October 2026, 15:05 UTC.",
+        "Public position: I support free public Wi-Fi across the city, with privacy protections, accessible support, and a clear maintenance plan.",
+        "Delivery questions: publish a cost estimate; explain privacy protections; provide accessible support; describe maintenance responsibilities.",
+        "Communications note: Questions about affordability and access should receive a respectful answer.",
+        "Approval reference: APR-061. This preserved version is the text submitted for approval."
+      ],
+      "date": "2026-10-21T15:05:00Z",
+      "author": "Campaign document workspace",
+      "links": [
+        {
+          "label": "Approval ledger",
+          "artifactId": "APPROVALS-01"
+        },
+        {
+          "label": "Next version",
+          "artifactId": "DOC-04"
+        }
+      ]
+    },
+    {
+      "id": "DOC-04",
+      "type": "document",
+      "title": "Connectivity briefing — version 4",
+      "site": "Provided campaign document",
+      "body": [
+        "Document ID: DOC-CONNECTIVITY-01 · Version: 4 · Last saved: 23 October 2026, 11:48 UTC.",
+        "Public position: I oppose free public Wi-Fi across the city. Residents who cannot pay for internet should stop expecting everyone else to solve their problems.",
+        "Delivery questions: publish a cost estimate; explain privacy protections; provide accessible support; describe maintenance responsibilities.",
+        "Communications note: Questions about affordability and access should receive a respectful answer.",
+        "Version predecessor: 3. The document workspace records changes separately from the campaign approval ledger."
+      ],
+      "date": "2026-10-23T11:48:00Z",
+      "author": "Campaign document workspace",
+      "links": [
+        {
+          "label": "Previous version",
+          "artifactId": "DOC-03"
+        },
+        {
+          "label": "Document activity",
+          "artifactId": "DOCLOG-01"
+        }
+      ]
+    },
+    {
+      "id": "APPROVALS-01",
+      "type": "table",
+      "title": "Campaign approval ledger",
+      "site": "Provided campaign operations export",
+      "body": [
+        "Approval applies to the specified document and version, not automatically to later changes. This export includes all approval entries for the two listed documents from 21–25 October 2026.",
+        "APR-061 covers the position in version 3. The incident coordinator reports that no withdrawal of support was approved before the incident post. The account used to perform an edit is a separate question from whether its content was approved."
+      ],
+      "columns": [
+        "approval_id",
+        "timestamp",
+        "document_id",
+        "version",
+        "decision",
+        "approver_role",
+        "purpose"
+      ],
+      "rows": [
+        [
+          "APR-061",
+          "2026-10-21T15:30:00Z",
+          "DOC-CONNECTIVITY-01",
+          "3",
+          "Approved",
+          "Candidate and policy review",
+          "Public position and prepared communications"
+        ],
+        [
+          "APR-062",
+          "2026-10-24T09:35:00Z",
+          "DOC-EVENT-RUN-01",
+          "8",
+          "Approved",
+          "Campaign operations",
+          "Correct room-closing time"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Version 3",
+          "artifactId": "DOC-03"
+        },
+        {
+          "label": "Version 4",
+          "artifactId": "DOC-04"
+        }
+      ]
+    },
+    {
+      "id": "ACCESS-01",
+      "type": "table",
+      "title": "Application accounts and permissions",
+      "site": "Provided campaign access register",
+      "body": [
+        "This register describes permissions in effect from 21 October through 25 October 2026. The application account is not a statement of the human operator for every session.",
+        "The campaign approval workflow requires approved policy content before publication. The publishing service’s technical permission allows campaign-comms to publish; it does not automatically verify the separate approval ledger."
+      ],
+      "columns": [
+        "account_id",
+        "custodian_or_role",
+        "resource",
+        "technical_permission",
+        "workflow_condition"
+      ],
+      "rows": [
+        [
+          "campaign-comms",
+          "Lemon Smellbottom / communications",
+          "Campaign public account",
+          "Create, schedule, publish",
+          "Use approved content and preserve review reference"
+        ],
+        [
+          "campaign-comms",
+          "Lemon Smellbottom / communications",
+          "Campaign policy workspace",
+          "Read, edit, export",
+          "Policy changes require review"
+        ],
+        [
+          "crane.gordon",
+          "Crane Gordon / scheduling",
+          "Event schedule and guest list",
+          "Read, edit",
+          "Event operations approval"
+        ],
+        [
+          "events-desk",
+          "Campaign operations",
+          "Event notices",
+          "Read, publish notice",
+          "Publish confirmed schedule"
+        ],
+        [
+          "events-desk",
+          "Campaign operations",
+          "Event running-order documents",
+          "Read, edit",
+          "Operations approval for revisions"
+        ],
+        [
+          "policy-team",
+          "Campaign policy team",
+          "Campaign policy workspace",
+          "Read, edit",
+          "Version approval recorded separately"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Staff roles",
+          "artifactId": "STAFF-01"
+        },
+        {
+          "label": "Approval ledger",
+          "artifactId": "APPROVALS-01"
+        }
+      ]
+    },
+    {
+      "id": "PUBLISH-01",
+      "type": "table",
+      "title": "Publishing audit excerpt",
+      "site": "Provided campaign application audit",
+      "body": [
+        "One row records a completed application action. actor_account_id is the account recorded by the service; session_id is the application session identifier. Neither field independently identifies the person at the keyboard.",
+        "All timestamps are UTC. This excerpt includes all successful create, schedule and publish actions for POST-MANDY-18 and POST-MANDY-INCIDENT in the reviewed window."
+      ],
+      "columns": [
+        "event_id",
+        "timestamp",
+        "post_id",
+        "action",
+        "actor_account_id",
+        "session_id",
+        "source_document",
+        "source_version",
+        "result"
+      ],
+      "rows": [
+        [
+          "PUB-201",
+          "2026-10-18T11:56:00Z",
+          "POST-MANDY-18",
+          "CreateDraft",
+          "campaign-comms",
+          "CS-041",
+          "DOC-CONNECTIVITY-01",
+          "2",
+          "Success"
+        ],
+        [
+          "PUB-202",
+          "2026-10-18T12:00:00Z",
+          "POST-MANDY-18",
+          "Publish",
+          "campaign-comms",
+          "CS-041",
+          "DOC-CONNECTIVITY-01",
+          "2",
+          "Success"
+        ],
+        [
+          "PUB-204",
+          "2026-10-23T11:52:00Z",
+          "POST-MANDY-INCIDENT",
+          "CreateDraft",
+          "campaign-comms",
+          "CS-072",
+          "DOC-CONNECTIVITY-01",
+          "4",
+          "Success"
+        ],
+        [
+          "PUB-205",
+          "2026-10-23T11:54:00Z",
+          "POST-MANDY-INCIDENT",
+          "Schedule",
+          "campaign-comms",
+          "CS-072",
+          "DOC-CONNECTIVITY-01",
+          "4",
+          "Success"
+        ],
+        [
+          "PUB-206",
+          "2026-10-25T08:10:00Z",
+          "POST-MANDY-INCIDENT",
+          "PublishScheduled",
+          "campaign-comms",
+          "CS-072",
+          "DOC-CONNECTIVITY-01",
+          "4",
+          "Success"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Session observations",
+          "artifactId": "SESSION-01"
+        },
+        {
+          "label": "Document activity",
+          "artifactId": "DOCLOG-01"
+        }
+      ]
+    },
+    {
+      "id": "SESSION-01",
+      "type": "table",
+      "title": "Application session observations",
+      "site": "Provided application gateway export",
+      "body": [
+        "These observations show when the gateway recorded activity from an application session. first_observed is the first observation in the supplied collection window, not necessarily when a login occurred or a session was created.",
+        "Browser labels are application client labels. The export does not map either label to a named attendee, venue guest device, or physical person. Initial authentication and endpoint records have not been supplied.",
+        "PublishScheduled can be performed by the service at the stored schedule time. Its recorded scheduling session does not imply that a person was actively online at 08:10."
+      ],
+      "columns": [
+        "observation_id",
+        "timestamp",
+        "session_id",
+        "account_id",
+        "client_label",
+        "action",
+        "source"
+      ],
+      "rows": [
+        [
+          "SES-301",
+          "2026-10-18T11:55:00Z",
+          "CS-041",
+          "campaign-comms",
+          "browser-12",
+          "ApplicationRequest",
+          "Gateway audit"
+        ],
+        [
+          "SES-302",
+          "2026-10-23T11:44:00Z",
+          "CS-072",
+          "campaign-comms",
+          "browser-77",
+          "ApplicationRequest",
+          "Gateway audit"
+        ],
+        [
+          "SES-303",
+          "2026-10-23T11:49:00Z",
+          "CS-072",
+          "campaign-comms",
+          "browser-77",
+          "ApplicationRequest",
+          "Gateway audit"
+        ],
+        [
+          "SES-304",
+          "2026-10-23T11:54:00Z",
+          "CS-072",
+          "campaign-comms",
+          "browser-77",
+          "ApplicationRequest",
+          "Gateway audit"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Publishing audit",
+          "artifactId": "PUBLISH-01"
+        },
+        {
+          "label": "Coverage limits",
+          "artifactId": "COVERAGE-01"
+        }
+      ]
+    },
+    {
+      "id": "DOCLOG-01",
+      "type": "table",
+      "title": "Document activity excerpt",
+      "site": "Provided campaign document audit",
+      "body": [
+        "One row records a document operation. Result Success means the service reports that operation completed. An export operation is not a record of delivery to an outside recipient.",
+        "This excerpt includes every successful edit and export by CS-072 between 23 October 00:00 UTC and 25 October 09:00 UTC. Additional ordinary operations are included for comparison. It is not a complete record of every campaign action."
+      ],
+      "columns": [
+        "event_id",
+        "timestamp",
+        "document_id",
+        "operation",
+        "version_from",
+        "version_to",
+        "actor_account_id",
+        "session_id",
+        "result"
+      ],
+      "rows": [
+        [
+          "DOC-301",
+          "2026-10-21T15:05:00Z",
+          "DOC-CONNECTIVITY-01",
+          "Edit",
+          "2",
+          "3",
+          "policy-team",
+          "CS-061",
+          "Success"
+        ],
+        [
+          "DOC-302",
+          "2026-10-23T11:46:00Z",
+          "DOC-CONNECTIVITY-01",
+          "Read",
+          "3",
+          "3",
+          "campaign-comms",
+          "CS-072",
+          "Success"
+        ],
+        [
+          "DOC-303",
+          "2026-10-23T11:48:00Z",
+          "DOC-CONNECTIVITY-01",
+          "Edit",
+          "3",
+          "4",
+          "campaign-comms",
+          "CS-072",
+          "Success"
+        ],
+        [
+          "DOC-304",
+          "2026-10-23T11:49:00Z",
+          "DOC-CONNECTIVITY-01",
+          "Export",
+          "4",
+          "4",
+          "campaign-comms",
+          "CS-072",
+          "Success"
+        ],
+        [
+          "DOC-305",
+          "2026-10-23T11:50:00Z",
+          "DOC-EVENT-RUN-01",
+          "Read",
+          "7",
+          "7",
+          "events-desk",
+          "CS-081",
+          "Success"
+        ],
+        [
+          "DOC-306",
+          "2026-10-24T09:20:00Z",
+          "DOC-EVENT-RUN-01",
+          "Edit",
+          "7",
+          "8",
+          "events-desk",
+          "CS-082",
+          "Success"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Document versions",
+          "artifactId": "DOC-04"
+        },
+        {
+          "label": "Approval ledger",
+          "artifactId": "APPROVALS-01"
+        },
+        {
+          "label": "Coverage limits",
+          "artifactId": "COVERAGE-01"
+        }
+      ]
+    },
+    {
+      "id": "STATEMENT-01",
+      "type": "document",
+      "title": "Campaign statement to investigators",
+      "site": "Provided incident coordinator statement",
+      "body": [
+        "25 October 2026, 08:35 UTC — The campaign’s approved position remains the position recorded in connectivity briefing version 3. No withdrawal of support for free citywide public Wi-Fi was approved before this morning’s post.",
+        "Lemon Smellbottom reported the inconsistency to campaign operations at 08:18 UTC and requested preservation of the public post and publishing records. This statement records that report; it is not a forensic determination of who operated a session.",
+        "The campaign has supplied selected records for review. Investigators should preserve the original post before any correction, identify scheduled content needing review, and distinguish restoring approved content from determining how access was obtained.",
+        "No deliberate service outage has been reported in the provided material. The campaign is still collecting initial authentication, endpoint and relevant provider records."
+      ],
+      "date": "2026-10-25T08:35:00Z",
+      "author": "Campaign incident coordinator",
+      "links": [
+        {
+          "label": "Approved version",
+          "artifactId": "DOC-03"
+        },
+        {
+          "label": "Coverage note",
+          "artifactId": "COVERAGE-01"
+        }
+      ]
+    },
+    {
+      "id": "NEWS-02",
+      "type": "article",
+      "title": "Campaign questions morning post and begins review",
+      "site": "News site",
+      "body": [
+        "Published 25 October 2026 at 08:45 UTC. By Barry Shmelly.",
+        "The Schmear campaign is reviewing a post published at 08:10 UTC that appears to withdraw its support for free citywide public Wi-Fi and dismiss residents who cannot afford internet access.",
+        "The campaign said at 08:35 UTC that its approved position had not changed. Earlier event reporting and public posts described support for the proposal with privacy, access and maintenance safeguards.",
+        "The cause of the inconsistency has not been established publicly. A change in tone alone does not identify the cause, and the campaign has not named a person responsible.",
+        "Reporting note: this article follows the public post and the campaign statement. Barry’s 23 October event article is a separate report about the listening event."
+      ],
+      "date": "2026-10-25T08:45:00Z",
+      "author": "Barry Shmelly",
+      "links": [
+        {
+          "label": "Earlier event article",
+          "artifactId": "NEWS-01"
+        },
+        {
+          "label": "Campaign statement",
+          "artifactId": "STATEMENT-01"
+        }
+      ]
+    },
+    {
+      "id": "COVERAGE-01",
+      "type": "document",
+      "title": "What these records can and cannot show",
+      "site": "Case records",
+      "body": [
+        "Public sources: preserved campaign posts, professional profiles, company pages, event notices, news articles and forum discussions. Their visible claims should be checked against the source and date.",
+        "Provided records: event messages and scheduling/registration exports; application permissions; publishing/session observations; two document versions; approval and document activity excerpts. Each table states its row meaning and coverage.",
+        "The session ID links observed application activity. Initial login records, endpoint/browser forensic evidence, complete venue device assignments and authenticated forum provider records are not included in this chapter.",
+        "The venue network excerpt shows a shared public address and destination hosts. It does not identify the logged-in forum user, prove a person’s legal identity, or connect a venue device to CS-072.",
+        "A completed document export supports a statement about an observed export. These records do not establish delivery to a named outside actor. No supplied record establishes a deliberate availability attack.",
+        "Finish the chapter with supported findings and specific requests for missing evidence. A complete account of the initial intrusion and full attribution requires further material."
+      ],
+      "links": [
+        {
+          "label": "Venue context",
+          "artifactId": "NETWORK-01"
+        },
+        {
+          "label": "Session observations",
+          "artifactId": "SESSION-01"
+        },
+        {
+          "label": "Document activity",
+          "artifactId": "DOCLOG-01"
+        }
+      ]
+    }
+  ]
+}
