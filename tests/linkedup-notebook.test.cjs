@@ -46,3 +46,12 @@ test('highlighted email escapes pasted markup and source links stay within resea
   assert.equal(run('safeSource("#/company-post/current-classroom-model")'),'https://classroom.example/learn/linkedup/#/company-post/current-classroom-model');
   assert.equal(run('safeSource("https://outside.example/learn/linkedup/#/company-post/current-classroom-model")'),'');
 });
+test('regional source links reopen public pages without allowing unrelated or account pages',()=>{
+  const {run}=setup();
+  for(const route of ['story/fence-followup','site/current','document/review-memo','discussion/water','capitol?section=records','profile/mandy','calendar']){
+    const url='https://classroom.example/learn/osint/#/'+route;
+    assert.equal(run('safeSource('+JSON.stringify(url)+')'),url);
+  }
+  for(const route of ['login','notebook','report','settings','unknown/secret'])assert.equal(run('safeSource("../osint/#/'+route+'")'),'');
+  assert.equal(run('safeSource("../elsewhere/#/story/fence-followup")'),'');
+});

@@ -48,7 +48,8 @@
       const separator = paragraph.indexOf(' — '), heading = paragraph.slice(0, separator), split = heading.indexOf(' · ');
       return { name: heading.slice(0, split), date: heading.slice(split + 3), text: paragraph.slice(separator + 3) };
     });
-    addPost('campaign-mandy-incident', 'campaign-mandy', incident.id, { date: publication?.[2] || incident.date, text: incident.body[0], sourcePostId: publication?.[1], comments, notes: [incident.body[1], ...incident.body.slice(6)] });
+    // Preservation metadata remains in the canonical artifact's Source details view.
+    addPost('campaign-mandy-incident', 'campaign-mandy', incident.id, { date: publication?.[2] || incident.date, text: incident.body[0], sourcePostId: publication?.[1], comments });
     artifactRoutes['FRAME-04'] = '/post/campaign-mandy-incident';
   }
   const bennyPosts = [];

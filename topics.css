@@ -167,7 +167,7 @@
       padding: 18px 0 14px; border-bottom: 1px solid var(--border);
     }
     .topic-nav__grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 0;
     }
 
@@ -329,3 +329,18 @@
       .topic-nav__inner { padding: 0 20px; }
     }
 .topic-card--text-only { grid-template-columns: minmax(0, 1fr); }
+
+/* Campaign investigation: both tracks share one assignment. */
+.topic-card--campaign { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.topic-card--campaign .topic-card__desc + .topic-card__desc { margin-top: 14px; }
+.topic-card--campaign .topic-card__desc strong { color: var(--text-primary); font-weight: 600; }
+.topic-card__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.topic-card__actions .topic-card__link { margin-top: 0; }
+@media (max-width: 860px) {
+  .topic-card--campaign .topic-card__img { height: 240px; }
+  .topic-card--campaign .topic-card__img img { object-position: center 28%; }
+}
+
+/* Keep unfinished topics out of the layout and keyboard navigation. */
+[hidden] { display: none !important; }
+.topic-nav__cell:last-child { border-right: none; }

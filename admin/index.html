@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0b1720">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-3ADGvvgaGnoIchEGuKP4CXfvSM047QrI3QsNJ6+0VpY=' 'sha256-7fj5QAsaqApIQeyqPgKu3pFpVuL2YMQm5neJepVdDCo=' 'sha256-3o5uvLiQe2v2h7PZzTArbhweOvfy9TYQaz9GYdg5afo='; style-src 'self' 'sha256-nM0E2CW3C6vOhh6A6OCHItKUXcWEZA4CXLzd5LJseIY='; img-src 'self' https://mrqcyber.com data: blob:; font-src 'self'; connect-src https://djgaqadlwaxwgobcemsp.supabase.co; frame-src blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Instructor resources · MrQCyber</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1720'/%3E%3Ctext x='7' y='24' font-family='sans-serif' font-size='24' fill='%2387e3cf'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css?v=1">
+  <script defer src="../learn/osint/campaign-player/supabase.min.js"></script>
+  <script defer src="../learn/osint/campaign-player/cloud-config.js"></script>
+  <script defer src="app.js?v=1"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="MrQCyber home"><span class="brand-mark" aria-hidden="true">Q</span><span>MrQ<span class="brand-accent">Cyber</span><small>INSTRUCTOR RESOURCES</small></span></a>
+    <div id="account-actions" class="account-actions" hidden><span id="account-email"></span><button id="sign-out" class="quiet-button" type="button">Sign out</button></div>
+    <span id="private-label" class="private-label"><span aria-hidden="true">●</span> Private access</span>
+  </header>
+
+  <main id="main">
+    <section id="checking" class="checking" aria-label="Checking access"><span class="loading-dot" aria-hidden="true"></span><p>Checking your session…</p></section>
+    <section id="login-view" class="login-layout" hidden aria-labelledby="login-heading">
+      <div class="login-intro"><p class="eyebrow">BEHIND THE CLASSROOM</p><h1>Your teaching<br>toolkit, together.</h1><p class="intro-copy">One place for investigations, answer keys, classroom displays, and the resources that bring them to life.</p><div class="intro-rule"></div><p class="intro-foot">MrQCyber <span aria-hidden="true">/</span> Instructor workspace</p></div>
+      <div class="login-card"><div class="lock-mark" aria-hidden="true">↳</div><p class="eyebrow">AUTHORIZED INSTRUCTORS</p><h2 id="login-heading">Welcome back.</h2><p class="muted">Sign in with your instructor account.</p>
+        <form id="login-form">
+          <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="username" inputmode="email" maxlength="254" required>
+          <label for="password">Password</label><div class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" required><button id="show-password" type="button" aria-label="Show password" aria-pressed="false">Show</button></div>
+          <button id="sign-in" class="primary-button" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="login-note">Access is limited to approved instructor accounts.</p>
+      </div>
+    </section>
+    <section id="hub-view" class="hub" hidden aria-labelledby="hub-heading">
+      <div class="hub-intro"><p class="eyebrow">YOUR RESOURCE LIBRARY</p><h1 id="hub-heading">Ready for the classroom.</h1><p>Investigations, teaching materials, and displays, all within reach.</p></div>
+      <div class="collection-heading"><div><p class="eyebrow">INVESTIGATION 01</p><h2>The Campaign Post</h2></div><span class="collection-tag">Incident response</span></div>
+      <div id="resource-grid" class="resource-grid"></div>
+      <p class="library-note">A growing collection of instructor resources for the MrQCyber world.</p>
+    </section>
+    <section id="wall-view" class="wall-view" hidden aria-label="Campaign Operations Wall"><div class="wall-toolbar"><button id="back-to-resources" class="quiet-button" type="button">← Resources</button><p>Campaign Operations Wall</p><span>Instructor display</span></div><div id="wall-container"></div></section>
+    <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+  <footer id="footer" class="site-footer"><span>MrQCyber instructor workspace</span><a href="/">Back to the site <span aria-hidden="true">↗</span></a></footer>
+  <noscript><p class="noscript">JavaScript is required to sign in and access instructor resources.</p></noscript>
+</body>
+</html>
