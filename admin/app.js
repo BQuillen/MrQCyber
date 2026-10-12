@@ -16,6 +16,7 @@
   const state = { epoch: 0, user: null, resources: [], signingIn: false, signingOut: false, checking: false, wallLoading: false, wallRequest: 0, wallURL: null };
   let client;
   let validateTimer;
+  let dashboard;
 
   function status(message = '', isError = false, retry) {
     const box = $('status');
@@ -52,6 +53,9 @@
     state.resources = [];
     state.checking = false;
     state.signingIn = false;
+    dashboard?.clear();
+    dashboard = null;
+    if ($('students-view')) $('students-view').hidden = true;
     removeWall();
     blobURLs.forEach(url => URL.revokeObjectURL(url));
     blobURLs.clear();
@@ -302,8 +306,23 @@
 
   function route() {
     if (!state.user) return;
-    if (location.hash === '#/wall') openWall();
+    if (location.hash === '#/students' && window.CampaignTeacherDashboard && window.CAMPAIGN_ACTIVITY) {
+      removeWall();
+      $('hub-view').hidden = true;
+      status();
+      if (!dashboard) dashboard = window.CampaignTeacherDashboard.create({
+        root: $('students-view'), client, user: state.user,
+        activity: window.CAMPAIGN_ACTIVITY,
+        assignmentId: window.CAMPAIGN_CLOUD_CONFIG.assignmentId,
+        onAuthError: () => signOut('Your instructor session could not be verified. Please sign in again.', true)
+      });
+      dashboard.show();
+    } else if (location.hash === '#/wall') {
+      dashboard?.hide();
+      openWall();
+    }
     else {
+      dashboard?.hide();
       removeWall();
       $('hub-view').hidden = false;
       status();

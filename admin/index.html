@@ -11,9 +11,14 @@
   <title>Instructor resources · MrQCyber</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1720'/%3E%3Ctext x='7' y='24' font-family='sans-serif' font-size='24' fill='%2387e3cf'%3EQ%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="campaign-dashboard.css?v=1">
   <script defer src="../learn/osint/campaign-player/supabase.min.js"></script>
   <script defer src="../learn/osint/campaign-player/cloud-config.js"></script>
-  <script defer src="app.js?v=1"></script>
+  <script defer src="../learn/osint/campaign-player/activity-data.js"></script>
+  <script defer src="../learn/osint/campaign-player/player-core.js"></script>
+  <script defer src="campaign-progress-model.js?v=1"></script>
+  <script defer src="campaign-dashboard.js?v=1"></script>
+  <script defer src="app.js?v=2"></script>
 </head>
 <body>
   <header class="site-header">
@@ -38,9 +43,11 @@
     <section id="hub-view" class="hub" hidden aria-labelledby="hub-heading">
       <div class="hub-intro"><p class="eyebrow">YOUR RESOURCE LIBRARY</p><h1 id="hub-heading">Ready for the classroom.</h1><p>Investigations, teaching materials, and displays, all within reach.</p></div>
       <div class="collection-heading"><div><p class="eyebrow">INVESTIGATION 01</p><h2>The Campaign Post</h2></div><span class="collection-tag">Incident response</span></div>
+      <a class="student-dashboard-launch" href="#/students"><span class="resource-icon" aria-hidden="true">▥</span><span><strong>Student progress</strong><small>See saved work, follow each class, and organize your teaching groups.</small></span><span aria-hidden="true">→</span></a>
       <div id="resource-grid" class="resource-grid"></div>
       <p class="library-note">A growing collection of instructor resources for the MrQCyber world.</p>
     </section>
+    <section id="students-view" class="teacher-dashboard" hidden aria-label="Student progress"></section>
     <section id="wall-view" class="wall-view" hidden aria-label="Campaign Operations Wall"><div class="wall-toolbar"><button id="back-to-resources" class="quiet-button" type="button">← Resources</button><p>Campaign Operations Wall</p><span>Instructor display</span></div><div id="wall-container"></div></section>
     <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></div>
   </main>
