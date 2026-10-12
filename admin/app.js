@@ -373,8 +373,19 @@
     if (!config?.url || !config?.publishableKey || !window.supabase?.createClient) throw new Error('configuration');
     sessionStorage.setItem(`${sessionKey}-check`, '1');
     sessionStorage.removeItem(`${sessionKey}-check`);
+    // Supabase also uses storageKey for cross-tab auth broadcasts. Our sessions
+    // belong to individual tabs, so give each page its own channel while keeping
+    // the stored session at the same key for reloads and existing sign-ins.
+    const authStorageKey = `${sessionKey}:${window.crypto.randomUUID()}`;
+    const storedKey = key => key === authStorageKey || key.startsWith(`${authStorageKey}-`)
+      ? sessionKey + key.slice(authStorageKey.length) : key;
+    const authStorage = {
+      getItem: key => sessionStorage.getItem(storedKey(key)),
+      setItem: (key, value) => sessionStorage.setItem(storedKey(key), value),
+      removeItem: key => sessionStorage.removeItem(storedKey(key))
+    };
     client = window.supabase.createClient(config.url, config.publishableKey, {
-      auth: { storage: sessionStorage, storageKey: sessionKey, persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+      auth: { storage: authStorage, storageKey: authStorageKey, persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
     });
     client.auth.onAuthStateChange((event, session) => {
       // Keep callbacks synchronous: Supabase's auth lock may still be held here.

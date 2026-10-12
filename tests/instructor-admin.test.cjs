@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const { webcrypto } = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const admin = path.join(root, 'admin');
@@ -157,7 +158,7 @@ function browserHarness(options = {}) {
   class HarnessURL extends URL {}
   HarnessURL.createObjectURL = blob => { const url = `blob:test-${created.length + 1}`; created.push({ url, blob }); return url; };
   HarnessURL.revokeObjectURL = url => revoked.push(url);
-  const window = { CAMPAIGN_CLOUD_CONFIG: { url: 'https://example.supabase.co', publishableKey: 'sb_publishable_test' }, supabase: { createClient: (url, key, config) => { createOptions = config; return client; } }, addEventListener: (name, callback) => listeners.set(`window:${name}`, callback) };
+  const window = { crypto: webcrypto, CAMPAIGN_CLOUD_CONFIG: { url: 'https://example.supabase.co', publishableKey: 'sb_publishable_test' }, supabase: { createClient: (url, key, config) => { createOptions = config; return client; } }, addEventListener: (name, callback) => listeners.set(`window:${name}`, callback) };
   vm.runInNewContext(read('admin/app.js'), { window, document, location, sessionStorage, URL: HarnessURL, Blob, Uint8Array, Set, atob: value => Buffer.from(value, 'base64').toString('binary'), setTimeout: callback => { timerCallbacks.set(++timer, callback); return timer; }, clearTimeout: id => timerCallbacks.delete(id) }, { filename: 'admin/app.js' });
   return { ids, elements, queries, created, revoked, downloads, location, get createOptions() { return createOptions; }, event: (name, value) => authChanged(name, value), route(hash) { location.hash = hash; return listeners.get('window:hashchange')?.(); } };
 }
