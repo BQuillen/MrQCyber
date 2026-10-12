@@ -20,9 +20,9 @@ function finishThrough(state, trackId, questionId) {
   }
 }
 
-test('all 30 short answers allow a response in the student’s own words without word or keyword gates', () => {
+test('all 32 short answers allow a response in the student’s own words without word or keyword gates', () => {
   const short = all.filter(question => question.type === 'short');
-  assert.equal(short.length, 30);
+  assert.equal(short.length, 32);
   for (const question of short) {
     for (const answer of ['Oversharing.', 'I think this needs investigation.', 'The screenshot gave away upcoming plans.']) {
       const result = C.validateAnswer(question, answer);
@@ -91,7 +91,7 @@ test('choice questions still require the selected supported option', () => {
   }
 });
 
-test('all 80 questions progress in order and keep the student’s own timeline descriptions', () => {
+test('all 83 questions progress in order and keep the student’s own timeline descriptions', () => {
   const state = C.createState(A);
   for (const track of A.tracks) {
     const questions = C.questions(A, track.id);
@@ -105,9 +105,9 @@ test('all 80 questions progress in order and keep the student’s own timeline d
       assert.equal(C.frontier(A, state, track.id), index + 1);
       for (const finding of state.findings.filter(item => item.questionId === question.id && item.autoTimeline && question.type === 'short')) assert.equal(finding.summary, answer);
     }
-    assert.equal(C.score(A, state, track.id), 398);
+    assert.equal(C.score(A, state, track.id), track.id === 'year1' ? 428 : 398);
   }
-  assert.equal(all.length, 80);
+  assert.equal(all.length, 83);
   assert.ok(state.findings.length > 0);
 });
 
@@ -124,8 +124,9 @@ test('saved work, hints, queries, timeline edits and report drafts survive resto
   state.responses['Y1-08'].capture = { summary: 'An unfinished additional finding', timestamp: '', evidenceText: 'still checking this source', section: 'attacker', certainty: 'Observed' };
   const restored = C.restore(A, JSON.stringify(state));
   assert.equal(restored.version, 2); assert.equal(restored.activityId, 'mandy-high-five-guided'); assert.equal(restored.revision, 'guided-2026-10-09-timeline1');
-  for (const track of A.tracks) assert.equal(C.frontier(A, restored, track.id), 40);
-  assert.equal(C.score(A, restored, 'year1'), 398);
+  assert.equal(C.frontier(A, restored, 'year1'), 43);
+  assert.equal(C.frontier(A, restored, 'year2'), 40);
+  assert.equal(C.score(A, restored, 'year1'), 428);
   assert.equal(restored.responses['Y2-08'].query, state.responses['Y2-08'].query);
   assert.equal(restored.responses['Y2-08'].queryEdited, true);
   assert.deepEqual(restored.reportDraft, state.reportDraft);
@@ -134,10 +135,10 @@ test('saved work, hints, queries, timeline edits and report drafts survive resto
   C.setAnswer(A, restored, 'Y1-08', 'A clearer explanation.');
   assert.equal(C.canAccess(A, restored, 'Y1-09'), false, 'an edited response still needs explicit submission');
   assert.equal(C.submit(A, restored, 'Y1-08').ok, true);
-  assert.equal(C.frontier(A, restored, 'year1'), 40, 'later saved responses remain available');
+  assert.equal(C.frontier(A, restored, 'year1'), 43, 'later saved responses remain available');
 });
 
-test('the browser bundle and JSON deliver the same activity without changing its identity or question count', () => {
+test('the browser bundle and JSON deliver the expanded activity with the existing save identity', () => {
   const context = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(folder, 'activity-data.js'), 'utf8'), context);
   assert.deepEqual(JSON.parse(JSON.stringify(context.window.CAMPAIGN_ACTIVITY)), A);

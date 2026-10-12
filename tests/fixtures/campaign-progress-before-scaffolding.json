@@ -1,0 +1,2441 @@
+{
+  "description": "Synthetic completed pre-scaffolding progress, generated from the actual committed activity and player core. No student data.",
+  "sourceCommit": "82980a60c6425d44aaa3438147da9f2012a83e60",
+  "originalQuestions": {
+    "year1": [
+      "Y1-01",
+      "Y1-02",
+      "Y1-03",
+      "Y1-04",
+      "Y1-04a",
+      "Y1-04b",
+      "Y1-04c",
+      "Y1-04d",
+      "Y1-05",
+      "Y1-06",
+      "Y1-07",
+      "Y1-08",
+      "Y1-09",
+      "Y1-10",
+      "Y1-11",
+      "Y1-12",
+      "Y1-13",
+      "Y1-14",
+      "Y1-15",
+      "Y1-16",
+      "Y1-17",
+      "Y1-18",
+      "Y1-19",
+      "Y1-20",
+      "Y1-21",
+      "Y1-21a",
+      "Y1-21b",
+      "Y1-21c",
+      "Y1-21d",
+      "Y1-22",
+      "Y1-23",
+      "Y1-24",
+      "Y1-25",
+      "Y1-26",
+      "Y1-27",
+      "Y1-28",
+      "Y1-29",
+      "Y1-30",
+      "Y1-31",
+      "Y1-32"
+    ],
+    "year2": [
+      "Y2-01",
+      "Y2-02",
+      "Y2-03",
+      "Y2-04",
+      "Y2-05",
+      "Y2-06",
+      "Y2-07",
+      "Y2-07a",
+      "Y2-07b",
+      "Y2-07c",
+      "Y2-07d",
+      "Y2-08",
+      "Y2-09",
+      "Y2-10",
+      "Y2-11",
+      "Y2-12",
+      "Y2-13",
+      "Y2-14",
+      "Y2-15",
+      "Y2-16",
+      "Y2-17",
+      "Y2-18",
+      "Y2-19",
+      "Y2-20",
+      "Y2-21",
+      "Y2-21a",
+      "Y2-21b",
+      "Y2-21c",
+      "Y2-21d",
+      "Y2-22",
+      "Y2-23",
+      "Y2-24",
+      "Y2-25",
+      "Y2-26",
+      "Y2-27",
+      "Y2-28",
+      "Y2-29",
+      "Y2-30",
+      "Y2-31",
+      "Y2-32"
+    ]
+  },
+  "editedTimelineId": "timeline-Y1-01-pub-206",
+  "state": {
+    "version": 2,
+    "activityId": "mandy-high-five-guided",
+    "revision": "guided-2026-10-09-timeline1",
+    "trackId": "year1",
+    "activeQuestion": {
+      "year1": "Y1-32",
+      "year2": "Y2-32"
+    },
+    "responses": {
+      "Y1-01": {
+        "answer": "My original finding for Y1-01: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-01: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-01: this source gave away details before they were public."
+      },
+      "Y1-02": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-03": {
+        "answer": "Lemon Smellbottom",
+        "submittedAnswer": "Lemon Smellbottom",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-04": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-04a": {
+        "answer": "My original finding for Y1-04a: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-04a: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-04a: this source gave away details before they were public."
+      },
+      "Y1-04b": {
+        "answer": "6 October",
+        "submittedAnswer": "6 October",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "6 October"
+      },
+      "Y1-04c": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "b"
+      },
+      "Y1-04d": {
+        "answer": "My original finding for Y1-04d: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-04d: this source gave away details before they were public.",
+        "hints": [
+          "hint-1"
+        ],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-05": {
+        "answer": "Riverside Learning Center",
+        "submittedAnswer": "Riverside Learning Center",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "Riverside Learning Center"
+      },
+      "Y1-06": {
+        "answer": "5",
+        "submittedAnswer": "5",
+        "hints": [
+          "hint-1"
+        ],
+        "query": "EventRegistrations\n| where affiliation == \"High Five Consultancy\"\n| count\n// Continue comparing records next class",
+        "queryEdited": true,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-07": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-08": {
+        "answer": "My original finding for Y1-08: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-08: this source gave away details before they were public.",
+        "hints": [
+          "hint-1"
+        ],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "Draft forum note I have not added yet",
+          "timestamp": "2023-09-14",
+          "evidenceText": "FORUM-01",
+          "section": "attacker",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-09": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "b"
+      },
+      "Y1-10": {
+        "answer": "campaign-comms",
+        "submittedAnswer": "campaign-comms",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-11": {
+        "answer": "c",
+        "submittedAnswer": "c",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "c"
+      },
+      "Y1-12": {
+        "answer": "My original finding for Y1-12: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-12: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-13": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-14": {
+        "answer": "My original finding for Y1-14: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-14: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-14: this source gave away details before they were public."
+      },
+      "Y1-15": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-16": {
+        "answer": "RS-202",
+        "submittedAnswer": "RS-202",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "RS-202"
+      },
+      "Y1-17": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "a"
+      },
+      "Y1-18": {
+        "answer": "My original finding for Y1-18: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-18: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-18: this source gave away details before they were public."
+      },
+      "Y1-19": {
+        "answer": "2",
+        "submittedAnswer": "2",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-20": {
+        "answer": "My original finding for Y1-20: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-20: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-20: this source gave away details before they were public."
+      },
+      "Y1-21": {
+        "answer": "Paige Bracket",
+        "submittedAnswer": "Paige Bracket",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-21a": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-21b": {
+        "answer": "My original finding for Y1-21b: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-21b: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-21b: this source gave away details before they were public."
+      },
+      "Y1-21c": {
+        "answer": "PM-413",
+        "submittedAnswer": "PM-413",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "PM-413"
+      },
+      "Y1-21d": {
+        "answer": "My original finding for Y1-21d: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-21d: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-21d: this source gave away details before they were public."
+      },
+      "Y1-22": {
+        "answer": "c",
+        "submittedAnswer": "c",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-23": {
+        "answer": "My original finding for Y1-23: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-23: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-24": {
+        "answer": "My original finding for Y1-24: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-24: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-25": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-26": {
+        "answer": "My original finding for Y1-26: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-26: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-27": {
+        "answer": "My original finding for Y1-27: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-27: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-27: this source gave away details before they were public."
+      },
+      "Y1-28": {
+        "answer": "CG-PERSONAL-01",
+        "submittedAnswer": "CG-PERSONAL-01",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "CG-PERSONAL-01"
+      },
+      "Y1-29": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "b"
+      },
+      "Y1-30": {
+        "answer": "REC-304",
+        "submittedAnswer": "REC-304",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y1-31": {
+        "answer": "My original finding for Y1-31: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-31: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y1-31: this source gave away details before they were public."
+      },
+      "Y1-32": {
+        "answer": "My original finding for Y1-32: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y1-32: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-01": {
+        "answer": "My original finding for Y2-01: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-01: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-01: this source gave away details before they were public."
+      },
+      "Y2-02": {
+        "answer": "Riverside Learning Center",
+        "submittedAnswer": "Riverside Learning Center",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-03": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "a"
+      },
+      "Y2-04": {
+        "answer": "5",
+        "submittedAnswer": "5",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-05": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-06": {
+        "answer": "1",
+        "submittedAnswer": "1",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-07": {
+        "answer": "c",
+        "submittedAnswer": "c",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-07a": {
+        "answer": "DP-402",
+        "submittedAnswer": "DP-402",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-07b": {
+        "answer": "2023-10-06T14:00:00Z",
+        "submittedAnswer": "2023-10-06T14:00:00Z",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "2023-10-06T14:00:00Z"
+      },
+      "Y2-07c": {
+        "answer": "My original finding for Y2-07c: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-07c: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-07c: this source gave away details before they were public."
+      },
+      "Y2-07d": {
+        "answer": "c",
+        "submittedAnswer": "c",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-08": {
+        "answer": "3",
+        "submittedAnswer": "3",
+        "hints": [
+          "hint-1"
+        ],
+        "query": "ApprovalEvents\n| take 1\n// Continue comparing records next class",
+        "queryEdited": true,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "3"
+      },
+      "Y2-09": {
+        "answer": "4",
+        "submittedAnswer": "4",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "4"
+      },
+      "Y2-10": {
+        "answer": "11:54",
+        "submittedAnswer": "11:54",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "11:54"
+      },
+      "Y2-11": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "a"
+      },
+      "Y2-12": {
+        "answer": "My original finding for Y2-12: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-12: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-12: this source gave away details before they were public."
+      },
+      "Y2-13": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-14": {
+        "answer": "20:00",
+        "submittedAnswer": "20:00",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "20:00"
+      },
+      "Y2-15": {
+        "answer": "My original finding for Y2-15: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-15: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-15: this source gave away details before they were public."
+      },
+      "Y2-16": {
+        "answer": "RS-202",
+        "submittedAnswer": "RS-202",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "RS-202"
+      },
+      "Y2-17": {
+        "answer": "ExistingManagedSignIn",
+        "submittedAnswer": "ExistingManagedSignIn",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-18": {
+        "answer": "My original finding for Y2-18: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-18: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-18: this source gave away details before they were public."
+      },
+      "Y2-19": {
+        "answer": "2",
+        "submittedAnswer": "2",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-20": {
+        "answer": "My original finding for Y2-20: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-20: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-20: this source gave away details before they were public."
+      },
+      "Y2-21": {
+        "answer": "Paige Bracket",
+        "submittedAnswer": "Paige Bracket",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-21a": {
+        "answer": "PM-409",
+        "submittedAnswer": "PM-409",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "PM-409"
+      },
+      "Y2-21b": {
+        "answer": "My original finding for Y2-21b: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-21b: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-21b: this source gave away details before they were public."
+      },
+      "Y2-21c": {
+        "answer": "My original finding for Y2-21c: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-21c: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-21c: this source gave away details before they were public."
+      },
+      "Y2-21d": {
+        "answer": "My original finding for Y2-21d: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-21d: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-21d: this source gave away details before they were public."
+      },
+      "Y2-22": {
+        "answer": "a",
+        "submittedAnswer": "a",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-23": {
+        "answer": "My original finding for Y2-23: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-23: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-24": {
+        "answer": "My original finding for Y2-24: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-24: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-25": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-26": {
+        "answer": "EM-301",
+        "submittedAnswer": "EM-301",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "EM-301"
+      },
+      "Y2-27": {
+        "answer": "My original finding for Y2-27: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-27: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-27: this source gave away details before they were public."
+      },
+      "Y2-28": {
+        "answer": "REC-301",
+        "submittedAnswer": "REC-301",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "REC-301"
+      },
+      "Y2-29": {
+        "answer": "12:46:04",
+        "submittedAnswer": "12:46:04",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "12:46:04"
+      },
+      "Y2-30": {
+        "answer": "b",
+        "submittedAnswer": "b",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      },
+      "Y2-31": {
+        "answer": "My original finding for Y2-31: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-31: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        },
+        "timelineSubmittedAnswer": "My original finding for Y2-31: this source gave away details before they were public."
+      },
+      "Y2-32": {
+        "answer": "My original finding for Y2-32: this source gave away details before they were public.",
+        "submittedAnswer": "My original finding for Y2-32: this source gave away details before they were public.",
+        "hints": [],
+        "query": "",
+        "queryEdited": false,
+        "capture": {
+          "summary": "",
+          "timestamp": "",
+          "evidenceText": "",
+          "section": "",
+          "certainty": "Observed"
+        }
+      }
+    },
+    "queryRuns": [
+      {
+        "id": "legacy-query-Y1-06",
+        "questionId": "Y1-06",
+        "queryReceipt": {
+          "query": "EventRegistrations\n| where affiliation == \"High Five Consultancy\"\n| count",
+          "tableName": "EventRegistrations",
+          "sourceArtifactId": "GUESTS-01",
+          "ranAt": "2026-10-12T14:00:00Z",
+          "caseRevision": "guided-2026-10-08-playtest1",
+          "rowCount": 1,
+          "recordIds": [],
+          "resultSnapshot": {
+            "columns": [
+              "Count"
+            ],
+            "rows": [
+              [
+                5
+              ]
+            ],
+            "truncated": false
+          }
+        }
+      },
+      {
+        "id": "legacy-query-Y2-08",
+        "questionId": "Y2-08",
+        "queryReceipt": {
+          "query": "ApprovalEvents\n| take 1",
+          "tableName": "ApprovalEvents",
+          "sourceArtifactId": "APPROVALS-01",
+          "ranAt": "2026-10-12T14:00:00Z",
+          "caseRevision": "guided-2026-10-08-playtest1",
+          "rowCount": 1,
+          "recordIds": [],
+          "resultSnapshot": {
+            "columns": [
+              "approval_id",
+              "timestamp",
+              "document_id",
+              "version",
+              "decision",
+              "approver_role",
+              "purpose"
+            ],
+            "rows": [
+              [
+                "APR-061",
+                "2026-10-21T15:30:00Z",
+                "DOC-CONNECTIVITY-01",
+                3,
+                "Approved",
+                "Candidate and policy review",
+                "Public position and prepared communications"
+              ]
+            ],
+            "truncated": false
+          }
+        }
+      }
+    ],
+    "findings": [
+      {
+        "id": "timeline-Y1-01-pub-206",
+        "questionId": "Y1-01",
+        "section": "timeline",
+        "summary": "My revised timeline account of the original event.",
+        "timestamp": "2026-10-25T08:10:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLISH-01",
+          "PUB-206",
+          "FRAME-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pub-206",
+          "title": "Questioned campaign post published",
+          "sourceAnswer": "My original finding for Y1-01: this source gave away details before they were public.",
+          "descriptionEdited": true
+        }
+      },
+      {
+        "id": "timeline-Y1-04a-dp-402",
+        "questionId": "Y1-04a",
+        "section": "timeline",
+        "summary": "My original finding for Y1-04a: this source gave away details before they were public.",
+        "timestamp": "2023-09-20T16:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-402",
+          "BENNY-SPEECH-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-402",
+          "title": "Speech-folder photograph published",
+          "sourceAnswer": "My original finding for Y1-04a: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-04a-dp-403",
+        "questionId": "Y1-04a",
+        "section": "timeline",
+        "summary": "My original finding for Y1-04a: this source gave away details before they were public.",
+        "timestamp": "2023-09-26T10:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-403",
+          "PUBLIC-RELEASES-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-403",
+          "title": "City internet announcement published",
+          "sourceAnswer": "My original finding for Y1-04a: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-04b-dp-406",
+        "questionId": "Y1-04b",
+        "section": "timeline",
+        "summary": "6 October",
+        "timestamp": "2023-10-06T14:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-406",
+          "PUBLIC-RELEASES-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-406",
+          "title": "Library announcement published: announcement date",
+          "sourceAnswer": "6 October",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-04c-dp-405",
+        "questionId": "Y1-04c",
+        "section": "timeline",
+        "summary": "The background writing exposes plans before their announcement; the ordinary posts do not show those details, and these sources do not establish who used any of them.",
+        "timestamp": "2023-10-04T17:15:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-405",
+          "BENNY-BOARD-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-405",
+          "title": "Planning-whiteboard photograph published",
+          "sourceAnswer": "b",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-05-sch-102",
+        "questionId": "Y1-05",
+        "section": "timeline",
+        "summary": "Riverside Learning Center",
+        "timestamp": "2026-10-20T14:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "EVENT-02",
+          "SCH-102"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "sch-102",
+          "title": "Event venue changed: replacement venue",
+          "sourceAnswer": "Riverside Learning Center",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-09-apr-061",
+        "questionId": "Y1-09",
+        "section": "timeline",
+        "summary": "Version 4 reverses the approved position, and the supplied approval ledger does not approve that version.",
+        "timestamp": "2026-10-21T15:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "APPROVALS-01",
+          "APR-061",
+          "DOC-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "apr-061",
+          "title": "Connectivity document approval recorded",
+          "sourceAnswer": "b",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-09-doc-303",
+        "questionId": "Y1-09",
+        "section": "timeline",
+        "summary": "Version 4 reverses the approved position, and the supplied approval ledger does not approve that version.",
+        "timestamp": "2026-10-23T11:48:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "DOCLOG-01",
+          "DOC-303",
+          "DOC-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "doc-303",
+          "title": "Connectivity document edit completed",
+          "sourceAnswer": "b",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-11-doc-304",
+        "questionId": "Y1-11",
+        "section": "timeline",
+        "summary": "The service completed an export, but an external recipient or delivery receipt is not supplied yet.",
+        "timestamp": "2026-10-23T11:49:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "DOCLOG-01",
+          "DOC-304"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "doc-304",
+          "title": "Connectivity document export completed",
+          "sourceAnswer": "c",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-14-sg-101",
+        "questionId": "Y1-14",
+        "section": "timeline",
+        "summary": "My original finding for Y1-14: this source gave away details before they were public.",
+        "timestamp": "2026-10-22T17:50:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "SUPPORT-GRANTS-02",
+          "SG-101",
+          "SUPPORT-APPROVALS-02",
+          "SUPPORT-REQUEST-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "sg-101",
+          "title": "Support grant activated",
+          "sourceAnswer": "My original finding for Y1-14: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-16-rsr-202",
+        "questionId": "Y1-16",
+        "section": "timeline",
+        "summary": "RS-202",
+        "timestamp": "2026-10-23T11:40:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "REMOTE-SESSIONS-02",
+          "RSR-202"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rsr-202",
+          "title": "Next-day completed support session begins: session ID",
+          "sourceAnswer": "RS-202",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-17-as-602",
+        "questionId": "Y1-17",
+        "section": "timeline",
+        "summary": "An existing managed sign-in was reused; this row does not show a new password being entered or a password being stolen.",
+        "timestamp": "2026-10-23T11:43:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "APP-SESSIONS-02",
+          "AS-602"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "as-602",
+          "title": "Campaign application session issued",
+          "sourceAnswer": "a",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-18-ep-001",
+        "questionId": "Y1-18",
+        "section": "timeline",
+        "summary": "My original finding for Y1-18: this source gave away details before they were public.",
+        "timestamp": "2026-10-22T15:10:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "ENDPOINT-EVENTS-02",
+          "EP-001",
+          "FILE-MANIFEST-02",
+          "PRIVATE-PLAN-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "ep-001",
+          "title": "Outreach file cached on campaign device",
+          "sourceAnswer": "My original finding for Y1-18: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-21b-pm-405",
+        "questionId": "Y1-21b",
+        "section": "timeline",
+        "summary": "My original finding for Y1-21b: this source gave away details before they were public.",
+        "timestamp": "2026-10-18T16:10:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-405"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-405",
+          "title": "Workplace request for an announcement preview begins",
+          "sourceAnswer": "My original finding for Y1-21b: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-21c-pm-414",
+        "questionId": "Y1-21c",
+        "section": "timeline",
+        "summary": "PM-413",
+        "timestamp": "2026-10-20T09:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-414",
+          "DISCLOSURE-COPY-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-414",
+          "title": "Preview forwarded: original message reference",
+          "sourceAnswer": "PM-413",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-21d-pm-418",
+        "questionId": "Y1-21d",
+        "section": "timeline",
+        "summary": "My original finding for Y1-21d: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T09:26:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-418"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-418",
+          "title": "Final reply to further preview requests",
+          "sourceAnswer": "My original finding for Y1-21d: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-21d-du-402",
+        "questionId": "Y1-21d",
+        "section": "timeline",
+        "summary": "My original finding for Y1-21d: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T18:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "USE-AUDIT-04",
+          "DU-402",
+          "RESPONSE-DRAFT-04",
+          "DISCLOSURE-COPY-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "du-402",
+          "title": "Opponent response published",
+          "sourceAnswer": "My original finding for Y1-21d: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-27-em-301",
+        "questionId": "Y1-27",
+        "section": "timeline",
+        "summary": "My original finding for Y1-27: this source gave away details before they were public.",
+        "timestamp": "2024-10-14T09:00:01Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "MAIL-03",
+          "EM-301",
+          "PLACEMENT-BRIEF-03",
+          "IDENTITY-03",
+          "LEON-CONTACT-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "em-301",
+          "title": "Placement correspondence begins",
+          "sourceAnswer": "My original finding for Y1-27: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-27-em-302",
+        "questionId": "Y1-27",
+        "section": "timeline",
+        "summary": "My original finding for Y1-27: this source gave away details before they were public.",
+        "timestamp": "2024-10-14T09:15:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "MAIL-03",
+          "EM-302"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "em-302",
+          "title": "Reply about placement and expected benefits",
+          "sourceAnswer": "My original finding for Y1-27: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-27-campaign-placement-start",
+        "questionId": "Y1-27",
+        "section": "timeline",
+        "summary": "My original finding for Y1-27: this source gave away details before they were public.",
+        "timestamp": "2024-11-04",
+        "certainty": "Question",
+        "evidenceIds": [
+          "IDENTITY-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "campaign-placement-start",
+          "title": "Campaign placement begins",
+          "sourceAnswer": "My original finding for Y1-27: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-28-rec-301",
+        "questionId": "Y1-28",
+        "section": "timeline",
+        "summary": "CG-PERSONAL-01",
+        "timestamp": "2024-10-14T09:02:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-301",
+          "PLACEMENT-BRIEF-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-301",
+          "title": "Working arrangement received: receiving device",
+          "sourceAnswer": "CG-PERSONAL-01",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-29-rec-302",
+        "questionId": "Y1-29",
+        "section": "timeline",
+        "summary": "The note requests the opposition wording, Sunday release time and internal plan before Crane’s instructions to Dex; later records corroborate those requested actions.",
+        "timestamp": "2026-10-20T12:46:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-302",
+          "RELEASE-BRIEF-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-302",
+          "title": "Release note received",
+          "sourceAnswer": "b",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-31-rec-303",
+        "questionId": "Y1-31",
+        "section": "timeline",
+        "summary": "My original finding for Y1-31: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T12:05:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-303",
+          "EXCHANGES-03",
+          "DEX-303",
+          "PRIVATE-PLAN-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-303",
+          "title": "Outreach relay: first onward receipt",
+          "sourceAnswer": "My original finding for Y1-31: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y1-31-rec-304",
+        "questionId": "Y1-31",
+        "section": "timeline",
+        "summary": "My original finding for Y1-31: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T12:20:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-304",
+          "EXCHANGES-03",
+          "DEX-304",
+          "PRIVATE-PLAN-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-304",
+          "title": "Outreach relay: second onward receipt",
+          "sourceAnswer": "My original finding for Y1-31: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-01-pub-206",
+        "questionId": "Y2-01",
+        "section": "timeline",
+        "summary": "My original finding for Y2-01: this source gave away details before they were public.",
+        "timestamp": "2026-10-25T08:10:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLISH-01",
+          "PUB-206",
+          "FRAME-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pub-206",
+          "title": "Questioned campaign post published",
+          "sourceAnswer": "My original finding for Y2-01: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-03-sch-102",
+        "questionId": "Y2-03",
+        "section": "timeline",
+        "summary": "Crane Gordon is the recorded requester; crane.gordon is the account that entered the change.",
+        "timestamp": "2026-10-20T14:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "EVENT-02",
+          "SCH-102"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "sch-102",
+          "title": "Event venue change recorded",
+          "sourceAnswer": "a",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-07b-dp-404",
+        "questionId": "Y2-07b",
+        "section": "timeline",
+        "summary": "2023-10-06T14:00:00Z",
+        "timestamp": "2023-10-06T14:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-404"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-404",
+          "title": "Library announcement: earliest approved public time",
+          "sourceAnswer": "2023-10-06T14:00:00Z",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-07c-dp-402",
+        "questionId": "Y2-07c",
+        "section": "timeline",
+        "summary": "My original finding for Y2-07c: this source gave away details before they were public.",
+        "timestamp": "2023-09-20T16:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-402",
+          "BENNY-SPEECH-04",
+          "PUBLIC-RELEASES-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-402",
+          "title": "Speech-folder photograph published",
+          "sourceAnswer": "My original finding for Y2-07c: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-07c-dp-405",
+        "questionId": "Y2-07c",
+        "section": "timeline",
+        "summary": "My original finding for Y2-07c: this source gave away details before they were public.",
+        "timestamp": "2023-10-04T17:15:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLICATION-AUDIT-04",
+          "DP-405",
+          "BENNY-BOARD-04",
+          "PUBLIC-RELEASES-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "dp-405",
+          "title": "Planning-whiteboard photograph published",
+          "sourceAnswer": "My original finding for Y2-07c: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-08-apr-061",
+        "questionId": "Y2-08",
+        "section": "timeline",
+        "summary": "3",
+        "timestamp": "2026-10-21T15:30:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "APPROVALS-01",
+          "APR-061"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "apr-061",
+          "title": "Connectivity document approval: approved version",
+          "sourceAnswer": "3",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-09-doc-303",
+        "questionId": "Y2-09",
+        "section": "timeline",
+        "summary": "4",
+        "timestamp": "2026-10-23T11:48:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "DOCLOG-01",
+          "DOC-303"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "doc-303",
+          "title": "Connectivity document edit: resulting version",
+          "sourceAnswer": "4",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-10-pub-205",
+        "questionId": "Y2-10",
+        "section": "timeline",
+        "summary": "11:54",
+        "timestamp": "2026-10-23T11:54:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLISH-01",
+          "PUB-205"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pub-205",
+          "title": "Incident post scheduled",
+          "sourceAnswer": "11:54",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-11-ses-302",
+        "questionId": "Y2-11",
+        "section": "timeline",
+        "summary": "The gateway observed activity then; this source does not establish when login or session creation occurred.",
+        "timestamp": "2026-10-23T11:44:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "SESSION-01",
+          "SES-302",
+          "COVERAGE-01"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "ses-302",
+          "title": "First supplied gateway observation of CS-072",
+          "sourceAnswer": "a",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-12-doc-304",
+        "questionId": "Y2-12",
+        "section": "timeline",
+        "summary": "My original finding for Y2-12: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T11:49:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "DOCLOG-01",
+          "DOC-304"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "doc-304",
+          "title": "Connectivity document export completed",
+          "sourceAnswer": "My original finding for Y2-12: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-12-pub-204",
+        "questionId": "Y2-12",
+        "section": "timeline",
+        "summary": "My original finding for Y2-12: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T11:52:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PUBLISH-01",
+          "PUB-204"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pub-204",
+          "title": "Incident post draft created",
+          "sourceAnswer": "My original finding for Y2-12: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-14-sa-101",
+        "questionId": "Y2-14",
+        "section": "timeline",
+        "summary": "20:00",
+        "timestamp": "2026-10-22T20:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "SUPPORT-APPROVALS-02",
+          "SA-101"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "sa-101",
+          "title": "Approved support task window ends",
+          "sourceAnswer": "20:00",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-15-sg-101",
+        "questionId": "Y2-15",
+        "section": "timeline",
+        "summary": "My original finding for Y2-15: this source gave away details before they were public.",
+        "timestamp": "2026-10-22T17:50:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "SUPPORT-GRANTS-02",
+          "SG-101",
+          "SUPPORT-APPROVALS-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "sg-101",
+          "title": "Support grant activated",
+          "sourceAnswer": "My original finding for Y2-15: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-16-rsr-202",
+        "questionId": "Y2-16",
+        "section": "timeline",
+        "summary": "RS-202",
+        "timestamp": "2026-10-23T11:40:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "REMOTE-SESSIONS-02",
+          "RSR-202"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rsr-202",
+          "title": "Next-day completed support session begins: session ID",
+          "sourceAnswer": "RS-202",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-18-ep-006",
+        "questionId": "Y2-18",
+        "section": "timeline",
+        "summary": "My original finding for Y2-18: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T11:43:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "ENDPOINT-EVENTS-02",
+          "EP-006",
+          "APP-SESSIONS-02",
+          "AS-602",
+          "SESSION-01"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "ep-006",
+          "title": "Remote and campaign sessions linked",
+          "sourceAnswer": "My original finding for Y2-18: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-20-ep-011",
+        "questionId": "Y2-20",
+        "section": "timeline",
+        "summary": "My original finding for Y2-20: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T11:51:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "ENDPOINT-EVENTS-02",
+          "EP-011",
+          "FILE-TRANSFERS-02",
+          "TF-902",
+          "FILE-MANIFEST-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "ep-011",
+          "title": "Outreach file receipt recorded",
+          "sourceAnswer": "My original finding for Y2-20: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21a-pm-409",
+        "questionId": "Y2-21a",
+        "section": "timeline",
+        "summary": "PM-409",
+        "timestamp": "2026-10-18T16:26:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-409"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-409",
+          "title": "Workplace request linked to shifts: message reference",
+          "sourceAnswer": "PM-409",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21b-pm-413",
+        "questionId": "Y2-21b",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21b: this source gave away details before they were public.",
+        "timestamp": "2026-10-19T18:08:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-413",
+          "DISCLOSURE-COPY-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-413",
+          "title": "Announcement preview sent in a forum reply",
+          "sourceAnswer": "My original finding for Y2-21b: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21b-pm-414",
+        "questionId": "Y2-21b",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21b: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T09:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-414",
+          "DISCLOSURE-COPY-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-414",
+          "title": "Announcement preview forwarded to workplace recipients",
+          "sourceAnswer": "My original finding for Y2-21b: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21c-du-401",
+        "questionId": "Y2-21c",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21c: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T10:05:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "USE-AUDIT-04",
+          "DU-401",
+          "RESPONSE-DRAFT-04",
+          "DISCLOSURE-COPY-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "du-401",
+          "title": "Response draft received",
+          "sourceAnswer": "My original finding for Y2-21c: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21c-du-402",
+        "questionId": "Y2-21c",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21c: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T18:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "USE-AUDIT-04",
+          "DU-402",
+          "RESPONSE-DRAFT-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "du-402",
+          "title": "Opponent response published",
+          "sourceAnswer": "My original finding for Y2-21c: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21c-du-403",
+        "questionId": "Y2-21c",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21c: this source gave away details before they were public.",
+        "timestamp": "2026-10-21T17:00:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "USE-AUDIT-04",
+          "DU-403",
+          "LATER-RELEASES-04"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "du-403",
+          "title": "Campaign neighborhood announcement published",
+          "sourceAnswer": "My original finding for Y2-21c: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-21d-pm-418",
+        "questionId": "Y2-21d",
+        "section": "timeline",
+        "summary": "My original finding for Y2-21d: this source gave away details before they were public.",
+        "timestamp": "2026-10-20T09:26:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "PAIGE-MESSAGES-04",
+          "PM-418"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "pm-418",
+          "title": "Final reply to further preview requests",
+          "sourceAnswer": "My original finding for Y2-21d: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-26-em-301",
+        "questionId": "Y2-26",
+        "section": "timeline",
+        "summary": "EM-301",
+        "timestamp": "2024-10-14T09:00:01Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "MAIL-03",
+          "EM-301"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "em-301",
+          "title": "Placement correspondence begins: message reference",
+          "sourceAnswer": "EM-301",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-27-em-302",
+        "questionId": "Y2-27",
+        "section": "timeline",
+        "summary": "My original finding for Y2-27: this source gave away details before they were public.",
+        "timestamp": "2024-10-14T09:15:00Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "MAIL-03",
+          "EM-302",
+          "IDENTITY-03",
+          "LEON-CONTACT-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "em-302",
+          "title": "Reply about placement and expected benefits",
+          "sourceAnswer": "My original finding for Y2-27: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-27-campaign-placement-start",
+        "questionId": "Y2-27",
+        "section": "timeline",
+        "summary": "My original finding for Y2-27: this source gave away details before they were public.",
+        "timestamp": "2024-11-04",
+        "certainty": "Question",
+        "evidenceIds": [
+          "IDENTITY-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "campaign-placement-start",
+          "title": "Campaign placement begins",
+          "sourceAnswer": "My original finding for Y2-27: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-28-rec-301",
+        "questionId": "Y2-28",
+        "section": "timeline",
+        "summary": "REC-301",
+        "timestamp": "2024-10-14T09:02:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-301",
+          "PLACEMENT-BRIEF-03",
+          "EXCHANGES-03",
+          "DEX-301"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-301",
+          "title": "Working arrangement received: receipt reference",
+          "sourceAnswer": "REC-301",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-29-rec-302",
+        "questionId": "Y2-29",
+        "section": "timeline",
+        "summary": "12:46:04",
+        "timestamp": "2026-10-20T12:46:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-302",
+          "RELEASE-BRIEF-03"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-302",
+          "title": "Release note received",
+          "sourceAnswer": "12:46:04",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-31-rec-303",
+        "questionId": "Y2-31",
+        "section": "timeline",
+        "summary": "My original finding for Y2-31: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T12:05:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-303",
+          "EXCHANGES-03",
+          "DEX-303",
+          "PRIVATE-PLAN-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-303",
+          "title": "Outreach relay: first onward receipt",
+          "sourceAnswer": "My original finding for Y2-31: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "timeline-Y2-31-rec-304",
+        "questionId": "Y2-31",
+        "section": "timeline",
+        "summary": "My original finding for Y2-31: this source gave away details before they were public.",
+        "timestamp": "2026-10-23T12:20:04Z",
+        "certainty": "Question",
+        "evidenceIds": [
+          "RECEIPTS-03",
+          "REC-304",
+          "EXCHANGES-03",
+          "DEX-304",
+          "PRIVATE-PLAN-02"
+        ],
+        "queryReceipt": null,
+        "autoTimeline": {
+          "eventId": "rec-304",
+          "title": "Outreach relay: second onward receipt",
+          "sourceAnswer": "My original finding for Y2-31: this source gave away details before they were public.",
+          "descriptionEdited": false
+        }
+      },
+      {
+        "id": "legacy-manual-forum",
+        "questionId": "Y1-08",
+        "section": "attacker",
+        "summary": "The dated posts establish earlier contact.",
+        "timestamp": "2023-09-14",
+        "certainty": "Observed",
+        "evidenceIds": [
+          "FORUM-01"
+        ],
+        "queryReceipt": null
+      }
+    ],
+    "reportDraft": {
+      "year1": {
+        "attacker": "My year1 attacker report draft.",
+        "timeline": "My year1 timeline report draft.",
+        "mitigation": "My year1 mitigation report draft."
+      },
+      "year2": {
+        "attacker": "My year2 attacker report draft.",
+        "timeline": "My year2 timeline report draft.",
+        "mitigation": "My year2 mitigation report draft."
+      }
+    }
+  }
+}

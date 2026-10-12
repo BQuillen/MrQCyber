@@ -144,7 +144,7 @@ test('browser export and deployed current activity work with the same scoring co
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../learn/osint/campaign-player/activity-data.js'), 'utf8'), context);
   const a = context.window.CAMPAIGN_ACTIVITY, overview = M.normalizeOverview(a, row(C.createState(a)));
   assert.equal(overview.tracks.length, 2);
-  assert.deepEqual(Array.from(overview.tracks, track => track.total), [40, 40]);
-  assert.deepEqual(Array.from(overview.tracks, track => track.maxScore), [400, 400]);
+  assert.deepEqual(Array.from(overview.tracks, track => track.total), [43, 40]);
+  assert.deepEqual(Array.from(overview.tracks, track => track.maxScore), [430, 400]);
   assert.equal(overview.track.nextQuestionId, 'Y1-01');
 });

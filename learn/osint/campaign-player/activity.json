@@ -421,6 +421,100 @@
               }
             },
             {
+              "id": "Y1-08",
+              "title": "Trace the earlier conversations",
+              "prompt": "Read the older marketing conversation and the event-day thread. When do these records first show Benny and “Paige Turner” talking? Do the forum’s public profile notes identify the person behind the name “Paige Turner”?",
+              "type": "short",
+              "validation": {
+                "responseRequired": true
+              },
+              "workspace": {
+                "mode": "browser",
+                "pageId": "marketing-forum"
+              },
+              "hints": [
+                "Start with the oldest dated exchange between Benny and “Paige Turner”.",
+                "Look for the public profile note after the older messages.",
+                "Give the earliest conversation date shown, then explain whether the profile supplies the person’s real name."
+              ],
+              "report": {
+                "section": "attacker",
+                "prompt": "Record the earliest conversation date and what the public profile says about the name “Paige Turner”.",
+                "suggestedEvidenceIds": [
+                  "FORUM-01",
+                  "FORUM-02"
+                ]
+              }
+            },
+            {
+              "id": "Y1-04e",
+              "title": "Connect the company to the campaign",
+              "prompt": "Look through High Five’s staff page. Which team member is currently assigned to Mandy’s campaign, and what is their job?",
+              "type": "short",
+              "validation": {
+                "responseRequired": true
+              },
+              "workspace": {
+                "mode": "browser",
+                "pageId": "high-five"
+              },
+              "hints": [
+                "Read the Current team list on High Five’s company page.",
+                "Look for the person whose listing mentions a client assignment.",
+                "Find the listing that names Mandy’s campaign. Give that team member’s name and their job."
+              ],
+              "report": {
+                "section": "attacker",
+                "prompt": "Record the team member’s name, their employer and their job on the campaign assignment.",
+                "suggestedEvidenceIds": [
+                  "HIGHFIVE-01"
+                ]
+              }
+            },
+            {
+              "id": "Y1-04f",
+              "title": "Date the campaign assignment",
+              "prompt": "Read the campaign team page and Crane’s professional profile. When did his scheduling assignment with Mandy’s campaign begin? Enter the month and year.",
+              "type": "fill",
+              "validation": {
+                "accepted": [
+                  "November 2024",
+                  "Nov 2024",
+                  "11/2024",
+                  "11 2024",
+                  "2024-11",
+                  "4 November 2024",
+                  "4 Nov 2024",
+                  "November 4 2024",
+                  "Nov 4 2024",
+                  "2024-11-04",
+                  "11/4/2024",
+                  "11/04/2024",
+                  "4th November 2024",
+                  "4th Nov 2024",
+                  "November 4th 2024",
+                  "Nov 4th 2024"
+                ]
+              },
+              "workspace": {
+                "mode": "browser",
+                "pageId": "campaign-team"
+              },
+              "hints": [
+                "Look for the start of the campaign placement on Crane’s professional profile.",
+                "Use the assignment’s start date, rather than the date of a recent profile update.",
+                "A month and year are enough. You may also copy the full placement start date from the staff page."
+              ],
+              "report": {
+                "section": "timeline",
+                "prompt": "Record when Crane’s campaign assignment began and cite the staff page or professional profile.",
+                "suggestedEvidenceIds": [
+                  "STAFF-01",
+                  "LINKEDUP-01"
+                ]
+              }
+            },
+            {
               "id": "Y1-05",
               "title": "Follow the venue change",
               "prompt": "Read the event records and the related messages. What venue replaced Eastbank Community Hall? Enter the venue name.",
@@ -468,8 +562,8 @@
             },
             {
               "id": "Y1-06",
-              "title": "Your first query: count the team",
-              "prompt": "A table is a list of records. Replace the five-row preview with a filter for affiliation == \"High Five Consultancy\", then add | count. How many High Five registrations are in this excerpt? Enter a number.",
+              "title": "Count High Five event registrations",
+              "prompt": "A table is a list of records. Replace the five-row preview with a filter for affiliation == \"High Five Consultancy\", then add | count. How many registrations use that affiliation? Enter a number. Here, affiliation is the event registration category; it is not a complete list of everyone’s employer.",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -489,16 +583,46 @@
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Distill what the registration list establishes, without turning attendance into evidence of intent.",
+                "prompt": "Record the number of registrations listed under High Five Consultancy. Describe what your filter counted.",
                 "suggestedEvidenceIds": [
                   "GUESTS-01"
                 ]
               }
             },
             {
+              "id": "Y1-06a",
+              "title": "Compare a registration with a staff role",
+              "prompt": "Replace the count query with a name filter to find Crane Gordon’s EventRegistrations row. What affiliation and purpose are recorded for him? Explain how those entries fit his campaign assignment, using what you found on the staff pages.",
+              "type": "short",
+              "validation": {
+                "responseRequired": true
+              },
+              "workspace": {
+                "mode": "query",
+                "tableName": "EventRegistrations",
+                "starterQuery": "EventRegistrations\n| where name == \"Crane Gordon\""
+              },
+              "hints": [
+                "Remove the earlier affiliation filter and count so you can inspect one person’s full registration row.",
+                "Use EventRegistrations followed by | where name == \"Crane Gordon\". Read the affiliation and purpose columns.",
+                "Compare his employer on High Five’s page with the job he is doing for the campaign. A registration category and an employer can describe different parts of the same assignment."
+              ],
+              "report": {
+                "section": "attacker",
+                "prompt": "Record Crane’s employer, campaign assignment and event registration category. Explain how those details fit together.",
+                "suggestedEvidenceIds": [
+                  "GUESTS-01",
+                  "REG-003",
+                  "HIGHFIVE-01",
+                  "STAFF-01",
+                  "LINKEDUP-01"
+                ]
+              }
+            },
+            {
               "id": "Y1-07",
-              "title": "A photograph needs context",
-              "prompt": "Look at the event report and reception photograph. Which conclusion about Crane and Dex is supported by this image alone?",
+              "title": "Match the photograph to the staff pages",
+              "prompt": "Look at the two people shaking hands behind Mandy in the reception photograph. Compare them with the portraits on the campaign team and High Five pages linked below the report. Which names and jobs match those two people?",
               "type": "choice",
               "validation": {
                 "correctOption": "a"
@@ -508,57 +632,33 @@
                 "pageId": "event-report"
               },
               "hints": [
-                "Photographs can show an interaction but often cannot show its purpose.",
-                "Compare what is visible with the claim each option makes.",
-                "Choose the statement that stops at contact rather than inferring an agreement."
+                "Look at the people in the background of the reception photograph.",
+                "Use the Campaign team and High Five company profile links below the report to compare the portraits.",
+                "Match the faces first, then read the job listed beside each matching portrait."
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Distill one supported finding from this step, with a source reference and any important limit.",
+                "prompt": "Record the two people you identified, their jobs and the sources you used to match their portraits.",
                 "suggestedEvidenceIds": [
-                  "NEWS-01"
+                  "NEWS-01",
+                  "STAFF-01",
+                  "HIGHFIVE-01"
                 ]
               },
               "options": [
                 {
                   "id": "a",
-                  "text": "They had visible contact at the event; the photograph alone does not prove a secret agreement."
+                  "text": "Crane Gordon, the campaign scheduler, and Dex Varnish, High Five’s technical-support team member."
                 },
                 {
                   "id": "b",
-                  "text": "Their handshake proves they planned the later post."
+                  "text": "Lemon Smellbottom, the campaign communications director, and Larry Couch, High Five’s client-relationships team member."
                 },
                 {
                   "id": "c",
-                  "text": "Everyone in the photograph operated the campaign account."
+                  "text": "Crane Gordon, the campaign scheduler, and Milo Bracket, High Five’s research and audience-insights team member."
                 }
               ]
-            },
-            {
-              "id": "Y1-08",
-              "title": "Read the relationship in time",
-              "prompt": "Read the older marketing conversation and the event-day thread. What does the dated conversation show about Benny’s connection with “Paige Turner”? What identity claim is still unconfirmed in this first collection?",
-              "type": "short",
-              "validation": {
-                "responseRequired": true
-              },
-              "workspace": {
-                "mode": "browser",
-                "pageId": "marketing-forum"
-              },
-              "hints": [
-                "A display name is the name shown by a forum; it is not automatically a verified legal identity.",
-                "Compare the old thread dates with the event-day discussion.",
-                "Explain what the posts show about prior contact, then state what would still be needed to connect a handle to a person."
-              ],
-              "report": {
-                "section": "attacker",
-                "prompt": "Record the relationship timeline and label the handle-to-person link as unconfirmed at this stage.",
-                "suggestedEvidenceIds": [
-                  "FORUM-01",
-                  "FORUM-02"
-                ]
-              }
             },
             {
               "id": "Y1-09",
@@ -5544,6 +5644,14 @@
           {
             "label": "Later incident coverage",
             "artifactId": "NEWS-02"
+          },
+          {
+            "label": "Campaign team",
+            "artifactId": "STAFF-01"
+          },
+          {
+            "label": "High Five company profile",
+            "artifactId": "HIGHFIVE-01"
           }
         ],
         "images": [
