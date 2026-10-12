@@ -535,8 +535,8 @@
             },
             {
               "id": "Y1-08",
-              "title": "Read the relationship in time",
-              "prompt": "Read the older marketing conversation and the event-day thread. What does the dated conversation show about Benny’s connection with “Paige Turner”? What identity claim is still unconfirmed in this first collection?",
+              "title": "How far back does their connection go?",
+              "prompt": "Compare the older forum thread with the event-day thread. Were Benny and “Paige Turner” already talking before the campaign event? Give the earliest conversation date you can find to support your answer.",
               "type": "short",
               "validation": {
                 "responseRequired": true
@@ -546,13 +546,13 @@
                 "pageId": "marketing-forum"
               },
               "hints": [
-                "A display name is the name shown by a forum; it is not automatically a verified legal identity.",
-                "Compare the old thread dates with the event-day discussion.",
-                "Explain what the posts show about prior contact, then state what would still be needed to connect a handle to a person."
+                "Look at the dates in both forum threads.",
+                "Find the first exchange between benny_s and “Paige Turner,” then compare its date with the campaign event.",
+                "You can write: “The earliest exchange shown is dated ____. This tells me they ____ before the event.”"
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Record the relationship timeline and label the handle-to-person link as unconfirmed at this stage.",
+                "prompt": "Save the earliest conversation date and explain what it shows about Benny’s connection with “Paige Turner.” Cite the forum thread.",
                 "suggestedEvidenceIds": [
                   "FORUM-01",
                   "FORUM-02"
