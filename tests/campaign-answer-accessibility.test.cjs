@@ -40,8 +40,12 @@ test('empty and punctuation-only responses cannot skip any question', () => {
   for (const question of all) for (const answer of ['', ' \n\t ', '...']) assert.equal(C.validateAnswer(question, answer).ok, false, question.id);
 });
 
-test('both question 8s accept a natural response and open the next question', () => {
+test('the reported on-screen Year 1 question 8 and other response examples open the next question', () => {
+  // The player numbers questions within each section; displayed Question 8
+  // has a different saved ID from the later question stored as Y1-08.
+  const displayedQuestion8 = A.tracks.find(track => track.id === 'year1').sections[0].questions[7];
   for (const [track, id, answer] of [
+    ['year1', displayedQuestion8.id, 'Paige offered an introduction for paid event support.'],
     ['year1', 'Y1-08', 'I cannot verify who is behind the account.'],
     ['year2', 'Y2-08', 'The approved document is version 3.']
   ]) {

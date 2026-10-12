@@ -396,7 +396,7 @@
             {
               "id": "Y1-04d",
               "title": "A legitimate opening for useful work",
-              "prompt": "Read Benny’s post sharing the campaign’s request and the replies beneath it, then High Five’s accepted-work summary. What genuine business opportunity followed, what authority did it exclude, and what identity link is still unconfirmed in these public sources?",
+              "prompt": "Read Benny's post sharing the campaign's request and the replies beneath it, then High Five's accepted-work summary. What business arrangement between the campaign and High Five Consulting followed Benny's post? Who initiated this opportunity for High Five and how does that differ from High Five's public information?",
               "type": "short",
               "validation": {
                 "responseRequired": true
@@ -406,16 +406,17 @@
                 "pageId": "public-announcements"
               },
               "hints": [
-                "An introduction can lead to legitimate reviewed work; that does not make it a hidden recruitment operation.",
-                "Follow the supplier-work link and compare the accepted scope with the work it explicitly excludes.",
-                "The commenter says my team. The public work summary does not verify the real person behind the display name."
+                "Start with the work listed in High Five’s accepted-work summary.",
+                "Compare the name on the reply beneath Benny’s post with the names and roles on High Five’s company profile.",
+                "Describe the accepted work, name the account that offered an introduction, and explain what the public sources do—and do not—show about that account’s connection to High Five."
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Distill one supported finding from this step, with a source reference and any important limit.",
+                "prompt": "Record the accepted business arrangement and the difference between the name in Benny’s replies and High Five’s public team listing.",
                 "suggestedEvidenceIds": [
                   "CAMPAIGN-COMMENT-04",
-                  "HIGHFIVE-OPPORTUNITY-04"
+                  "HIGHFIVE-OPPORTUNITY-04",
+                  "HIGHFIVE-01"
                 ]
               }
             },
@@ -535,8 +536,8 @@
             },
             {
               "id": "Y1-08",
-              "title": "How far back does their connection go?",
-              "prompt": "Compare the older forum thread with the event-day thread. Were Benny and “Paige Turner” already talking before the campaign event? Give the earliest conversation date you can find to support your answer.",
+              "title": "Read the relationship in time",
+              "prompt": "Read the older marketing conversation and the event-day thread. What does the dated conversation show about Benny’s connection with “Paige Turner”? What identity claim is still unconfirmed in this first collection?",
               "type": "short",
               "validation": {
                 "responseRequired": true
@@ -546,13 +547,13 @@
                 "pageId": "marketing-forum"
               },
               "hints": [
-                "Look at the dates in both forum threads.",
-                "Find the first exchange between benny_s and “Paige Turner,” then compare its date with the campaign event.",
-                "You can write: “The earliest exchange shown is dated ____. This tells me they ____ before the event.”"
+                "A display name is the name shown by a forum; it is not automatically a verified legal identity.",
+                "Compare the old thread dates with the event-day discussion.",
+                "Explain what the posts show about prior contact, then state what would still be needed to connect a handle to a person."
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Save the earliest conversation date and explain what it shows about Benny’s connection with “Paige Turner.” Cite the forum thread.",
+                "prompt": "Record the relationship timeline and label the handle-to-person link as unconfirmed at this stage.",
                 "suggestedEvidenceIds": [
                   "FORUM-01",
                   "FORUM-02"
