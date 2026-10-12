@@ -47,7 +47,12 @@ test('social references, histories, and company conversations remain valid after
   for(const p of Object.values(profiles))for(const id of p.posts)assert(posts[id]);
 });
 test('new photographs exist and every developed new person has a second setting',()=>{
-  const check=name=>assert(fs.existsSync(path.join('learn',world.localImages.includes(name)?'linkedup':'osint','assets',name+'.jpg')),name);
+  const check=name=>{
+    const shared=world.imageSources?.[name];
+    if(shared){
+      for(const site of ['osint','linkedup'])assert(fs.existsSync(path.resolve('learn',site,shared)),site+': '+name);
+    }else assert(fs.existsSync(path.join('learn',world.localImages.includes(name)?'linkedup':'osint','assets',name+'.jpg')),name);
+  };
   for(const id of ['mandy','ada','rowan','vera','mara-bell','nina-cho','rafael-cruz']){
     const p=world.people[id];if(profiles[id])assert.equal(p.name,profiles[id].name);
     const names=new Set([p.image,...p.posts.map(p=>p.image).filter(Boolean)]);
@@ -59,7 +64,7 @@ test('new photographs exist and every developed new person has a second setting'
 });
 test('Compass finds the new identities, usernames, organizations, topics, and follow-up documents',()=>{
   for(const id of ['mandy','ada','rowan','vera'])for(const query of [world.people[id].name,...world.people[id].name.split(' '),profiles[id].handle])assert(found(query).includes('#/profile/'+id),query);
-  for(const [query,href]of [['Fence','#/site/fence'],['Brainstorm','#/brainstorm'],['Capitol','#/capitol'],['Nia Calder','#/reporter/nia-calder'],['route history','#/document/review-memo'],['drain covers','#/story/drains-delay'],['Mandy Tinkerman','#/story/election-calendar'],['Meridian Civil Works','#/site/meridian']])assert(found(query).includes(href),query);
+  for(const [query,href]of [['Fence','#/site/fence'],['Brainstorm','#/brainstorm'],['Capitol','#/capitol'],['Nia Calder','#/reporter/nia-calder'],['route history','#/document/review-memo'],['drain covers','#/story/drains-delay'],['Mandy Schmear','#/story/election-calendar'],['Meridian Civil Works','#/site/meridian']])assert(found(query).includes(href),query);
   assert.equal(new Set(index.map(r=>r.href)).size,index.length);
   assert(!index.some(r=>/\/(?:account|login|settings|notebook|report|messages)(?:$|\?)/.test(r.href)));
   assert(!found('casey.selvin13@mail.example').length);
@@ -74,8 +79,13 @@ test('timeline keeps future events in the future and distinguishes advocacy from
   for(const a of Object.values(region.articles))assert(a.date<='2026-10-26');
   for(const e of region.events)assert(e.date>'2026-10-26');
   assert.match(posts['mandy-campaign'].text,/Political advocacy/);
-  assert.match(posts['mandy-campaign'].text,/not a government notice/);
-  assert.match(region.articles['election-calendar'].body.join(' '),/November 2027/);
+  assert.match(posts['mandy-campaign'].text,/official government notices.*Capitol|not a government notice/i);
+  const calendar=region.articles['election-calendar'].body.join(' ');
+  assert.match(calendar,/3 November 2026/);
+  assert.match(calendar,/Mandy Schmear/);
+  assert.match(calendar,/Leon Tusk/);
+  assert.doesNotMatch(calendar+' '+posts['mandy-campaign'].text,/November 2027|not on this year.s ballot|not a gubernatorial election year/i);
+  assert(region.events.some(event=>event.date==='2026-11-03'&&/governor/i.test(event.title)));
   assert.match(region.documents['learning-access'].status,/not enacted/);
   assert.match(region.documents['review-memo'].sections.flat().join(' '),/does not.*Governor/);
   assert.match(region.articles['camera-demo'].correction,/Corrected 23 October/);
@@ -83,5 +93,19 @@ test('timeline keeps future events in the future and distinguishes advocacy from
 test('LinkedUP can load the shared region without loading the Frame application',()=>{
   const linked=vm.createContext({});
   for(const file of ['learn/linkedup/world.js','learn/osint/regional-data.js'])vm.runInContext(fs.readFileSync(file,'utf8'),linked);
-  assert.equal(vm.runInContext('WORLD.people.mandy.name',linked),'Mandy Tinkerman');
+  assert.equal(vm.runInContext('WORLD.people.mandy.name',linked),'Mandy Schmear');
+});
+
+test('the public regional world uses one governor identity and retains the retired photos only as assets',()=>{
+  assert.equal(world.people.mandy.name,'Mandy Schmear');
+  assert.equal(profiles.mandy.name,'Mandy Schmear');
+  assert.equal(profiles.mandy.handle,'mandy.schmear.community');
+  assert.match(profiles.mandy.bio,/community account/i);
+  assert.match(world.companies.capitol.name,/Governor Schmear/);
+  assert(!/Tinkerman|mandy\.tinkerman|mandy-portrait|mandy-visit/i.test(JSON.stringify({region,world,profiles,posts,articles,index})),'Retired identity and image references must be absent from public records and search.');
+  for(const query of ['Mandy Tinkerman','Tinkerman','mandy.tinkerman'])assert.equal(found(query).length,0,query);
+  for(const name of ['mandy-portrait','mandy-visit'])assert(fs.existsSync(path.join('learn/linkedup/assets',name+'.jpg')),name+' remains available for another character');
+  assert.match(world.imageSources[world.people.mandy.image],/mandy-schmear-reference\.png$/);
+  const communityImages=world.people.mandy.posts.map(post=>world.imageSources[post.image]).filter(Boolean);
+  assert(communityImages.some(src=>/community-listening\.png$/.test(src)));
 });

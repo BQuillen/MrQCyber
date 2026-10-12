@@ -117,13 +117,14 @@
       const profilePhotos = parts.flatMap(part => part.gallery || []).map(photo => ({ ...photo, src: assetURL(photo.src) })).filter(photo => photo.src);
       const postIds = profile.posts.filter(postId => POSTS[postId]);
       const links = [];
+      if (id === 'campaign-mandy' && PROFILES.mandy) links.push(['Community account', '/profile/mandy']);
       for (const evidenceId of evidenceIds) {
         for (const target of [evidenceId, ...(get(evidenceId)?.links || []).map(link => link.artifactId)]) {
           const route = routeFor(target); if (!route || route === '/profile/' + id || !isAllowed(target) || !publicArtifact(target) || links.some(link => link[1] === route)) continue;
           links.push([get(target)?.title || target, route]);
         }
       }
-      PROFILES[id] = { name: profile.name, handle: profile.handle, bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, profilePhotos, stats: postIds.length ? `${postIds.length} preserved public posts` : 'Public profile · no posts in this collection', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
+      PROFILES[id] = { name: profile.name, handle: profile.handle, accountLabel: id === 'campaign-mandy' ? 'Campaign account' : '', bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, profilePhotos, stats: postIds.length ? `${postIds.length} preserved public posts` : 'Public profile · no posts in this collection', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
     }
   }
   const searchEntries = Object.entries(profiles).map(([id, profile]) => {

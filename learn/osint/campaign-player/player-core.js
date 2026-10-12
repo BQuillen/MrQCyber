@@ -17,48 +17,36 @@
     if (!spec) return null;
     const expected = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}):(\d{2})Z)?$/.exec(spec.value || '');
     if (!expected) return null;
-    let text = clean(raw).normalize('NFKC').toLowerCase().trim().replace(/(\d)(?:st|nd|rd|th)\b/g, '$1').replace(/,/g, '').replace(/\s+/g, ' ');
-    let dateText = text, clock = null;
-    if (spec.kind !== 'date') {
-      const time = /(?:^|[ t])(\d{1,2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?\s*(a\.?m\.?|p\.?m\.?)?\s*(utc|gmt|z|\+00:?00)?$/.exec(text);
-      if (!time || (spec.kind === 'utc-datetime' && !time[6])) return null;
+    const text = clean(raw).normalize('NFKC').toLowerCase().trim().replace(/(\d)(?:st|nd|rd|th)\b/g, '$1').replace(/,/g, '').replace(/\s+/g, ' ');
+    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    const monthNames = months.flatMap(month => [month, month.slice(0, 3)]).concat('sept').join('|');
+    const dates = [];
+    for (const match of text.matchAll(/\b(\d{4})[-/](\d{1,2})[-/](\d{1,2})(?!\d)/g)) dates.push(match.slice(1).map(Number));
+    for (const match of text.matchAll(/(?<![\d/])(\d{1,2})\/(\d{1,2})(?:\/(\d{4}|\d{2}))?(?![\d/])/g)) {
+      // Slash dates use the classroom's month/day convention.
+      const year = match[3] ? Number(match[3]) + (match[3].length === 2 ? 2000 : 0) : Number(expected[1]);
+      dates.push([year, Number(match[1]), Number(match[2])]);
+    }
+    const namedDate = new RegExp('\\b(?:(\\d{1,2}) (' + monthNames + ')|(' + monthNames + ') (\\d{1,2}))(?: (\\d{4}))?\\b', 'g');
+    for (const match of text.matchAll(namedDate)) {
+      const monthName = match[2] || match[3];
+      const month = months.findIndex(name => name === monthName || name.slice(0, 3) === monthName || (name === 'september' && monthName === 'sept')) + 1;
+      dates.push([Number(match[5] || expected[1]), month, Number(match[1] || match[4])]);
+    }
+    const matchingDate = dates.some(parts => parts.every((n, i) => n === Number(expected[i + 1])));
+    if (spec.kind === 'date') return matchingDate ? spec.value : null;
+    if ((spec.kind === 'utc-datetime' || dates.length) && !matchingDate) return null;
+    // A single requested time may appear inside a sentence. UTC is the question's
+    // stated context, so copying the value without a timezone suffix is enough.
+    const times = /(?<!\d)(\d{1,2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?(?![:\d]|\.\d)\s*(a\.?m\.?|p\.?m\.?)?\s*(utc|gmt|z|[+-]\d{2}:?\d{2})?/g;
+    for (const time of text.matchAll(times)) {
       let hour = Number(time[1]); const minute = Number(time[2]), second = Number(time[3] || 0), fraction = Number(time[4] || 0);
-      if (minute > 59 || second > 59 || fraction !== 0) return null;
-      if (time[5]) { if (hour < 1 || hour > 12) return null; hour = hour % 12 + (time[5].startsWith('p') ? 12 : 0); }
-      else if (hour > 23) return null;
-      clock = [hour, minute, second]; dateText = text.slice(0, time.index).trim().replace(/\s+at$/, '').trim();
+      if (minute > 59 || second > 59 || fraction !== 0 || (time[6] && /^[+-]/.test(time[6]) && !/^[+]00:?00$/.test(time[6]))) continue;
+      if (time[5]) { if (hour < 1 || hour > 12) continue; hour = hour % 12 + (time[5].startsWith('p') ? 12 : 0); }
+      else if (hour > 23) continue;
+      if ([hour, minute, second].every((n, i) => n === Number(expected[i + 4]))) return spec.value;
     }
-    let parts;
-    if (!dateText && spec.kind === 'utc-time') parts = expected.slice(1, 4).map(Number);
-    else {
-      const iso = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(dateText);
-      const named = /^(?:(\d{1,2}) ([a-z]+)|([a-z]+) (\d{1,2}))(?: (\d{4}))?$/.exec(dateText);
-      if (iso) parts = iso.slice(1).map(Number);
-      else if (named) {
-        const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-        const monthName = named[2] || named[3];
-        const month = months.findIndex(m => m === monthName || m.slice(0, 3) === monthName || (m === 'september' && monthName === 'sept')) + 1;
-        if (!month) return null;
-        parts = [Number(named[5] || expected[1]), month, Number(named[1] || named[4])];
-      } else return null;
-    }
-    if (parts.some((n, i) => n !== Number(expected[i + 1]))) return null;
-    if (spec.kind === 'date') return spec.value;
-    return clock.every((n, i) => n === Number(expected[i + 4])) ? spec.value : null;
-  }
-  function incompatibleRecordPair(question, raw) {
-    const pairs = question.validation?.recordPairs || [];
-    if (!pairs.length) return false;
-    const clauses = clean(raw).split(/[.;\n]|\bwhile\b|\bwhereas\b/i);
-    return clauses.some(clause => {
-      const value = ' ' + normalize(clause) + ' ';
-      // Only catch a simple positive one-to-one claim; comparisons and negation
-      // remain for teacher review instead of guessing their meaning.
-      if (/\b(?:not|no|never|rather|instead|wrong|incorrect|mismatch)\b/.test(value)) return false;
-      const records = pairs.filter(pair => value.includes(' ' + normalize(pair.record) + ' '));
-      const receipts = pairs.filter(pair => value.includes(' ' + normalize(pair.receipt) + ' '));
-      return records.length === 1 && receipts.length === 1 && records[0].receipt !== receipts[0].receipt;
-    });
+    return null;
   }
   function questions(activity, trackId) { return (activity.tracks.find(t => t.id === trackId)?.sections || []).flatMap(s => s.questions); }
   function locate(activity, id) {
@@ -77,20 +65,15 @@
     if (!value) return { ok: false, message: 'Add your response before continuing.' };
     if (question.type === 'choice') return { ok: raw === rule.correctOption, message: raw === rule.correctOption ? 'Response checked.' : 'Look at the source again and try another response.' };
     if (question.type === 'fill') {
-      const ok = rule.temporal ? temporalValue(raw, rule) !== null : (rule.accepted || []).some(item => normalize(item) === value);
-      const formatHelp = rule.temporal?.kind === 'date' ? ' Enter only the date; month names, ordinal days and ISO dates are accepted.' : rule.temporal ? ' Enter the requested UTC time, using a 24-hour clock or AM/PM. Include the date when requested.' : ' Spacing and capitalization do not matter.';
+      // Check one factual value rather than the student's surrounding phrasing.
+      // Keep decimal values intact so 3.4 cannot accidentally satisfy version 3.
+      const fact = value => normalize(clean(value).replace(/(\d)[.,](?=\d)/g, '$1decimal'));
+      const factValue = ' ' + fact(raw) + ' ';
+      const ok = rule.temporal ? temporalValue(raw, rule) !== null : (rule.accepted || []).some(item => factValue.includes(' ' + fact(item) + ' '));
+      const formatHelp = rule.temporal?.kind === 'date' ? ' Include the date; month names, month/day dates and ISO dates are accepted.' : rule.temporal ? ' Include the requested UTC time, using a 24-hour clock or AM/PM, and the date when requested.' : ' Include the requested name, number or record ID. Extra explanation is welcome.';
       return { ok, message: ok ? 'Response checked.' : 'Check the requested detail in the source.' + formatHelp };
     }
-    const words = value.split(' '), minWords = rule.minWords || 8;
-    if (words.length < minWords || new Set(words).size < Math.min(5, minWords)) return { ok: false, message: `Explain the finding in a sentence of at least ${minWords} words. Repeated words alone do not count as an explanation.` };
-    const matched = (rule.concepts || []).filter(group => (group.any || []).some(term => (' ' + value + ' ').includes(' ' + normalize(term) + ' ')));
-    const needed = rule.minConcepts ?? (rule.concepts || []).length;
-    if (matched.length < needed) {
-      const missingConcepts = (rule.concepts || []).filter(group => !matched.includes(group)).map(group => group.label || 'Explain the remaining evidence connection');
-      return { ok: false, missingConcepts, message: 'The completeness check could not find these points: ' + missingConcepts.join('; ') + '. Explain them in your own words. This feedback is free; hints are optional.' };
-    }
-    if (incompatibleRecordPair(question, raw)) return { ok: false, message: 'Check the transfer or exchange and its receiving-record pairing. The IDs named together do not match the supplied records. This feedback is free.' };
-    return { ok: true, reviewRequired: true, message: 'Key ideas found. Your explanation remains available for teacher review.' };
+    return { ok: true, reviewRequired: true, message: 'Response saved for teacher review.' };
   }
   function isComplete(activity, state, id) {
     const found = locate(activity, id), r = state.responses[id];

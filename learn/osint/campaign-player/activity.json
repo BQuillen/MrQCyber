@@ -7,7 +7,7 @@
     "title": "Classroom draft",
     "body": "This fictional activity uses the reviewed campaign evidence in a guided practice sequence. Character appearances and the later incident mechanism remain working author choices."
   },
-  "practiceNotice": "Choice and fill checks are practice feedback. Short responses receive a completeness check and still need human review. Local points are a practice score, not a secure assessment grade.",
+  "practiceNotice": "Choice and fill checks are practice feedback. Short responses save for teacher review without required phrases or a minimum word count. Points reflect completion and hint use, not an assessment grade.",
   "tracks": [
     {
       "id": "year1",
@@ -72,56 +72,7 @@
               "prompt": "Look through Mandy’s feed, including the older posts. What feels out of place in the newest post? Describe a change in its message and in its tone.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Compare the content",
-                    "any": [
-                      "wi-fi",
-                      "wifi",
-                      "internet",
-                      "policy",
-                      "support",
-                      "oppose",
-                      "opposition",
-                      "position",
-                      "withdraws",
-                      "reversal",
-                      "reverses",
-                      "reversed"
-                    ]
-                  },
-                  {
-                    "label": "Compare the wording or tone",
-                    "any": [
-                      "tone",
-                      "rude",
-                      "harsh",
-                      "insult",
-                      "insults",
-                      "insulting",
-                      "disrespectful",
-                      "respectful",
-                      "respect",
-                      "dismissive",
-                      "dismisses",
-                      "hostile",
-                      "aggressive",
-                      "unkind",
-                      "blames",
-                      "blaming",
-                      "helpful",
-                      "polite",
-                      "different language",
-                      "talks down",
-                      "disparages",
-                      "belittles",
-                      "welcoming",
-                      "courteous"
-                    ]
-                  }
-                ],
-                "minConcepts": 2
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -270,40 +221,7 @@
               "prompt": "Open Benny’s 20 September 2023 folder photograph at full size, or use its visible-text transcription. What campaign position does the sheet reveal, and how do its release marking and the official archive show why posting it then mattered?",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Identify the exposed position",
-                    "any": [
-                      "wi-fi",
-                      "wifi",
-                      "public internet",
-                      "wireless access",
-                      "wireless internet"
-                    ]
-                  },
-                  {
-                    "label": "Read the draft/release marking",
-                    "any": [
-                      "draft",
-                      "not for release",
-                      "speech sheet"
-                    ]
-                  },
-                  {
-                    "label": "Compare publication timing",
-                    "any": [
-                      "before",
-                      "earlier",
-                      "20 september",
-                      "20 sept",
-                      "26 september",
-                      "26 sept",
-                      "unannounced"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -481,69 +399,7 @@
               "prompt": "Read Benny’s post sharing the campaign’s request and the replies beneath it, then High Five’s accepted-work summary. What genuine business opportunity followed, what authority did it exclude, and what identity link is still unconfirmed in these public sources?",
               "type": "short",
               "validation": {
-                "minWords": 22,
-                "concepts": [
-                  {
-                    "label": "Name the ordinary work",
-                    "any": [
-                      "registration",
-                      "feedback",
-                      "event support",
-                      "arrival"
-                    ]
-                  },
-                  {
-                    "label": "Identify review or agreed scope",
-                    "any": [
-                      "review",
-                      "reviewed",
-                      "proposal",
-                      "paid",
-                      "scope",
-                      "operations"
-                    ]
-                  },
-                  {
-                    "label": "Keep technical authority separate",
-                    "any": [
-                      "policy",
-                      "publishing",
-                      "publication",
-                      "account administration",
-                      "accounts"
-                    ]
-                  },
-                  {
-                    "label": "Keep the alias link bounded",
-                    "any": [
-                      "unconfirmed",
-                      "not confirmed",
-                      "not prove",
-                      "does not prove",
-                      "not establish",
-                      "does not establish",
-                      "alias",
-                      "nickname",
-                      "display name",
-                      "cannot verify",
-                      "cannot establish",
-                      "does not verify",
-                      "not verified",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "do not establish",
-                      "doesn’t establish",
-                      "don’t establish",
-                      "can’t verify",
-                      "can’t establish",
-                      "do not verify",
-                      "doesn’t verify",
-                      "don’t verify"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -683,57 +539,7 @@
               "prompt": "Read the older marketing conversation and the event-day thread. What does the dated conversation show about Benny’s connection with “Paige Turner”? What identity claim is still unconfirmed in this first collection?",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Use the earlier time context",
-                    "any": [
-                      "2023",
-                      "september",
-                      "older",
-                      "earlier",
-                      "before",
-                      "long-running"
-                    ]
-                  },
-                  {
-                    "label": "Identify the relationship evidence",
-                    "any": [
-                      "benny",
-                      "conversation",
-                      "forum",
-                      "rapport",
-                      "relationship"
-                    ]
-                  },
-                  {
-                    "label": "State the identity limit",
-                    "any": [
-                      "unconfirmed",
-                      "cannot identify",
-                      "not confirmed",
-                      "not prove",
-                      "does not prove",
-                      "not established",
-                      "unknown",
-                      "handle",
-                      "alias",
-                      "screen name",
-                      "cannot tell us",
-                      "cannot verify",
-                      "do not verify",
-                      "can’t identify",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "can’t tell us",
-                      "can’t verify",
-                      "does not verify",
-                      "don’t verify"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -920,66 +726,7 @@
               "prompt": "Before opening the additional evidence, write a short interim finding. State one supported change, one limit on identifying the operator, and one kind of record you would request next.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "State a supported observation",
-                    "any": [
-                      "post",
-                      "document",
-                      "version",
-                      "policy",
-                      "wording",
-                      "changed",
-                      "reversed"
-                    ]
-                  },
-                  {
-                    "label": "State a limit",
-                    "any": [
-                      "unknown",
-                      "unconfirmed",
-                      "cannot identify",
-                      "not established",
-                      "not prove",
-                      "does not prove",
-                      "not enough",
-                      "not yet",
-                      "uncertain",
-                      "uncertainty",
-                      "unresolved",
-                      "not claim",
-                      "not the human",
-                      "not a person",
-                      "not the person",
-                      "do not tell us who",
-                      "cannot tell who",
-                      "can’t identify",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "does not tell us who",
-                      "don’t tell us who",
-                      "can’t tell who"
-                    ]
-                  },
-                  {
-                    "label": "Name a useful next source",
-                    "any": [
-                      "endpoint",
-                      "device",
-                      "login",
-                      "authentication",
-                      "session issuance",
-                      "support",
-                      "transfer",
-                      "receipt",
-                      "provider",
-                      "audit"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -1142,50 +889,7 @@
               "prompt": "Read the support request, approval and grant notes. What work was approved, and how did the configured access go beyond that task? Explain the difference in everyday language.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Describe the approved task",
-                    "any": [
-                      "display",
-                      "projector",
-                      "connectivity",
-                      "presentation",
-                      "setup"
-                    ]
-                  },
-                  {
-                    "label": "Describe the excess access",
-                    "any": [
-                      "filetransfer",
-                      "file transfer",
-                      "copy files",
-                      "copying files",
-                      "next day",
-                      "following day",
-                      "23 october",
-                      "23 oct",
-                      "12:15",
-                      "move documents",
-                      "transfer files",
-                      "overnight"
-                    ]
-                  },
-                  {
-                    "label": "Make the permission distinction",
-                    "any": [
-                      "approval",
-                      "approved",
-                      "authorized",
-                      "authorised",
-                      "permission",
-                      "allowed",
-                      "scope",
-                      "permitted"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -1375,40 +1079,7 @@
               "prompt": "Read the outreach plan and its preparation note. Why was the outreach file sensitive, and why does finding it locally not require inventing another CS-072 cloud export?",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Describe the content restriction",
-                    "any": [
-                      "internal",
-                      "private",
-                      "non-public",
-                      "restricted",
-                      "unreleased",
-                      "not approved",
-                      "not authorized",
-                      "not authorised",
-                      "confidential"
-                    ]
-                  },
-                  {
-                    "label": "Describe how it was already present",
-                    "any": [
-                      "cache",
-                      "cached",
-                      "offline",
-                      "22 october",
-                      "22 oct",
-                      "cs-068",
-                      "earlier",
-                      "previously",
-                      "without a connection",
-                      "disconnected",
-                      "already saved"
-                    ]
-                  }
-                ],
-                "minConcepts": 2
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -1483,48 +1154,7 @@
               "prompt": "Choose either completed transfer in the file records. Explain how its independent receiving entry strengthens the delivery finding. Name the transfer and its receipt, and mention a content detail that matches.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Identify a matched record pair",
-                    "any": [
-                      "tf-901",
-                      "tf-902"
-                    ]
-                  },
-                  {
-                    "label": "Include receiving evidence",
-                    "any": [
-                      "ep-009",
-                      "ep-011",
-                      "receipt",
-                      "received",
-                      "receiving"
-                    ]
-                  },
-                  {
-                    "label": "Compare content identity",
-                    "any": [
-                      "hash",
-                      "sha-256",
-                      "sha256",
-                      "bytes",
-                      "489",
-                      "655"
-                    ]
-                  }
-                ],
-                "minConcepts": 3,
-                "recordPairs": [
-                  {
-                    "record": "TF-901",
-                    "receipt": "EP-009"
-                  },
-                  {
-                    "record": "TF-902",
-                    "receipt": "EP-011"
-                  }
-                ]
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -1668,78 +1298,7 @@
               "prompt": "Read the 18 October workplace exchange. How do Milo and Crane press Paige to use her friendship, what concern does she express, and why is Milo’s mention of Winnie not proof that Winnie ordered this request?",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Identify family or job pressure",
-                    "any": [
-                      "brother",
-                      "family",
-                      "shifts",
-                      "university",
-                      "work",
-                      "job"
-                    ]
-                  },
-                  {
-                    "label": "Identify the friendship request",
-                    "any": [
-                      "friend",
-                      "friendship",
-                      "benny",
-                      "preview"
-                    ]
-                  },
-                  {
-                    "label": "Identify reluctance",
-                    "any": [
-                      "uncomfortable",
-                      "not comfortable",
-                      "reluctant",
-                      "does not want",
-                      "doesn’t want",
-                      "does not wish",
-                      "objects",
-                      "concern",
-                      "uneasy",
-                      "hesitant",
-                      "unwilling",
-                      "does not want to",
-                      "do not want",
-                      "don’t want",
-                      "do not wish",
-                      "doesn’t wish",
-                      "don’t wish",
-                      "do not want to",
-                      "doesn’t want to",
-                      "don’t want to"
-                    ]
-                  },
-                  {
-                    "label": "Keep Winnie attribution bounded",
-                    "any": [
-                      "winnie"
-                    ]
-                  },
-                  {
-                    "label": "Distinguish statement from instruction",
-                    "any": [
-                      "milo says",
-                      "milo claims",
-                      "his statement",
-                      "not proof",
-                      "does not prove",
-                      "no instruction",
-                      "not an instruction",
-                      "unresolved",
-                      "unknown",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -1829,82 +1388,7 @@
               "prompt": "Compare the forwarded preview with the response draft and use records, then read Paige’s reaction and final reply. What shows a use of this one preview, what action does she take, and what additional supportive response would you recommend without claiming it already happened?",
               "type": "short",
               "validation": {
-                "minWords": 26,
-                "concepts": [
-                  {
-                    "label": "Use the recorded content link",
-                    "any": [
-                      "pm-414",
-                      "source note",
-                      "source reference",
-                      "quoted",
-                      "same caption",
-                      "bring a question",
-                      "matching wording"
-                    ]
-                  },
-                  {
-                    "label": "Identify the recorded use",
-                    "any": [
-                      "response",
-                      "draft",
-                      "du-401",
-                      "du-402",
-                      "published"
-                    ]
-                  },
-                  {
-                    "label": "Identify refusal",
-                    "any": [
-                      "refuse",
-                      "refused",
-                      "refuses",
-                      "refusal",
-                      "no more",
-                      "anything else",
-                      "not asking",
-                      "stops",
-                      "stop",
-                      "will not ask",
-                      "will not be asking",
-                      "won’t ask",
-                      "no further requests",
-                      "won’t be asking"
-                    ]
-                  },
-                  {
-                    "label": "Keep remediation unproven",
-                    "any": [
-                      "not shown",
-                      "no warning",
-                      "not established",
-                      "no record",
-                      "does not show",
-                      "not documented",
-                      "do not show",
-                      "doesn’t show",
-                      "don’t show"
-                    ]
-                  },
-                  {
-                    "label": "Recommend a supportive action",
-                    "any": [
-                      "trusted adult",
-                      "trusted person",
-                      "university adviser",
-                      "university support",
-                      "save messages",
-                      "preserve messages",
-                      "tell lemon",
-                      "tell benny",
-                      "report pressure",
-                      "seek help",
-                      "ask for help",
-                      "support"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2008,55 +1492,7 @@
               "prompt": "Read the retained messages and custody notes. Identify the people whose knowing coordination is supported, describe one concrete instruction or action, and state a limit concerning other people at High Five.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Name Crane",
-                    "any": [
-                      "crane"
-                    ]
-                  },
-                  {
-                    "label": "Name Dex",
-                    "any": [
-                      "dex"
-                    ]
-                  },
-                  {
-                    "label": "Refer to concrete conduct",
-                    "any": [
-                      "instruction",
-                      "instructed",
-                      "message",
-                      "changed",
-                      "revision",
-                      "schedule",
-                      "scheduled",
-                      "retain",
-                      "files",
-                      "approval",
-                      "sign-in",
-                      "access"
-                    ]
-                  },
-                  {
-                    "label": "State an attribution limit",
-                    "any": [
-                      "winnie",
-                      "opponent",
-                      "larry",
-                      "milo",
-                      "paige",
-                      "not everyone",
-                      "not all",
-                      "other staff",
-                      "other people",
-                      "intent",
-                      "unproven"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2083,53 +1519,7 @@
               "prompt": "Recommend two practical changes based on this evidence: one to reduce support-access misuse and one to protect approved campaign content. Explain how each would help. Add one uncertainty the final report should keep.",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Address support access",
-                    "any": [
-                      "expire",
-                      "expiry",
-                      "revoke",
-                      "revocation",
-                      "time limit",
-                      "time-limit",
-                      "least privilege",
-                      "file transfer",
-                      "support",
-                      "remote"
-                    ]
-                  },
-                  {
-                    "label": "Address content approval",
-                    "any": [
-                      "approval",
-                      "approved version",
-                      "review",
-                      "publishing",
-                      "publish",
-                      "version"
-                    ]
-                  },
-                  {
-                    "label": "Keep a limit",
-                    "any": [
-                      "uncertain",
-                      "unknown",
-                      "unproven",
-                      "not established",
-                      "intent",
-                      "other staff",
-                      "winnie",
-                      "opponent",
-                      "paige",
-                      "larry",
-                      "milo",
-                      "physical editor"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2310,56 +1700,7 @@
               "prompt": "Read the civic forum archive. How does it connect Crane and Leon before the campaign placement, and why does this public source alone fall short of establishing a private arrangement?",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Identify Crane",
-                    "any": [
-                      "crane"
-                    ]
-                  },
-                  {
-                    "label": "Identify Leon",
-                    "any": [
-                      "leon"
-                    ]
-                  },
-                  {
-                    "label": "Describe the public connection",
-                    "any": [
-                      "forum",
-                      "speaker",
-                      "scheduling",
-                      "program",
-                      "programme",
-                      "reception",
-                      "8 october",
-                      "8 oct"
-                    ]
-                  },
-                  {
-                    "label": "Keep the source limit",
-                    "any": [
-                      "not prove",
-                      "does not prove",
-                      "cannot prove",
-                      "no transcript",
-                      "private conversation",
-                      "not establish",
-                      "does not establish",
-                      "unknown",
-                      "unconfirmed",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "can’t prove",
-                      "do not establish",
-                      "doesn’t establish",
-                      "don’t establish"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2385,67 +1726,7 @@
               "prompt": "Use the published contact page and identity notes alongside the early correspondence and working arrangement. Explain why the commissioning mailbox is linked to Leon, what the High Five placement was meant to enable, and what two benefits Crane says he wants.",
               "type": "short",
               "validation": {
-                "minWords": 28,
-                "concepts": [
-                  {
-                    "label": "Use the public identity link",
-                    "any": [
-                      "published",
-                      "public contact",
-                      "contact archive",
-                      "leontusk.example",
-                      "candidate address"
-                    ]
-                  },
-                  {
-                    "label": "Use independent private provenance",
-                    "any": [
-                      "provider",
-                      "authenticated",
-                      "custodian",
-                      "matched copies",
-                      "matchedcopies"
-                    ]
-                  },
-                  {
-                    "label": "Identify the placement",
-                    "any": [
-                      "high five",
-                      "scheduling",
-                      "scheduler"
-                    ]
-                  },
-                  {
-                    "label": "Identify bypassing policy review",
-                    "any": [
-                      "outside",
-                      "without approval",
-                      "bypass",
-                      "bypassing",
-                      "policy review",
-                      "unapproved"
-                    ]
-                  },
-                  {
-                    "label": "Identify the paid benefit",
-                    "any": [
-                      "money",
-                      "paid",
-                      "pay",
-                      "fee",
-                      "compensation"
-                    ]
-                  },
-                  {
-                    "label": "Identify the influence benefit",
-                    "any": [
-                      "influence",
-                      "voice",
-                      "planning"
-                    ]
-                  }
-                ],
-                "minConcepts": 6
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2664,55 +1945,7 @@
               "prompt": "Read the onward-delivery records. Explain the two completed outreach-plan exchanges after the file reached Dex’s laptop: first to Crane, then to Leon. Name the exchanges and their independent receipts. Why should the ordinary summary or denied retry not be counted as another completed leak of this plan?",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Identify the first relay",
-                    "any": [
-                      "dx-303"
-                    ]
-                  },
-                  {
-                    "label": "Identify the onward relay",
-                    "any": [
-                      "dx-304"
-                    ]
-                  },
-                  {
-                    "label": "Use the first receiver",
-                    "any": [
-                      "rec-303"
-                    ]
-                  },
-                  {
-                    "label": "Use the final receiver",
-                    "any": [
-                      "rec-304"
-                    ]
-                  },
-                  {
-                    "label": "Distinguish comparison records",
-                    "any": [
-                      "summary",
-                      "ordinary",
-                      "denied",
-                      "zero",
-                      "0 bytes",
-                      "not completed"
-                    ]
-                  }
-                ],
-                "minConcepts": 5,
-                "recordPairs": [
-                  {
-                    "record": "DX-303",
-                    "receipt": "REC-303"
-                  },
-                  {
-                    "record": "DX-304",
-                    "receipt": "REC-304"
-                  }
-                ]
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2782,66 +2015,7 @@
               "prompt": "Recommend one verification change for hiring or sensitive assignments and one control on sending internal documents. Explain their purpose. Then state what remains unresolved about Winnie’s later knowledge and whether the promised fee was paid.",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Verify trusted assignments",
-                    "any": [
-                      "verify",
-                      "verification",
-                      "independent",
-                      "reference",
-                      "background",
-                      "hiring",
-                      "assignment"
-                    ]
-                  },
-                  {
-                    "label": "Protect document delivery",
-                    "any": [
-                      "recipient",
-                      "external",
-                      "sharing",
-                      "disclosure",
-                      "send",
-                      "sending",
-                      "transfer",
-                      "document"
-                    ]
-                  },
-                  {
-                    "label": "Keep Winnie separate",
-                    "any": [
-                      "winnie"
-                    ]
-                  },
-                  {
-                    "label": "Keep payment separate",
-                    "any": [
-                      "payment",
-                      "paid",
-                      "fee",
-                      "settled"
-                    ]
-                  },
-                  {
-                    "label": "State the evidence limit",
-                    "any": [
-                      "unknown",
-                      "unresolved",
-                      "not established",
-                      "not proved",
-                      "does not prove",
-                      "no ledger",
-                      "no payment record",
-                      "uncertain",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -2933,56 +2107,7 @@
               "prompt": "Look through Mandy’s feed, including the older posts. What feels out of place in the newest post? Describe a change in its message and in its tone.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Compare the content",
-                    "any": [
-                      "wi-fi",
-                      "wifi",
-                      "internet",
-                      "policy",
-                      "support",
-                      "oppose",
-                      "opposition",
-                      "position",
-                      "withdraws",
-                      "reversal",
-                      "reverses",
-                      "reversed"
-                    ]
-                  },
-                  {
-                    "label": "Compare the wording or tone",
-                    "any": [
-                      "tone",
-                      "rude",
-                      "harsh",
-                      "insult",
-                      "insults",
-                      "insulting",
-                      "disrespectful",
-                      "respectful",
-                      "respect",
-                      "dismissive",
-                      "dismisses",
-                      "hostile",
-                      "aggressive",
-                      "unkind",
-                      "blames",
-                      "blaming",
-                      "helpful",
-                      "polite",
-                      "different language",
-                      "talks down",
-                      "disparages",
-                      "belittles",
-                      "welcoming",
-                      "courteous"
-                    ]
-                  }
-                ],
-                "minConcepts": 2
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -3340,62 +2465,7 @@
               "prompt": "Compare the speech and whiteboard photographs with their neutral visible-text transcriptions and official announcements. Identify a detail exposed by each image, explain the timing issue, and state what these sources alone cannot establish about intent or later use.",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Read the speech content",
-                    "any": [
-                      "wi-fi",
-                      "wifi",
-                      "public internet",
-                      "wireless access",
-                      "wireless internet"
-                    ]
-                  },
-                  {
-                    "label": "Read the board content",
-                    "any": [
-                      "library",
-                      "help desks",
-                      "12 october",
-                      "12 oct"
-                    ]
-                  },
-                  {
-                    "label": "Compare the public timing",
-                    "any": [
-                      "before",
-                      "earlier",
-                      "unannounced",
-                      "not for release"
-                    ]
-                  },
-                  {
-                    "label": "Bound attribution or use",
-                    "any": [
-                      "not prove",
-                      "does not prove",
-                      "cannot prove",
-                      "not establish",
-                      "does not establish",
-                      "unknown",
-                      "unconfirmed",
-                      "no evidence",
-                      "not shown",
-                      "not deliberate",
-                      "do not establish",
-                      "cannot establish",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "can’t prove",
-                      "doesn’t establish",
-                      "don’t establish",
-                      "can’t establish"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -3709,44 +2779,7 @@
               "prompt": "Use the supplied application activity and coverage notes to write an interim finding. Describe the document-to-post sequence, then state what the export and account fields do not yet establish.",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Describe the recorded sequence",
-                    "any": [
-                      "edit",
-                      "edited",
-                      "version 4",
-                      "draft",
-                      "schedule",
-                      "scheduled",
-                      "publish"
-                    ]
-                  },
-                  {
-                    "label": "State a delivery limit",
-                    "any": [
-                      "recipient",
-                      "receipt",
-                      "external delivery",
-                      "exfiltration",
-                      "destination",
-                      "outside delivery"
-                    ]
-                  },
-                  {
-                    "label": "State an identity limit",
-                    "any": [
-                      "operator",
-                      "person",
-                      "human",
-                      "custodian",
-                      "identity",
-                      "who"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -3996,41 +3029,7 @@
               "prompt": "Filter SupportGrants for ticket_id == \"SUP-417\". Compare the grant’s valid_to and capabilities with the approval you just read. Describe one time mismatch and one capability mismatch. Optional free query layout: after your filter, add | project grant_id, ticket_id, valid_to, capabilities to keep the comparison fields together.",
               "type": "short",
               "validation": {
-                "minWords": 8,
-                "concepts": [
-                  {
-                    "label": "Compare the end times",
-                    "any": [
-                      "next day",
-                      "following day",
-                      "23 october",
-                      "23 oct",
-                      "2026-10-23",
-                      "12:15"
-                    ]
-                  },
-                  {
-                    "label": "Compare the capabilities",
-                    "any": [
-                      "filetransfer",
-                      "file transfer",
-                      "copy files",
-                      "copying files"
-                    ]
-                  },
-                  {
-                    "label": "Refer to the approval boundary",
-                    "any": [
-                      "approved",
-                      "approval",
-                      "authorized",
-                      "authorised",
-                      "scope",
-                      "allowed"
-                    ]
-                  }
-                ],
-                "minConcepts": 3
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4155,40 +3154,7 @@
               "prompt": "Filter EndpointEvents for operation == \"ApplicationSessionLinked\". Explain how this row connects the remote session and the campaign session, then reconcile its time with the earlier 11:44 gateway observation. Optional free query layout: after your filter, add | project record_id, timestamp, device_id, support_session_id, application_session_id, request_id to keep the comparison fields together.",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Use the remote-session link",
-                    "any": [
-                      "rs-202"
-                    ]
-                  },
-                  {
-                    "label": "Use the application-session link",
-                    "any": [
-                      "cs-072"
-                    ]
-                  },
-                  {
-                    "label": "Interpret the two observation sources",
-                    "any": [
-                      "11:43",
-                      "issued",
-                      "issuance",
-                      "linked"
-                    ]
-                  },
-                  {
-                    "label": "Explain the later observation",
-                    "any": [
-                      "11:44",
-                      "gateway",
-                      "later observation",
-                      "first observation"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4265,47 +3231,7 @@
               "prompt": "The outreach transfer is TF-902. Query EndpointEvents for request_id == \"TF-902\". Compare the starting event and receiving event. What makes the receiving event useful corroboration, and what content details should agree with the transfer manifest?",
               "type": "short",
               "validation": {
-                "minWords": 18,
-                "concepts": [
-                  {
-                    "label": "Identify receiving evidence",
-                    "any": [
-                      "ep-011",
-                      "filereceived",
-                      "file received",
-                      "receiving endpoint",
-                      "receiver",
-                      "receipt"
-                    ]
-                  },
-                  {
-                    "label": "Identify destination or independent source",
-                    "any": [
-                      "hf-lap-07",
-                      "high five",
-                      "provider",
-                      "independent"
-                    ]
-                  },
-                  {
-                    "label": "Compare content identity",
-                    "any": [
-                      "hash",
-                      "sha-256",
-                      "sha256"
-                    ]
-                  },
-                  {
-                    "label": "Compare content length",
-                    "any": [
-                      "bytes",
-                      "byte count",
-                      "length",
-                      "655"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4431,62 +3357,7 @@
               "prompt": "Compare PM-413 and PM-414 in PaigeMessages with the preserved disclosure copy and approved-release note. Explain the message-to-forward link, what information it carries and why the evidence does not show a password or file attachment being sent.",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Name the original message",
-                    "any": [
-                      "pm-413"
-                    ]
-                  },
-                  {
-                    "label": "Name the forward",
-                    "any": [
-                      "pm-414"
-                    ]
-                  },
-                  {
-                    "label": "Identify the information",
-                    "any": [
-                      "neighborhood",
-                      "neighbourhood",
-                      "help hours",
-                      "bring a question",
-                      "26 october"
-                    ]
-                  },
-                  {
-                    "label": "Identify text sharing",
-                    "any": [
-                      "text",
-                      "preview",
-                      "passage",
-                      "wording",
-                      "message"
-                    ]
-                  },
-                  {
-                    "label": "Keep the payload bounded",
-                    "any": [
-                      "no password",
-                      "not a password",
-                      "no attachment",
-                      "not a file",
-                      "not an attachment",
-                      "not evidence of a file",
-                      "not proof of a file",
-                      "does not show a password",
-                      "neither credentials nor",
-                      "no credentials",
-                      "no attached document",
-                      "without credentials or attachments",
-                      "do not show a password",
-                      "doesn’t show a password",
-                      "don’t show a password"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4548,70 +3419,7 @@
               "prompt": "Order DisclosureUseEvents by timestamp and inspect the preserved response draft. How do the source reference, matching wording and publication order corroborate a use of the forwarded preview? State a limit on extending this finding to every public post or the later intrusion.",
               "type": "short",
               "validation": {
-                "minWords": 24,
-                "concepts": [
-                  {
-                    "label": "Connect the source",
-                    "any": [
-                      "pm-414",
-                      "source note",
-                      "source reference"
-                    ]
-                  },
-                  {
-                    "label": "Compare preserved wording",
-                    "any": [
-                      "caption",
-                      "bring a question",
-                      "wording",
-                      "quote",
-                      "quoted",
-                      "same phrase"
-                    ]
-                  },
-                  {
-                    "label": "Use independent records",
-                    "any": [
-                      "du-401",
-                      "du-402",
-                      "intake",
-                      "publisher",
-                      "published",
-                      "publication"
-                    ]
-                  },
-                  {
-                    "label": "Compare time order",
-                    "any": [
-                      "before",
-                      "earlier",
-                      "20 october",
-                      "21 october"
-                    ]
-                  },
-                  {
-                    "label": "Keep the finding bounded",
-                    "any": [
-                      "one preview",
-                      "this preview",
-                      "not every",
-                      "not all",
-                      "does not prove",
-                      "not prove",
-                      "no evidence",
-                      "not established",
-                      "not show",
-                      "does not show",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "do not show",
-                      "doesn’t show",
-                      "don’t show"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4692,67 +3500,7 @@
               "prompt": "Read Paige’s reaction and final refusal after the stated use becomes clear. Explain what is documented and what response is not shown. Recommend one practical way a young person could protect the relationship and seek help when work or family pressure asks for private information.",
               "type": "short",
               "validation": {
-                "minWords": 22,
-                "concepts": [
-                  {
-                    "label": "Identify the recognition or refusal",
-                    "any": [
-                      "pm-416",
-                      "pm-418",
-                      "refusal",
-                      "refused",
-                      "refuses",
-                      "no more",
-                      "not asking",
-                      "will not ask",
-                      "will not be asking",
-                      "won’t ask",
-                      "no further requests",
-                      "won’t be asking"
-                    ]
-                  },
-                  {
-                    "label": "Keep actual remediation separate",
-                    "any": [
-                      "no warning",
-                      "not shown",
-                      "no record",
-                      "not documented",
-                      "does not show",
-                      "not established",
-                      "do not show",
-                      "doesn’t show",
-                      "don’t show"
-                    ]
-                  },
-                  {
-                    "label": "Recommend support",
-                    "any": [
-                      "trusted adult",
-                      "trusted person",
-                      "ask for help",
-                      "seek help",
-                      "support",
-                      "report pressure",
-                      "tell lemon",
-                      "tell benny"
-                    ]
-                  },
-                  {
-                    "label": "Keep the evidence or set a boundary",
-                    "any": [
-                      "preserve",
-                      "save messages",
-                      "keep messages",
-                      "boundary",
-                      "boundaries",
-                      "permission",
-                      "private information",
-                      "stop sharing"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -4837,70 +3585,7 @@
               "prompt": "Use CoordinationMessages to inspect messages mentioning the policy, sign-in or files. Explain how a retained instruction is corroborated by an action already found in the audits. Name the supported participants and keep a limit on the wider company’s involvement.",
               "type": "short",
               "validation": {
-                "minWords": 22,
-                "concepts": [
-                  {
-                    "label": "Identify Crane",
-                    "any": [
-                      "crane"
-                    ]
-                  },
-                  {
-                    "label": "Identify Dex",
-                    "any": [
-                      "dex"
-                    ]
-                  },
-                  {
-                    "label": "Use a retained instruction",
-                    "any": [
-                      "cm-901",
-                      "cm-902",
-                      "cm-903",
-                      "cm-904",
-                      "cm-905",
-                      "instruction",
-                      "message",
-                      "directed"
-                    ]
-                  },
-                  {
-                    "label": "Use action corroboration",
-                    "any": [
-                      "rs-202",
-                      "doc-303",
-                      "pub-205",
-                      "tf-901",
-                      "tf-902",
-                      "edit",
-                      "transfer",
-                      "scheduled",
-                      "receipt"
-                    ]
-                  },
-                  {
-                    "label": "Keep attribution bounded",
-                    "any": [
-                      "winnie",
-                      "opponent",
-                      "larry",
-                      "milo",
-                      "paige",
-                      "not everyone",
-                      "not all",
-                      "other staff",
-                      "unproven",
-                      "intent",
-                      "not every",
-                      "cannot implicate",
-                      "do not implicate",
-                      "can’t implicate",
-                      "does not implicate",
-                      "don’t implicate"
-                    ]
-                  }
-                ],
-                "minConcepts": 5
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -4931,74 +3616,7 @@
               "prompt": "Recommend two specific controls: one for the approved support-access boundary and one for the exact content approved for release. Explain what each would stop or reveal, and state one remaining uncertainty in the final attribution.",
               "type": "short",
               "validation": {
-                "minWords": 22,
-                "concepts": [
-                  {
-                    "label": "Address support access",
-                    "any": [
-                      "expire",
-                      "expiry",
-                      "revoke",
-                      "revocation",
-                      "time limit",
-                      "time-limit",
-                      "least privilege",
-                      "file transfer",
-                      "support",
-                      "remote"
-                    ]
-                  },
-                  {
-                    "label": "Address content approval",
-                    "any": [
-                      "approval",
-                      "approved version",
-                      "review",
-                      "publishing",
-                      "publish",
-                      "version"
-                    ]
-                  },
-                  {
-                    "label": "Explain effect",
-                    "any": [
-                      "prevent",
-                      "stop",
-                      "block",
-                      "detect",
-                      "alert",
-                      "reduce",
-                      "limit",
-                      "reveal",
-                      "check",
-                      "ensure",
-                      "preventing",
-                      "blocking",
-                      "detecting",
-                      "alerting",
-                      "reducing",
-                      "limiting"
-                    ]
-                  },
-                  {
-                    "label": "Retain uncertainty",
-                    "any": [
-                      "uncertain",
-                      "unknown",
-                      "unproven",
-                      "not established",
-                      "intent",
-                      "other staff",
-                      "winnie",
-                      "opponent",
-                      "paige",
-                      "larry",
-                      "milo",
-                      "physical editor"
-                    ]
-                  }
-                ],
-                "minConcepts": 4
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",
@@ -5225,91 +3843,7 @@
               "prompt": "Read THREAD-LC-2024 and the identity/application notes. Connect the commissioning mailbox to Leon using the public contact archive and private provenance. Then explain Crane’s stated benefits, the exchange’s order relative to hiring, and what the fee discussion does not establish.",
               "type": "short",
               "validation": {
-                "minWords": 30,
-                "concepts": [
-                  {
-                    "label": "Use public identity context",
-                    "any": [
-                      "published",
-                      "public contact",
-                      "contact archive",
-                      "leontusk.example",
-                      "candidate address"
-                    ]
-                  },
-                  {
-                    "label": "Use private provenance",
-                    "any": [
-                      "provider",
-                      "authenticated",
-                      "custodian",
-                      "matched copies",
-                      "matchedcopies"
-                    ]
-                  },
-                  {
-                    "label": "Identify the financial motive",
-                    "any": [
-                      "paid",
-                      "money",
-                      "fee",
-                      "compensation"
-                    ]
-                  },
-                  {
-                    "label": "Identify the influence motive",
-                    "any": [
-                      "influence",
-                      "voice",
-                      "planning"
-                    ]
-                  },
-                  {
-                    "label": "Use the pre-hiring sequence",
-                    "any": [
-                      "14 october",
-                      "14 oct",
-                      "2024-10-14",
-                      "18 october",
-                      "18 oct",
-                      "2024-10-18",
-                      "before application",
-                      "before hiring",
-                      "not applied",
-                      "before he applied",
-                      "before applying",
-                      "prior to application",
-                      "pre-hiring"
-                    ]
-                  },
-                  {
-                    "label": "Keep payment bounded",
-                    "any": [
-                      "no ledger",
-                      "no payment record",
-                      "no payment ledger",
-                      "not paid",
-                      "not establish payment",
-                      "not establish settlement",
-                      "not show payment",
-                      "unproven",
-                      "unknown",
-                      "unresolved",
-                      "not proven",
-                      "does not prove",
-                      "does not establish actual payment",
-                      "do not establish actual payment",
-                      "no record proves",
-                      "no evidence of payment",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "doesn’t establish actual payment",
-                      "don’t establish actual payment"
-                    ]
-                  }
-                ],
-                "minConcepts": 6
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -5524,65 +4058,7 @@
               "prompt": "Use DocumentExchanges to find completed DOC-OUTREACH-02 deliveries, then compare DocumentReceipts and the preserved plan. Explain the Dex-to-Crane and Crane-to-Leon relay using exchange/receipt pairs and matching content identity. Keep the denied attempt separate.",
               "type": "short",
               "validation": {
-                "minWords": 28,
-                "concepts": [
-                  {
-                    "label": "Identify Dex-to-Crane exchange",
-                    "any": [
-                      "dx-303"
-                    ]
-                  },
-                  {
-                    "label": "Identify its receipt",
-                    "any": [
-                      "rec-303"
-                    ]
-                  },
-                  {
-                    "label": "Identify Crane-to-Leon exchange",
-                    "any": [
-                      "dx-304"
-                    ]
-                  },
-                  {
-                    "label": "Identify its receipt",
-                    "any": [
-                      "rec-304"
-                    ]
-                  },
-                  {
-                    "label": "Compare the content",
-                    "any": [
-                      "hash",
-                      "sha256",
-                      "sha-256",
-                      "655",
-                      "bytes",
-                      "version"
-                    ]
-                  },
-                  {
-                    "label": "Separate the failed attempt",
-                    "any": [
-                      "denied",
-                      "dx-306",
-                      "zero",
-                      "0 bytes",
-                      "not completed"
-                    ]
-                  }
-                ],
-                "minConcepts": 6,
-                "recordPairs": [
-                  {
-                    "record": "DX-303",
-                    "receipt": "REC-303"
-                  },
-                  {
-                    "record": "DX-304",
-                    "receipt": "REC-304"
-                  }
-                ]
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "query",
@@ -5654,91 +4130,7 @@
               "prompt": "Update the final assessment with Leon, Crane and Dex’s supported roles, naming an instruction-to-action link. Recommend a control on sensitive assignments or external document sharing. Preserve the limits on Winnie’s later knowledge and whether the fee was actually paid.",
               "type": "short",
               "validation": {
-                "minWords": 32,
-                "concepts": [
-                  {
-                    "label": "Identify Leon",
-                    "any": [
-                      "leon"
-                    ]
-                  },
-                  {
-                    "label": "Identify Crane",
-                    "any": [
-                      "crane"
-                    ]
-                  },
-                  {
-                    "label": "Identify Dex",
-                    "any": [
-                      "dex"
-                    ]
-                  },
-                  {
-                    "label": "Connect independent evidence",
-                    "any": [
-                      "instruction",
-                      "brief",
-                      "message",
-                      "receipt",
-                      "exchange",
-                      "doc-303",
-                      "pub-205",
-                      "dx-304"
-                    ]
-                  },
-                  {
-                    "label": "Specify a control",
-                    "any": [
-                      "verify",
-                      "verification",
-                      "approval",
-                      "recipient",
-                      "restrict",
-                      "alert",
-                      "block",
-                      "review",
-                      "allowlist"
-                    ]
-                  },
-                  {
-                    "label": "Keep Winnie separate",
-                    "any": [
-                      "winnie"
-                    ]
-                  },
-                  {
-                    "label": "Keep payment separate",
-                    "any": [
-                      "payment",
-                      "paid",
-                      "fee",
-                      "settled"
-                    ]
-                  },
-                  {
-                    "label": "State an unresolved limit",
-                    "any": [
-                      "unknown",
-                      "unresolved",
-                      "unproven",
-                      "not established",
-                      "does not prove",
-                      "no ledger",
-                      "no payment record",
-                      "do not establish",
-                      "does not establish",
-                      "no record proves",
-                      "no evidence of payment",
-                      "do not prove",
-                      "doesn’t prove",
-                      "don’t prove",
-                      "don’t establish",
-                      "doesn’t establish"
-                    ]
-                  }
-                ],
-                "minConcepts": 8
+                "responseRequired": true
               },
               "workspace": {
                 "mode": "browser",

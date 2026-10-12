@@ -146,7 +146,7 @@
   }
   function progress() {
     const track = current().track, list = C.questions(A, track.id), complete = C.frontier(A, state, track.id);
-    document.getElementById('progress-status').textContent = `${track.label} · ${complete}/${list.length} checked · ${C.score(A, state, track.id)}/${list.length * A.scoring.pointsPerQuestion} points`;
+    document.getElementById('progress-status').textContent = `${track.label} · ${complete}/${list.length} completed · ${C.score(A, state, track.id)}/${list.length * A.scoring.pointsPerQuestion} points`;
     document.getElementById('finding-count').textContent = state.findings.filter(f => C.locate(A, f.questionId)?.track.id === track.id).length;
   }
   function go(id) {
@@ -178,14 +178,14 @@
     sectionPicker.value = section.id; sectionPicker.addEventListener('change', () => go(track.sections.find(s => s.id === sectionPicker.value).questions[0].id));
     const within = section.questions.findIndex(item => item.id === q.id);
     questionPanel.replaceChildren(p('Your investigation', 'eyebrow'), sectionPicker, node('div', { class: 'question-progress' }, [node('progress', { max: list.length, value: C.frontier(A, state, track.id), 'aria-label': 'Completed questions' }), node('p', {}, [node('span', { text: `Question ${within + 1} of ${section.questions.length}` }), node('span', { text: `${Math.max(0, A.scoring.pointsPerQuestion - r.hints.length * A.scoring.hintCost)} points available` })])]), node('h1', { text: q.title }), p(q.prompt, 'question-prompt'));
-    if (index === 0 && !ownFindings(track.id).length) questionPanel.append(p('Checked responses about dated events build your attack timeline automatically. Review and improve those descriptions in the report. Use “Add a finding to your report” for other evidence you want to keep.', 'report-guidance'));
-    if (q.timelineEvents?.length) questionPanel.append(p('Checking this response adds the relevant dated event to your attack timeline using your response. You can improve the description in the report.', 'timeline-guidance'));
+    if (index === 0 && !ownFindings(track.id).length) questionPanel.append(p('Submitted responses about dated events build your attack timeline automatically. Review and improve those descriptions in the report. Use “Add a finding to your report” for other evidence you want to keep.', 'report-guidance'));
+    if (q.timelineEvents?.length) questionPanel.append(p('Submitting this response adds the relevant dated event to your attack timeline using your response. You can improve the description in the report.', 'timeline-guidance'));
     if (bannerMessage) { questionPanel.append(p(bannerMessage, 'success-callout')); bannerMessage = ''; }
     const form = node('form', { class: 'answer-form' });
     const feedback = node('p', { class: 'feedback', role: 'status', 'aria-live': 'polite' });
     const answerChanged = value => {
       C.setAnswer(A, state, q.id, value); save();
-      feedback.textContent = C.isComplete(A, state, q.id) ? 'This response is still checked.' : r.submittedAnswer !== null ? 'This answer changed. Check it again to reopen later questions. Your later answers and findings are retained.' : 'Submit to check this response.';
+      feedback.textContent = C.isComplete(A, state, q.id) ? 'This response is submitted.' : r.submittedAnswer !== null ? 'This answer changed. Submit it again to reopen later questions. Your later answers and findings are retained.' : 'Submit your response to continue.';
       progress(); refreshLocks();
     };
     if (q.type === 'choice') {
@@ -195,21 +195,22 @@
     } else {
       const input = node(q.type === 'fill' ? 'input' : 'textarea', { type: q.type === 'fill' ? 'text' : null, rows: q.type === 'fill' ? null : '5', maxlength: '12000', autocomplete: 'off', spellcheck: 'true', 'aria-label': q.type === 'fill' ? 'Answer' : 'Your explanation' });
       input.value = r.answer; input.addEventListener('input', () => answerChanged(input.value));
-      form.append(field(q.type === 'fill' ? 'Fill in the detail' : 'Explain what you found', input, q.type === 'short' ? 'Write a complete explanation. The tool checks key ideas; your teacher reviews the reasoning.' : 'Capitalization and spacing do not matter.'));
+      form.append(field(q.type === 'fill' ? 'Fill in the detail' : 'Explain what you found', input, q.type === 'short' ? 'Explain in your own words. Submit your response to continue; there are no required phrases or minimum word count. Your teacher reviews the reasoning.' : 'Include the requested detail. Capitalization and spacing do not matter; extra explanation is welcome.'));
     }
-    const submitButton = node('button', { type: 'submit', class: 'submit-answer', text: index === list.length - 1 ? 'Check response & review report' : 'Check response & continue' });
+    const submitButton = node('button', { type: 'submit', class: 'submit-answer', text: index === list.length - 1 ? 'Submit response & review report' : 'Submit response & continue' });
     form.append(feedback, submitButton);
     form.addEventListener('submit', event => {
       event.preventDefault(); const checked = C.validateAnswer(q, C.response(state, q.id).answer);
       feedback.className = 'feedback' + (checked.ok ? '' : ' error'); feedback.textContent = checked.message;
       if (!checked.ok) { announce(checked.message); return; }
-      if (captureSummary?.value.trim() && !saveCapture()) { feedback.className = 'feedback error'; feedback.textContent = 'Your answer is ready. Fix the highlighted finding source below, then check the response again.'; refreshLocks(); progress(); return; }
+      let captureFeedback = '';
+      if (captureSummary?.value.trim() && !saveCapture()) captureFeedback = ' Your additional finding is saved as a draft with this question. You can return to finish its source details.';
       const submitted = C.submit(A, state, q.id);
       if (!submitted.ok) { feedback.className = 'feedback error'; feedback.textContent = submitted.message; announce(submitted.message); return; }
       const timelineFeedback = submitted.timelineAdded ? ` ${submitted.timelineAdded} dated ${submitted.timelineAdded === 1 ? 'event added' : 'events added'} to your attack timeline.` : submitted.timelineUpdated ? ' Your attack timeline entry has been updated; report edits are preserved.' : '';
       if (submitted.timelineAdded || submitted.timelineUpdated) reportSection = 'timeline';
-      save(); announce(checked.message + timelineFeedback); bannerMessage = checked.message + timelineFeedback;
-      if (submitted.nextId) go(submitted.nextId); else { progress(); refreshLocks(); mode = 'report'; reportSection = 'timeline'; renderWorkspace(); feedback.textContent = ownFindings().length ? 'Questions complete. Review your timeline descriptions, selected findings and section notes, then export them for your presentation.' : 'Questions complete. There are no saved findings yet. Select useful evidence for your report before preparing your presentation.'; announce(feedback.textContent); }
+      save(); announce(checked.message + timelineFeedback + captureFeedback); bannerMessage = checked.message + timelineFeedback + captureFeedback;
+      if (submitted.nextId) go(submitted.nextId); else { progress(); refreshLocks(); mode = 'report'; reportSection = 'timeline'; renderWorkspace(); feedback.textContent = (ownFindings().length ? 'Questions complete. Review your timeline descriptions, selected findings and section notes, then export them for your presentation.' : 'Questions complete. There are no saved findings yet. Select useful evidence for your report before preparing your presentation.') + captureFeedback; announce(feedback.textContent); }
     });
     questionPanel.append(form);
     const hints = node('section', { class: 'hint-box', 'aria-label': 'Progressive hints' });
@@ -241,7 +242,7 @@
     captureSummary.value = draft.summary; captureTime.value = draft.timestamp; captureEvidence.value = draft.evidenceText;
     for (const control of [captureSummary, captureTime, captureEvidence, captureSection]) control.addEventListener('input', saveCaptureDraft);
     captureStatus = node('p', { class: 'feedback', role: 'status', tabindex: '-1' });
-    const detail = node('details', { class: 'report-capture' }, [node('summary', { text: 'Add a finding to your report' }), p(q.report?.prompt || 'Keep the evidence you will want in your final presentation.', 'helper'), p(q.timelineEvents?.length ? 'This response already creates the dated timeline entry when checked. Use this space for an additional finding, such as an attacker profile detail or mitigation.' : 'Choose useful evidence and explain it here. Saving an additional finding is separate from checking your answer.', 'helper'), field('Report section', captureSection), field('Finding', captureSummary), field('Event time (for timeline entries)', captureTime), field('Sources', captureEvidence, 'Use “Use this source” in the right pane, or enter a record ID.'), button('Save finding', saveCapture), captureStatus]);
+    const detail = node('details', { class: 'report-capture' }, [node('summary', { text: 'Add a finding to your report' }), p(q.report?.prompt || 'Keep the evidence you will want in your final presentation.', 'helper'), p(q.timelineEvents?.length ? 'This response creates the dated timeline entry when submitted. Use this space for an additional finding, such as an attacker profile detail or mitigation.' : 'Choose useful evidence and explain it here. Saving an additional finding is separate from submitting your answer.', 'helper'), field('Report section', captureSection), field('Finding', captureSummary), field('Event time (for timeline entries)', captureTime), field('Sources', captureEvidence, 'Use “Use this source” in the right pane, or enter a record ID.'), button('Save finding', saveCapture), captureStatus]);
     return detail;
   }
   function saveCaptureDraft() {
@@ -442,12 +443,12 @@
       timestamp.addEventListener('input', () => { f.timestamp = timestamp.value; save(); });
       const group = node('select', { 'aria-label': 'Move finding to report section' }, C.SECTIONS.map(id => node('option', { value: id, text: C.labels[id] }))); group.value = f.section;
       group.addEventListener('change', () => { f.section = group.value; save(); renderWorkspace(); });
-      const card = node('article', { class: 'report-card' + (automatic ? ' timeline-event' : '') }, [node('div', { class: 'card-meta' }, [node('span', { text: f.questionId + (automatic ? ' · From your checked response' : '') }), button('Revisit question', () => go(f.questionId), '', !C.canAccess(A, state, f.questionId))])]);
+      const card = node('article', { class: 'report-card' + (automatic ? ' timeline-event' : '') }, [node('div', { class: 'card-meta' }, [node('span', { text: f.questionId + (automatic ? ' · From your submitted response' : '') }), button('Revisit question', () => go(f.questionId), '', !C.canAccess(A, state, f.questionId))])]);
       if (automatic) card.append(node('time', { class: 'timeline-time', datetime: f.timestamp, text: C.formatTimelineTimestamp(f.timestamp) }), node('h3', { text: f.autoTimeline.title }), p('Time and sources come from the evidence. Improve your response below into the event description you want to present.', 'helper'));
       card.append(field(automatic ? 'Your event description' : 'Finding', summary));
       if (!automatic) card.append(field('Event time', timestamp), field('Report section', group));
       card.append(node('div', { class: 'source-chips' }, f.evidenceIds.map(id => button(id, () => { const source = A.caseData.artifacts.find(a => a.id === id || a.rows?.some(row => row[0] === id)); if (source) sourcePage(source.id, f.questionId); }, '', !C.canAccess(A, state, f.questionId)))));
-      if (automatic && !C.isComplete(A, state, f.questionId)) card.append(p('This entry retains your earlier checked response. Recheck the changed answer, then review the timeline description.', 'helper'));
+      if (automatic && !C.isComplete(A, state, f.questionId)) card.append(p('This entry retains your earlier submitted response. Submit the changed answer, then review the timeline description.', 'helper'));
       if (!C.canAccess(A, state, f.questionId)) card.append(p('Your finding is saved. Recheck the earlier edited answer to reopen this question and its sources.', 'helper'));
       if (!f.evidenceIds.length) card.append(p('Add a source citation before presenting this finding.', 'helper'));
       const citationInput = node('input', { type: 'text', 'aria-label': 'Finding source IDs', maxlength: '3000' }); citationInput.value = f.evidenceIds.join(', ');

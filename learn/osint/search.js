@@ -23,7 +23,7 @@ const CompassSearch=(()=>{
     ])add({title:name,href,site,text,kind:'site',identity:aliases,handles:[],keys:aliases.join(' ')});
 
     for(const [id,p] of Object.entries(profiles)){
-      add({title:p.name+' · Frame',href:'#/profile/'+id,site:'frame.training / '+p.handle,text:p.bio,kind:'profile',identity:[p.name,p.handle],keys:[p.name,p.handle,p.bio].join(' '),handles:[]});
+      add({title:[p.name,p.accountLabel,'Frame'].filter(Boolean).join(' · '),href:'#/profile/'+id,site:'frame.training / '+p.handle,text:p.bio,kind:'profile',identity:[p.name,p.handle],keys:[p.name,p.handle,p.bio,p.accountLabel].filter(Boolean).join(' '),handles:[]});
     }
     for(const [id,p] of Object.entries(world.people)){
       const employer=world.companies[p.company]?.name||'';
@@ -38,7 +38,7 @@ const CompassSearch=(()=>{
       }
     }
     if(region){
-      add({title:'The Capitol · Governor Mandy Tinkerman',href:'#/capitol',site:'capitol.training',text:'Government updates, legislation, public records, staff, and visitor information in Frankfort.',kind:'site',identity:['Capitol','The Capitol','Governor Mandy Tinkerman'],keys:'Frankfort government Mandy Tinkerman Ada Wynn Naomi Keene education policy Hugo Mercer constituent services governor legislation news staff visit'});
+      add({title:'The Capitol · Governor Mandy Schmear',href:'#/capitol',site:'capitol.training',text:'Government updates, legislation, public records, staff, and visitor information in Frankfort.',kind:'site',identity:['Capitol','The Capitol','Governor Mandy Schmear'],keys:'Frankfort government Mandy Schmear Ada Wynn Naomi Keene education policy Hugo Mercer constituent services governor legislation news staff visit'});
       add({title:'Brainstorm · Community conversations',href:'#/brainstorm',site:'brainstorm.training',text:'Residents compare notes on local life, services, schools, and civic questions.',kind:'site',identity:['Brainstorm'],keys:'Brainstorm forum community discussions'});
       add({title:'The Lexington Ledger',href:'#/news',site:'ledger.training',text:'Reporting from Lexington, Frankfort, and Louisville. Politics, education, weather, utilities, transportation, and community life.',kind:'site',identity:['News','News Sites','News Site','Ledger','Lexington Ledger','The Lexington Ledger'],keys:'news sites newspaper Lexington Ledger archive'});
       for(const[id,s]of Object.entries(region.sites)){

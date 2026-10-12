@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s), main=$('#main'), {people,companies,docs}=W
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 const localImages=new Set(WORLD.localImages||['morgan-vale','tessa-brooks','dev-malik']);
-const imagePath=n=>(localImages.has(n)?'assets/':'../osint/assets/')+n+'.jpg';
+const imagePath=n=>WORLD.imageSources?.[n]||(localImages.has(n)?'assets/':'../osint/assets/')+n+'.jpg';
 const picture=(n,alt,cls='')=>`<img class="${cls}" src="${imagePath(n)}" alt="${esc(alt)}" loading="lazy">`;
 const avatar=id=>picture(people[id].image,people[id].name,'avatar');
 function scenePhoto(name,alt,cls='post-photo'){return `<button type="button" class="photo-open" data-photo="${esc(name)}" data-photo-alt="${esc(alt)}" aria-label="Enlarge photo: ${esc(alt)}">${picture(name,alt,cls)}</button>`;}

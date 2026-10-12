@@ -13,7 +13,10 @@ saved responses, query drafts and retained query results, report drafts, and
 evidence findings. The student player remains the source of truth for question
 checks, hint deductions, and sequential completion. An edited earlier answer can
 relock progress while later checked answers remain saved; the detail view keeps
-that distinction visible. Practice points do not assess short-answer quality.
+that distinction visible. Written answers require a nonblank response to submit;
+they are saved for teacher review without keyword or sentence-length gates.
+Factual and choice questions retain simple answer checks. Practice points do not
+assess short-answer quality.
 
 Create teaching groups and use each row's group selector to assign or move a
 login. Groups may span classes or years. Each login belongs to at most one group

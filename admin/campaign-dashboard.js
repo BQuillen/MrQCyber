@@ -78,7 +78,7 @@
     const groupList = el('div', 'td-group-list'); groupArea.append(groupIntro, groupForm, groupList);
     const listInfo = el('p', 'td-list-info'); listInfo.setAttribute('aria-live', 'polite');
     const list = el('div', 'td-table-wrap');
-    const explanation = el('p', 'td-note', 'Progress follows the student’s next required question. Checked responses are practice checks, not a teacher grade. Times show the last confirmed online save, not whether someone is online; unsynced browser work will not appear here.');
+    const explanation = el('p', 'td-note', 'Progress follows the student’s next required question. Written responses are saved for teacher review; completion and practice points do not grade their quality. Times show the last confirmed online save, not whether someone is online; unsynced browser work will not appear here.');
     dashboardBody.append(summary, controls, groupArea, listInfo, list, explanation);
 
     function setOptions(select, entries, chosen) {
@@ -276,7 +276,7 @@
         const content = el('div', 'td-disclosure-body');
         content.append(textBlock(question.prompt, 'td-question-prompt'), el('p', 'td-note', `${question.hintsUsed} hints used${question.retained ? ' · Saved after the current locked question' : ''}`), textBlock(question.answerText || question.answer));
         if (question.query) content.append(el('h5', '', 'Current query draft'), el('pre', 'td-query', question.query));
-        const status = question.status === 'checked' ? 'Checked' : question.status === 'draft' ? 'Draft' : 'No response';
+        const status = question.status === 'checked' ? (question.type === 'short' ? 'Submitted' : 'Checked') : question.status === 'draft' ? 'Draft' : 'No response';
         responses.append(disclosure(`${question.id} · ${question.title} · ${status}`, content));
       }
       const responseCount = detail.questions.filter(question => question.status !== 'empty').length;
