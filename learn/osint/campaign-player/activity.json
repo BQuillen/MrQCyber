@@ -2477,7 +2477,7 @@
             {
               "id": "Y2-07a",
               "title": "Tie a photographed detail to a publication event",
-              "prompt": "Inspect the 20 September folder photograph, then use DisclosurePublicationEvents. Which record_id confirms publication of campaign-benny-2023-speech by Frame?",
+              "prompt": "Open Browser and read Benny’s 20 September 2023 post on Frame. Inspect the photograph showing his folder, then return to KQL. In DisclosurePublicationEvents, which record_id confirms that Frame published campaign-benny-2023-speech?",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -2487,7 +2487,8 @@
               "workspace": {
                 "mode": "query",
                 "tableName": "DisclosurePublicationEvents",
-                "starterQuery": "DisclosurePublicationEvents"
+                "starterQuery": "DisclosurePublicationEvents",
+                "pageId": "benny-feed"
               },
               "hints": [
                 "A photograph’s visible text and the independently supplied public-post audit answer different questions.",

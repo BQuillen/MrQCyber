@@ -79,7 +79,7 @@
   }
   const staffLine = name => body('STAFF-01').find(text => text.startsWith(name + ' — '));
   if (get('FRAME-02')) {
-    addProfile('campaign-benny', 'Benny Schmear', [{ artifactId: 'STAFF-01', bio: staffLine('Benny Schmear') }, { artifactId: 'FRAME-02', image: images('FRAME-02')[0] }], withHistory(bennyPosts.reverse(), 'campaign-benny'));
+    addProfile('campaign-benny', 'Benny Schmear', [{ artifactId: 'STAFF-01', bio: 'Learning about marketing. Behind the scenes at Mum’s campaign, and everything in between.' }, { artifactId: 'FRAME-02', image: images('FRAME-02')[0] }], withHistory(bennyPosts.reverse(), 'campaign-benny'));
     artifactRoutes['FRAME-02'] = pageRoutes['benny-feed'] = '/profile/campaign-benny';
   }
   if (get('STAFF-01')) {
@@ -104,6 +104,17 @@
   const postYear = id => String(posts[id]?.timestamp || posts[id]?.date || '').match(/\b(?:19|20)\d{2}\b/)?.[0];
   const profilePostIds = (id, year = '') => (profiles[id]?.posts || []).filter(post => isAllowed(posts[post].artifactId) && (!year || postYear(post) === String(year)));
   const profileYears = id => unique(profilePostIds(id).map(postYear).filter(Boolean)).sort().reverse();
+  // A person's profile links are deliberate public destinations, rather than
+  // an index of every record supporting their posts. Evidence routes stay intact.
+  const profileLinks = {
+    'campaign-mandy': [['Campaign team', 'STAFF-01']],
+    'campaign-benny': [['Mandy’s campaign', 'PROFILE-01']],
+    'campaign-crane': [['Professional profile', 'LINKEDUP-01'], ['High Five Consultancy', 'HIGHFIVE-01']],
+    'campaign-lemon': [['Campaign team', 'STAFF-01']],
+    'campaign-barry': [['Event coverage', 'NEWS-01']],
+    'campaign-leon': [['Campaign contact', 'LEON-CONTACT-03']],
+    ...Object.fromEntries(['winnie', 'dex', 'milo', 'paige', 'larry'].map(name => ['campaign-' + name, [['High Five Consultancy', 'HIGHFIVE-01']]]))
+  };
   function applyScope(artifactIds) {
     allowed = artifactIds == null ? null : new Set(artifactIds);
     if (typeof PROFILES === 'undefined' || typeof POSTS === 'undefined') return;
@@ -118,13 +129,12 @@
       const postIds = profile.posts.filter(postId => POSTS[postId]);
       const links = [];
       if (id === 'campaign-mandy' && PROFILES.mandy) links.push(['Community account', '/profile/mandy']);
-      for (const evidenceId of evidenceIds) {
-        for (const target of [evidenceId, ...(get(evidenceId)?.links || []).map(link => link.artifactId)]) {
-          const route = routeFor(target); if (!route || route === '/profile/' + id || !isAllowed(target) || !publicArtifact(target) || links.some(link => link[1] === route)) continue;
-          links.push([get(target)?.title || target, route]);
-        }
+      for (const [label, target] of profileLinks[id] || []) {
+        const route = routeFor(target);
+        if (!route || route === '/profile/' + id || !isAllowed(target) || !publicArtifact(target)) continue;
+        links.push([label, route]);
       }
-      PROFILES[id] = { name: profile.name, handle: profile.handle, accountLabel: id === 'campaign-mandy' ? 'Campaign account' : '', bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, profilePhotos, stats: postIds.length ? `${postIds.length} preserved public posts` : 'Public profile · no posts in this collection', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
+      PROFILES[id] = { name: profile.name, handle: profile.handle, accountLabel: id === 'campaign-mandy' ? 'Campaign account' : '', bio: parts.map(part => part.bio).filter(Boolean).join(' '), profileNotes: parts.flatMap(part => part.notes || []), image: image ? assetURL(image.src) : null, imageAlt: image?.alt, profilePhotos, stats: postIds.length ? `${postIds.length} posts` : 'No posts yet', posts: postIds, links, featured: profile.featured, campaign: true, artifactIds: evidenceIds };
     }
   }
   const searchEntries = Object.entries(profiles).map(([id, profile]) => {
