@@ -218,7 +218,7 @@
             {
               "id": "Y1-04a",
               "title": "Look beyond the caption",
-              "prompt": "Open Benny’s 20 September 2023 folder photograph at full size, or use its visible-text transcription. What campaign position does the sheet reveal, and how do its release marking and the official archive show why posting it then mattered?",
+              "prompt": "Open Benny’s 20 September 2023 folder photograph at full size, or use its visible-text transcription. What campaign position does the sheet reveal, and how could his post impact the campaign?",
               "type": "short",
               "validation": {
                 "responseRequired": true
@@ -229,12 +229,12 @@
               },
               "hints": [
                 "The caption describes carrying a folder. Inspect the writing on the sheet as well as the caption.",
-                "Compare the photograph’s posting date with the sheet’s marking and the official announcement archive.",
-                "For independent authorization, open Records → Publication and authorization timing. Distinguish the approved release boundary from the archive’s actual publication date, without assuming a deliberate leak."
+                "Read the campaign position on the sheet. What could people learn from the photograph before the campaign was ready to announce it?",
+                "Explain one possible effect of sharing an unfinished policy announcement, such as confusing residents, giving opponents advance notice, or disrupting the campaign’s plans. You do not need to prove that Benny intended harm."
               ],
               "report": {
                 "section": "timeline",
-                "prompt": "Record the visible information, its public exposure time and the separate authorized announcement time.",
+                "prompt": "Record the campaign position visible in the photograph and explain one way sharing it could affect the campaign.",
                 "suggestedEvidenceIds": [
                   "BENNY-SPEECH-04",
                   "PUBLIC-RELEASES-04",
@@ -563,7 +563,7 @@
             {
               "id": "Y1-06",
               "title": "Count High Five event registrations",
-              "prompt": "A table is a list of records. Replace the five-row preview with a filter for affiliation == \"High Five Consultancy\", then add | count. How many registrations use that affiliation? Enter a number. Here, affiliation is the event registration category; it is not a complete list of everyone’s employer.",
+              "prompt": "A table is a list of records. Replace the five-row preview with a filter for affiliation == \"High Five Consultancy\". How many registrations use that affiliation? Enter a number. Here, 'affiliation' is the event registration category; it is not a complete list of everyone’s employer.",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -2336,7 +2336,7 @@
             {
               "id": "Y2-04",
               "title": "Count matching registrations",
-              "prompt": "Use EventRegistrations to count rows where affiliation == \"High Five Consultancy\". Remove take 5 before applying your filter and count. How many match?",
+              "prompt": "Use EventRegistrations to count rows where affiliation == \"High Five Consultancy\". Remove take 5 before applying your filter and count. How many entries are returned?",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -2406,7 +2406,7 @@
             {
               "id": "Y2-06",
               "title": "Count addresses, not people",
-              "prompt": "Use NetworkConnections. Run distinct public_ip, then count. How many different public IP addresses appear in these three rows?",
+              "prompt": "Use NetworkConnections. Run distinct public_ip, then count. How many different public IP addresses are returned?",
               "type": "fill",
               "validation": {
                 "accepted": [
