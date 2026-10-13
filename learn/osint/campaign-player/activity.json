@@ -2878,7 +2878,7 @@
             {
               "id": "Y2-12",
               "title": "Write the first technical finding",
-              "prompt": "Use the supplied application activity and coverage notes to write an interim finding. Describe the document-to-post sequence, then state what the export and account fields do not yet establish.",
+              "prompt": "Look at the document activity and publishing records for session CS-072. Describe what happened to the connectivity document and the campaign post in time order. Do these records identify who used the account or who received the exported document?",
               "type": "short",
               "validation": {
                 "responseRequired": true
