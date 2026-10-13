@@ -60,7 +60,8 @@
     if (destination) { location.hash = '#' + destination; return; }
     const localActivity = direct ? { ...activity, pages: [...activity.pages, page] } : activity;
     window.CampaignSources.render(container, { activity: localActivity, pageId: id, assetBase: 'campaign-player/images/', allowedArtifactIds: artifacts.filter(item => available(item.id)).map(item => item.id),
-      onNavigate: pageId => { const route = routeForPage(pageId); if (route && isRouteAvailable(route)) location.hash = '#' + route; }, onCite: cite });
+      onNavigate: pageId => { const route = routeForPage(pageId); if (route && isRouteAvailable(route)) location.hash = '#' + route; },
+      onOpenArtifact: artifactId => { const route = routeForArtifact(artifactId); if (route && available(artifactId) && isRouteAvailable(route)) location.hash = '#' + route; }, onCite: cite });
     const frameRoute = direct && native?.artifactRoutes?.[direct.id];
     if (frameRoute && isRouteAvailable(frameRoute)) {
       const link = document.createElement('a');

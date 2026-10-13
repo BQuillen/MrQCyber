@@ -382,7 +382,7 @@ window.CAMPAIGN_CHAPTER_TWO = {
             },
             {
               "id": "Y1-20",
-              "prompt": "How do the new records connect Paige Bracket with the forum activity under Paige Turner? Cite the time-valid loaner assignment, the endpoint request and the independent forum record. State one remaining limit.",
+              "prompt": "How do the new records connect Paige Bracket with the forum activity under Paige_Turner? Cite the time-valid loaner assignment, the endpoint request and the independent forum record. State one remaining limit.",
               "type": "explanation",
               "evidenceIds": [
                 "LOANER-ISSUE-02",
@@ -1183,15 +1183,15 @@ window.CAMPAIGN_CHAPTER_TWO = {
       "id": "FORUM-01",
       "type": "forum",
       "title": "A long-running discussion about making useful posts",
-      "site": "Community forum",
+      "site": "Threadline · Community forum",
       "body": [
         "Thread ID: THREAD-MARKETING-04. Public discussion excerpts.",
         "12 September 2023, 19:10 UTC · benny_s: I am trying to learn what makes a short post useful. Is it better to explain one thing well or include every detail?",
-        "12 September 2023, 19:22 UTC · Paige Turner: One useful thing is a good start. Posts that sound like an actual person usually keep my attention.",
+        "12 September 2023, 19:22 UTC · Paige_Turner: One useful thing is a good start. Posts that sound like an actual person usually keep my attention.",
         "14 September 2023, 18:40 UTC · benny_s: That makes sense. I keep writing captions that sound like a brochure.",
-        "3 November 2024, 17:18 UTC · Paige Turner: How is the campaign content going? Do you mostly plan posts or capture things as they happen?",
+        "3 November 2024, 17:18 UTC · Paige_Turner: How is the campaign content going? Do you mostly plan posts or capture things as they happen?",
         "3 November 2024, 17:30 UTC · benny_s: Mostly little behind-the-scenes moments. There is a new scheduler joining the team, so maybe the calendar will finally make sense to me.",
-        "Public profile note: benny_s identifies himself as Benny Schmear. Paige Turner’s public profile does not display a legal name or employer. These excerpts do not include private messages."
+        "Public profile note: benny_s identifies himself as Benny Schmear. Paige_Turner’s public profile does not display a legal name or employer. These excerpts do not include private messages."
       ],
       "author": "Community members",
       "links": [
@@ -1209,11 +1209,11 @@ window.CAMPAIGN_CHAPTER_TWO = {
       "id": "FORUM-02",
       "type": "forum",
       "title": "How much background belongs in a behind-the-scenes post?",
-      "site": "Community forum",
+      "site": "Threadline · Community forum",
       "body": [
         "Thread ID: THREAD-MARKETING-17. Public thread, 22 October 2026.",
         "18:22 UTC · benny_s: Between sessions at the event, so I have a minute to read the feedback. I am trying to show a real day without posting a wall of announcements.",
-        "18:24 UTC · Paige Turner: The ordinary details help. I would still check the background and tags before posting—sometimes they say more than the caption.",
+        "18:24 UTC · Paige_Turner: The ordinary details help. I would still check the background and tags before posting—sometimes they say more than the caption.",
         "18:26 UTC · casey_draws: I save a draft and look again later. It is easier to notice an address or someone else’s screen the second time.",
         "18:28 UTC · benny_s: Good point. I have definitely posted a picture and only noticed the background afterward.",
         "These visible posts identify forum accounts and posting times. They do not reveal the users’ physical locations, device addresses or legal identities."
@@ -2591,7 +2591,7 @@ window.CAMPAIGN_CHAPTER_TWO = {
           "FE-801",
           "2026-10-22T18:20:00Z",
           "FORUM-PAIGE-7",
-          "Paige Turner",
+          "Paige_Turner",
           "FS-014",
           "not_applicable",
           "LoginSuccess",
@@ -2613,7 +2613,7 @@ window.CAMPAIGN_CHAPTER_TWO = {
           "FE-803",
           "2026-10-22T18:22:10Z",
           "FORUM-PAIGE-7",
-          "Paige Turner",
+          "Paige_Turner",
           "FS-014",
           "THREAD-MARKETING-17",
           "ThreadView",
@@ -2624,7 +2624,7 @@ window.CAMPAIGN_CHAPTER_TWO = {
           "FE-804",
           "2026-10-22T18:24:00Z",
           "FORUM-PAIGE-7",
-          "Paige Turner",
+          "Paige_Turner",
           "FS-014",
           "THREAD-MARKETING-17",
           "PostCreated",

@@ -423,7 +423,7 @@
             {
               "id": "Y1-08",
               "title": "Trace the earlier conversations",
-              "prompt": "Read the older marketing conversation and the event-day thread. When do these records first show Benny and “Paige Turner” talking? Do the forum’s public profile notes identify the person behind the name “Paige Turner”?",
+              "prompt": "Read the older marketing conversation and the event-day thread. When do these records first show Benny and “Paige_Turner” talking? Do the forum’s public profile notes identify the person behind the name “Paige_Turner”?",
               "type": "short",
               "validation": {
                 "responseRequired": true
@@ -433,13 +433,13 @@
                 "pageId": "marketing-forum"
               },
               "hints": [
-                "Start with the oldest dated exchange between Benny and “Paige Turner”.",
+                "Start with the oldest dated exchange between Benny and “Paige_Turner”.",
                 "Look for the public profile note after the older messages.",
                 "Give the earliest conversation date shown, then explain whether the profile supplies the person’s real name."
               ],
               "report": {
                 "section": "attacker",
-                "prompt": "Record the earliest conversation date and what the public profile says about the name “Paige Turner”.",
+                "prompt": "Record the earliest conversation date and what the public profile says about the name “Paige_Turner”.",
                 "suggestedEvidenceIds": [
                   "FORUM-01",
                   "FORUM-02"
@@ -1325,7 +1325,7 @@
             {
               "id": "Y1-21",
               "title": "Connect a handle carefully",
-              "prompt": "Read the loaner notes, the forum action and the matching managed-browser request. Follow the device assignment valid at that time. Which person does this chain associate with the “Paige Turner” post? Enter the person’s full name.",
+              "prompt": "Read the loaner notes, the forum action and the matching managed-browser request. Follow the device assignment valid at that time. Which person does this chain associate with the “Paige_Turner” post? Enter the person’s full name.",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -2435,7 +2435,7 @@
             {
               "id": "Y2-07",
               "title": "Test the identity claim",
-              "prompt": "Read the forum conversations. In this first collection, does the shared venue IP establish that the handle “Paige Turner” belongs to Paige Bracket?",
+              "prompt": "Read the forum conversations. In this first collection, does the shared venue IP establish that the handle “Paige_Turner” belongs to Paige Bracket?",
               "type": "choice",
               "validation": {
                 "correctOption": "c"
@@ -2657,7 +2657,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "The public record establishes that Paige Turner is legally Paige Bracket and deliberately recruited Benny in 2023."
+                  "text": "The public record establishes that Paige_Turner is legally Paige Bracket and deliberately recruited Benny in 2023."
                 },
                 {
                   "id": "c",
@@ -3379,7 +3379,7 @@
             {
               "id": "Y2-21",
               "title": "Follow a request across three tables",
-              "prompt": "Find the ForumEvents row where display_name == \"Paige Turner\" and action == \"PostCreated\". Copy its request_id into an EndpointEvents filter. Then look up that device_id in DeviceAssignments and check the assignment time. Who held the device when the post was created? Enter the full name.",
+              "prompt": "Find the ForumEvents row where display_name == \"Paige_Turner\" and action == \"PostCreated\". Copy its request_id into an EndpointEvents filter. Then look up that device_id in DeviceAssignments and check the assignment time. Who held the device when the post was created? Enter the full name.",
               "type": "fill",
               "validation": {
                 "accepted": [
@@ -4335,7 +4335,7 @@
     {
       "id": "marketing-forum",
       "title": "Marketing conversations",
-      "site": "Community forum",
+      "site": "Threadline · Community forum",
       "artifactIds": [
         "FORUM-01",
         "FORUM-02"
@@ -5381,14 +5381,34 @@
         ],
         "images": [
           {
-            "src": "../images/paige-bracket-reference.png",
-            "alt": "Paige Bracket, with dark curly hair, round glasses and a rust cardigan.",
-            "caption": "Paige Bracket · Community relationships"
+            "src": "../images/winnie-mouse-reference.png",
+            "alt": "Portrait of Winnie Mouse.",
+            "caption": "Winnie Mouse · Team leadership"
           },
           {
             "src": "../images/dex-varnish-reference.png",
             "alt": "Dex Varnish, with sandy hair, a short beard and rectangular glasses.",
             "caption": "Dex Varnish · Technical support"
+          },
+          {
+            "src": "../images/milo-bracket-reference.png",
+            "alt": "Portrait of Milo Bracket.",
+            "caption": "Milo Bracket · Research and audience insights"
+          },
+          {
+            "src": "../images/paige-bracket-reference.png",
+            "alt": "Paige Bracket, with dark curly hair, round glasses and a rust cardigan.",
+            "caption": "Paige Bracket · Community relationships"
+          },
+          {
+            "src": "../images/larry-couch-reference.png",
+            "alt": "Portrait of Larry Couch.",
+            "caption": "Larry Couch · Client relationships"
+          },
+          {
+            "src": "../images/crane-gordon-reference.png",
+            "alt": "Portrait of Crane Gordon.",
+            "caption": "Crane Gordon · Scheduling · Assigned to the Mandy Schmear campaign"
           }
         ]
       },
@@ -5667,15 +5687,15 @@
         "id": "FORUM-01",
         "type": "forum",
         "title": "A long-running discussion about making useful posts",
-        "site": "Community forum",
+        "site": "Threadline · Community forum",
         "body": [
           "Thread ID: THREAD-MARKETING-04. Public discussion excerpts.",
           "12 September 2023, 19:10 UTC · benny_s: I am trying to learn what makes a short post useful. Is it better to explain one thing well or include every detail?",
-          "12 September 2023, 19:22 UTC · Paige Turner: One useful thing is a good start. Posts that sound like an actual person usually keep my attention.",
+          "12 September 2023, 19:22 UTC · Paige_Turner: One useful thing is a good start. Posts that sound like an actual person usually keep my attention.",
           "14 September 2023, 18:40 UTC · benny_s: That makes sense. I keep writing captions that sound like a brochure.",
-          "3 November 2024, 17:18 UTC · Paige Turner: How is the campaign content going? Do you mostly plan posts or capture things as they happen?",
+          "3 November 2024, 17:18 UTC · Paige_Turner: How is the campaign content going? Do you mostly plan posts or capture things as they happen?",
           "3 November 2024, 17:30 UTC · benny_s: Mostly little behind-the-scenes moments. There is a new scheduler joining the team, so maybe the calendar will finally make sense to me.",
-          "Public profile note: benny_s identifies himself as Benny Schmear. Paige Turner’s public profile does not display a legal name or employer. These excerpts do not include private messages."
+          "Public profile note: benny_s identifies himself as Benny Schmear. Paige_Turner’s public profile does not display a legal name or employer. These excerpts do not include private messages."
         ],
         "author": "Community members",
         "links": [
@@ -5693,11 +5713,11 @@
         "id": "FORUM-02",
         "type": "forum",
         "title": "How much background belongs in a behind-the-scenes post?",
-        "site": "Community forum",
+        "site": "Threadline · Community forum",
         "body": [
           "Thread ID: THREAD-MARKETING-17. Public thread, 22 October 2026.",
           "18:22 UTC · benny_s: Between sessions at the event, so I have a minute to read the feedback. I am trying to show a real day without posting a wall of announcements.",
-          "18:24 UTC · Paige Turner: The ordinary details help. I would still check the background and tags before posting—sometimes they say more than the caption.",
+          "18:24 UTC · Paige_Turner: The ordinary details help. I would still check the background and tags before posting—sometimes they say more than the caption.",
           "18:26 UTC · casey_draws: I save a draft and look again later. It is easier to notice an address or someone else’s screen the second time.",
           "18:28 UTC · benny_s: Good point. I have definitely posted a picture and only noticed the background afterward.",
           "These visible posts identify forum accounts and posting times. They do not reveal the users’ physical locations, device addresses or legal identities."
@@ -7075,7 +7095,7 @@
             "FE-801",
             "2026-10-22T18:20:00Z",
             "FORUM-PAIGE-7",
-            "Paige Turner",
+            "Paige_Turner",
             "FS-014",
             "not_applicable",
             "LoginSuccess",
@@ -7097,7 +7117,7 @@
             "FE-803",
             "2026-10-22T18:22:10Z",
             "FORUM-PAIGE-7",
-            "Paige Turner",
+            "Paige_Turner",
             "FS-014",
             "THREAD-MARKETING-17",
             "ThreadView",
@@ -7108,7 +7128,7 @@
             "FE-804",
             "2026-10-22T18:24:00Z",
             "FORUM-PAIGE-7",
-            "Paige Turner",
+            "Paige_Turner",
             "FS-014",
             "THREAD-MARKETING-17",
             "PostCreated",
@@ -7450,27 +7470,32 @@
           {
             "src": "../images/winnie-mouse-reference.png",
             "alt": "Portrait of Winnie Mouse.",
-            "caption": "Winnie Mouse · team leadership"
+            "caption": "Winnie Mouse · Team leadership"
           },
           {
             "src": "../images/dex-varnish-reference.png",
-            "alt": "Portrait of Dex Varnish.",
-            "caption": "Dex Varnish · technical support"
+            "alt": "Dex Varnish, with sandy hair, a short beard and rectangular glasses.",
+            "caption": "Dex Varnish · Technical support"
           },
           {
             "src": "../images/milo-bracket-reference.png",
             "alt": "Portrait of Milo Bracket.",
-            "caption": "Milo Bracket · research and audience insights"
+            "caption": "Milo Bracket · Research and audience insights"
           },
           {
             "src": "../images/paige-bracket-reference.png",
-            "alt": "Portrait of Paige Bracket.",
-            "caption": "Paige Bracket · community relationships"
+            "alt": "Paige Bracket, with dark curly hair, round glasses and a rust cardigan.",
+            "caption": "Paige Bracket · Community relationships"
           },
           {
             "src": "../images/larry-couch-reference.png",
             "alt": "Portrait of Larry Couch.",
-            "caption": "Larry Couch · client relationships"
+            "caption": "Larry Couch · Client relationships"
+          },
+          {
+            "src": "../images/crane-gordon-reference.png",
+            "alt": "Portrait of Crane Gordon.",
+            "caption": "Crane Gordon · Scheduling · Assigned to the Mandy Schmear campaign"
           }
         ],
         "links": [
@@ -8435,7 +8460,7 @@
         "visibility": "public",
         "body": [
           "campaign-benny-2023-volunteers · 18 September 2023, 12:00 UTC — Mum is planning community listening sessions, and the office is looking for practical help with welcoming people and collecting feedback. Please contact the office if your group can help.",
-          "Paige Turner · 18 September 2023, 12:18 UTC — My team helps small groups with registration and feedback. Happy to introduce you if extra hands would be useful.",
+          "Paige_Turner · 18 September 2023, 12:18 UTC — My team helps small groups with registration and feedback. Happy to introduce you if extra hands would be useful.",
           "Lemon Smellbottom · 18 September 2023, 12:31 UTC — Thank you. Please send a short proposal to the campaign operations address on our contact page. We will review the scope like any other event supplier."
         ],
         "links": [
@@ -8575,7 +8600,7 @@
         "site": "Provided collection register",
         "visibility": "provided",
         "body": [
-          "COL-FRIEND-04: the forum provider and the participants supplied matching retained copies of the four selected September 2023 direct messages between benny_s and the Paige Turner account. These ordinary early messages are a limited excerpt, not the complete friendship. The preserved first public exchange remains 12 September 2023 in FORUM-01.",
+          "COL-FRIEND-04: the forum provider and the participants supplied matching retained copies of the four selected September 2023 direct messages between benny_s and the Paige_Turner account. These ordinary early messages are a limited excerpt, not the complete friendship. The preserved first public exchange remains 12 September 2023 in FORUM-01.",
           "COL-MSG-04: the forum and High Five workplace providers supplied matching participant copies of the specified October 2026 conversations. record_id values are the collector’s references. Thread membership and account directories associate benny_s with Benny, forum.paige_turner with Paige Bracket, hf.paige with Paige Bracket, hf.milo with Milo Bracket and crane.gordon with Crane Gordon. The historical alias mapping is supplied here as private evidence, not inferred from the early public comment.",
           "COL-INTAKE-04: campaign operations and High Five supplied matching referral/intake records, accepted scope and ordinary supplier correspondence. They identify Paige as the referring contact and describe routine proposal review. An early legitimate job does not establish knowledge of a later scheme.",
           "COL-USE-04: the opponent campaign’s copy desk supplied the received response draft and its intake record; its publisher supplied the publication record. High Five supplied its verified contact register assigning crane.gordon@postbox.example to Crane Gordon, and the sender/receiver provider copies corroborate the draft submission from that mailbox. The Mandy campaign separately supplied the authorized announcement time and actual release record. The retained draft includes Crane’s source note and the exact quoted line from the forwarded message.",
@@ -8828,7 +8853,7 @@
         "site": "Provided campaign and High Five intake copies",
         "visibility": "provided",
         "body": [
-          "INTAKE-04 · 19 September 2023, 09:30 UTC. The campaign received a normal event-support proposal from High Five. Its referring contact was Paige Bracket, who identified her earlier public comment under the display name Paige Turner. Campaign and High Five copies agree on the introduction, scope and referring contact.",
+          "INTAKE-04 · 19 September 2023, 09:30 UTC. The campaign received a normal event-support proposal from High Five. Its referring contact was Paige Bracket, who identified her earlier public comment under the display name Paige_Turner. Campaign and High Five copies agree on the introduction, scope and referring contact.",
           "28 September 2023, 11:00 UTC. Operations accepted registration and feedback support after reviewing the proposal. The scope excluded policy writing, publication approval and account administration. The public business summary describes the same accepted work.",
           "A contemporaneous note from Paige to the intake coordinator: I saw the request while talking with Benny about making useful posts. This looked like work our team could actually help with. Please send the normal scope and price to the operations contact.",
           "The intake predates the October 2024 Crane application and the later supplied commission correspondence. It does not make Paige’s September 2023 friendship a recruitment operation."
@@ -9372,7 +9397,7 @@
         "text": "Mum is planning community listening sessions, and the office is looking for practical help with welcoming people and collecting feedback. Please contact the office if your group can help.",
         "comments": [
           {
-            "name": "Paige Turner",
+            "name": "Paige_Turner",
             "date": "18 September 2023, 12:18 UTC",
             "text": "My team helps small groups with registration and feedback. Happy to introduce you if extra hands would be useful."
           },
