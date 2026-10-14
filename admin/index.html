@@ -10,7 +10,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-3ADGvvgaGnoIchEGuKP4CXfvSM047QrI3QsNJ6+0VpY=' 'sha256-7fj5QAsaqApIQeyqPgKu3pFpVuL2YMQm5neJepVdDCo=' 'sha256-3o5uvLiQe2v2h7PZzTArbhweOvfy9TYQaz9GYdg5afo='; style-src 'self' 'sha256-nM0E2CW3C6vOhh6A6OCHItKUXcWEZA4CXLzd5LJseIY='; img-src 'self' https://mrqcyber.com data: blob:; font-src 'self'; connect-src https://djgaqadlwaxwgobcemsp.supabase.co; frame-src blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>Instructor resources · MrQCyber</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1720'/%3E%3Ctext x='7' y='24' font-family='sans-serif' font-size='24' fill='%2387e3cf'%3EQ%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=20261014-aurora">
   <link rel="stylesheet" href="campaign-dashboard.css?v=1">
   <script defer src="../learn/osint/campaign-player/supabase.min.js"></script>
   <script defer src="../learn/osint/campaign-player/cloud-config.js"></script>
@@ -42,9 +42,35 @@
     </section>
     <section id="hub-view" class="hub" hidden aria-labelledby="hub-heading">
       <div class="hub-intro"><p class="eyebrow">YOUR RESOURCE LIBRARY</p><h1 id="hub-heading">Ready for the classroom.</h1><p>Investigations, teaching materials, and displays, all within reach.</p></div>
-      <div class="collection-heading"><div><p class="eyebrow">INVESTIGATION 01</p><h2>The Campaign Post</h2></div><span class="collection-tag">Incident response</span></div>
-      <a class="student-dashboard-launch" href="#/students"><span class="resource-icon" aria-hidden="true">▥</span><span><strong>Student progress</strong><small>See saved work, follow each class, and organize your teaching groups.</small></span><span aria-hidden="true">→</span></a>
-      <div id="resource-grid" class="resource-grid"></div>
+      <section class="classroom-displays" aria-labelledby="displays-heading">
+        <div class="collection-heading"><div><p class="eyebrow">ON THE CLASSROOM SCREEN</p><h2 id="displays-heading">Classroom displays</h2></div><span class="collection-tag">Ready to present</span></div>
+        <div class="display-grid">
+          <a class="display-card display-card-map" href="https://aurora-classroom-threat-map.bryan442725.chatgpt.site" target="_blank" rel="noopener noreferrer" aria-labelledby="aurora-map-title aurora-map-action">
+            <span class="display-card-top"><span class="display-symbol" aria-hidden="true">◎</span><span class="display-label">THREAT MAP</span></span>
+            <h3 id="aurora-map-title">Aurora Threat Map</h3>
+            <p>Bring the Aurora threat map to your classroom screen.</p>
+            <span class="display-launch" id="aurora-map-action">Open display <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></span>
+          </a>
+          <a class="display-card display-card-signal" href="https://aurora-signal.bryan442725.chatgpt.site" target="_blank" rel="noopener noreferrer" aria-labelledby="aurora-signal-title aurora-signal-action">
+            <span class="display-card-top"><span class="display-symbol" aria-hidden="true">≋</span><span class="display-label">NEWS &amp; MARKETS</span></span>
+            <h3 id="aurora-signal-title">Aurora Signal</h3>
+            <p>Put classroom news and the market ticker on display.</p>
+            <span class="display-launch" id="aurora-signal-action">Open display <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></span>
+          </a>
+        </div>
+        <p class="display-note">Each display opens in a new tab, ready to move to your classroom screen.</p>
+      </section>
+      <details class="campaign-collection">
+        <summary class="campaign-summary">
+          <span class="campaign-summary-text"><span class="campaign-summary-title">Campaign Investigation</span><span class="campaign-summary-description">The Campaign Post · Student progress and teaching resources</span></span>
+          <span class="campaign-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="campaign-content">
+          <div class="collection-heading"><div><p class="eyebrow">INVESTIGATION 01</p><h2>The Campaign Post</h2></div><span class="collection-tag">Incident response</span></div>
+          <a class="student-dashboard-launch" href="#/students"><span class="resource-icon" aria-hidden="true">▥</span><span><strong>Student progress</strong><small>See saved work, follow each class, and organize your teaching groups.</small></span><span aria-hidden="true">→</span></a>
+          <div id="resource-grid" class="resource-grid"></div>
+        </div>
+      </details>
       <p class="library-note">A growing collection of instructor resources for the MrQCyber world.</p>
     </section>
     <section id="students-view" class="teacher-dashboard" hidden aria-label="Student progress"></section>
