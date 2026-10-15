@@ -469,9 +469,58 @@
     host.append(button('Export findings for presentation', exportReport)); content.append(host);
   }
   function download(filename, text, type) { const a = node('a', { href: URL.createObjectURL(new Blob([text], { type })), download: filename }); document.body.append(a); a.click(); const href = a.href; a.remove(); setTimeout(() => URL.revokeObjectURL(href), 1000); }
+  function backupContext() {
+    const context = cloudSession?.getBackupContext?.();
+    return context || { mode: cloudSession?.isAccountActive() ? 'account' : 'practice', username: null, status: 'unknown' };
+  }
+  function backupCounts(snapshot) {
+    const responses = Object.entries(snapshot?.responses || {}), hasText = value => typeof value === 'string' && Boolean(value.trim());
+    return {
+      responses: responses.filter(([, item]) => hasText(item?.answer)).length,
+      submittedResponses: responses.filter(([id]) => C.isComplete(A, snapshot, id)).length,
+      findings: Array.isArray(snapshot?.findings) ? snapshot.findings.length : 0,
+      queryDrafts: responses.filter(([, item]) => hasText(item?.query)).length,
+      queryRuns: Array.isArray(snapshot?.queryRuns) ? snapshot.queryRuns.length : 0,
+      reportNotes: Object.values(snapshot?.reportDraft || {}).flatMap(sections => Object.values(sections || {})).filter(hasText).length,
+      findingDrafts: responses.filter(([, item]) => ['summary', 'timestamp', 'evidenceText'].some(key => hasText(item?.capture?.[key]))).length,
+      hintsUsed: responses.reduce((total, [, item]) => total + (Array.isArray(item?.hints) ? item.hints.length : 0), 0)
+    };
+  }
+  function backupScope(context) { return context.mode === 'account' ? 'Account: ' + (context.username || 'signed-in student') : 'Browser practice (signed out)'; }
+  function backupSummary(counts) { return `${counts.responses} responses · ${counts.submittedResponses} submitted · ${counts.findings} findings · ${counts.queryDrafts} query drafts · ${counts.queryRuns} query runs`; }
+  function downloadSnapshot(filename, snapshot, context = backupContext()) {
+    const exportedAt = new Date().toISOString(), counts = backupCounts(snapshot);
+    // Metadata belongs only to the file; the player's state and online save stay unchanged.
+    // Keep null recovery snapshots literal so an empty alternate copy is not replaced with the current answers.
+    const copy = snapshot == null ? null : { ...snapshot, _backup: { format: 'campaign-progress-backup', version: 1, exportedAt, mode: context.mode, username: context.username || null, saveStatus: context.status, counts } };
+    const owner = context.mode === 'account' ? context.username || 'student-account' : 'browser-practice';
+    const safe = value => String(value).replace(/[^a-z0-9_-]+/gi, '-').replace(/^-+|-+$/g, '').slice(0, 100);
+    const name = safe(filename.replace(/\.json$/i, '')) + '--' + safe(owner) + '--' + exportedAt.replace(/[:.]/g, '-') + '.json';
+    download(name, JSON.stringify(copy, null, 2), 'application/json');
+    const message = 'Backup downloaded · ' + backupScope(context) + ' · ' + backupSummary(counts);
+    saveStatus.textContent = message; announce(message); return true;
+  }
+  function requestBackup(filename) {
+    save();
+    const context = backupContext(), counts = backupCounts(state);
+    if (Object.values(counts).some(count => count > 0)) return Promise.resolve(downloadSnapshot(filename, state, context));
+    const exportEpoch = stateEpoch;
+    return new Promise(resolve => {
+      const dialog = node('dialog', { class: 'cloud-dialog', 'aria-label': 'Empty progress backup' });
+      const finish = result => { if (typeof dialog.close === 'function') dialog.close(); dialog.remove(); resolve(result); };
+      dialog.append(node('h2', { text: 'This backup has no investigation work' }), p(backupScope(context), 'cloud-notice'), p(backupSummary(counts)), p(context.mode === 'account' ? 'This account currently has no answers, findings, queries or report notes in this tab. If you expected saved work, cancel and check your account before downloading.' : 'You are viewing browser practice. Your signed-in account work is separate. Sign in to your class account before downloading its answers.'));
+      dialog.append(button(context.mode === 'account' ? 'Download empty account backup' : 'Download empty practice backup', () => {
+        if (stateEpoch !== exportEpoch) { announce('The account or progress changed. Choose Download progress backup again for the current copy.'); finish(false); return; }
+        finish(downloadSnapshot(filename, state));
+      }), button('Cancel download', () => finish(false)));
+      dialog.addEventListener('cancel', event => { event.preventDefault(); finish(false); });
+      document.body.append(dialog);
+      if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.open = true;
+    });
+  }
   function exportReport() { save(); download('Campaign-' + state.trackId + '-incident-report.txt', C.exportReport(A, state, state.trackId), 'text/plain;charset=utf-8'); }
   document.getElementById('report-toggle').addEventListener('click', () => { mode = mode === 'report' ? questionMode() : 'report'; renderWorkspace(); });
-  document.getElementById('backup').addEventListener('click', () => { save(); download('Campaign-guided-progress.json', JSON.stringify(state, null, 2), 'application/json'); });
+  document.getElementById('backup').addEventListener('click', () => requestBackup('Campaign-guided-progress.json'));
   document.getElementById('export-report').addEventListener('click', exportReport);
   const inputFile = document.getElementById('import-file'); document.getElementById('restore').addEventListener('click', () => inputFile.click());
   inputFile.addEventListener('change', async () => {
@@ -480,7 +529,7 @@
     try {
       if (file.size > C.MAX_BYTES) throw new Error('Choose a progress backup smaller than 64 MB.');
       const rawBackup = await file.text(); if (importEpoch !== stateEpoch) return; prepareSessionState(rawBackup, { preserveCurrentHints: true });
-      const notice = node('div', { class: 'report-view' }, [node('h2', { text: 'Restore this progress backup?' }), p('This replaces the guided activity work in this tab and, when signed in, in this account. Previously used hints will remain charged. Download your current backup first if you want to keep both versions.'), button('Download current backup', () => download('Campaign-before-restore.json', JSON.stringify(state, null, 2), 'application/json')), button('Restore selected backup', () => { if (importEpoch === stateEpoch) { replaceSessionState(rawBackup, { preserveCurrentHints: true }); save(); } }), button('Cancel', renderWorkspace)]);
+      const notice = node('div', { class: 'report-view' }, [node('h2', { text: 'Restore this progress backup?' }), p('This replaces the guided activity work in this tab and, when signed in, in this account. Previously used hints will remain charged. Download your current backup first if you want to keep both versions.'), button('Download current backup', () => requestBackup('Campaign-before-restore.json')), button('Restore selected backup', () => { if (importEpoch === stateEpoch) { replaceSessionState(rawBackup, { preserveCurrentHints: true }); save(); } }), button('Cancel', renderWorkspace)]);
       if (editor) { editor.destroy(); editor = null; } frame = null; toolbar.replaceChildren(); content.replaceChildren(notice);
     } catch (error) { announce(error.message); saveStatus.textContent = error.message; }
     inputFile.value = '';
@@ -506,8 +555,9 @@
     getState: () => state,
     validateState: raw => C.restore(A, raw),
     replaceState: replaceSessionState,
-    downloadBackup: filename => download(filename, JSON.stringify(state, null, 2), 'application/json'),
-    downloadState: (filename, snapshot) => download(filename, JSON.stringify(snapshot, null, 2), 'application/json')
+    onSessionReady: () => { saveStatus.textContent = backupContext().mode === 'account' ? 'Account work open in this browser' : storageBlocked ? 'Browser practice · export a backup before leaving' : 'Browser practice · this device only'; },
+    downloadBackup: requestBackup,
+    downloadState: downloadSnapshot
   }) || null;
   route();
 })();

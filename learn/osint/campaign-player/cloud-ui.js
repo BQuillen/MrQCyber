@@ -11,7 +11,7 @@
     const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
     let guest = clone(adapter.getState()), controller = null, busy = false, loadingAccount = true;
     let status = { kind: 'loading', message: 'Checking sign-in…' }, panel = 'account', failure = '', wasSignedIn = false, conflictSource = 'cloud';
-    let resolutionRecovery = null, signoutRecoveryFingerprint = null;
+    let resolutionRecovery = null, signoutRecoveryFingerprint = null, displayedUser = null;
     function element(tag, text, attrs = {}) {
       const item = document.createElement(tag);
       if (text != null) item.textContent = text;
@@ -32,12 +32,22 @@
       if (busy || loadingAccount || (current().user && !current().ready)) return;
       if (typeof dialog.close === 'function') dialog.close();
       dialog.open = false; dialog.hidden = true;
+      adapter.onSessionReady?.();
       accountButton.focus?.();
     }
     function identity(user) { return user?.email?.split('@')[0] || 'Student account'; }
     function current() { return controller?.getSnapshot({ includeState: false }) || { user: null, ready: false, dirty: false }; }
     function isAccountActive() { return loadingAccount || Boolean(current().user); }
+    function getBackupContext(options = {}) {
+      // Authentication can succeed before account progress loads. The current
+      // screen still belongs to practice until replacement actually succeeds.
+      const user = options.alternate ? current().user : displayedUser;
+      return { mode: user ? 'account' : 'practice', username: user ? identity(user) : null, status: status.kind };
+    }
     function updateStatus(next) {
+      if (next.kind === 'signed-out') next = { ...next, message: wasSignedIn
+        ? 'Signed out. Sign back in to view or download your account work. Browser practice is separate.'
+        : 'Browser practice only. Sign in to open your account’s saved work.' };
       status = next;
       const snap = current(), user = next.user || snap.user;
       if (statusElement) { statusElement.textContent = next.message || next.kind; statusElement.setAttribute('data-kind', next.kind); }
@@ -46,13 +56,17 @@
       if (next.kind === 'signed-out') {
         loadingAccount = false;
         if (wasSignedIn) { wasSignedIn = false; adapter.replaceState(clone(guest)); }
+        displayedUser = null;
+        adapter.onSessionReady?.();
       }
-      if (['error', 'auth-required', 'not-enrolled', 'offline', 'oversized'].includes(next.kind)) loadingAccount = false;
+      if (['error', 'auth-required', 'not-enrolled', 'offline', 'oversized'].includes(next.kind)) { loadingAccount = false; adapter.onSessionReady?.(); }
       if (dialog.open && !busy) render();
     }
-    function receiveState(value) {
-      loadingAccount = false;
+    function receiveState(value, details) {
       adapter.replaceState(clone(value));
+      displayedUser = clone(details?.user || current().user);
+      loadingAccount = false;
+      adapter.onSessionReady?.();
     }
     async function perform(action, after) {
       if (busy) return;
@@ -73,7 +87,7 @@
       return versions ? (action === 'useCloud' ? versions.local : versions.remote) : undefined;
     }
     function line(text, cls = '') { return element('p', text, cls ? { class: cls } : {}); }
-    function footer() { const back = button('Return to investigation', close); back.disabled = Boolean(current().user && !current().ready); dialog.append(back); }
+    function footer() { const back = button(current().user ? 'Return to investigation' : 'Continue in browser practice', close); back.disabled = Boolean(current().user && !current().ready); dialog.append(back); }
     function render() {
       if (!dialog.open) return;
       const snap = current();
@@ -103,7 +117,7 @@
             dialog.append(line('The choice could not finish. If this browser cannot keep a recovery copy, download the version that would be replaced before trying again.', 'cloud-notice'));
             dialog.append(button('Download the version being replaced', () => {
               const value = losingCopy(resolutionRecovery.action); if (value === undefined) return;
-              adapter.downloadState('Campaign-before-conflict-choice.json', value);
+              adapter.downloadState('Campaign-before-conflict-choice.json', value, getBackupContext({ alternate: true }));
               resolutionRecovery.fingerprint = JSON.stringify(value); resolutionRecovery.downloaded = true; render();
             }));
             if (resolutionRecovery.downloaded) {
@@ -130,7 +144,12 @@
         } else if (panel === 'pending-signout') {
           const lacksCurrentCopy = snap.locallySaved === false || snap.rejectedChanges;
           dialog.append(line(lacksCurrentCopy ? 'Some changes have not reached the server, and this browser could not save the current work as an offline copy. Keep this page open and download a backup. Sign-out is blocked until a copy is preserved.' : 'Some changes have not reached the server. Download a backup before leaving. An offline copy also stays under this account in this browser; it will not appear for the next signed-in student.', 'cloud-notice'));
-          dialog.append(button('Download unsynced backup', () => { signoutRecoveryFingerprint = JSON.stringify(adapter.getState()); adapter.downloadBackup('Campaign-unsynced-progress.json'); render(); }));
+          dialog.append(button('Download unsynced backup', async () => {
+            const fingerprint = JSON.stringify(adapter.getState());
+            const downloaded = await adapter.downloadBackup('Campaign-unsynced-progress.json');
+            if (downloaded !== false && fingerprint === JSON.stringify(adapter.getState())) signoutRecoveryFingerprint = fingerprint;
+            render();
+          }));
           dialog.append(button('Retry saving', () => perform(() => controller.retry(), () => { panel = 'account'; })));
           if (!lacksCurrentCopy) dialog.append(button('Sign out and keep an offline copy', () => perform(() => controller.signOut({ allowPending: true }), value => { if (value !== false) panel = 'account'; })));
           else if (signoutRecoveryFingerprint !== null) {
@@ -149,15 +168,17 @@
         if (backups.length && adapter.downloadState) {
           const recovery = element('details'); recovery.append(element('summary', 'Alternate copies kept in this browser'));
           recovery.append(line('These copies belong to this account. Download one to review or restore it through Save & export.'));
-          for (const item of backups) recovery.append(button('Download ' + (item.kind === 'online' ? 'online' : 'device') + ' copy · ' + item.savedAt, () => adapter.downloadState('Campaign-alternate-copy.json', item.state)));
+          for (const item of backups) recovery.append(button('Download ' + (item.kind === 'online' ? 'online' : 'device') + ' copy · ' + item.savedAt, () => adapter.downloadState('Campaign-alternate-copy.json', item.state, getBackupContext({ alternate: true }))));
           dialog.append(recovery);
         }
         dialog.append(button('Download progress backup', () => adapter.downloadBackup('Campaign-guided-progress.json')));
         if (panel !== 'pending-signout') dialog.append(button('Sign out', () => perform(() => controller.signOut(), value => { signoutRecoveryFingerprint = null; if (value === false) panel = 'pending-signout'; else panel = 'account'; })));
         footer(); return;
       }
-      dialog.append(line('Use the username and password assigned by your teacher. You do not need to register or provide a personal email address. Your browser practice is kept separately.'));
-      if (status.kind !== 'signed-out') dialog.append(line(status.message || '', 'cloud-notice'));
+      dialog.append(line('Sign in with the username and password assigned by your teacher to reopen your saved responses. You do not need to register or provide a personal email address.'));
+      dialog.append(line(status.message || '', 'cloud-notice'));
+      const practiceAnswers = Object.values(adapter.getState()?.responses || {}).filter(response => typeof response?.answer === 'string' && response.answer.trim()).length;
+      dialog.append(line((practiceAnswers ? 'This browser has ' + practiceAnswers + ' practice response' + (practiceAnswers === 1 ? '' : 's') + '. ' : '') + 'Browser practice stays separate from your class account. Sign in before downloading a backup of your account work.', 'helper'));
       const form = element('form'), username = element('input', null, { type: 'text', name: 'username', autocomplete: 'username', required: '', maxlength: '80', 'aria-label': 'Class username' });
       const password = element('input', null, { type: 'password', name: 'password', autocomplete: 'current-password', required: '', maxlength: '200', 'aria-label': 'Password' });
       for (const [label, input] of [['Class username', username], ['Password', password]]) { const wrap = element('label', label, { class: 'field' }); wrap.append(input); form.append(wrap); }
@@ -173,23 +194,24 @@
     }
     accountButton.hidden = false;
     accountButton.addEventListener('click', () => { panel = 'account'; show(); });
-    dialog.addEventListener('cancel', event => { if (busy || loadingAccount || (current().user && !current().ready)) event.preventDefault(); else { dialog.hidden = true; dialog.open = false; } });
+    dialog.addEventListener('cancel', event => { if (busy || loadingAccount || !current().user || !current().ready) event.preventDefault(); else { dialog.hidden = true; dialog.open = false; } });
     try {
       if (!window.supabase?.createClient || !window.CampaignCloudSync?.create) throw new Error('Online saving is unavailable.');
       const client = window.supabase.createClient(config.url, config.publishableKey, { auth: { persistSession: true, storage: window.sessionStorage, autoRefreshToken: true, detectSessionInUrl: false } });
       controller = window.CampaignCloudSync.create({ client, storage: window.localStorage, activityId: adapter.activityId, assignmentId: config.assignmentId, emailDomain: config.emailDomain, validateState: adapter.validateState, onStatus: updateStatus, onRemote: receiveState, onConflict: details => { conflictSource = details?.source || 'cloud'; panel = 'account'; show(); } });
     } catch (error) {
       loadingAccount = false; updateStatus({ kind: 'error', message: 'Online saving unavailable · browser practice only' });
-      return { isAccountActive: () => false, save: () => false };
+      return { isAccountActive: () => false, save: () => false, getBackupContext };
     }
     // Hydration is modal: nobody can type into a previous student's screen while
     // their own account is still loading. No practice state is sent by resume().
     show();
-    perform(() => controller.resume(), () => { loadingAccount = false; }).finally(() => { loadingAccount = false; if (!current().user || current().ready) close(); else render(); });
+    perform(() => controller.resume(), () => { loadingAccount = false; }).finally(() => { loadingAccount = false; if (current().user && current().ready) close(); else render(); });
     window.addEventListener('beforeunload', event => { if (current().user && current().dirty) { event.preventDefault(); event.returnValue = ''; } });
     window.addEventListener('online', () => { if (current().user) controller.retry().catch(() => {}); });
     return {
       isAccountActive,
+      getBackupContext,
       save(value) { return controller.save(value); },
       canEdit() { return !loadingAccount && (!current().user || current().ready); }
     };
