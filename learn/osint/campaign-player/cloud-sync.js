@@ -14,6 +14,7 @@
     const notify = options.onStatus || (() => {}), remote = options.onRemote || (() => {}), conflictNotice = options.onConflict || (() => {});
     const delay = options.debounceMs == null ? 1000 : options.debounceMs;
     let user = null, envelope = null, ready = false, remoteChecked = false, locallySaved = true, rejectedChanges = false, rejectedError = null, editGeneration = 0, lastCacheRaw = null, conflict = null, generation = 0, timer = null, retryTimer = null, inFlight = null, stopped = false, backupSequence = 0;
+    let hydrationInFlight = null, retryInFlight = null, snapshotGeneration = 0;
     let status = { kind: 'signed-out', message: 'Sign in to save across devices.' };
     function emit(kind, message, extra) {
       if (kind === 'saved' && rejectedChanges) { kind = rejectedError.code === 'oversized' ? 'oversized' : 'error'; message = rejectedError.message; }
@@ -99,16 +100,26 @@
       emit('conflict', record.source === 'device' ? 'Another browser tab changed this account’s device copy. Choose which copy to continue; both copies are preserved.' : 'This account has different progress on another session. Choose which copy to continue; neither will be silently overwritten.');
       conflictNotice({ local: copy(envelope.state), remote: copy(record.state), remoteRevision: record.revision, source: record.source || 'cloud' });
     }
-    async function hydrate(token, editAtStart = editGeneration) {
+    async function performHydrate(token, editAtStart, snapshotAtStart) {
       const enrollment = await client.from('campaign_enrollments').select('user_id,assignment_id,enabled').eq('user_id', user.id).eq('assignment_id', assignmentId).eq('enabled', true).maybeSingle();
       if (!current(token)) return false;
       if (enrollment.error) throw enrollment.error;
       if (!enrollment.data) { ready = false; emit('not-enrolled', 'This account is not assigned to this activity yet. Ask your teacher to assign it.'); return false; }
       const record = await readProgress(user.id);
       if (!current(token)) return false;
-      if (rejectedChanges || editGeneration !== editAtStart) { if (!rejectedChanges && !remoteChecked) scheduleRetry(); return false; }
-      const local = envelope && envelope.dirty ? envelope : readCache();
+      if (rejectedChanges || editGeneration !== editAtStart || snapshotGeneration !== snapshotAtStart) { if (!rejectedChanges && !remoteChecked) scheduleRetry(); return false; }
+      let local = envelope && envelope.dirty ? envelope : readCache();
+      if (envelope && !envelope.dirty && (!local || (!local.dirty && envelope.baseRevision > local.baseRevision))) local = envelope;
       ready = true; remoteChecked = true; conflict = null;
+      ++snapshotGeneration;
+      // A delayed server read must not roll a newer confirmed browser copy
+      // backward. Preserve it and require an explicit choice if they differ.
+      if (local && local.baseRevision > record.revision) {
+        envelope = local;
+        cache();
+        remote(copy(local.state), { source: 'cache', user: copy(user) });
+        showConflict(record); return true;
+      }
       if (local && local.dirty) {
         envelope = local;
         remote(copy(local.state), { source: 'cache', user: copy(user) });
@@ -127,12 +138,20 @@
       remote(copy(record.state), { source: record.state ? 'cloud' : 'empty', user: copy(user) });
       emit('saved', record.state ? 'Saved online.' : 'Signed in. New work will save online.'); return true;
     }
+    function hydrate(token, editAtStart = editGeneration) {
+      if (hydrationInFlight && hydrationInFlight.token === token) return hydrationInFlight.task;
+      const task = performHydrate(token, editAtStart, snapshotGeneration);
+      const pending = { token, task }; hydrationInFlight = pending;
+      const clear = () => { if (hydrationInFlight === pending) hydrationInFlight = null; };
+      task.then(clear, clear);
+      return task;
+    }
     async function connect(credentials) {
       if (stopped) return false;
       if (rejectedChanges) { errorStatus(rejectedError); return false; }
       if (envelope && envelope.dirty && !locallySaved) { emit('error', 'This browser could not save your current device copy. Download a backup before reconnecting.'); return false; }
       if (user && envelope && envelope.dirty && credentials && credentials.email !== user.email) { emit('error', 'Save or explicitly sign out with your pending device copy before changing accounts.'); return false; }
-      const token = ++generation; cancelTimer(); cancelRetry(); user = null; envelope = null; ready = false; remoteChecked = false; lastCacheRaw = null; conflict = null; inFlight = null;
+      const token = ++generation; cancelTimer(); cancelRetry(); user = null; envelope = null; ready = false; remoteChecked = false; lastCacheRaw = null; conflict = null; inFlight = null; hydrationInFlight = null; retryInFlight = null;
       emit(credentials ? 'signing-in' : 'loading', credentials ? 'Signing in…' : 'Checking your saved session…');
       try {
         if (credentials) {
@@ -197,6 +216,7 @@
               const record = await readProgress(id);
               if (!current(token)) return false;
               if (JSON.stringify(sent) === JSON.stringify(record.state)) {
+                ++snapshotGeneration;
                 envelope.baseRevision = record.revision; envelope.updatedAt = record.updated_at;
                 envelope.dirty = JSON.stringify(envelope.state) !== JSON.stringify(sent); cache();
                 if (conflict || rejectedChanges) return false;
@@ -209,6 +229,7 @@
           }
           const record = Array.isArray(result.data) ? result.data[0] : result.data;
           if (!record || !Number.isSafeInteger(record.revision) || record.revision <= expected) throw new Error('The server did not confirm the saved revision.');
+          ++snapshotGeneration;
           envelope.baseRevision = record.revision; envelope.updatedAt = record.updated_at;
           envelope.dirty = JSON.stringify(envelope.state) !== JSON.stringify(sent);
           cache();
@@ -227,7 +248,7 @@
       task.finally(() => { if (inFlight === task) inFlight = null; });
       return task;
     }
-    async function retry() {
+    async function performRetry() {
       if (stopped) return false;
       if (rejectedChanges) { errorStatus(rejectedError); return false; }
       if (!user) return connect();
@@ -237,6 +258,13 @@
       try { const authenticated = await getUser(token); if (!current(token)) return false; if (authenticated.id !== user.id) throw new Error('Not authenticated'); return await hydrate(token, editAtStart); }
       catch (error) { if (current(token)) errorStatus(error); return false; }
     }
+    function retry() {
+      if (retryInFlight) return retryInFlight;
+      const task = performRetry(); retryInFlight = task;
+      const clear = () => { if (retryInFlight === task) retryInFlight = null; };
+      task.then(clear, clear);
+      return task;
+    }
     async function useCloud(settings) {
       if (!ready || !conflict || stopped) return false;
       if (rejectedChanges) { errorStatus(rejectedError); return false; }
@@ -244,6 +272,7 @@
         // The UI only passes this after an explicit download + user acknowledgement.
         if (!(settings && settings.backupDownloaded)) backup(envelope, 'device');
         const selected = conflict; conflict = null;
+        ++snapshotGeneration;
         envelope = selected.state == null ? null : { state: copy(selected.state), baseRevision: selected.revision, dirty: selected.source === 'device', updatedAt: selected.updated_at };
         if (envelope) cache(); else storage.removeItem(key());
         remote(copy(selected.state), { source: selected.source === 'device' ? 'cache' : selected.state ? 'cloud' : 'empty', user: copy(user) });
@@ -256,6 +285,7 @@
       if (rejectedChanges) { errorStatus(rejectedError); return false; }
       try {
         if (!(settings && settings.backupDownloaded)) backup({ state: conflict.state, baseRevision: conflict.revision, updatedAt: conflict.updated_at }, conflict.source === 'device' ? 'other-tab' : 'online');
+        ++snapshotGeneration;
         envelope.baseRevision = conflict.revision; envelope.dirty = true; conflict = null; cache();
         return await flush();
       } catch (_) { emit('error', 'The alternate copy could not be backed up. Download a backup before resolving this conflict.'); return false; }

@@ -208,7 +208,6 @@
     show();
     perform(() => controller.resume(), () => { loadingAccount = false; }).finally(() => { loadingAccount = false; if (current().user && current().ready) close(); else render(); });
     window.addEventListener('beforeunload', event => { if (current().user && current().dirty) { event.preventDefault(); event.returnValue = ''; } });
-    window.addEventListener('online', () => { if (current().user) controller.retry().catch(() => {}); });
     return {
       isAccountActive,
       getBackupContext,
