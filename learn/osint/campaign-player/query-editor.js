@@ -2,10 +2,11 @@
 
 // Dependency-free editor for the bounded local CampaignQuery interpreter.
 (function (root, factory) {
-  const api = factory(typeof module === 'object' && module.exports ? require('./query-engine.js') : root?.CampaignQuery);
+  const common = typeof module === 'object' && module.exports;
+  const api = factory(common ? require('./query-engine.js') : root?.CampaignQuery, common ? require('./table-guides.js') : root?.CampaignTableGuides);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.CampaignPlayerEditor = api;
-})(typeof window === 'object' ? window : null, function (engine) {
+})(typeof window === 'object' ? window : null, function (engine, guides) {
   const KEYWORDS = new Set(['where', 'project', 'take', 'limit', 'sort', 'order', 'by', 'asc', 'desc', 'count', 'distinct', 'summarize', 'and', 'or', 'contains', 'contains_cs', 'has', 'has_cs', 'datetime']);
   const OPERATORS = ['where', 'project', 'take', 'limit', 'sort by', 'order by', 'count', 'distinct', 'summarize'];
   let instanceCount = 0;
@@ -157,13 +158,33 @@
     const results = el('section', { class: 'cpqe-results', 'aria-label': 'Query results' });
     const runButton = button('▶ Run query', run, { class: 'cpqe-run', title: 'Run current query (Ctrl/Cmd+Enter)' });
     if (schemaError) runButton.disabled = true;
-    work.append(el('div', { class: 'cpqe-toolbar' }, [label, runButton, status]), surface, help, results);
+    const guideHost = el('div', { class: 'cpqe-guide-content' });
+    const guidePicker = el('select', { id: id + '-guide-table', 'aria-label': 'Table guide' }, Object.keys(tables).map(name => el('option', { value: name, text: name })));
+    const guidePanel = el('section', { class: 'cpqe-guide-panel', 'aria-label': 'Help understanding the table' }, [
+      el('div', { class: 'cpqe-guide-controls' }, [el('label', { for: id + '-guide-table', text: 'Table guide' }), guidePicker, el('span', { text: 'Free reference · no points deducted' })]), guideHost
+    ]);
+    let lastQueryGuideTable = null, displayedGuideTable = null;
+    function showGuide(name) {
+      if (!guides?.render || !Object.prototype.hasOwnProperty.call(tables, name)) return;
+      guidePicker.value = name; displayedGuideTable = name;
+      guides.render(guideHost, { tableName: name, table: tables[name], availableTableNames: Object.keys(tables) });
+    }
+    function followQueryTable() {
+      const first = lex(input.value).find(token => !['space', 'comment'].includes(token.kind));
+      const name = first && Object.prototype.hasOwnProperty.call(tables, first.text) ? first.text : null;
+      if (name && name !== lastQueryGuideTable) { lastQueryGuideTable = name; showGuide(name); }
+      else if (!displayedGuideTable) showGuide(Object.keys(tables)[0]);
+    }
+    on(guidePicker, 'change', () => showGuide(guidePicker.value));
+    work.append(el('div', { class: 'cpqe-toolbar' }, [label, runButton, status]), surface, help);
+    if (guides?.render && Object.keys(tables).length) work.append(guidePanel);
+    work.append(results);
     root.append(rail, work); container.replaceChildren(root);
 
     function closeSuggestions() { completion = null; list.replaceChildren(); list.hidden = true; list.setAttribute('hidden', ''); input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); }
     function paint() {
       overlay.replaceChildren(...highlight(input.value, tables).map(token => el('span', { class: 'cpqe-token-' + token.kind, text: token.text })), document.createTextNode('\n'));
-      lineNumbers.textContent = Array.from({ length: input.value.split('\n').length }, (_, i) => i + 1).join('\n'); syncScroll();
+      lineNumbers.textContent = Array.from({ length: input.value.split('\n').length }, (_, i) => i + 1).join('\n'); syncScroll(); followQueryTable();
     }
     function syncScroll() { overlay.scrollTop = input.scrollTop; overlay.scrollLeft = input.scrollLeft; lineNumbers.scrollTop = input.scrollTop; }
     function clearResults(message) { currentResult = null; restoredRun = null; results.replaceChildren(el('p', { class: 'cpqe-results-empty', text: message || 'Run a query to inspect the supplied records.' })); }
@@ -241,6 +262,7 @@
         if (needle && ![name, ...table.columns].some(value => value.toLowerCase().includes(needle))) continue;
         const details = el('details', { class: 'cpqe-table' }, [el('summary', {}, [el('span', { text: name }), el('small', { text: String(table.rows.length) })])]);
         details.append(el('div', { class: 'cpqe-table-actions' }, [button('Insert table', () => insert(name)), sourceButton(table.artifactId)]));
+        if (guides?.render) details.append(button('Table guide', () => { showGuide(name); guidePanel.scrollIntoView?.({ block: 'nearest' }); }, { class: 'cpqe-guide-link', 'aria-label': 'Read table guide for ' + name }));
         const columns = el('ul', { class: 'cpqe-columns' });
         for (const column of table.columns) columns.append(el('li', {}, button(column, () => insert(column), { title: `Insert ${column} (${table.types[column]})`, 'aria-label': `Insert column ${column}, type ${table.types[column]}` })), el('li', { class: 'cpqe-column-type', text: table.types[column] }));
         details.append(columns); listNode.append(details);

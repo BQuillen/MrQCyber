@@ -9,6 +9,7 @@
   let refreshQueryHistory = null;
   let cloudSession = null, stateEpoch = 0, suppressSave = false;
   let browserLocation = null, browserBack = null, browserPicker = null, awaitingSourceLocation = false, recordLocation = null;
+  let recordSearch = '', showRecordResults = false;
   let sourceLoadTimer = null, sourceLoadStatus = null;
   let captureSummary, captureTime, captureSection, captureEvidence, captureStatus;
   const saveStatus = document.getElementById('save-status');
@@ -83,6 +84,7 @@
     queryRuns.clear(); refreshQueryHistory = null; selectedCitations = []; pageHistory = [];
     captureSummary = captureTime = captureSection = captureEvidence = captureStatus = null;
     browserLocation = browserBack = browserPicker = recordLocation = null; awaitingSourceLocation = false;
+    recordSearch = ''; showRecordResults = false;
     bannerMessage = '';
     state = next;
     reportSection = state.findings.some(f => f.autoTimeline) ? 'timeline' : 'attacker';
@@ -165,6 +167,7 @@
       desired = list[Math.min(edge, list.length - 1)].id; bannerMessage = 'Finish the current question to unlock the next step.';
       history.replaceState(null, '', '#/' + track.id + '/' + desired);
     }
+    if (currentId && C.locate(A, currentId)?.track.id !== track.id) { recordSearch = ''; showRecordResults = false; }
     currentId = desired; state.trackId = track.id; state.activeQuestion[track.id] = desired;
     mode = questionMode(); recordLocation = mode === 'records' ? { pageId: questionPage() } : null;
     browserLocation = pageLocation(questionPage()) || pageLocation(browserPages()[0]?.id); currentPage = browserLocation?.pageId;
@@ -272,6 +275,7 @@
   }
   function renderRecords() {
     const scoped = C.scopedCase(A, state, currentId), artifacts = dataArtifacts();
+    const tables = window.CampaignQuery.getTables(scoped);
     const packets = availablePages().filter(page => !compassPage(page));
     const picker = node('select', { 'aria-label': 'Provided records and documents', class: 'toolbar-right' }, [
       ...packets.map(page => node('option', { value: 'page:' + page.id, text: page.title + ' · collection' })),
@@ -280,10 +284,54 @@
     const validPage = packets.find(page => page.id === recordLocation?.pageId);
     const validArtifact = artifacts.find(a => a.id === recordLocation?.artifactId);
     if (!validPage && !validArtifact) recordLocation = packets.length ? { pageId: packets[0].id } : artifacts.length ? { artifactId: artifacts[0].id } : null;
-    toolbar.append(node('strong', { text: 'Provided records' }), picker, button('Question source', () => openPage(questionPage(), true)));
-    if (!recordLocation) { content.append(p('No provided records are available in this section.', 'helper')); return; }
+    toolbar.append(node('strong', { text: 'Provided records' }), picker, button('Question source', () => { showRecordResults = false; openPage(questionPage(), true); }));
+    const search = node('input', { type: 'search', id: 'record-search', maxlength: '200', placeholder: 'Title, source ID, table, or words in a record…', 'aria-label': 'Search provided records', 'aria-describedby': 'record-search-help', autocomplete: 'off' });
+    search.value = recordSearch;
+    const searchStatus = p('', 'records-search-status'), resultList = node('div', { class: 'records-search-results' });
+    searchStatus.setAttribute('role', 'status'); searchStatus.setAttribute('aria-live', 'polite');
+    const clearSearch = button('Clear search', () => { recordSearch = ''; search.value = ''; showRecordResults = false; paintSearch(); search.focus(); });
+    const returnToResults = button('Back to search results', () => { showRecordResults = true; paintSearch(); search.focus(); });
+    const searchHelp = p('Search the documents and records available in this section. Try “connectivity briefing”, “approval”, or a record ID. Searching does not cost points.', 'helper');
+    searchHelp.id = 'record-search-help';
+    const searchHost = node('section', { class: 'records-search', 'aria-label': 'Find provided evidence' }, [field('Search records and documents', search), searchHelp, node('div', { class: 'records-search-actions' }, [clearSearch, returnToResults]), searchStatus, resultList]);
+    const normalize = value => String(value ?? '').replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    const includes = (text, token) => /^\d+$/.test(token) ? (' ' + text + ' ').includes(' ' + token + ' ') : text.includes(token);
+    // The index is built only from this section's supplied artifacts. Public
+    // pages and later collections cannot become search results or snippets.
+    const entries = artifacts.map(artifact => {
+      const names = Object.keys(tables).filter(name => tables[name].artifactId === artifact.id);
+      const metadata = [artifact.id, artifact.title, ...names, ...(artifact.columns || [])].filter(Boolean).join(' · ');
+      const passages = [...(artifact.body || []).map(String), ...(artifact.rows || []).map(row => row.map((value, index) => (artifact.columns?.[index] || 'Value') + ': ' + value).join(' · '))];
+      return { artifact, names, metadata, passages, nameText: normalize([artifact.id, artifact.title, ...names].join(' ')), text: normalize([metadata, artifact.author, artifact.date, ...passages].join(' ')) };
+    });
+    function paintSearch() {
+      const terms = normalize(recordSearch).split(/\s+/).filter(Boolean);
+      clearSearch.hidden = !recordSearch; returnToResults.hidden = !terms.length || showRecordResults;
+      resultList.replaceChildren(); searchStatus.textContent = '';
+      if (!terms.length || !showRecordResults) return;
+      const matches = entries.filter(entry => terms.every(term => includes(entry.text, term))).sort((left, right) => {
+        const rank = entry => normalize(entry.artifact.id) === normalize(recordSearch) ? 2 : terms.every(term => includes(entry.nameText, term)) ? 1 : 0;
+        return rank(right) - rank(left) || String(left.artifact.title || left.artifact.id).localeCompare(String(right.artifact.title || right.artifact.id));
+      });
+      searchStatus.textContent = matches.length ? `${matches.length} matching ${matches.length === 1 ? 'source' : 'sources'} in this section. Open a result to read the full source.` : 'No matching records in this section. Try fewer words, a document title, a table name, or a source ID.';
+      for (const entry of matches) {
+        const { artifact, names } = entry;
+        const sourceKind = artifact.rows ? 'Table' : 'Document';
+        const passage = entry.passages.map(text => ({ text, hits: terms.filter(term => includes(normalize(text), term)).length })).sort((left, right) => right.hits - left.hits)[0]?.text || entry.metadata;
+        const normalizedTerms = terms.filter(term => !/^\d+$/.test(term));
+        const firstHit = normalizedTerms.map(term => passage.toLowerCase().indexOf(term)).filter(index => index >= 0).sort((a, b) => a - b)[0] || 0;
+        const start = Math.max(0, firstHit - 55), excerpt = passage.slice(start, start + 260);
+        const open = button(artifact.title || artifact.id, () => { showRecordResults = false; sourcePage(artifact.id); content.scrollTop = 0; content.querySelector('.record-source-heading')?.focus({ preventScroll: true }); }, 'records-search-title');
+        const card = node('article', { class: 'records-search-result', 'data-source-id': artifact.id }, [open, p([sourceKind, artifact.id, ...names].join(' · '), 'records-search-meta'), p((start ? '…' : '') + excerpt + (start + 260 < passage.length ? '…' : ''), 'records-search-excerpt')]);
+        resultList.append(card);
+      }
+    }
+    search.addEventListener('input', () => { recordSearch = search.value; showRecordResults = true; paintSearch(); });
+    search.addEventListener('search', () => { recordSearch = search.value; showRecordResults = Boolean(recordSearch.trim()); paintSearch(); });
+    content.append(searchHost); paintSearch();
+    if (!recordLocation) { content.append(p('No provided records are available in this section.', 'records-notice')); return; }
     picker.value = recordLocation.artifactId ? 'source:' + recordLocation.artifactId : 'page:' + recordLocation.pageId;
-    picker.addEventListener('change', () => { const value = picker.value; if (value.startsWith('source:')) sourcePage(value.slice(7)); else if (value.startsWith('page:')) openPage(value.slice(5)); });
+    picker.addEventListener('change', () => { showRecordResults = false; const value = picker.value; if (value.startsWith('source:')) sourcePage(value.slice(7)); else if (value.startsWith('page:')) openPage(value.slice(5)); });
     let pageId = recordLocation.pageId, pages = availablePages().map(page => ({ ...page, public: compassPage(page) }));
     if (recordLocation.artifactId) {
       const artifact = artifacts.find(a => a.id === recordLocation.artifactId);
@@ -291,7 +339,16 @@
       pages = [...pages, { id: pageId, title: artifact.title || artifact.id, site: 'Case Data Explorer', public: false, artifactIds: [artifact.id] }];
     }
     const host = node('div', { class: 'provided-records' });
-    content.append(p('These records were supplied for the investigation. Explore them here or query their tables in KQL.', 'records-notice'), host);
+    const selected = pages.find(page => page.id === pageId);
+    content.append(node('h2', { class: 'record-source-heading sr-only', tabindex: '-1', text: selected?.title || 'Provided source' }), p('These records were supplied for the investigation. Explore them here or query their tables in KQL.', 'records-notice'));
+    const selectedTables = Object.entries(tables).filter(([, table]) => selected?.artifactIds.includes(table.artifactId));
+    if (window.CampaignTableGuides?.render && selectedTables.length) {
+      const guides = node(selectedTables.length > 1 ? 'details' : 'div', { class: 'records-table-guides' });
+      if (selectedTables.length > 1) guides.append(node('summary', { text: 'Help understanding the tables in this collection' }));
+      for (const [tableName, table] of selectedTables) { const guide = node('div'); guides.append(guide); window.CampaignTableGuides.render(guide, { tableName, table, availableTableNames: Object.keys(tables) }); }
+      content.append(guides);
+    }
+    content.append(host);
     if (!window.CampaignSources?.render) { host.append(p('The provided-record viewer could not load. Keep sources.js with the player files.', 'helper')); return; }
     window.CampaignSources.render(host, { activity: { ...A, pages, caseData: scoped }, pageId, allowedArtifactIds: scoped.artifacts.map(a => a.id), assetBase: 'images/', onNavigate: openPage, onCite: cite });
   }

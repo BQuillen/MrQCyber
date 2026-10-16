@@ -1,0 +1,35 @@
+.campaign-table-guide {
+  margin: .75rem 0;
+  padding: .85rem 1rem;
+  border: 1px solid #cbd9e7;
+  border-left: 4px solid #32709b;
+  border-radius: .5rem;
+  background: #f4f8fc;
+  color: #20374c;
+  font-family: system-ui, sans-serif;
+  font-size: .9rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.campaign-table-guide h3 { margin: 0 0 .2rem; font-size: 1rem; line-height: 1.4; color: #183950; }
+.campaign-table-guide p { margin: .35rem 0; }
+.campaign-table-guide .campaign-table-guide-source { margin: 0 0 .5rem; color: #4e6275; font-size: .8rem; }
+.campaign-table-guide .campaign-table-guide-row { color: #39546c; }
+.campaign-table-guide-details { margin-top: .65rem; border-top: 1px solid #d2deea; padding-top: .55rem; }
+.campaign-table-guide-details > summary { width: fit-content; cursor: pointer; font-weight: 650; color: #1c557c; }
+.campaign-table-guide-details > summary:focus-visible { outline: 2px solid #135f98; outline-offset: 4px; border-radius: 2px; }
+.campaign-table-guide ul { margin: .65rem 0; padding-left: 1.3rem; }
+.campaign-table-guide li + li { margin-top: .4rem; }
+.campaign-table-guide-columns { display: grid; grid-template-columns: minmax(9rem, .9fr) minmax(0, 2fr); margin: .85rem 0 .3rem; }
+.campaign-table-guide-columns dt, .campaign-table-guide-columns dd { margin: 0; padding: .45rem .6rem; border-top: 1px solid #dbe4ed; }
+.campaign-table-guide-columns dt { padding-left: 0; }
+.campaign-table-guide-columns code { color: #244f70; font-size: .86em; font-weight: 650; }
+.campaign-table-guide-type { display: block; font-weight: 400; color: #556b7d; font-size: .75rem; }
+.campaign-table-guide-comparisons h4 { margin: .9rem 0 .25rem; font-size: .9rem; }
+@media (max-width: 620px) {
+  .campaign-table-guide { padding: .75rem; }
+  .campaign-table-guide-columns { display: block; }
+  .campaign-table-guide-columns dt { padding-bottom: .1rem; }
+  .campaign-table-guide-columns dd { padding: 0 0 .55rem; border-top: 0; }
+  .campaign-table-guide-type { display: inline; margin-left: .5rem; }
+}
