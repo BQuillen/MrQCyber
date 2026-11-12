@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-11-12",
+    "category": "cybersecurity",
+    "headline": "Node.js Patches Serious Security Bugs That Could Crash Websites or Leak Private Data"
+  },
+  {
     "date": "2026-11-11",
     "category": "general-tech",
     "headline": "X Adds a New Tool to Help Creators Make Short Video Clips"
